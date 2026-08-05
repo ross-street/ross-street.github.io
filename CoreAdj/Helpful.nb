@@ -1,0 +1,355 @@
+(************** Content-type: application/mathematica **************
+                       CreatedBy='Publicon 1.0'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[      9001,        260]*)
+(*NotebookOutlinePosition[      9679,        283]*)
+(*  CellTagsIndexPosition[      9635,        279]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["F R O N T M A T T E R", "FrontmatterGroup"],
+
+Cell[CellGroupData[{
+
+Cell["Title", "Title"],
+
+Cell["AuthorName", "Author"],
+
+Cell["Date", "Date"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["B O D Y", "MainmatterGroup"],
+
+Cell[CellGroupData[{
+
+Cell["Abstract", "AbstractSection"],
+
+Cell["Abstract text begins here...", "Abstract"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Section", "Section"],
+
+Cell[TextData[{
+  "Once ",
+  Cell[BoxData[
+      \(TraditionalForm\`\((A\^\[Prime], s\^\[Prime])\)\)]],
+  "."
+}], "Text"],
+
+Cell[BoxData[{
+    \(TraditionalForm\`\((\((f\ s)\) 
+        s\(\[LongRightArrow]\&\(\[Phi]\ s\)\)\((\(s\^\[Prime]\) f)\) 
+        s\(\[LongRightArrow]\& \[TildeFullEqual] \)\(\(s\^\[Prime]\)(
+            f\ s)\)\(\[LongRightArrow]\&\(\(s\^\[Prime]\) \[Phi]\)\)\(\(s\^\
+\[Prime]\)(
+            s\^\[Prime]\ f)\)\(\[LongRightArrow]\& \[TildeFullEqual] \
+\)\(\(s\^\[Prime]\)(\ \(s\^\[Prime]\) 
+              f)\)\(\[LongRightArrow]\&\(\[Mu]\ f\)\)s\^\[Prime]  
+        f)\)\), "\[IndentingNewLine]", 
+    \(TraditionalForm\`\(\(=\)\((\((f\ s)\) 
+          s\(\[LongRightArrow]\& \[TildeFullEqual] \)\(f(
+              s\ s)\)\(\[LongRightArrow]\&\(f\ \[Mu]\)\)f\ s\(\
+\[LongRightArrow]\&\[Phi]\)s\^\[Prime]\ f)\)\)\)}], "EquationNumbered"],
+
+Cell["and", "TextNoIndent"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\((f\ 1\(\[LongRightArrow]\&\(f\ \[Eta]\)\)f\ s\(\
+\[LongRightArrow]\&\[Phi]\)s\^\[Prime]\ f)\) = \(\((f\ 1\(\[LongRightArrow]\& \
+\[TildeFullEqual] \)1\ f\(\[LongRightArrow]\&\(\[Eta]\ f\)\)s\^\[Prime]\ f)\)\
+\(\ \)\(.\)\)\)], "EquationNumbered"],
+
+Cell[TextData[{
+  "How do you get ",
+  Cell[BoxData[
+      \(TraditionalForm\`A\^\[DoublePrime]\)]],
+  "?"
+}], "TextNoIndent"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\((\(f\^\[Prime]\) f)\) 
+      s\(\[LongRightArrow]\&\[Phi]\)s\^\[Prime] 
+       f\ \(\[LongRightArrow]\&\(\(s\^\[Prime]\) \[Rho]\)\)\(\(s\^\[Prime]\)(
+          s\^\[Prime]\ g)\)\(\[LongRightArrow]\& \[TildeFullEqual] \)\((s\^\
+\[Prime]\ s\^\[Prime])\) 
+      g\(\[LongRightArrow]\&\(\[Mu]\ g\)\)s\^\[Prime] \( \(g\)\(\ \ \)\(.\)\)\
+\)], "EquationNumbered"],
+
+Cell["bbbb", "TextNoIndent"],
+
+Cell[BoxData[{
+    \(TraditionalForm\`\((f\ s\(\[LongRightArrow]\&\[Phi]\)s\^\[Prime] \( 
+            f\ \(\[LongRightArrow]\&\(\(s\^\[Prime]\) \[Rho]\)\)\(\(s\^\
+\[Prime]\)(
+              s\^\[Prime]\ g)\)\)\(\[LongRightArrow]\& \[TildeFullEqual] \
+\)\((s\^\[Prime]\ s\^\[Prime])\) 
+        g\(\[LongRightArrow]\&\(\[Mu]\ g\)\)s\^\[Prime]  g)\)\), "\n", 
+    \(TraditionalForm\`\(\(=\)\((f\ s\(\[LongRightArrow]\&\(\[Rho]\ s\)\)\((s\
+\^\[Prime]\ g)\) 
+          s\(\[LongRightArrow]\& \[TildeFullEqual] \)s\^\[Prime]\ \((g\ \
+s)\)\(\[LongRightArrow]\&\(s\^\[Prime]\ \[Psi]\)\)s\^\[Prime]\ \((s\^\[Prime]\
+\ g)\)\(\[LongRightArrow]\& \[TildeFullEqual] \)\((s\^\[Prime]\ \
+s\^\[Prime])\)\ g\(\[LongRightArrow]\&\(\[Mu]\ g\)\)s\^\[Prime]\ g)\)\)\)}], \
+"EquationNumbered"],
+
+Cell["baba", "TextNoIndent"],
+
+Cell[BoxData[
+    \(TraditionalForm\`f\(\[LongRightArrow]\&\[Rho]\)s\^\[Prime] 
+       g\(\[LongRightArrow]\&\(\(s\^\[Prime]\) \
+\[Tau]\)\)\(\(s\^\[Prime]\)(\(s\^\[Prime]\) 
+            h)\)\(\[LongRightArrow]\& \[TildeFullEqual] \)\((\(s\^\[Prime]\) 
+            s\^\[Prime])\) 
+      h\(\[LongRightArrow]\&\(\[Mu]\ h\)\)s\^\[Prime] \( \(h\)\(\ \ \)\(.\)\)\
+\)], "EquationNumbered"],
+
+Cell["catdd", "TextNoIndent"],
+
+Cell[BoxData[{
+    \(TraditionalForm\`\(f\^\[Prime]\) \
+\(f\(\[LongRightArrow]\&\(\(f\^\[Prime]\) \[Rho]\)\)\(\(f\^\[Prime]\)(\(s\^\
+\[Prime]\) 
+              g)\)\)\(\[LongRightArrow]\& \[TildeFullEqual] \)\ \((\(f\^\
+\[Prime]\) s\^\[Prime])\) 
+      g\(\[LongRightArrow]\&\(\(\[Phi]\^\[Prime]\) 
+              g\)\)\((\(s\^\[DoublePrime]\) f\^\[Prime])\) 
+      g\), "\[IndentingNewLine]", 
+    \(TraditionalForm\`\(\(\[LongRightArrow]\&\(\((\(s\^\[DoublePrime]\) \
+\[Rho]\^\[Prime])\) g\)\)\((\(s\^\[DoublePrime]\)(\(s\^\[DoublePrime]\) 
+              g\^\[Prime]))\)\) 
+      g\(\[LongRightArrow]\& \[TildeFullEqual] \)\((\(s\^\[DoublePrime]\) 
+            s\^\[DoublePrime])\) \(\(\((\(g\^\[Prime]\) 
+              g)\)\(\[LongRightArrow]\&\(\[Mu]\ \((\(g\^\[Prime]\) 
+                    g)\)\)\)\(\(s\^\[DoublePrime]\)(\(g\^\[Prime]\) 
+              g)\)\)\(\ \ \)\(.\)\)\)}], "EquationNumbered"],
+
+Cell["dogcc", "TextNoIndent"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\((f, \[Phi])\) \[LeftTee] \((u, \[Upsilon])\) : \((A, 
+          s)\)\[LongRightArrow]\((X, t)\)\)], "EquationNumbered"],
+
+Cell["snake", "TextNoIndent"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\((f\ u\ s\(\[LongRightArrow]\&\(\[Alpha]\ s\)\)s\ s\(\
+\[LongRightArrow]\&\[Mu]\)s)\) = \((f\ u\ s\ \(\[LongRightArrow]\&\(f\ \
+\[Upsilon]\)\)f\ t\ u\(\[LongRightArrow]\&\(\[Phi]\ u\)\)s\ f\ u\(\
+\[LongRightArrow]\&\(s\ \[Alpha]\)\)s\ s\(\[LongRightArrow]\&\[Mu]\)s)\)\)], \
+"EquationNumbered"],
+
+Cell["lizard", "TextNoIndent"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\((t\(\[LongRightArrow]\&\(t\ \[Beta]\)\)t\ t\ u\ f\(\
+\[LongRightArrow]\&\(\[Mu]\ u\ f\)\)t\ u\ f)\) = \((t\ \
+\(\[LongRightArrow]\&\(\[Beta]\ t\)\)t\ u\ f\ t\(\[LongRightArrow]\&\(t\ u\ \
+\[Phi]\)\)t\ u\ s\ f\(\[LongRightArrow]\&\(t\ \[Upsilon]\ f\)\)t\ t\ u\ f\(\
+\[LongRightArrow]\&\(\[Mu]\ u\ f\)\)t\ u\ f)\)\)], "EquationNumbered"],
+
+Cell["bird", "TextNoIndent"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\((f\(\[LongRightArrow]\&\(\[Eta]\ f\)\)s\ f)\) = \((f\
+\ \(\[LongRightArrow]\&\(f\ \[Beta]\)\)f\ u\ f\ \
+t\(\[LongRightArrow]\&\(\[Phi]\ u\ f\)\)s\ f\ u\ f\(\[LongRightArrow]\&\(s\ \
+\[Alpha]\ f\)\)s\ s\ f\(\[LongRightArrow]\&\(\[Mu]\ f\)\)s\ f)\)\)], \
+"EquationNumbered"],
+
+Cell["plant", "TextNoIndent"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\((u\(\[LongRightArrow]\&\(\[Eta]\ u\)\)t\ u)\) = \
+\(\((u\ \(\[LongRightArrow]\&\(\[Beta]\ u\)\)t\ u\ f\ \
+u\(\[LongRightArrow]\&\(t\ u\ \[Alpha]\)\)t\ u\ s\(\[LongRightArrow]\&\(t\ \
+\[Upsilon]\)\)t\ t\ u\(\[LongRightArrow]\&\(\[Mu]\ u\)\)t\ u)\)\(\ \ \
+\)\(.\)\)\)], "EquationNumbered"],
+
+Cell["pi", "TextNoIndent"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\[Pi]\  : \ \(f\^\[Star]\) 
+        s\(\[LongRightArrow]\&\(\[Beta]\ \(f\^\[Star]\) 
+                s\)\)t\ u\ f\ \(f\^\[Star]\) 
+        s\(\[LongRightArrow]\&\(t\ u\ \(\[CurlyEpsilon]\_f\) 
+                s\)\)t\ u\ s\(\[LongRightArrow]\&\(t\ \[Upsilon]\)\)t\ t\ u\(\
+\[LongRightArrow]\&\(\[Mu]\ u\)\)t\ u\)], "EquationNumbered"],
+
+Cell["invpi", "TextNoIndent"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\[Pi]\^\(-1\)\  : \ 
+      t\ u\(\[LongRightArrow]\&\(\[Eta]\_f\ t\ u\)\)\(f\^\[Star]\) 
+        f\ t\ u\(\[LongRightArrow]\&\(\(f\^\[Star]\) \[Phi]\ \
+u\)\)\(f\^\[Star]\) 
+        s\ f\ u\(\[LongRightArrow]\&\(\(f\^\[Star]\) 
+                s\ \[Alpha]\)\)\(f\^\[Star]\) 
+        s\ s\(\[LongRightArrow]\&\(\(f\^\[Star]\) \[Mu]\)\)\(f\^\[Star]\) 
+        s\)], "EquationNumbered"],
+
+Cell["ggg", "TextNoIndent"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\(\[Phi]\&^\)\)], "Equation"],
+
+Cell[BoxData[
+    \(TraditionalForm\`f \[LeftTee] \(f\^\[Star]\)\)], "Equation"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["B A C K M A T T E R", "BackmatterGroup"],
+
+Cell[CellGroupData[{
+
+Cell["Appendix Head...", "AppendixSection"],
+
+Cell["Appendix text begins here...", "Text"]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"4.2 for Macintosh",
+ScreenRectangle->{{42, 1280}, {0, 746}},
+WindowSize->{553, 624},
+WindowMargins->{{206, Automatic}, {0, Automatic}},
+StyleDefinitions -> "LaTeX_Article.nb"
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1775, 53, 49, 0, 43, "FrontmatterGroup"],
+
+Cell[CellGroupData[{
+Cell[1849, 57, 22, 0, 53, "Title"],
+Cell[1874, 59, 28, 0, 35, "Author"],
+Cell[1905, 61, 20, 0, 23, "Date"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[1974, 67, 34, 0, 43, "MainmatterGroup"],
+
+Cell[CellGroupData[{
+Cell[2033, 71, 35, 0, 25, "AbstractSection"],
+Cell[2071, 73, 48, 0, 17, "Abstract"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[2156, 78, 26, 0, 66, "Section"],
+Cell[2185, 80, 121, 5, 20, "Text"],
+Cell[2309, 87, 737, 13, 75, "EquationNumbered"],
+Cell[3049, 102, 27, 0, 20, "TextNoIndent"],
+Cell[3079, 104, 284, 4, 42, "EquationNumbered"],
+Cell[3366, 110, 126, 5, 20, "TextNoIndent"],
+Cell[3495, 117, 395, 7, 37, "EquationNumbered"],
+Cell[3893, 126, 28, 0, 20, "TextNoIndent"],
+Cell[3924, 128, 770, 13, 78, "EquationNumbered"],
+Cell[4697, 143, 28, 0, 20, "TextNoIndent"],
+Cell[4728, 145, 383, 7, 37, "EquationNumbered"],
+Cell[5114, 154, 29, 0, 20, "TextNoIndent"],
+Cell[5146, 156, 903, 16, 63, "EquationNumbered"],
+Cell[6052, 174, 29, 0, 20, "TextNoIndent"],
+Cell[6084, 176, 158, 2, 28, "EquationNumbered"],
+Cell[6245, 180, 29, 0, 20, "TextNoIndent"],
+Cell[6277, 182, 332, 5, 42, "EquationNumbered"],
+Cell[6612, 189, 30, 0, 20, "TextNoIndent"],
+Cell[6645, 191, 374, 5, 42, "EquationNumbered"],
+Cell[7022, 198, 28, 0, 20, "TextNoIndent"],
+Cell[7053, 200, 311, 5, 42, "EquationNumbered"],
+Cell[7367, 207, 29, 0, 20, "TextNoIndent"],
+Cell[7399, 209, 326, 5, 42, "EquationNumbered"],
+Cell[7728, 216, 26, 0, 20, "TextNoIndent"],
+Cell[7757, 218, 370, 6, 38, "EquationNumbered"],
+Cell[8130, 226, 29, 0, 20, "TextNoIndent"],
+Cell[8162, 228, 419, 8, 38, "EquationNumbered"],
+Cell[8584, 238, 27, 0, 20, "TextNoIndent"],
+Cell[8614, 240, 66, 1, 33, "Equation"],
+Cell[8683, 243, 80, 1, 29, "Equation"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[8812, 250, 46, 0, 43, "BackmatterGroup"],
+
+Cell[CellGroupData[{
+Cell[8883, 254, 43, 0, 81, "AppendixSection"],
+Cell[8929, 256, 44, 0, 20, "Text"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

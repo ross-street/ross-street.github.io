@@ -1,0 +1,1394 @@
+% $Header: /cvsroot/latex-beamer/latex-beamer/solutions/generic-talks/generic-ornate-15min-45min.en.tex,v 1.4 2004/10/07 20:53:08 tantau Exp $
+
+%\documentclass[trans]{beamer}
+%\documentclass[draft]{beamer}
+\documentclass{beamer}
+
+\usepackage{enumerate}
+\usepackage{amscd,amsmath,xspace,amssymb,amsfonts,mathrsfs,latexsym}
+\usepackage{graphicx}
+
+\usepackage{array}
+%\usepackage{mbboard}
+%\usepackage{multicol}
+%\usepackage[pdftex]{color}
+
+%\includeonlyframes{current}
+
+\usepackage[all,poly,knot,tips]{xy}
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\Lra}{\Longrightarrow}
+\newcommand{\Lla}{\Longleftarrow}
+
+%% Script Shortcuts 
+\def\CA{{\mathscr A}}
+\def\CB{{\mathscr B}}
+\def\CC{{\mathscr C}}
+\def\CD{{\mathscr D}}
+\def\CE{{\mathscr E}}
+\def\CF{{\mathscr F}}
+\def\CG{{\mathscr G}}
+\def\CH{{\mathscr H}}
+\def\CI{{\mathscr I}}
+\def\CJ{{\mathscr J}}
+\def\CK{{\mathscr K}}
+\def\CL{{\mathscr L}}
+\def\CM{{\mathscr M}}
+\def\CN{{\mathscr N}}
+\def\CO{{\mathscr O}}
+\def\CP{{\mathscr P}}
+\def\CQ{{\mathscr Q}}
+\def\CR{{\mathscr R}}
+\def\CS{{\mathscr S}}
+\def\CT{{\mathscr T}}
+\def\CU{{\mathscr U}}
+\def\CV{{\mathscr V}}
+\def\CW{{\mathscr W}}
+\def\CX{{\mathscr X}}
+\def\CY{{\mathscr Y}}
+\def\CZ{{\mathscr Z}}
+
+\newcommand{\A}{\ensuremath{\mathcal{A}}\xspace}
+\newcommand{\B}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\Af}{\ensuremath{\mathcal{A}_f}\xspace}
+\newcommand{\C}{\ensuremath{\mathcal{C}}\xspace}
+\newcommand{\D}{\ensuremath{\mathcal{D}}\xspace}
+\newcommand{\F}{\ensuremath{\mathcal{F}}\xspace}
+\newcommand{\I}{\ensuremath{\mathcal{I}}\xspace}
+\newcommand{\K}{\ensuremath{\mathcal{K}}\xspace}
+\newcommand{\Kt}{\ensuremath{\mathcal{K}_t}\xspace}
+\newcommand{\Kl}{\ensuremath{\mathcal{K}_{\ell}}\xspace}
+\renewcommand{\L}{\ensuremath{\mathcal{L}}\xspace}
+\renewcommand{\S}{\ensuremath{\mathcal{S}}\xspace}
+\newcommand{\T}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\V}{\ensuremath{\mathcal{V}}\xspace}
+\newcommand{\Vf}{\ensuremath{\mathcal{V}_f}\xspace}
+\newcommand{\W}{\ensuremath{\mathcal{W}}\xspace}
+\newcommand{\X}{\ensuremath{\mathcal{X}}\xspace}
+
+\newcommand{\op}{\ensuremath{^{\textrm{op}}}\xspace}
+\newcommand{\ps}{\ensuremath{^{\textrm{ps}}}\xspace}
+\newcommand{\lax}{\ensuremath{^{\textrm{lax}}}\xspace}
+\newcommand{\oplax}{\ensuremath{^{\textrm{oplax}}}\xspace}
+
+
+\newcommand{\EMK}{\textnormal{\sf EM(\K)}\xspace}
+\newcommand{\EM}{\textnormal{\sf EM}\xspace}
+\newcommand{\EMwK}{\ensuremath{\EM^w(\K)}\xspace}
+
+%\newcommand{\Cat}{\textnormal{\bf Cat}\xspace}
+\newcommand{\Lex}{\textnormal{\sf Lex}\xspace}
+\newcommand{\Lan}{\textnormal{\sf Lan}\xspace}
+\newcommand{\Hom}{\textnormal{\sf Hom}\xspace}
+\renewcommand{\t}{\times}
+\newcommand{\ot}{\otimes}
+\newcommand{\two}{\mathbf{2}\xspace}
+
+
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\beamerdefaultoverlayspecification{<+->}
+
+%\newenvironment{\next}{\uncover<+->{}{}}
+
+\mode<presentation>
+{
+%  \usetheme[compress,subsection=false]{Szeged}
+  % or ...
+%  \useoutertheme[subsection=false]{miniframes}
+%\useoutertheme[subsection=false, footline=authortitle, frame number]{miniframes}
+\useoutertheme{infolines}
+\setbeamercolor{separation line}{use=structure,bg=structure.fg!50!bg}
+\usecolortheme{whale}
+\usecolortheme{orchid}
+\usecolortheme{rose}
+\setbeamercolor{titlelike}{parent=structure}
+
+
+%  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[latin1]{inputenc}
+% or whatever
+
+%\usepackage{times}
+%\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+
+\title[From lin alg to knots via categories] % (optional, use only with long paper titles)
+{\textbf{From linear algebra to knot theory via categories}}
+
+%{Presentation Subtitle} % (optional)
+
+\author{Ross Street}
+\institute{Macquarie University}
+%[Universities of Somewhere and Elsewhere] % (optional, but mostly needed)
+%{
+%  \inst{1}%
+%  Department of Computer Science\\
+%  University of Somewhere
+%  \and
+%  \inst{2}%
+%  Department of Theoretical Philosophy\\
+%  University of Elsewhere}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date[12 Aug 2013]{\small Mathematics Department Colloquium, E7B100} 
+
+\subject{Colloquium}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+\beamerdefaultoverlayspecification{<.->}
+
+\begin{document}
+
+%  \begin{frame}
+%    \titlepage
+%  \end{frame}
+
+
+\begin{frame}%[plain]
+%  \frametitle{titlepage}
+
+  \begin{centering}
+    {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle
+
+\medskip 
+
+{\small Ross Street}
+
+{\small Macquarie University} 
+
+\medskip
+\uncover<1->{{}}
+}
+
+\vfill
+
+\centerline{\usebeamerfont{title}\usebeamercolor[fg]{title}\insertdate}
+% CT09, Cape Town}
+
+  \end{centering}
+
+
+\end{frame}
+
+
+% \begin{frame}
+%   \frametitle{Outline}
+%   \tableofcontents
+%   % You might wish to add the option [pausesections]
+% \end{frame}
+
+%\section[Stricts and weaks]{The strict/weak dichotomy}
+
+%\subsection{Classical universal algebra}
+
+\begin{frame}
+  \frametitle{Purpose of the talk}
+
+Monoidal categories are finding lots of uses in mathematics, physics and computer science. \\
+Here I will be concerned with mathematical applications.
+\pause
+
+My goal is:
+ \begin{itemize}
+\item<1-> to recall some facts about vector spaces and linear functions \\ (MATH 136 and MATH 235);
+\pause
+\item<2-> to introduce categories and monoidal categories through the vector space example;
+\pause
+\item<3-> to define some concepts of monoidal category theory and identify them for vector spaces;
+\pause
+\item<4-> to explain string notation as a method for calculating;
+\pause
+\item<5-> to explain the two-way interaction between knot theory and categories.
+
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Role of monoidal categories in mathematics}
+  
+  Simplistically:
+  \bigskip
+  
+\[
+\frac{\mathrm{Point \ \ in \ \ Euclidean \ \ Space}}{\mathrm{Vector \ \ Space}}=\frac{\mathrm{Vector \ \ Space}}{\mathrm{Monoidal \ \ Category}}\,.
+\]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Left-hand side}
+
+\noindent Formalizing properties of the Euclidean plane into the structure of vector space, 
+we are able to transfer low-dimensional thinking to obtain precise results in higher dimensions.
+
+\[
+\xygraph{ !{\UseTips}
+ !{/r6pc/: /u4pc/::}
+ []*++[F-]+!C\txt{Vector spaces} !{+D*+!C\txt{ \ }} 
+ ( [dl] *++[F-]+\txt{Plane\\geometry} : ?
+ , ? : [dr] *++[F-]+\txt{Functional\\analysis}
+ )
+}\]
+\end{frame}
+
+\begin{frame}
+  \frametitle{Right-hand side}
+\noindent Formalizing properties of the totality of vector spaces into the structure of monoidal category, we are able to transfer ideas from linear algebra into some perhaps surprising areas.
+
+\[
+\xygraph{  !{\UseTips}!{/u4pc/::}
+ !{/r6pc/: /u4pc/::}
+ []*++[F-]+!C\txt{Monoidal categories} !{+D*+!C\txt{ \ }} 
+ ( [dl] *++[F-]+\txt{Linear\\algebra} : ?
+ , ? : [dr] *++[F-]+\txt{Knot\\theory}
+ )
+}\]
+\end{frame}
+
+\begin{frame}
+ \frametitle{Origin of categories}
+\begin{itemize}
+\item Felix Klein (1872) recognized the importance of structure-respecting transformations in geometry.
+They are what define the specific geometry in question.
+\pause
+\item These transformations were taken to be invertible, forming a groupoid.
+\pause
+\item General structure-respecting functions are also crucial.
+\pause
+\item The notion of ``category'' is a mathematical structure which captures these ideas.
+\pause
+\item The original defining paper of Samuel Eilenberg and Saunders Mac Lane (1945)
+wanted to formalize what was meant by ``naturally'' or ``canonically'' isomorphic constructions in mathematics,
+particularly in group theory.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+ \frametitle{The category of vector spaces}
+\begin{itemize}
+\item The \emph{category} $\mathrm{Vect}$ of (say, complex) vector spaces consists not only of the vector spaces $V$ (\emph{objects}) but also of the linear functions $f:V\lra W$ between them (\emph{morphisms}).
+\pause
+\item The basic operation is composition
+ $$
+ \xymatrix{ & W \ar[dr]^g &
+                \\ V \ar[ur]^f  \ar[rr]_{g\circ f} & & X
+                }
+ $$ 
+of the morphisms.
+\pause
+\item Each object $V$ has an identity morphism $1_V : V \lra V$.\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Operations on vector spaces}
+
+\begin{itemize}
+\item A first course on linear algebra introduces the operation of \emph{direct sum} $V \oplus W$ of vector spaces and the quantity called \emph{dimension}. 
+\pause
+\item If $V$ and $W$ are finite dimensional,
+\[
+\dim (V \oplus W) = \dim V + \dim W.
+\]
+\pause
+\item
+\emph{Bilinear functions} $h : V \times W \lra X$ would also be defined.
+\pause
+\item
+Yet the operation of \emph{tensor product}   $V \otimes W$ might await a course on multilinear algebra or module theory.
+\pause
+\item
+For $V$ and $W$ finite dimensional, 
+\[
+\dim (V \otimes W) = \dim V \times \dim W.
+\]
+\pause
+\item
+Bilinear functions $h : V \times W \lra X$ are in canonical bijection with linear functions $f : V \otimes W \lra X$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Vector spaces of linear functions}
+\begin{itemize}
+\item There is also the vector space $X^V$ of linear functions from $V$ to $X$.
+\pause
+\bigskip
+\item
+Linear functions $f : V \otimes W  \lra X$ are in canonical bijection with linear functions
+\[
+g : W  \lra X^V.
+\]
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{Definition of category}
+\begin{itemize}
+\item 
+A \emph{category}  $\CC$ consists of a set of \emph{objects} and, 
+\pause
+\item for each pair of objects $A, B$, a set $\CC (A,B)$ of morphisms $f : A  \lra B$, 
+\pause
+\item together with an associative composition rule $\circ$ ,
+\pause
+\item with identities $1_A : A  \lra A$,
+\pause
+\item subject to associativity and identity axioms.
+\[  \xymatrix@R+2mm @C+2mm{
+    A \ar[r]^{h \circ (g\circ f)} \ar[d]_f \ar[rd]^{g \circ f} & D   \\
+    B \ar[r]_g    & C \ar[u]_h
+  } \qquad
+  \xymatrix@R+2mm @C+2mm{
+    A \ar[r]^{(h \circ g)\circ f} \ar[d]_f  & D   \\
+    B \ar[r]_g  \ar[ru]_{h \circ g}  & C \ar[u]_h}
+ \qquad
+   \xymatrix@R+2mm @C+2mm{
+    A \ar[r]^f\ar[d]_{f=1_B \circ f}   & B \ar[ld]_{1_B}  \ar[d]^{g=g\circ 1_B}\\
+    B \ar[r]_g     & C }
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Commutative diagrams}
+In a category, we can speak of \emph{commutative diagrams}:
+\begin{equation*}
+\xymatrix{
+& Y \ar[rd]^-{ g}  & \\
+X \ar[ru]^-{f} \ar[d]_-{u} \ar[rr]_-{w} & & Z \ar[d]^-{h} \\
+V \ar[rr]_-{v} & & W }
+\end{equation*}
+%
+\begin{center}
+$h \circ w = v \circ u$ \quad and \quad $g \circ f = w$, \quad
+so $v \circ u = h \circ g \circ f$.
+\end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Functors}
+
+\begin{itemize}
+\item Categories are themselves mathematical structures: so we should look at morphisms between them.
+\pause
+\bigskip
+\item A \emph{functor} $T : \CC  \lra \CH$ assigns an object $TA$ of $\CH$ to each object $A$ of $\CC$, 
+a morphism $Tf : TA  \lra TB$ in $\CH$ to each $f : A  \lra B$ in $\CC$, such that
+\[
+T1_A = 1_{TA} \quad \mbox{and} \quad T(g \circ f) = Tg \circ Tf.
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Examples of functors}
+\begin{itemize}
+\item 
+Important constructions made on mathematical structures are functorial. 
+\pause
+\item Each vector space $V$ determines a functor
+\[
+T = V\otimes - : \mathrm{Vect}  \lra \mathrm{Vect} 
+\]
+defined by
+\begin{align*}
+TA &= V \otimes A  \\
+Tf &= 1_V \otimes f : V \otimes A \lra V \otimes B\,,   \qquad  v \otimes a \longmapsto v \otimes f(a)\,. 
+\end{align*}
+\pause
+\item In an obvious sense of \emph{product category}, tensor product is a functor
+\[
+- \otimes - : \mathrm{Vect}  \times \mathrm{Vect}  \lra \mathrm{Vect}\,.
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Other examples of functors}
+\begin{itemize}
+\item 
+There is a functor $T_n : \mathrm{Vect}  \lra \mathrm{Vect} $
+taking $V$ to the $n$-fold tensor power 
+$$T_nV =  \underbrace{V\otimes V \otimes \dots \otimes V}_n = V^{\otimes n}\ .$$
+\pause
+\item Taking the direct sum of all these over $n$ gives
+a functor
+\[
+T  : \mathrm{Vect}  \lra \mathrm{Vect} 
+\]
+defined by the `geometric series'
+$$TV = \mathbb{C}\oplus V\oplus V^{\otimes 2}\oplus V^{\otimes 3}\dots \ .$$
+\pause
+\item In fact, each $TV$ is an algebra: indeed, we have a functor 
+\[
+T  : \mathrm{Vect}  \lra \mathrm{Alg} \ .
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Natural transformations}
+\begin{itemize}
+\item Categories exhibit a higher-dimensional structure in that there are morphisms between functors.
+\pause
+\item Suppose $S$ and $T : \CC \lra \CH$ are functors. A \emph{natural transformation}
+\[
+\theta : S \Longrightarrow T
+\]
+is a family of morphisms
+\[
+\theta_A : SA \lra TA
+\]
+in $\CH$, indexed by the objects $A$ of $\CC$, such that the square
+\[
+\xymatrix{
+   S A \ar[r]^{\theta_A} \ar[d]_{Sf}   & TA  \ar[d]^{Tf}\\
+    SB \ar[r]_{\theta_B}    & TB}
+\]
+commutes for all $f : A \lra B$ in $\CC$.
+\end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Examples of natural transformations}
+\begin{itemize}
+\item Each linear function $t : V \lra W$ determines a natural transformation 
+$t \otimes - : V \otimes - \Lra W \otimes -$ with components
+\begin{align*}
+  t \otimes 1_A : &V \otimes A \lra W \otimes A \\
+ & v \otimes a \lra t(v) \otimes a\,. 
+\end{align*}
+\pause
+\item For each $n$, there is a natural transformation $s: T_n \Longrightarrow T_n$ 
+whose component $s_V : V^{\otimes n}\lra V^{\otimes n}$ is defined by
+$$s_V(v_1\otimes v_2 \otimes \dots \otimes v_n) = \frac{1}{n!} \sum_{\sigma} v_{\sigma(1)}\otimes v_{\sigma(2)} \otimes \dots \otimes v_{\sigma(n)}$$
+where $\sigma$ runs over all the permutations of $n$. 
+\pause
+\item The componentwise image of $s$ gives the symmetric $n$-th-power functor $S_n : \mathrm{Vect}  \lra \mathrm{Vect}$.   
+\end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{Monoidal category data}
+A \emph{monoidal category} consists of a category $\CC$ equipped with a functor
+\[
+- \otimes - : \CC \times \CC \lra \CC,
+\]
+an object $I$, and invertible natural families of morphisms
+\begin{align*}
+ & \alpha^{}_{A,B,C} : (A \otimes B) \otimes C \lra A \otimes (B \otimes C)\\
+ & \lambda_A : I \otimes A \lra A\,, \qquad \rho_A : A  \lra A\otimes I
+\end{align*}
+such that the following diagrams commute.
+\end{frame}
+\begin{frame}
+  \frametitle{Monoidal category axioms}
+\[
+\xymatrix{
+& (A \otimes (B \otimes C)) \otimes D \ar[rd]^-{\phantom{A}\alpha^{}_{A,B\otimes C,D}}  & \\
+((A \otimes B )\otimes C) \otimes D \ar[ru]^-{\alpha^{}_{A,B,C}\otimes 1_{D}\phantom{A}} \ar[d]_-{\alpha^{}_{A\otimes B,C,D}} & & A \otimes ((B \otimes C) \otimes D ) \ar[d]^-{1_{A}\otimes\alpha^{}_{B,C,D}} \\
+(A \otimes B) \otimes (C \otimes D) \ar[rr]_-{\alpha^{}_{A,B,C\otimes D }} & & A \otimes (B \otimes (C \otimes D)) 
+}\] 
+\[
+\xymatrix{(A \otimes I)\otimes B \ar[rr]^{\alpha^{}_{A,I,B}}  
+& & A \otimes (I \otimes B) \ar[d]^{1_A \otimes \lambda_B} \\
+ A \otimes B \ar[rr]^{1_{A \otimes B}} \ar[u]^{\rho_A \otimes 1_B} & & A \otimes B}
+\]
+
+\begin{example} 
+Take $\CC = \mathrm{Vect} $, usual tensor product of vector spaces as $\otimes$, and $I = \mathbb{C}$.
+\end{example}
+\end{frame}
+
+\begin{frame}
+  \frametitle{String diagrams}
+\begin{itemize}
+\item Penrose introduced \emph{string notation} to aid calculations in multilinear algebra during the 1950s (published 1971).
+\pause
+\item This was adapted to monoidal categories by Joyal-Street (published 1991).
+\pause
+\item In any category $\CC$, we can write $A \stackrel{f}{\lra} B$ or as the following. 
+
+ \[ 
+ \xygraph{{f} *\xycircle<8pt>{-}="m" "m"(-[u] [l(.3)d(.25)] {A},-[d] [l(.3)u(.25)] {B})}
+\] 
+\pause
+\item Both notations are ``1-dimensional''.
+\end{itemize}
+\end{frame}
+\begin{frame}
+  \frametitle{String diagrams (continued)}
+  
+\begin{itemize}
+\item In a monoidal category $\CC$, we use two dimensions: composition is up-down while tensoring is left-right.
+\pause
+\item Instead of $A \otimes C \stackrel{f}{\lra} B \otimes C \otimes A$, we draw.   
+\[ 
+\xygraph{{f} *\xycircle<8pt>{-}="m" "m"(-[l(.5)u] [l(.1)d(.4)] {A},-[r(.5)u] [r(.1)d(.4)] {C},-[l(.75)d] [l(.1)u(.4)] {B},-[d] [l(.15)u(.3)] {C},-[r(.75)d] [r(.1)u(.4)] {A})} 
+\]
+\pause
+\item A morphism $I \stackrel{f}{\lra}  A \otimes B$ is drawn.
+\[ 
+\xygraph{!{0;(.5,0):(0,2)::}{f}*\xycircle<8pt>{-}="m" "m"(-[dl] [l(.15)u(.5)] {A},-[dr] [r(.15)u(.5)] {B})} 
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Progressive plane string diagrams}
+\begin{itemize}
+\item Notice that the monoidal structural items $\otimes, I, \alpha, \rho, \lambda$ do not appear.
+\item
+\[ 
+\xygraph{ !{/r2.5pc/:}
+{a} *\xycircle<6pt>{-}="a" [u(2)r(1.5)] {c} *\xycircle<6pt>{-}="c" [d(1)r(1.5)] {b} *\xycircle<6pt>{-}="b" [r(1.5)u(1.2)] {d} *\xycircle<6pt>{-}="d" "a" (-[u(3.2)]^-*{B},-[d]_-*{A},-"c"_-*{B}(-[u(1.2)]^-*{C},-"b"^-*{C}(-[d(2)]_-*{B},-"d"_-*{D}(-[u]_-*{D},-[d(3.2)]^-*{C}))))} 
+\]
+A diagram $\Gamma$ as above, labelled in $\CC$, is called a \emph{progressive plane string diagram}. 
+It means that we have morphisms
+\[
+B \otimes B \stackrel{a}{\lra} A\,, \quad
+C \otimes D \stackrel{b}{\lra} B\,,\quad
+C   \stackrel{c}{\lra} B \otimes C\,,\quad
+D \stackrel{d}{\lra}  D \otimes C\,.  
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The value of a string diagram}
+\begin{itemize}
+\item 
+The \emph{value} of the diagram is the composite
+\begin{align*}
+ \mathrm{v}(\Gamma) =& (B \otimes C \otimes D \stackrel{1_B\otimes c \otimes d}\lra
+ B \otimes B \otimes C \otimes D \otimes C
+\\
+ & \stackrel{1\otimes 1\otimes b \otimes 1}\lra   
+ B \otimes B \otimes B \otimes C  \stackrel{a \otimes 1\otimes  1}\lra  
+ A \otimes B  \otimes C)\,.
+\end{align*}
+\pause
+\item It is obtained by composing the more elementary values of horizontal layers. 
+\pause
+\item This value is independent of \emph{deformation} in a natural sense. 
+\pause
+\item For example, the following diagram is a deformation of $\Gamma$ and has the same value as can be shown by the axioms for a monoidal category.   
+\end{itemize}
+\end{frame}
+\begin{frame}
+
+\[ 
+\xygraph{{a} *\xycircle<6pt>{-}="a" [r(1.5)u] {c} *\xycircle<6pt>{-}="c" [r(1.5)d(2.5)] {b} *\xycircle<6pt>{-}="b" [r(1.5)u] {d} *\xycircle<6pt>{-}="d" "a" (-[u(2)]^-*{B},-[d(2.5)]_-*{A},-"c"_-*{B}(-[u]^-*{C},-"b"^-*{C}(-[d]_-*{B},-"d"_-*{D}(-[u(2.5)]_-*{D},-[d(2)]^-*{C}))))} 
+\]
+Its value is 
+\begin{align*}
+\mathrm{v}(\Gamma) =& (B \otimes C \otimes D \stackrel{1_B\otimes c \otimes 1}\lra 
+ B \otimes B \otimes C \otimes D \stackrel{a \otimes 1 \otimes 1}\lra 
+ A \otimes C \otimes D
+\\
+ & \stackrel{1\otimes 1\otimes d} \lra  
+  A \otimes C \otimes D \otimes C   \stackrel{1 \otimes b \otimes  1} \lra  
+  A \otimes B  \otimes C)\,.
+\end{align*}
+\end{frame}
+\begin{frame}
+The notation handles units well:
+if $I   \stackrel{a}{\lra}   A \otimes B$ and $C \stackrel{b}{\lra}  I$, 
+then the following three string diagrams all have the same value.
+\[ 
+\xygraph{!{0;(1.25,0):(0,.65)::} {\xybox{\xygraph{{\xybox{\xygraph{!{0;(.5,0):(0,2)::} {a} *\xycircle<6pt>{-}="m" "m"(-[dl] [l(.05)u(.5)] {A},-[dr] [r(.05)u(.5)] {B})}}} [u(.5)r(1.5)] {\xybox{\xygraph{{b} *\xycircle<6pt>{-}="m" "m" -[u] [r(.15)d(.25)] {C}}}}}}}
+[dr] {,} [ur]
+{\xybox{\xygraph{{\xybox{\xygraph{!{0;(.5,0):(0,1.24)::} {a} *\xycircle<6pt>{-}="m" "m"(-[dl] [l(.05)u(.5)] {A},-[dr] [r(.05)u(.5)] {B})}}} [u(.61)r(.41)] {\xybox{\xygraph{!{0;(1,0):(0,.62)::} {b} *\xycircle<6pt>{-}="m" "m" -[u] [r(.15)d(.25)] {C}}}}}}}
+[dr] {,} [ur]
+{\xybox{\xygraph{{\xybox{\xygraph{!{0;(.5,0):(0,2)::} {a} *\xycircle<6pt>{-}="m" "m"(-[dl] [l(.05)u(.5)] {A},-[dr] [r(.05)u(.5)] {B})}}} [u(.5)l(.5)] {\xybox{\xygraph{{b} *\xycircle<6pt>{-}="m" "m" -[u] [r(.15)d(.25)] {C}}}}}}}} 
+\]
+\end{frame}
+\begin{frame}
+\frametitle{Dual objects}
+We can look at some concepts which make sense in any monoidal category.
+
+A \emph{duality} between objects $A$ and $B$ is a pair of morphisms
+\[
+e : A \otimes B \lra I  \quad \mbox{and} \quad d : I \lra B \otimes A
+\]
+called the \textit{counit} and the \textit{unit}, respectively, satisfying
+
+\[
+ \xymatrix @R+3mm {
+ A \otimes I \ar[r]^-{1\otimes d} \ar[rd]_{\rho_A^{-1}}^\cong 
+ & A \otimes (B\otimes A) {\alpha^{-1} \atop {\mbox{\large $\cong$}}}  (A\otimes B)\otimes A \ar[r]^-{e\otimes 1}
+ & I \otimes A \ar[ld]^{\lambda_B}_\cong \\
+ & B }
+\]
+\[
+ \xymatrix@R+3mm {
+ I \otimes B \ar[r]^-{d\otimes 1} \ar[rd]_{\lambda_B}^\cong 
+ & (B\otimes A) \otimes B {\alpha \atop {\mbox{\large $\cong$}}}  B\otimes (A\otimes B)\ar[r]^-{1\otimes e}
+ & B \otimes I \ar[ld]^{\rho_B^{-1}}_\cong \\
+ & B }
+\]
+\end{frame}
+\begin{frame}
+\frametitle{Duality axioms in string notation}
+\[ 
+\xygraph{!{0;(2.6,0):(0,.5)::} {\xybox{\xygraph{{e} *\xycircle{-}="e" [r(1.5)u] {d} *\xycircle{-}="a" "e"(-[u(2)l(.5)]^-*{A},-"a"_-*{B}-[d(2)]^(.75)*{A} [r(1.5)] -[u(3)]_(.16)*{A}) "a" [r(.75)d(.5)] {=}}}}  
+ [r(1.0)] *\txt{,} [r(0.8)]
+{\xybox{\xygraph{{d} *\xycircle{-}="a" [r(1.5)d] {e} *\xycircle{-}="e" "a"(-[d(2)l(.25)]^(.75)*{B},-"e"_-*{A}-[u(2)r(.5)]^-*{B} [r(1.5)] -[d(3)]^(.85)*{B}) "e" [r(1.125)u(.5)] {=}}}}} 
+\]
+Write $A \dashv B$  when such $e$ and $d$ exist: 
+
+$A$ is a \emph{left dual} for $B$ while $B$ is a \emph{right dual} for $A$. 
+
+\bigskip
+Any two right duals for $A$ are isomorphic (if they exist). 
+
+\bigskip
+Write $A^\ast$ for a chosen right dual for~$A$. 
+\end{frame}
+\begin{frame}
+Call $\CC$ right \emph{autonomous} (``compact'', ``rigid'') when each object has a right dual. 
+Choice gives a functor
+\[
+( \ )^\ast : \CC^{\mathrm{op}}   \lra \CC
+\]
+where ``$\mathrm{op}$'' means $( \ )^\ast$ is ``contravariant'': 
+$A \stackrel{f}{\lra} C$ goes to  $A^\ast \stackrel{\ f^\ast}{\longleftarrow} C^\ast $.
+
+\[
+\xymatrix{  & C\otimes C^\ast \ar[rd]^{e} \\
+*+!L(.5){A \otimes C^\ast}\ar[ru]^{f\otimes 1} \ar[rd]_{1\otimes f^\ast} & & I \\
+ & A\otimes A^\ast   \ar[ru]_{e} }  
+\qquad\qquad
+\xymatrix{  & A^\ast \otimes A \ar[rd]^-{1\otimes f} \\
+I \ar[ru]^-{d} \ar[rd]_-{d} & & *+!R(.5){A^\ast \otimes C} \\
+ & C^\ast \otimes C   \ar[ru]_-{f^\ast \otimes 1} }
+ \]
+\end{frame}
+\begin{frame}
+We suppress $e$ and $d$ from notation by writing them as
+%
+\[ \kern-1cm
+\xygraph{!{0;(-2.5,0):(0,1)::} [dd]*{}="l" [r] *{}="r" 
+ "l"-@`{"l"+(.2,1),"r"+(-.2,1)}"r"|*++!U{e} 
+"l" [l(.125)u(.35)] {A^*} "r" [r(.125)u(.35)] {A} 
+}
+\kern-3cm
+\xygraph{!{0;(2.5,0):(0,1)::} [d] *{}="l" [r] *{}="r"
+ "l"-@`{"l"+(.2,1),"r"+(-.2,1)}"r" |*++!D{d}
+"l" [l(.125)u(.35)] {A^*} "r" [r(.125)u(.35)] {A}  
+} 
+\]
+\end{frame}
+\begin{frame}
+The duality conditions become string straightening rules.
+\[
+\xygraph{ !{/r1.4pc/: /u2.75pc/::}
+ []*+!D{A}
+!{\xcapv-@(0)}
+!{\vcap[-]}
+[r] (?*!DR{A^*} , !{\vcap} )
+[r] !{\xcapv-@(0)} *+!U{A}
+} \quad = 
+\xygraph{
+!{/r1.3pc/: /u2pc/::}
+!{\xcapv-@(0)}
+!{\xcapv-@(0)} *+!U{A}
+} \qquad,\qquad
+\xygraph{ !{/r1.4pc/: /u2.75pc/::}
+ [rr]*+!D{A^*}
+  !{\xcapv-@(0)}
+ [l] !{\vcap[-]}
+ (?*!DL{A} ,  [l] !{\vcap} )
+ [l] !{\xcapv-@(0)} *+!U{A^*}
+} \quad = 
+\xygraph{
+!{/r1.3pc/: /u2pc/::}
+!{\xcapv-@(0)}
+!{\xcapv-@(0)} *+!U{A^*}
+} \]
+
+\end{frame}
+\begin{frame}
+This allows anticlockwise looping by taking $( \ )^\ast$.
+
+$f^\ast$ is depicted as follows. 
+\[ 
+f^* \;\; : 
+\xygraph{ !{/r2pc/: /u2pc/::}
+ [rr]*+!D{B^*}
+  !{\xcapv-@(0)} !{\xcapv-@(0)}
+ [l] !{\vcap[-]} - [u]*+<8pt>[Fo]{f} _(.3)*{B}
+ ( ?-[u]_(.8)*{A} [l] !{\vcap} )
+ [lu] !{\xcapv-@(0)\xcapv-@(0)} *+!U{A^*}
+} \]
+%
+
+Diagrams are not necessarily ``progressive''  any more.   
+
+They can backtrack.
+\end{frame}
+\begin{frame}
+\begin{example}
+An object of $\mathrm{Vect} $ has a right (left) dual if and only if it is finite dimensional (exercise!). 
+\bigskip
+
+If $V$ has basis $v_1,\ldots,v_n$ and $v^\ast_1,\ldots,v^\ast_n$ is the ``dual basis'' of $V^\ast = \mathbb{C}^V$ then we have
+
+\begin{align*}
+ V \otimes V^\ast &\stackrel{e}{\lra} \mathbb{C}    
+   & \mathbb{C}
+     &\stackrel{d}{\lra}   V^\ast \otimes V  \\
+  v \otimes \varphi &\longmapsto \varphi (v)   
+   & 1 &\longmapsto \sum^n_{i=1} v^\ast_i \otimes v_i\,.
+\end{align*}
+\end{example}
+\end{frame}
+\begin{frame}
+\frametitle{Braidings}
+A \textit{braiding} on a monoidal category $\CC$ is a natural family of invertible morphisms 
+\[
+\gamma^{}_{A,B} : A \otimes B  \stackrel{\mbox{{\small  $\cong$}}}{\lra} 
+ B \otimes A
+\]
+satisfying (ignoring $\alpha$)
+\[
+ \xymatrix @C-10mm{
+A \otimes B \otimes C \ar[rr]^{\gamma_{A\otimes B,C}^{}} \ar[rd]_-{1\otimes \gamma_{B,C}^{}} 
+& & C \otimes A \otimes B  \\
+& A \otimes C \otimes B\ar[ru]_-{\gamma_{A,C}^{} \otimes 1}}  
+ \qquad 
+\xymatrix @C-10mm{
+A \otimes B \otimes C \ar[rr]^{\gamma_{A, B\otimes C}^{}} \ar[rd]_-{\gamma_{A,B}^{} \otimes 1} 
+& & B \otimes C \otimes A  \\
+& B \otimes A \otimes C \ar[ru]_-{1\otimes \gamma_{A,C}^{}}}   
+\]
+
+\begin{example}
+In $\mathrm{Vect}$, $\gamma^{}_{A,B} (a\otimes b) = b \otimes a$.
+\end{example}
+\end{frame}
+\begin{frame}
+
+\frametitle{Enter three dimensions!}
+By writing $\gamma$ as a \emph{crossing}
+\[
+\xygraph{
+ []{\gamma^{}_{A,B} :} [r][u(0.5)] *+!DR{A}( !{\xunderv}, [r]*+!DL{B} , [dr]*+!UL{A} ,  [d]*+!UR{B} )}
+\]
+our string diagrams move into three-dimensional Euclidean space.   
+
+The axioms say
+\[
+\xygraph{[u(.75)]*+{A} ( [r]*+{B} , [d(1.5)l(.5)]*+{B'} , [dr(1.5)]*+{A'},
+  [d]*++=[o][Fo]{b}="b"-"B'" , [dr]*++=[o][Fo]{a}="a"-"A'" ,
+!{\xunderv ~{"A"}{"B"}{"b"}{"a"}} 
+  )}  = 
+\xygraph{[u(.75)]*+{A} ( [rr]*+{B} , [d(1.5)r(.5)]*+{B'} , [dr(1.5)]*+{A'},
+  [dr(.5)r]*++=[o][Fo]{b}="b"-"B" , [dr(.5)]*++=[o][Fo]{a}="a"-"A" ,
+!{\xunderv ~{"a"}{"b"}{"B'"}{"A'"}} 
+  )}  
+\]
+\end{frame}
+\begin{frame}
+\[
+\xygraph{ !{\knotholesize{15pt}}
+!{/r1.8pc/: /u4pc/::}
+[d(.5)] ( ?*+!DR{A} , [r] *+!DL{C}
+ , !{\xunderv @(.45)}
+, [r(.3)] ( ?*+!D{B} , ?- [rd]
+))
+}
+=
+\xygraph{
+!{/r1.3pc/: /u2pc/::}
+%( ?*+!DR{A} , [r] *+!D{B} [r] *+!DL{C} ,
+ !{\xcapv-@(0)}
+!{\vtwistneg} ( []*+!U{C}  [r]*+!U{A}  [r]*+!U{B} ,
+[uur] !{\vtwistneg}
+[r]!{\xcapv@(0)}
+)
+}
+\quad,\qquad
+\xygraph{ %!{\knotholesize{20pt}}
+!{/r1.8pc/: /u4pc/::}
+[d(.5)] ( ?*+!DR{A} , [r(.7)] *+!D{B}  , [r] *+!DL{C} ,
+!{\xunderv}
+, [r(.7)] - [ld] |(.35)*{\khole}
+}
+= 
+\xygraph{
+!{/r1.3pc/: /u2pc/::}
+[r] !{\vtwistneg}
+!{\xcapv-@(0)}
+[uurr]
+!{\xcapv@(0)}
+[l] !{\vtwistneg} 
+[l]*+!U{B}  [r]*+!U{C}  [r]*+!U{A} 
+}\,.
+\]
+\bigskip
+
+A monoidal category with chosen braiding is called \emph{braided}.
+\end{frame}
+\begin{frame}
+The braiding automatically satisfies what is called the \textit{Yang--Baxter equation} 
+or the \textit{braid identity} or a \textit{Reidemeister move} in different contexts. 
+Here is the proof:
+
+\[
+\xymatrix{
+  & B\otimes A \otimes C \ar[r]^-{1\otimes \gamma} 
+    & B\otimes C \otimes A \ar[rd]^-{\gamma \otimes 1} \\
+ A\otimes B\otimes C 
+   \ar[ru]^-{\gamma \otimes 1} \ar[rru]_-{\;\gamma^{}_{A,B\otimes C}} 
+    \ar[rd]_-{1\otimes \gamma} \ar@{}[rrr]|{naturality} 
+    & & & C\otimes B \otimes A \\
+ & A\otimes C \otimes B \ar[rru]^-{\gamma^{}_{A,C\otimes B}} \ar[r]_-{\gamma \otimes 1} 
+   & C\otimes A \otimes B \ar[ru]_-{1\otimes \gamma} }
+\]
+\kern-20pt
+\[
+\xygraph{
+!{/r1.3pc/: /u2pc/::}
+!{\vtwistneg}
+!{\xcapv-@(0)}
+!{\vtwistneg}
+[uuurr]
+!{\xcapv@(0)}
+[l]!{\vtwistneg}
+[r]!{\xcapv@(0)}
+[r][u(1.5)]
+{=}
+[r][u(1.5)]
+!{\xcapv-@(0)}
+!{\vtwistneg}
+!{\xcapv-@(0)}
+[uuur]
+!{\vtwistneg}
+[r]!{\xcapv@(0)}
+[l]!{\vtwistneg}
+}
+\]
+\end{frame}
+\begin{frame}
+\frametitle{The braid category $\mathbb{B}$}
+Here is an example of a braided monoidal category which is vastly different from $\mathrm{Vect}$.
+Objects are natural numbers 0, 1, 2, \ldots
+\[
+\mathbb{B}(m,n) = \begin{cases}
+\emptyset  &  \text{when } m \neq n  \\
+\mbox{braid group} \ B_n \text{ on } n \text{ strings } & \text{when } m=n
+\end{cases}
+\]
+The functor $\mathbb{B} \times \mathbb{B} \stackrel{\otimes}{\lra} \mathbb{B}$ is defined on objects by 
+$(m,n) \longmapsto m+n$ and on morphisms as indicated by:
+\[
+\xy
+0;/r.18pc/:
+(0,0)*{\xy
+(-15,20);(25,20) **\dir{-};
+(-15,0);(25,0) **\dir{-};
+(-10,20)*{\bullet}="T1"; 
+(0,20)*{\bullet}="T2"; 
+(10,20)*{\bullet}="T3"; 
+(20,20)*{\bullet}="T4";
+(-10,0)*{\bullet}="B1"; 
+(0,0)*{\bullet}="B2"; 
+(10,0)*{\bullet}="B3"; 
+(20,0)*{\bullet}="B4";
+(-5,15)*{\hole}="a";
+(-5,15)*{}="a'";
+(-5,8)*{\hole}="b";
+(-5,8)*{}="b'";
+"T1";"a'" **\crv{"T1"+(0,-3)&"a'"+(-2,2)};
+"T2";"a" **\crv{"T2"+(0,-3)&"a"+(2,2)};
+"a'";"b" **\crv{"a'"+(2,-2)&"b"+(2,2)};
+"a";"b'" **\crv{"a"+(-2,-2)&"b'"+(-2,2)};
+"b";"B1" **\crv{"b"+(-2,-2)&"B1"+(0,5)};
+(15,12)*{\hole}="c";
+(15,12)*{}="c'";
+"T3";"c'" **\crv{"T3"+(0,-3)&"c'"+(-2,2)};
+"T4";"c" **\crv{"T4"+(0,-3)&"c"+(2,2)};
+"c";"B2" **\crv{"c"+(2,-2)&"B2"+(0,3)} \POS?(.5)*{\hole}="d";
+"b'";"d" **\crv{"b'"+(2,-2)&"d"+(-2,1)};
+"d";"B4" **\crv{"d"+(2,-1)&"B4"+(0,3)} \POS?(.5)*{\hole}="e";
+"c'";"e" **\crv{"c'"+(2,-2)&"e"+(1,2)};
+"e";"B3" **\crv{"e"+(-1,-2)&"B3"+(0,3)};
+\endxy};
+(25,0)*{\otimes};
+(40,0)*{\xy
+(-15,20);(5,20) **\dir{-};
+(-15,0);(5,0) **\dir{-};
+(-10,20)*{\bullet}="T1"; 
+(0,20)*{\bullet}="T2"; 
+(-10,0)*{\bullet}="B1"; 
+(0,0)*{\bullet}="B2"; 
+(-5,14)*{\hole}="a";
+(-5,14)*{}="a'";
+(-5,6)*{\hole}="b";
+(-5,6)*{}="b'";
+"T1";"a" **\crv{"T1"+(0,-3)&"a"+(-2,2)};
+"T2";"a'" **\crv{"T2"+(0,-3)&"a'"+(2,2)};
+"a";"b'" **\crv{"a"+(2,-2)&"b'"+(2,2)};
+"a'";"b" **\crv{"a'"+(-2,-2)&"b"+(-2,2)};
+"b'";"B1" **\crv{"b'"+(-2,-2)&"B1"+(0,5)};
+"b";"B2" **\crv{"b"+(2,-2)&"B2"+(0,5)};
+\endxy};
+(55,0)*{=};
+(90,0)*{\xy
+(-15,20);(45,20) **\dir{-};
+(-15,0);(45,0) **\dir{-};
+(-10,20)*{\bullet}="T1"; 
+(0,20)*{\bullet}="T2"; 
+(10,20)*{\bullet}="T3"; 
+(20,20)*{\bullet}="T4";
+(30,20)*{\bullet}="T5";
+(40,20)*{\bullet}="T6";
+(-10,0)*{\bullet}="B1"; 
+(0,0)*{\bullet}="B2"; 
+(10,0)*{\bullet}="B3"; 
+(20,0)*{\bullet}="B4";
+(30,0)*{\bullet}="B5";
+(40,0)*{\bullet}="B6";
+(-5,15)*{\hole}="a";
+(-5,15)*{}="a'";
+(-5,8)*{\hole}="b";
+(-5,8)*{}="b'";
+"T1";"a'" **\crv{"T1"+(0,-3)&"a'"+(-2,2)};
+"T2";"a" **\crv{"T2"+(0,-3)&"a"+(2,2)};
+"a'";"b" **\crv{"a'"+(2,-2)&"b"+(2,2)};
+"a";"b'" **\crv{"a"+(-2,-2)&"b'"+(-2,2)};
+"b";"B1" **\crv{"b"+(-2,-2)&"B1"+(0,5)};
+(15,12)*{\hole}="c";
+(15,12)*{}="c'";
+"T3";"c'" **\crv{"T3"+(0,-3)&"c'"+(-2,2)};
+"T4";"c" **\crv{"T4"+(0,-3)&"c"+(2,2)};
+"c";"B2" **\crv{"c"+(2,-2)&"B2"+(0,3)} \POS?(.5)*{\hole}="d";
+"b'";"d" **\crv{"b'"+(2,-2)&"d"+(-2,1)};
+"d";"B4" **\crv{"d"+(2,-1)&"B4"+(0,3)} \POS?(.5)*{\hole}="e";
+"c'";"e" **\crv{"c'"+(2,-2)&"e"+(1,2)};
+"e";"B3" **\crv{"e"+(-1,-2)&"B3"+(0,3)};
+(35,14)*{\hole}="g";
+(35,14)*{}="g'";
+(35,6)*{\hole}="h";
+(35,6)*{}="h'";
+"T5";"g" **\crv{"T5"+(0,-3)&"g"+(-2,2)};
+"T6";"g'" **\crv{"T6"+(0,-3)&"g'"+(2,2)};
+"g";"h'" **\crv{"g"+(2,-2)&"h'"+(2,2)};
+"g'";"h" **\crv{"g'"+(-2,-2)&"h"+(-2,2)};
+"h'";"B5" **\crv{"h'"+(-2,-2)&"B5"+(0,5)};
+"h";"B6" **\crv{"h"+(2,-2)&"B6"+(0,5)};
+\endxy};
+\endxy
+\]
+The isomorphisms $\alpha, \lambda, \rho$ are identities.
+
+\end{frame}
+\begin{frame}
+The braiding $\gamma^{}_{m,n} $ is indicated by:
+\[
+\xy
+(-25,18)*+{4+2};(-25,0)*+{2+4} **\dir{-} \POS?(.5)*+!R{\gamma_{4,2}} ?>*\dir{>};
+(5,22)*+{m};(-10,22)*{} **\dir{-} ?>*\dir{>};
+(5,22)*+{\hole};(20,22)*{} **\dir{-} ?>*\dir{>};
+(35,22)*+{n};(30,22)*{} **\dir{-} ?>*\dir{>};
+(35,22)*+{\hole};(40,22)*{} **\dir{-} ?>*\dir{>};
+(-15,18);(45,18) **\dir{-};
+(-15,0);(45,0) **\dir{-};
+(-10,18)*{\bullet}="T1"; 
+(0,18)*{\bullet}="T2"; 
+(10,18)*{\bullet}="T3"; 
+(20,18)*{\bullet}="T4";
+(30,18)*{\bullet}="T5";
+(40,18)*{\bullet}="T6";
+(-10,0)*{\bullet}="B1"; 
+(0,0)*{\bullet}="B2"; 
+(10,0)*{\bullet}="B3"; 
+(20,0)*{\bullet}="B4";
+(30,0)*{\bullet}="B5";
+(40,0)*{\bullet}="B6";
+"T1";"B3" **\crv{} \POS?(.8333)*{\hole}="h" \POS?(.8)*{\hole}="d";
+"T2";"B4" **\crv{} \POS?(.6667)*{\hole}="g" \POS?(.75)*{\hole}="c";
+"T3";"B5" **\crv{} \POS?(.5)*{\hole}="f" \POS?(.6667)*{\hole}="b";
+"T4";"B6" **\crv{} \POS?(.3333)*{\hole}="e" \POS?(.5)*{\hole}="a" ;
+"T5";"a" **\crv{};
+"a";"b" **\crv{};
+"b";"c" **\crv{};
+"c";"d" **\crv{};
+"d";"B1" **\crv{};
+"T6";"e" **\crv{};
+"e";"f" **\crv{};
+"f";"g" **\crv{};
+"g";"h" **\crv{};
+"h";"B2" **\crv{};
+\endxy
+\]
+
+\begin{proposition} 
+$\mathbb{B}$ is the free braided monoidal category generated by a single object.
+\end{proposition}
+\end{frame}
+\begin{frame}
+The single generating object is $1$ and tensoring the braiding $\gamma^{}_{1,1}$ on both sides with identity morphisms gives the generators $s_i$ for the braid group $B_n$ as indicated:
+\[
+\xy
+(-30,18)*+{n};(-30,0)*+{n} **\dir{-} \POS?(.5)*+!R{s_i} ?>*\dir{>};
+(-19,18);(-9,18) **\dir{-};
+(-9,18);(-5,18) **\dir{.};
+(-5,18);(35,18) **\dir{-};
+(35,18);(39,18) **\dir{.};
+(39,18);(49,18) **\dir{-};
+(-19,0);(-9,0) **\dir{-};
+(-9,0);(-5,0) **\dir{.};
+(-5,0);(35,0) **\dir{-};
+(35,0);(39,0) **\dir{.};
+(39,0);(49,0) **\dir{-};
+(-14,18)*{\bullet}="T1"+(0,4)*{1};
+(0,18)*{\bullet}="T2"+(0,4)*{i-1};
+(10,18)*{\bullet}="T3"+(0,4)*{i};
+(20,18)*{\bullet}="T4"+(0,4)*{i+1};
+(30,18)*{\bullet}="T5"+(0,4)*{i+2};
+(44,18)*{\bullet}="T6"+(0,4)*{n};
+(-14,0)*{\bullet}="B1"; 
+(0,0)*{\bullet}="B2"; 
+(10,0)*{\bullet}="B3"; 
+(20,0)*{\bullet}="B4";
+(30,0)*{\bullet}="B5";
+(44,0)*{\bullet}="B6";
+"T1";"B1" **\dir{-};
+"T2";"B2" **\dir{-};
+(15,9)*{\hole}="a";
+(15,9)*{}="a'";
+"T3";"a'" **\crv{"T3"+(0,-4)&"a'"+(-2,2)};
+"T4";"a" **\crv{"T4"+(0,-4)&"a"+(2,2)};
+"a";"B3" **\crv{"a"+(-2,-2)&"B3"+(0,4)};
+"a'";"B4" **\crv{"a'"+(2,-2)&"B4"+(0,4)};
+"T5";"B5" **\dir{-};
+"T6";"B6" **\dir{-};
+\endxy
+\]
+The Proposition means that there is an equivalence of categories
+\[
+\mathrm{BStMon}(\mathbb{B},\CC) \simeq \CC
+\]
+between the category of braiding-and-tensor-preserving functors $\mathbb{B} \to \CC$ and the category $\CC$ itself, for every braided monoidal category $\CC$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Yang-Baxter operators}
+A \emph{Yang--Baxter operator} $y : A \otimes A \to A \otimes A$ on an object  $A$ of any monoidal category $\CC$ is an invertible morphism  satisfying commutativity of the following hexagon. There is an obvious category $\mathrm{YB}\CC$ of such pairs $(A,y)$.
+
+\begin{equation*}
+\xymatrix{& A^{\otimes 3} \ar[r]^{1\otimes y} & A^{\otimes 3} \ar[rd]^{y\otimes 1} \\
+ A^{\otimes 3}\ar[ru]^{y\otimes 1}  \ar[rd]_{1\otimes y}  & & & A^{\otimes 3} \\
+ & A^{\otimes 3}  \ar[r]_{y\otimes 1 \ } & A^{\otimes 3} \ar[ru]_{1\otimes y} }
+ \end{equation*}
+If $\CC$ is braided, each object $A$ has a Yang--Baxter operator on it, namely,
+\[
+y =  \gamma^{}_{A,A} : A \otimes A \lra A \otimes A\,.
+\]
+\end{frame}
+
+\begin{frame}
+
+\begin{proposition} 
+$\mathbb{B}$  is the free monoidal category generated by an object bearing a Yang--Baxter operator.   That is, for every monoidal category $\CC$, 
+\[
+\mathrm{StMon}(\mathbb{B},\CC) \simeq \mathrm{YB}\CC\,.
+\]
+\end{proposition} 
+\begin{proposition} 
+Any right autonomous braided monoidal category is left autonomous.
+\end{proposition} 
+
+To see this we take $A^\ast \otimes A \stackrel{\gamma}{\lra}  A \otimes A^\ast   \stackrel{e}{\lra}  I$ 
+and $I   \stackrel{d}{\lra}  A^\ast \otimes A \stackrel{\gamma^{-1}}{\lra}  A \otimes A^\ast$ as counit 
+and unit for $A^\ast$ as left dual to $A$. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Trace of an endomorphism}
+The \emph{trace} of an endomorphism
+$ f : A    \lra   A $
+in an autonomous braided monoidal category is defined by
+\[
+\mathrm{Tr} (f) = \Bigl(I \stackrel{d}{\lra} A^\ast \otimes A \stackrel{1 \otimes f}{\lra}   
+  A^\ast \otimes A \stackrel{e'}{\lra}  I\Bigr)\,.
+\]
+\[
+\xygraph{
+!{/r1.3pc/: /u1.6pc/::}
+!{\vcap} ( [r] - [dd] ^(.3)*{A}|(.8)*+[Fo]{f}
+, ? - [dd] _(.3)*{A^*}
+!{\vtwistneg}
+%!{\xcapv-@(0)}
+!{\vcap[-]}
+)}
+\]
+\end{frame}
+\begin{frame}
+\begin{example} 
+If $V \in \mathrm{Vect} $ is finite dimensional with basis $v^{}_1,\ldots,v^{}_n$ and
+$f$ is defined by $f(v^{}_i) = \sum_j a^{}_{ij} v^{}_j$, then
+\begin{align*}
+\mathrm{Tr}(f) :  \mathbb{C}  &\lra \mathbb{C} \\
+                  1 &\longmapsto \displaystyle \sum_i a^{}_{ii}\,.
+\end{align*}
+\end{example}
+
+\end{frame}
+\begin{frame}
+\frametitle{The category $\mathbb{T}$ of tangles }
+This is a monoidal category first defined by Yetter (1988). 
+
+The objects are words $- + + - - +$ in symbols $+$ and $-$.    
+
+Morphisms are tangles
+\[
+\xy
+(0,20)*+!D{-}="t1";(10,20)*+!D{-}="t2";(20,20)*+!D{-}="t3";
+(30,20)*+!D{+}="t4";(40,20)*+!D{+}="t5"; (50,20)*+!D{+}="t6";(60,20)*+!D{-}="t7";
+(0,-10)*+!U{-}="b1";(10,-10)*+!U{+}="b2";(20,-10)*+!U{-}="b3";
+"t3"+(3,-8)="a";
+"t2"+(8,-15)="c";
+"t3";"a"*{\hole} **\crv{"t3"+(0,-3)&"a"+(-1,2)} \POS?(.5)="b";
+"t4";"b"*{\hole} **\crv{"t4"+(0,-1)&"b"+(1,1)} \POS?(.7)*\dir{>};
+"t2";"c"*{\hole} **\crv{"t2"+(0,-2)&"c"+(-3,2)} \POS?(.8)="d" \POS?(.6)="e";
+"b"*{\hole};"d"*{\hole} **\crv{"b"-(2,2)&"d"+(3,1)} \POS?(.5)="f";
+"e"*{\hole};"f"*{\hole} **\crv{"f"};
+"f"*{\hole};"a" **\crv{"f"&"a"+(-2,0)};
+"e"+(-8,-2)="g";
+"e"*{\hole};"g" **\crv{"e"+(1,0)&"g"+(2,1)} \POS?(.5)*\dir{<};
+"t1";"g"*{\hole} **\crv{"t1"+(0,-3)&"g"+(0,3)} \POS?(.5)*\dir{<};
+"d"+(-4,-4)="h";
+"h"*{\hole};"b1" **\crv{"h"+(-4,0)&"b1"+(1,2)} \POS?(.5)="j" \POS?(.25)="k" \POS?(.65)*\dir{<};
+"h"*{\hole};"c" **\crv{"h"+(2,0)&"c"+(-2,0)};
+"d"*{\hole};"h" **\crv{"d"-(3,1)&"h"+(0,2)};
+"g";"g"+(-5,-3)="i" **\crv{"g"+(-2,-1)&"i"+(2,2)};
+"i";"i"*{\hole} **\crv{"i"-(8,8)&"i"+(-8,8)};
+"i"*{\hole};"j"*{\hole} **\crv{"i"+(2,-2)&"j"+(-2,2)};
+"g"*{\hole};"k"*{\hole} **\crv{"g"-(0,2)&"k"+(-3,1)};
+"k"*{\hole};"b3" **\crv{"k"+(3,-1)&"b3"+(0,3)} \POS?(.3)="m" \POS?(.6)="l";
+"j"*{\hole};"l"*{\hole} **\crv{"j"+(2,-2)&"l"+(-3,0)} \POS?(.4)="n";
+"h";"m"*{\hole} **\crv{"h"-(0,2)&"m"+(2,2)};
+"m"*{\hole};"n"*{\hole} **\crv{"m"-(2,2)&"n"+(1,2)};
+"n"*{\hole};"b2" **\crv{"n"-(1,2)&"b2"+(0,2)};
+"l"+(12,-1)="o";
+"l"*{\hole};"o"*{\hole} **\crv{"l"+(2,0)&"o"+(-2,0)};
+"c"*{\hole};"o" **\crv{"c"-(-3,2)&"o"+(-1,3)};
+"o";"t6" **\crv{"o"+(4,-12)&"t6"-(0,5)} \POS?(.6)*\dir{<};
+"a"+(6,-4)="p";
+"a";"p"*{\hole} **\crv{"a"+(3,0)&"p"+(-2,2)};
+"p"*{\hole};"o"*{\hole} **\crv{"p"+(2,-2)&"o"+(4,0)} \POS?(.5)="q";
+"a"*{\hole};"q"*{\hole} **\crv{"a"+(1,-2)&"q"+(-4,0)} \POS?(.45)="r";
+"q"*{\hole};"p" **\crv{"q"+(6,0)&"p"+(4,2)};
+"p";"r"*{\hole} **\crv{"p"-(2,1)&"r"+(2,1)};
+"r"*{\hole};"c" **\crv{"r"-(2,1)&"c"+(2,0)};
+"t5";"t7" **i\crv{"t5"+(0,-10)&"t7"+(0,-10)} \POS?(.42)="s";
+"t5";"s"*{\hole} **\crv{"t5"+(0,-5)&"s"-(5,0)};
+"s"*{\hole};"t7" **\crv{"s"+(3,0)&"t7"+(0,-10)} \POS?(.5)*\dir{>}
+\endxy
+\]
+
+\end{frame}
+
+\begin{frame}
+Freyd-Yetter (1989)  showed that $\mathbb{T}$ is an autonomous braided monoidal category with a ``freeness property''. 
+
+\bigskip
+We can see that $\mathbb{B}$ is the braided monoidal subcategory of $\mathbb{T}$ by identifying $n \in \mathbb{B}$ with  $\underbrace{+ \ldots +}_n \in \mathbb{T}$.   
+
+\bigskip
+The braids occur as the progressive endomorphisms in $\mathbb{T}$.   
+
+\bigskip
+The endomorphisms of the unit object 0 are precisely the \emph{oriented links}.
+
+\end{frame}
+\begin{frame}
+\begin{proposition}
+The trace of a braid in $\mathbb{T}$ is the link obtained as the Markov closure.
+\end{proposition}
+%
+Here are examples of the trace of a braid, the second one is a trefoil.
+
+\vskip-1.5cm\[
+\xygraph{!{/r1.1pc/: /u1.2pc/::}
+[uu] ( ?*+!D\txt\tiny{+}  !{+U\vcap[7]} [r(7)]="a7" , !{\vtwistneg}
+( !{\xcapv-@(0)} []*+!U\txt\tiny{+} !{+D\vcap[-7]} [r(7)] - "a7"
+ , [r] !{\vtwistneg} ( 
+   ?*+!U\txt\tiny{+} !{+D\vcap[-5]} [r(5)] !{\POS= "a5"}
+   , [r]*+!U\txt\tiny{+} !{+D\vcap[-3]}  [rrr]="a3"
+ ) , [urrr] (
+     ?*+!D\txt\tiny{+} !{+U\vcap} [r] !{\POS= "a1"}
+    , [l]*+!D\txt\tiny{+} !{+U\vcap[3]} [rrr]- "a3"
+    , [ll]*+!D\txt\tiny{+} !{+U\vcap[5]} [r(5)]- "a5"
+ , [l]!{\vtwistneg}
+   [r]!{\xcapv@(0)} []*+!U\txt\tiny{+} !{+D\vcap[-]} [r]- "a1"
+)))}
+\qquad\qquad\qquad\qquad
+\xygraph{ !{0;/r1pc/:/u1.25pc/::} [uu]
+ ( !{\vtwist\vtwist\vtwist}[uuu] 
+   (?*+!D\txt\tiny{+} !{+U\vcap[3]}[rrr]-[d(4.45)] 
+   , [r]*+!D\txt\tiny{+} !{+U\vcap}[r]-[d(4.45)]  )
+ , [ddd]*+!U\txt\tiny{+} !{+D\vcap[-3]} 
+ , [dddr]*+!U\txt\tiny{+} !{+D\vcap[-1]}
+ )}
+\]
+\end{frame}
+\begin{frame}
+\frametitle{Invariants of links}
+
+Each tensor-preserving (= strong monoidal) functor
+\[
+F : \mathbb{T}   \lra \mathrm{Vect}
+\]
+will produce a complex number for each oriented link $\ell$ :
+\[
+0 \stackrel{\ell}{\lra}  0   \longmapsto \mathbb{C}  \stackrel{F\ell}{\lra} \mathbb{C}\,.
+\]
+Such $F$ are determined by a single vector space $V$ and a special kind of Yang--Baxter operator
+\[
+y : V \otimes V \cong V \otimes V,
+\]
+on $V$ :
+\[
+F (+ + - + -) = V \otimes V \otimes V^\ast \otimes V \otimes V^\ast.
+\]
+There are techniques for solving the Yang-Baxter equation to find such functors, and hence, invariants of links; 
+see Turaev (1988).
+\end{frame}
+
+\begin{frame}
+\frametitle{Trace without duals}
+A (\emph{right}) \emph{internal hom} $C^A$ for objects $A$ and $C$ of a monoidal category $\CC$ is an object equipped with a morphism (called ``evaluation'')
+\[
+\mathrm{ev} \ : A \otimes C^A \lra C
+\]
+which induces a bijection
+\begin{align*}
+\CC (B,C^A) &\cong \CC (A \otimes B, C)
+\\
+(B  \stackrel{f}{\lra} C^A) 
+  &\longmapsto (A \otimes B \stackrel{1 \otimes f}{\lra} 
+  A \otimes C^A \stackrel{\mathrm{ev}}{\lra}   C)\,. 
+\end{align*}
+If $A$ has a left dual $A^{\vee}$ then $C^A \cong A^{\vee}\otimes C$.  
+
+Yet internal homs can exist without duals (e.g., in $\CC = \mathrm{Vect} $ and $ \mathrm{Set} $).
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Trace in analysis}
+
+I know of no extension of the string notation, in keeping with the geometry as for duals, which covers internal homs.
+\[
+\xygraph{ !{/r2.5pc/: /u3pc/::}
+ [d] *+[Fo][o]{g} (
+  ? - [ul]^(.9)*{A} , ? - [ur]_(.9)*{B} , ? - [d]^(.9)*{C}
+ )} \quad = \quad  
+ \xygraph{ !{/r2.85pc/: /u2pc/::}
+ [d(1.5)] *+[Fo][o]{\mathrm{ev}} (
+  ? - [uul]^(.9)*{A} 
+  , ? - [ur(.9)]*+[Fo][o]{\hat{g}} _*{C^A}
+     - [r(.5)u(1.1)]_(.9)*{B}
+  , ? - [d(1.2)]^(.9)*{C}
+ )} 
+\]
+
+From field theory in physics there are geometric situations where internal homs and trace can exist without duals.   
+
+This led Stolz-Teichner (arXiv:1010.4527) to develop a notion of \emph{trace} using only the ``weak duals'' $I^A$.
+
+The following treatment of ``contraction'' is adapted from these authors. 
+
+\end{frame}
+\begin{frame}
+\frametitle{Approximability and nuclearity}
+
+A quadruple $(X,Y,A,B)$ of objects of a monoidal category $\CC$ is called \emph{approximable} when $Y^A$ exists and the following composite is injective.
+\[
+\xymatrix @C+2mm {
+\CC (X,Y^A \otimes B) \ar[r]^-{A \otimes -}   
+& \CC (A \otimes X, A \otimes Y^A \otimes B)  \ar[r]^-{\CC(1,\mathrm{ev} \otimes 1)} 
+& \CC (A \otimes X, Y \otimes B)
+}\]
+
+A morphism $f : A \otimes X \lra Y \otimes B$ is called \emph{nuclear} when it is in the image of that composite.
+
+\[
+\xygraph{ !{/r2.85pc/: /u3pc/::}
+ [d(1.5)] *+[Fo][o]{\mathrm{ev}} (
+ ? - [l(.2)u(1.7)]^(.9)*{A} , ? - [l(.2)d(.8)]_(.9)*{Y} , 
+ -  [u(.6)r] *+[Fo][o]{\hat{f}}_*{Y^A} (
+  ? - [r(.2)d(1.4)]^(.9)*{B}, ? - [r(.3)u(1.1)]_(.9)*{X}
+ ))} \quad = \quad  
+ \xygraph{ !{/r2pc/: /u3pc/::}
+ [d(1)] *+[Fo][o]{f} (
+ ? - [ul]^(.9)*{A} , ? - [ur]_(.9)*{X} , ? - [dl]_(.9)*{Y} , ? - [dr]^(.9)*{B}
+  )} 
+\]
+\end{frame}
+\begin{frame}
+\frametitle{More general trace}
+
+\begin{example}
+If $A$ has a right dual then any $(X,Y,A,B)$ is approximable. 
+The appropriate composite is invertible so every $f$ is nuclear.
+\end{example}
+
+The \emph{trace} (or \emph{contraction by} $A$) of 
+\[
+f : A \otimes X \lra Y \otimes A
+\]
+in a braided monoidal  $\CC$ is the composite
+\[
+\mathrm{Tr} (f) : X \stackrel{\hat f}{\lra} Y^A \otimes A \stackrel{\gamma}{\lra} A \otimes Y^A \stackrel{\mathrm{ev}}{\lra} Y\,.
+\]
+
+\end{frame}
+
+\begin{frame}
+
+Let $\mathrm{Tv}$ be the category of topological complex vector spaces which are locally convex, complete and Hausdorff. 
+
+\bigskip
+The tensor product represents continuous bilinear maps.
+
+\bigskip
+\begin{theorem} [Stolz-Teichner]
+Take $\CC = \mathrm{Tv}$.
+%
+\begin{enumerate}
+\item If $A$ has the approximation property (from analysis) then $( \mathbb{C},  \mathbb{C}, A, A)$ is approximable.
+\item A morphism $f:A\lra B$ is nuclear as in analysis if and only if $f:A \otimes \mathbb{C} \lra \mathbb{C} \otimes B$ is nuclear.
+\item If $A$ has the approximation property and $f:A\lra A$ is nuclear then the trace $\mathrm{Tr}(f)$ is the classical trace.
+\end{enumerate}
+\end{theorem}
+\end{frame}
+\end{document}

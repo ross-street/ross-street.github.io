@@ -1,0 +1,789 @@
+%Document Class
+\documentclass[a4paper,12pt,reqno]{amsart}
+
+
+  \headheight0.6in
+  \headsep22pt
+  \textheight23cm
+  \topmargin-1.7cm
+  \oddsidemargin 0.5cm
+  \evensidemargin0.5cm
+  \textwidth15.3cm
+
+%Packages 
+\usepackage{amscd,amssymb,amsmath,amsfonts,amsthm, mathrsfs,xspace}
+\usepackage{graphicx}
+\usepackage{verbatim,enumerate,paralist}
+\usepackage{textcomp}
+%\usepackage[authoryear]{natbib}
+\usepackage[pagebackref,colorlinks]{hyperref}
+\hypersetup{%
+  urlcolor=blue,linkcolor=blue,citecolor=blue
+}
+\usepackage{pdfpages}
+%\usepackage{pdfsync}%  remove this when finalised
+
+% import these fonts by hand here to avoid clashes with usual blackboard bold usage.
+%\pdfmapfile{+bbold.map}
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+% Macro to typeset part of a math formula at a bigger size
+\def\makebigger#1#2#3{\hbox{#1$\mathsurround=0pt #2{#3}$}}
+\def\bigger#1#2{{\relax\mathpalette{\makebigger#1}{#2}}}
+
+% Macro for the category Delta
+\newcommand{\DelCat}{{\bigger\large{\mathbbe{\Delta}}}}
+\newcommand{\DelCAT}{{\bigger\Huge{\mathbbe{\Delta}}}}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[all,2cell,poly,knot,tips]{xy}
+\UseAllTwocells
+\CompileMatrices
+
+\def\blue{\color{blue}}
+\def\red{\color{red}}
+\def\black{\color{black}}
+
+%\usepackage{xypdf} % may not be necessary
+\setlength{\marginparwidth}{2cm}
+\newcommand{\missing}[1]{\marginpar{\color{red}missing:\\#1}}
+
+%Theoretic Environment Setup
+\newcounter{Definitioncount}
+\setcounter{Definitioncount}{0}
+
+\newtheorem*{Theorem}{Theorem}% no counter
+\newtheorem{theorem}{Theorem}[section] % with counter
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+% \newtheorem*{Proposition}{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+% \newtheorem*{Corollary}{Corollary}% no counter
+
+\newtheorem*{Conjecture}{Conjecture}% no counter
+\newtheorem*{Lemma}{Lemma}% no counter
+
+\theoremstyle{definition}
+\newtheorem*{Definition}{Definition}% no counter
+\newtheorem*{Observation}{Observation}% no counter
+\newtheorem*{Observations}{Observations}% no counter
+\newtheorem*{Remark}{Remark}% no counter
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{Example}{Example}% no counter
+\newtheorem{example}[theorem]{Example}
+
+\renewcommand{\theexample}{\arabic{example}}
+
+\newtheoremstyle{fact}{\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{Fact}
+\theoremstyle{fact}
+\newtheorem*{Fact}{Fact}% no counter
+
+\newtheoremstyle{genquest}{\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{General Question}
+\theoremstyle{genquest}
+\newtheorem*{GenQuest}{General Question}% no counter
+
+% use \newtheoremstyle to underline the header
+\newtheoremstyle{step}{2\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{\underline{Step~\thestep}}
+\theoremstyle{step}
+\newtheorem{step}{Step}[subsection]
+\renewcommand{\thestep}{\arabic{step}}
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\Lra}{\Longrightarrow}
+\newcommand{\Lla}{\Longleftarrow}
+\newcommand{\ldual}[1]{\mathord{{\let\nolimits\relax\sideset{^\wedge}{}{#1}}}}
+\newcommand{\laction}[2]{\mathord{{\let\nolimits\relax\sideset{^{#1}}{}{#2}}}}
+\newcommand{\conj}[2]{\mathord{{\let\nolimits\relax\sideset{^{#1}}{}{#2}}}}
+\newcommand{\xylongto}[2][2pt]{{\UseTips{}\xymatrix @C+#1{ \ar[r]^{#2}&}}}
+\newcommand{\ola}{\overleftarrow}
+\newcommand{\ora}{\overrightarrow}
+
+\DeclareMathOperator{\im}{im}
+
+%% Script Shortcuts 
+\def\CA{{\mathscr A}}
+\def\CB{{\mathscr B}}
+\def\CC{{\mathscr C}}
+\def\CD{{\mathscr D}}
+\def\CE{{\mathscr E}}
+\def\CF{{\mathscr F}}
+\def\CG{{\mathscr G}}
+\def\CH{{\mathscr H}}
+\def\CI{{\mathscr I}}
+\def\CJ{{\mathscr J}}
+\def\CK{{\mathscr K}}
+\def\CL{{\mathscr L}}
+\def\CM{{\mathscr M}}
+\def\CN{{\mathscr N}}
+\def\CO{{\mathscr O}}
+\def\CP{{\mathscr P}}
+\def\CQ{{\mathscr Q}}
+\def\CR{{\mathscr R}}
+\def\CS{{\mathscr S}}
+\def\CT{{\mathscr T}}
+\def\CU{{\mathscr U}}
+\def\CV{{\mathscr V}}
+\def\CW{{\mathscr W}}
+\def\CX{{\mathscr X}}
+\def\CY{{\mathscr Y}}
+\def\CZ{{\mathscr Z}}
+\def\ordm{{\mathbf{m}}}
+\def\ordn{{\mathbf{n}}}
+\def\ordk{{\mathbf{k}}}
+
+\DeclareMathOperator{\Lan}{Lan}
+%\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Skew}{Skew}
+\DeclareMathOperator{\Mnd}{Mnd}
+\DeclareMathOperator{\LB}{LBrMon}
+\DeclareMathOperator{\Span}{Span}
+
+\newcommand{\K}{\ensuremath{\mathscr K}\xspace}
+\newcommand{\M}{\ensuremath{\mathscr M}\xspace}
+
+\renewcommand{\L}{\ensuremath{\LB(\M)}\xspace}
+
+%\newcommand{\Span}{\textnormal{Span}\xspace}
+
+\newcommand{\ox}{\otimes}
+\newcommand{\x}{\times}
+
+\newcommand{\op}{\ensuremath{^{\textnormal{op}}}}
+
+
+\def\theequation{{\thesection.\arabic{equation}}}
+
+
+\begin{document}
+
+\title{Equivalences of categories relevant to combinatorics and representation theory}
+
+\author{Stephen Lack}
+\address{Department of Mathematics, Macquarie University, NSW 2109, Australia}
+\email{steve.lack@mq.edu.au}
+
+\author{Ross Street}
+\address{Department of Mathematics, Macquarie University, NSW 2109, Australia}
+\email{ross.street@mq.edu.au}
+
+\thanks{Both authors gratefully acknowledge the support of the Australian Research Council Discovery Grant DP130101969; Lack acknowledges with equal gratitude the support of an Australian Research Council Future Fellowship}
+
+\date{\today}
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+Our purpose is to understand and generalize the classification theorem for $\mathrm{FI}\sharp$-modules appearing as Theorem 2.24 of \cite{CEF2012}. 
+Let $\mathfrak{S}$ be the groupoid of finite sets and bijective functions.
+Let $\mathrm{FI}\sharp$ denote the category of finite sets and injective partial functions.
+Let $\mathrm{Mod}^R$ denote the category of left modules over the ring $R$.
+Their Theorem 2.24 provides an equivalence between the category of functors
+$\mathfrak{S} \lra \mathrm{Mod}^R$ and the category of functors
+$\mathrm{FI}\sharp \lra \mathrm{Mod}^R$. 
+The result gives a new viewpoint on representations of the symmetric groups,
+also a new viewpoint on Joyal species \cite{Species, AnalFunct}.
+
+\section{The kernel module}\label{km}
+
+Let us begin with any category $\CA$ with pullback of monomorphisms along arbitrary morphisms. Recall that a morphism $s : B \lra A$ is called a {\em strong epimorphism} when, for all monomorphisms $m : X \lra Y$, the following square is a pullback.
+
+\begin{eqnarray}\label{strepi}
+\begin{aligned}
+\xymatrix{
+\CA(A,X) \ar[rr]^-{\CA(e,X)} \ar[d]_-{\CA(A,m)} && \CA(B,X) \ar[d]^-{\CA(B,m)} \\
+\CA(A,Y) \ar[rr]_-{\CA(e,Y)} && \CA(B,Y)}
+\end{aligned}
+\end{eqnarray}
+
+Let $\CA_{\mathrm{m}}$ denote the category whose objects are all those of $\CA$
+and whose morphisms are only the monomorphisms in $\CA$.
+Let $\CA_{\mathrm{se}}$ denote the category whose objects are all those of $\CA$
+and whose morphisms are only the strong epimorphisms in $\CA$. 
+By properties of pullback, strong epimorphisms do compose.
+
+A span $f = (X\stackrel{f_0}\lla U \stackrel{f_1}\lra Y)$ is called a {\em partial map}
+$f : X\lra Y$ when $f_0$ is a monomorphism. Let $\mathrm{Par}\CA$ 
+denote the category
+whose objects are all those of $\CA$ and whose morphisms are isomorphism
+classes $[f]$ of partial maps. Composition is that of spans: that is, by pullback.
+There are functors $(-)^* : \CA_{\mathrm{m}}^{\mathrm{op}} \lra \mathrm{Par}\CA$
+and $(-)_* : \CA \lra \mathrm{Par}\CA$ which are the identity on objects.
+For a monomorphism $m:U\lra X$ in $\CA$, define $m^*= [m,U,1_U] : X\lra U$.
+For any $f: X \lra Y$ in $\CA$, define $f_*=[1_X,X,f] : X \lra Y$.
+Every partial map $f = (X\stackrel{f_0}\lla U \stackrel{f_1}\lra Y)$ has $$[f] = f_{1*}\circ f_0^* \ .$$ 
+For every pullback
+\begin{equation}\label{pbm}
+\xymatrix{
+P \ar[rr]^-{g} \ar[d]_-{n} && B \ar[d]^-{m} \\
+A \ar[rr]_-{f} && C}
+\end{equation}
+in $\CA$ with $m$ a monomorphism, the square
+\begin{equation}
+\xymatrix{
+P \ar[rr]^-{g_*}  && B  \\
+A \ar[rr]_-{f_*} \ar[u]^-{n^*} && C \ar[u]_-{m^*}}
+\end{equation}
+commutes in $\mathrm{Par}\CA$. 
+
+There is analogue, for partial maps in place of general spans, of the result in
+\cite{Lindner1976} about Mackey functors.
+There is an equivalence between functors $T : \mathrm{Par}\CA \lra \CX$
+and pairs $(T^*,T_*)$ of functors 
+$T^* : \CA_{\mathrm{m}}^{\mathrm{op}} \lra \CX$
+and $(-)^* : \CA \lra \CX$
+which agree on objects and satisfy the B\'enabou-Roubaud-Chevalley-Beck condition on pullbacks of the form \eqref{pbm}. 
+Indeed $T^*=T\circ (-)^*$ and $T_*=T\circ (-)_*$. 
+
+Let $\mathrm{Set}$ denote the category of sets and functions. 
+Here the monomorphisms are the injective functions and the strong epimorphisms are the surjective functions.
+
+Notice that, if all morphisms in $\CA$ are monomorphisms (such as in the
+category of finite sets and injective functions), then the strong epimorphisms
+are the invertible morphisms.
+
+There is a ``kernel'' functor 
+\begin{eqnarray}\label{em}
+M : \CA_{\mathrm{se}}^{\mathrm{op}} \times \mathrm{Par}\CA \lra \mathrm{Par}\mathrm{Set}
+\end{eqnarray}
+defined on objects by 
+$$M(A,X) = \CA(A,X) \ .$$
+It is defined on morphisms by
+\begin{eqnarray}\label{strepi}
+\begin{aligned}
+\xymatrix{
+M(A,X)=\CA(A,X) \ar[dd]_-{M(s,f)} \\
+& \CA(A,U) \ar[lu]_-{\CA(A,f_0)} \ar[ld]^-{\CA(s,f_1)} \\
+M(B,Y)=\CA(B,Y)}
+\end{aligned}
+\end{eqnarray}
+where $s:B\lra A$ is a strong epimorphism and $[f] = [f_0,U,f_1]:X\lra Y$ 
+is a partial map in $\CA$. To see that composition is preserved, take a
+strong epimorphism $t:C\lra B$ and partial map $[g]=[g_0,V,g_1]:Y\lra Z$,
+and form the pullback $P$ of $f_1$ and $g_0$ as in the diamond in the diagram: 
+\begin{equation}\label{pmcomp}
+\begin{aligned}
+\xymatrix{
+& & P \ar[ld]^-{p_0} \ar@/_2pc/[lldd]_-{h_0} \ar[rd]_-{p_1} \ar@/^2pc/[rrdd]^-{h_1} \\
+& U \ar[ld]^-{f_0} \ar[rd]_-{f_1} & & V \ar[rd]_-{g_1} \ar[ld]^-{g_0} \\
+X & & Y & & Z \ .}
+\end{aligned}
+\end{equation}
+Then we have
+\begin{equation}\label{Mcomp}
+\begin{aligned}
+\xymatrix{
+& & \CA(A,P) \ar[ld]^-{\CA(A,p_0)} \ar@/_2pc/[lldd]_-{\CA(A,h_0)} \ar[rd]_-{\CA(s,p_1)} \ar@/^2pc/[rrdd]^-{\CA(st,h_1)} \\
+& \CA(A,U) \ar[ld]^-{\CA(A,f_0)} \ar[rd]_-{\CA(s,f_1)} & & \CA(B,V) \ar[rd]_-{\CA(t,g_1)} \ar[ld]^-{\CA(B,g_0)} \\
+\CA(A,X) & & \CA(B,Y) & & \CA(C,Z)}
+\end{aligned}
+\end{equation}
+where the diamond is a pullback obtained as a pasting of two pullbacks, 
+one pullback is \eqref{strepi} for the strong epimorphism $s$ and 
+the monomorphism $p_0$, and the other is the image under $\CA(B,-)$ 
+of the pullback \eqref{pmcomp}. 
+That is,
+$$M(t,[g])\circ M(s,[f])=[\CA(A,h_0),\CA(A,P),\CA(st,h_1)]=M(st,[g]\circ[f]) \ .$$
+So $M$ preserves composition. That $M$ preserves identity morphisms is clear.
+
+We write 
+$$\overline{M} : \CA_{\mathrm{se}}^{\mathrm{op}}  \lra [ \mathrm{Par}\CA,\mathrm{Par}\mathrm{Set}]$$ 
+for the functor corresponding to \eqref{em} using cartesian closedness of $\mathrm{CAT}$. On objects, $\overline{M}(A) = M(A,-)$.
+
+Note that, in $\mathrm{Par}\mathrm{Set}$, we can identify morphisms
+$[f] = [f_0,U,f_1]:X\lra Y$ with their canonical unique representative $f$
+of the form $(f_0,U,f_1)$ where $U\subseteq X$ 
+(called the {\em domain of definition} of $f$) and $f_0$ is the inclusion.   
+
+There is a well known equivalence of categories
+\begin{eqnarray}\label{par=pted}
+1+- : \mathrm{Par}\mathrm{Set} \simeq 1/\mathrm{Set}
+\end{eqnarray}
+where $1/\mathrm{Set}$ is the category of pointed sets 
+and point-preserving functions. The equivalence $1+-$ takes a set
+$X$ to the set $1+X$ which is $X$ with a disjointly added point $0$ and takes
+a partial function $f : X \lra Y$ to the function $1+f : 1+X \lra 1+Y$ defined by 
+\begin{equation*}
+(1+f)(x) =
+\begin{cases}
+0 & \text{for }  x\notin U \\
+f(x) & \text{for } x \in U \ ,
+\end{cases}
+\end{equation*}
+where $U$ is the domain of definition of $f$.
+
+The equivalence \eqref{par=pted} makes it clear that $\mathrm{Par}\mathrm{Set}$
+is complete and cocomplete. 
+For later purposes, we remind the reader that coproducts in $1/\mathrm{Set}$
+are formed by taking the disjoint union and then identifying all the distinguished
+points $0$. 
+Since $[\CA_{\mathrm{se}}, 1/\mathrm{Set}]$ is the free cocompletion of the free $1/\mathrm{Set}$-enriched category on $\CA_{\mathrm{se}}^{\mathrm{op}}$ and
+since $[\mathrm{Par}\CA,1/\mathrm{Set}]$ is a cocomplete $1/\mathrm{Set}$-enriched category, the functor $\overline{M}$ and the equivalence \eqref{par=pted}
+determine a colimit-preserving (pointed) functor
+\begin{eqnarray}\label{hat}
+\widehat{(-)} : [\CA_{\mathrm{se}}, 1/\mathrm{Set}] \lra [\mathrm{Par}\CA, 1/\mathrm{Set}] \ . 
+\end{eqnarray}
+We now look in more detail at \eqref{hat} and its right adjoint 
+\begin{eqnarray}\label{tilde}
+\widetilde{(-)} : [\mathrm{Par}\CA, 1/\mathrm{Set}] \lra [\CA_{\mathrm{se}}, 1/\mathrm{Set}] \ . 
+\end{eqnarray}  
+
+\section{The transform adjunction}\label{ta}
+
+We continue with a category $\CA$ as in Section~\ref{km}.
+Now we further assume that each morphism $f$ can be factored as $f = me$
+where $m$ is a monomorphism and $e$ is a strong epimorphism.
+It follows that the factorization is unique up to isomorphism.
+
+To simplify the exposition, we assume there are special monomorphisms
+$i_U : U \lra X$, called {\em inclusions}, which form a partially ordered
+subcategory of $\CA$, and each morphism $f : X \lra Y$ in $\CA$ has a unique 
+factorization $f = i_V e$ where $i_V : V \lra Y$ is an inclusion and 
+$e$ is a strong epimorphism.
+We may also assume that, if $g$ and $g\circ f$ are inclusions then $f$ is.
+We write $U\subseteq X$ when there is an inclusion $i_U : U \lra X$;
+the inclusion is necessarily unique.
+It follows that we can choose the pullback of an inclusion along any morphism
+to be an inclusion. 
+Also, the pullback of two inclusions gives a square with all four morphisms inclusions: for $S\subseteq A$ and $S_1\subseteq A$, we write $S\cap S_1$
+for the pullback of the inclusions.
+
+Morphisms of $\mathrm{Par}\CA$ can be written as $(U,f) : X \lra Y$
+where $U\subseteq X$ and $f:U\lra Y$. 
+
+We shall define a functor
+\begin{eqnarray}\label{hat2}
+\widehat{(-)} : [\CA_{\mathrm{se}}, 1/\mathrm{Set}] \lra [\mathrm{Par}\CA, 1/\mathrm{Set}] 
+\end{eqnarray}
+and show that it agrees with \eqref{hat}.
+
+For $H : \CA_{\mathrm{se}} \lra 1/\mathrm{Set}$ and $X\in \mathrm{Par}\CA$, define
+\begin{eqnarray}\label{hatformula}
+\widehat{H}X = \sum_{A\subseteq X}{HA}
+\end{eqnarray}
+where the sum is the coproduct of pointed sets.
+For each $(U,f) : X \lra Y$ in $\mathrm{Par}\CA$, define
+\begin{eqnarray}
+\widehat{H}(U,f) : \sum_{A\subseteq X}{HA} \lra \sum_{B\subseteq Y}{HB} 
+\end{eqnarray} 
+by taking its composite $\widehat{H}(U,f) \circ \mathrm{in}_A$ with the injection
+at $A\subseteq X$ to be $0$ unless $A\subseteq U$, in which case it is the
+composite $\mathrm{in}_B \circ Hs$ where $f \circ i_U = i_B \circ s$ with $s$
+a strong epimorphism. 
+
+\begin{proposition} Under the given conditions on $\CA$, the functors \eqref{hat}
+and \eqref{hat2} are isomorphic.
+\end{proposition}
+\begin{proof}
+Since \eqref{hat2} preserves colimits, it suffices to prove the functors agree on
+objects of the form $H_K=1+ \CA_{\mathrm{se}}(K,-)$. 
+We have
+$$\widehat{H_K}X =1+ \sum_{A\subseteq X}{\CA_{\mathrm{se}}(K,A)} 
+\cong 1 +\CA(K,A) \cong 1 + (\overline{M}K)X \ , 
+$$
+showing that \eqref{hat} and \eqref{hat2} agree on such objects. 
+We leave the check on morphisms to the reader. 
+\end{proof}
+
+Suppose we have a functor $T : \mathrm{Par}\CA \lra 1/\mathrm{Set}$.
+Let us say $x\in TX$ {\em is supported} when, for all monomorphisms 
+$m: U\lra X$, if $(Tm^*)x \neq 0$ then $m$ is invertible. 
+Define 
+\begin{eqnarray}\label{fs}
+\widetilde{T}X = \{x\in TX : x \text{ is supported} \} \ .
+\end{eqnarray}
+Notice that $0$ is always supported.
+Also, it suffices to test supportedness using inclusions for $m$.
+
+\begin{lemma} For a strong epimorphism $s : X \lra Y$, the function 
+$Ts_* : TX \lra TY$ restricts to give a function $\widetilde{T}s : \widetilde{T}X \lra \widetilde{T}Y$.  
+\end{lemma}
+\begin{proof}
+We need to see that if $x\in TX$ is supported then so is $(Ts_*)x\in TY$. 
+Take a monomorphism $n:V\lra Y$ such that $(Tn^*)(Ts_*)x \neq 0$.
+Form the pullback
+\begin{equation}\label{pbmse}
+\xymatrix{
+U \ar[rr]^-{q} \ar[d]_-{m} && V \ar[d]^-{n} \\
+X \ar[rr]_-{s} && Y}
+\end{equation}
+in $\CA$. Using $(Tn^*)(Ts_*) = (Tq_*)(Tm^*)$, we see that 
+$(Tm^*)x \neq 0$. Since $x$ is supported, $m$ is invertible.
+So $nq$ and hence $n$ are strong epimorphisms.
+So $n$ is invertible. This shows that $(Ts_*)x \in \widetilde{T}Y$.   
+\end{proof}
+
+\begin{theorem}\label{mainadj}
+The functor \eqref{hat2} has a right adjoint taking the functor $T : \mathrm{Par}\CA \lra 1/\mathrm{Set}$ to $\widetilde{T}$.
+The unit of the adjunction is invertible; in other words, \eqref{hat2} is fully faithful.
+The counit of the adjunction is a monomorphism. 
+\end{theorem}
+\begin{proof}
+We must construct a natural bijection
+\begin{eqnarray}\label{mainadjhoms}
+[\mathrm{Par}\CA, 1/\mathrm{Set}](\widehat{H},T) \cong [\CA_{\mathrm{se}}, 1/\mathrm{Set}](H,\widetilde{T}) \ .
+\end{eqnarray}
+Consider a natural transformation $\theta : \widehat{H} \Lra T$. 
+Let $\theta_{X,A} : HA \lra TX$ denote the restriction of $\theta_X$ along
+the $(A\subseteq X)$-component of the injection. 
+Observe that $\theta_{A,A} : HA \lra TA$ lands in $\widetilde{T}A$. 
+For, suppose we have a $U\subseteq A$ with 
+$(Ti_U^*)\theta_{A,A}a\neq 0$
+invertible for some $a\in HA$. Then, by naturality,
+$\theta_{A,U}(\widehat{H}i_U^*)a\neq 0$.
+Of course, then $(\widehat{H}i_U^*)a\neq 0$, and by definition of
+$\widehat{H}$ on morphisms, $A\subseteq U$. So $U=A$, as required.
+
+Now we can define $\phi_A : HA \lra \widetilde{T}A$ by $\phi_Aa=\theta_{A,A}a$.
+We shall show that these morphisms are the components of a 
+natural transformation $\phi : H \Lra \widetilde{T}$. Take any strong epimorphism
+$s:A\lra B$. Then
+$$(\widetilde{T}s)\phi_Aa = (Ts_*)\theta_{A,A}a = \theta_B(\widehat{H}s_*)\mathrm{in}_Aa=\theta_{B,B}(Hs)a = \phi_B(Hs)a$$
+using the naturality of $\theta$. 
+So we have a natural function $\theta \mapsto \phi$ for \eqref{mainadjhoms}.  
+
+For the inverse bijection, take a natural transformation $\phi : H \lra \widetilde{T}$
+and define $\theta_X : \widehat{H}X \lra TX$ by
+$$\theta_{X,A}a = (Ti_{A *})\phi_Aa \ .$$ 
+We prove naturality of $\theta$ in two steps, first with respect to morphisms 
+$i_U^*$ for $U\subseteq X$ and then with respect to $f_*$ for $f : X\lra Y$
+in $\CA$.
+For the first, form the pullback span $(u,W,v) : A \lra V$ of the pair 
+$i_A : A \lra X$ and $i_U :U \lra X$. Then
+$$(Ti_U^*)\theta_{X,A}a = (Ti_U^*)(Ti_{A *})\phi_Aa = (Tv_*)(Tu^*)\phi_Aa = T(v_*u^*)\phi_Aa$$
+which is $0$ unless $(Tu^*)\phi_Aa \neq 0$. However, $\phi_Aa$ is supported,
+so $u$ is invertible. On the other hand, 
+$\theta_U(\widehat{H}i_U^*)\mathrm{in}_Aa = 0$
+unless $A\subseteq V$ with inclusion $j$, say, in which case 
+$$\theta_U(\widehat{H}i_U^*)\mathrm{in}_Aa = \theta_{U,A}a = (Tj_*)\phi_Aa = T(v_*u^*)\phi_Aa \ .$$ 
+
+Now we turn to naturality of $\phi$ with respect to $f_*$. This requires factoring
+$f i_A = i_B s$ with $s$ strong epimorphic. Then
+\begin{align*}
+\theta_Y(\widehat{H}f_*)a & = \theta_Y(Hs)a  = (Ti_{B*})\phi_B(Hs)a = (Ti_{B*})(\widetilde{T}s)\phi_Aa \\  
+& = T(i_{B*}s_*)\phi_Aa = T(f_*i_{A*})\phi_Aa  = (Tf_*)\theta_Xa \ .
+\end{align*}
+
+It is easy to see that $\theta \mapsto \phi$ and $\phi \mapsto \theta$ are mutually inverse.  
+
+The component of the unit $\eta_H : H \Lra \widetilde{\widehat{H}}$ at $A$ is
+just the injection $\mathrm{in}_A : HA \lra \widehat{H}A$ seen as landing in
+the supported elements; so it is injective.  
+Take any supported $\mathrm{in}_Ux \in \widehat{H}A$. 
+So $x\in HU$. If $x=0$ then it is in the image of $\eta_HA$.
+If $x\neq 0$ then $(\widehat{H}i_U^*)x = x \neq 0$, and, by supportedness,
+$U = A$; so $\mathrm{in}_Ux = \mathrm{in}_Ax$ is in the image of $\eta_HA$. 
+So $\eta_H$ is invertible. 
+
+The component of the counit $\varepsilon_T : \widehat{\widetilde{T}} \lra T$
+at $X$ takes $a\in \widetilde{T}A$ to $(Ti_{A*})a \in TX$ for $A\subseteq X$.  
+If $(Ti_{A*})a = 0$ then $(Ti_A^*)(Ti_{A*})a = 0$; but $i_A^*i_{A*} = 1_A$,
+so $a=0$. If $(Ti_{A*})a = (Ti_{B*})b \neq 0$ with $a\in \widetilde{T}A$,
+$b\in \widetilde{T}B$, then $T(i_B^*i_{A*})a = T(i_B^*i_{B*})b = b$.
+Form the pullback $(u,P,v)$ of $i_A$ and $i_B$. Then we have
+$T(u_*v^*)a = T(i_B^*i_{A*})a = b \neq 0$. So $T(v^*)a \neq 0$.
+Since $a$ is supported, $v$ is invertible. It follows that $A\subseteq B$.
+Symmetrically, $B\subseteq A$. So $A = B$ and $a = b$.
+This proves injectivity of $\varepsilon_TX$. So $\varepsilon_T$ is
+a monomorphism.       
+\end{proof}
+
+\begin{remark}
+It seems that this result carries through for proper factorization systems \cite{FreydKelly} on $\CA$
+other than that of strong epimorphisms and monomorphisms.
+\end{remark}
+
+\begin{remark}
+The essential image of \eqref{hat2} consists of those $T$ with the property that
+each $x\in TX$ is of the form $x=T(i_{U*})u$ for some $U\subseteq X$ and
+supported $u\in TU$.
+\end{remark}
+
+\section{The monomorphism case with additivity}
+
+There is no problem replacing $1/\mathrm{Set}$ in Section~\ref{ta} by 
+the category $\mathrm{Mod}^R$. The same formula \eqref{hatformula}
+provides a functor
+\begin{eqnarray}\label{hatmod}
+\widehat{(-)} : [\CA_{\mathrm{se}}, \mathrm{Mod}^R] \lra [\mathrm{Par}\CA, \mathrm{Mod}^R] \ .
+\end{eqnarray}
+Similarly, the formula \eqref{fs} gives the value at $T$ of a right adjoint 
+\begin{eqnarray}\label{tildemod}
+\widetilde{(-)} : [\mathrm{Par}\CA, \mathrm{Mod}^R] \lra [\CA_{\mathrm{se}}, \mathrm{Mod}^R] \ .
+\end{eqnarray}
+to \eqref{hatmod}. Notice that $\widetilde{T}X$ is a submodule of $TX$: supported
+elements are closed under addition and scalar multiple
+(if $(Tm^*)(x+y)= (Tm^*)x+(Tm^*)y \neq 0$ then either $(Tm^*)x \neq 0$ or $(Tm^*)y \neq 0$; and, if $(Tm^*)(rx)= r(Tm^*)x \neq 0$ then $(Tm^*)x \neq 0$).   
+
+The proof of Theorem~\ref{mainadj} also proves:
+\begin{theorem}\label{modadj}
+The functor \eqref{hatmod} has the right adjoint \eqref{tildemod}.
+The unit of the adjunction is invertible; in other words, \eqref{hatmod} is fully faithful.
+The counit of the adjunction is a monomorphism. 
+\end{theorem}
+
+With some further assumptions on $\CA$, we shall show that the adjunction
+of Theorem~\ref{modadj} is an equivalence.
+
+Here are our further assumptions on $\CA$:
+\begin{enumerate}[(a)]
+\item all morphisms are monomorphisms (so that strong epimorphisms are invertible);
+\item there is a natural-number-valued function 
+$\# : \mathrm{ob}\CA \lra \mathbb{N}$ defined on the objects of $\CA$;
+\item if $f:A\lra B$ in $\CA$ then $\#A\le \#B$;
+\item for each natural number $n$ and object $A \in \CA$, the set 
+$\binom{A}{n} = \{U \subseteq A : \# U = n \}$
+is finite;
+\item if $U \subseteq A$ and $\#U=\#A$ then $U= A$.
+ \end{enumerate}
+
+Each $U\subseteq A$ in $\CA$ determines an idempotent $(U,i_U):A\lra A$
+in $\mathrm{Par}\CA$. 
+Applying $T: \mathrm{Par}\CA \lra \mathrm{Mod}^R$, we obtain an idempotent
+$$e_A^U = T(U,i_U): TA \lra TA$$
+on the $R$-module $TA$.
+
+Fix a natural number $n$.
+Assume $TA=0$ for $\#A<n$. In this case, if $U\neq V \in \binom{A}{n}$, then the idempotents $e_A^U$ and $e_A^V$ are orthogonal; that is, their composite
+in either order is $0$. 
+This is because, using (e) above, $\#(U\cup V)< n$, so $T(U\cap V)=0$. 
+Hence, we obtain an idempotent $e_A^n : TA \lra TA$ defined by
+\begin{eqnarray}\label{sumid}
+e_A^n = \sum_{U\in \binom{A}{n}}{e_A^U} \ .
+\end{eqnarray}
+
+\begin{proposition}
+Under the current assumptions on $\CA$ and $T$, the idempotents
+\eqref{sumid}, for $A\in \mathrm{Par}\CA$, are the components of a natural transformation $e^n : T \Lra T$. 
+\end{proposition}
+\begin{proof}
+First we look at naturality with respect to morphisms $(U,1_U):A\lra U$.
+We have
+$$T(U,1_U) e_A^n = \sum_{V \in \binom{A}{n}}{T(V\cap U,i_{V\cap U})} \ .$$
+However, to have $T(V\cap U)\neq 0$ we must have $V\subseteq U$ and
+$V\cap U = V$. So
+$$T(U,1_U) e_A^n = \sum_{V \in \binom{U}{n}}{T(V,i_{V})} = e_U^n T(U,1_U) \ .$$
+
+Now we look at naturality with respect to morphisms $(A,f):A\lra B$. 
+We have 
+$$T(A,f)e_A^n = \sum_{U \in \binom{A}{n}}{T(U,fi_U)} \ ,$$
+and
+$$e_B^n T(A,f) = \sum_{V \in \binom{B}{n}}{T(f^*V,i_V\bar{f})} \ ,$$
+where $\bar{f} :f^*V \lra V$ is the pullback of $f$ along $i_V$.
+The direct image $f_*U\subseteq B$ of $U\subseteq A$ is obtained
+by factoring $fi_U=i_{f_*U}s$ where $s$ is a strong epimorphism.
+Since $f$ is a monomorphism, we have $U = f^*f_*U$ and $f_*U\in \binom{B}{n}$
+for $U\in \binom{A}{n}$. Also we have $f_*f^*V\subseteq V$ so $\#f^*V\leq n$
+for $V\in \binom{B}{n}$. However, if $\#f^*V< n$, $T(f^*V,i_V\bar{f})=0$.
+So we only need to take the second sum over the $V=f_*U$, 
+showing the two sums equal.    
+\end{proof}
+
+For any $T: \mathrm{Par}\CA \lra \mathrm{Mod}^R$, 
+we define a functor $H^n_T:\CA_{\mathrm{se}}\lra \mathrm{Mod}^R$ by
+the truncation
+\begin{equation} 
+\begin{aligned}
+H^n_TA =
+\begin{cases}
+0 & \text{for }  \#A > n \\
+TA & \text{for } \#A \leq n \ ,
+\end{cases}
+\end{aligned}
+\end{equation}
+and $H^n_Tf=T(A,f)$ for $f: A \lra B$ in $\CA_{\mathrm{se}}$.
+
+With our assumption on $T$ that it is $0$ on objects $A$ with $\#A<n$, we see that
+$$\widehat{H^n_T}X = \sum_{A\subseteq X}{H_TA}= \sum_{A\in \binom{X}{n}}{TA} =\sum_{A\in \binom{X}{n}}{e_X^ATX} = (e^nT)X \ .$$
+So the image of the idempotent $e^n$ on $T$ is $\widehat{H^n_T}$.
+Thus we have the direct sum decomposition 
+\begin{eqnarray}
+T = \widehat{H^n_T} \oplus T_{n+1}
+\end{eqnarray}
+in $[\mathrm{Par}\CA,\mathrm{Mod}^R]$ where $T_{n+1} = (1_T-e^n)T$ is $0$ on objects $A$ with $\#A<n+1$ (since $\binom{A}{n} = \{A\}$ when $\#A = n$).
+
+Now take any $T: \mathrm{Par}\CA \lra \mathrm{Mod}^R$. 
+We define a sequence of functors $T_n : \mathrm{Par}\CA \lra \mathrm{Mod}^R$ 
+recursively by: $T_0 = T$ and $$T_n = \widehat{H^n_{T_n}} \oplus T_{n+1} \ .$$
+Since \eqref{hatmod} preserves colimits, it follows that 
+\begin{eqnarray}
+T \cong \widehat{\bigoplus_{n\geq 0}{H_{T_n}}} \ .
+\end{eqnarray}
+This proves \eqref{hatmod} is essentially surjective. 
+
+\begin{theorem}
+Under the conditions (a)--(e) on $\CA$, the functor $\widehat{(-)}$ \eqref{hatmod} is an equivalence. 
+\end{theorem} 
+
+A {\em (set) species} in the sense of Joyal \cite{Species} is a functor 
+$H : \mathfrak{S} \lra \mathrm{Set}$
+where $\mathfrak{S}$ is the category of sets and bijective functions. 
+A {\em pointed-set species} is a functor 
+$H : \mathfrak{S} \lra 1/\mathrm{Set}$.
+An {\em $R$-module species} is a functor 
+$H : \mathfrak{S} \lra \mathrm{Mod}^R$; the case where $R$ is
+a field is the basic situation of \cite{AnalFunct}.
+
+Following \cite{CEF2012}, we write $\mathrm{FI}$ for the category of finite sets
+and injective functions. Assumptions (a)--(e) all hold for $\CA = \mathrm{FI}$ with $\#$ denoting cardinality. We then see that 
+$\CA_{\mathrm{m}} = \mathrm{FI}$ and $\CA_{\mathrm{se}} = \mathfrak{S}$,
+while $\mathrm{Par}\CA = \mathrm{FI}\sharp$, the category of injective partial functions.  
+
+\begin{corollary} \cite{CEF2012} The functor
+$$\widehat{(-)} : [\mathfrak{S}, \mathrm{Mod}^R] \lra [\mathrm{FI}\sharp, \mathrm{Mod}^R]$$
+is an equivalence of categories.
+\end{corollary}
+
+Another example relevant to \cite{repfgl} might be the category $\CA = \mathrm{FIVect}_{\mathbb{F}_q}$
+of finite vector spaces over the field $\mathbb{F}_q$ of cardinality 
+$q$ (a prime power) and injective linear functions.
+Here $\#$ is dimension.
+Let $\CA_{\mathrm{se}} = \mathfrak{Gl}_q$ be the category of finite
+$\mathbb{F}_q$-vector spaces and linear isomorphisms. 
+Then $\mathrm{Par}\CA = \mathrm{FI}\sharp_q$ is the
+category of finite $\mathbb{F}_q$-vector spaces and injective 
+partial linear functions.
+
+\begin{corollary} The functor
+$$\widehat{(-)} : [\mathfrak{Gl}_q, \mathrm{Mod}^R] \lra [\mathrm{FI}\sharp_q, \mathrm{Mod}^R]$$
+is an equivalence of categories.
+\end{corollary}   
+
+\section{Appendix: Remarks on the Dold-Puppe-Kan equivalence}\label{DPK}
+
+Let $\mathbb{D}$ be the additive category whose objects are the natural numbers,
+whose homs are
+\begin{equation*}
+\mathbb{D}(m,n) =
+\begin{cases}
+\mathbb{Z} & \text{for } n=m,m+1 \ , \\
+0 & \text{otherwise } \ ,
+\end{cases}
+\end{equation*}
+and whose composition
+$$\mathbb{D}(n,p)\otimes \mathbb{D}(m,n)\lra \mathbb{D}(m,p)$$
+is zero unless all three homs are $\mathbb{Z}$ in which case it
+is the canonical isomorphism $\mathbb{Z}\otimes \mathbb{Z}\cong \mathbb{Z}$.
+We write $\partial_n : n\lra n+1$ and $1_n : n\lra n$ for $1\in \mathbb{Z}$.
+
+For any additive category $\CV$, the additive functor category 
+$[\mathbb{D}^{\mathrm{op}},\CV]$
+is the category of differential non-negatively graded $\CV$-objects
+(or $\CV$-chain complexes).
+
+Let $\DelCat_{\mathrm{inj}}$ denote the monoidal subcategory of the algebraic simplicial category $\DelCat$ whose objects are all the natural numbers and whose morphisms $m\lra n$ are order-preserving injective functions 
+$$\mu : \{0, 1, \dots , m-1\}\lra \{0, 1, \dots , n-1\} \ .$$
+This is the PRO for coaugmented objects: that is, objects equipped with
+a morphisms from the tensor unit. Let $K:\DelCat_{\mathrm{inj}}\lra \DelCat$ 
+denote the inclusion.
+
+There is a functor $J: \DelCat_{\mathrm{inj}} \lra \mathbb{D}$ which
+is the identity on objects and takes the injection $\partial_i : n-1\lra n$
+to $0$ for $i<n$ and to $\partial_n$ for $i=n$.
+
+At the heart of the Dold-Puppe-Kan Theorem is the span of functors
+$$\mathbb{D}\stackrel{J}\lla \DelCat_{\mathrm{inj}}\stackrel{K}\lra \DelCat \ .$$ 
+
+For any simplicial object $X: \DelCat\lra \CV$, consider the
+chain complex $N(X)$ defined as the right Kan extension of 
+$X K^{\mathrm{op}}$ along $J^{\mathrm{op}}$, 
+which exists under a mild completeness condition on $\CV$.
+\begin{equation}
+\begin{aligned}
+\xymatrix{
+\DelCat_{\mathrm{inj}}^{\mathrm{op}} \ar[d]_{K^{\mathrm{op}}}^(0.5){\phantom{aaa}}="1" \ar[rr]^{J^{\mathrm{op}}}  && \mathbb{D}^{\mathrm{op}}  \ar[d]^{N(X)}_(0.5){\phantom{aaa}}="2" \ar@{<=}"1";"2"^-{\rho}
+\\
+\DelCat^{\mathrm{op}}  \ar[rr]_-{X} && \CV 
+}
+\end{aligned}
+\end{equation} 
+We have the weighted limit formula
+$$N(X)_n=\mathrm{lim}(\mathbb{D}(J-,n),XK^{\mathrm{op}}) \ .$$
+The weight functor $\mathbb{D}(J-,n): \DelCat_{\mathrm{inj}}^{\mathrm{op}} \lra \mathrm{Ab}$
+into the category $\mathrm{Ab}$ of abelian groups takes all objects to $0$
+except that $n-1$ and $n$ go to $\mathbb{Z}$, and takes the morphisms
+$\partial_i : n-1\lra n$ to $0$ for $0\le i <n$ and to the identity abelian group morphism $\mathbb{Z}\lra \mathbb{Z}$ for $i=n$. 
+The natural transformations $\mathbb{D}(J-,n) \Lra SK^{\mathrm{op}}$ 
+for a simplicial abelian group $S$ are clearly in bijection with elements
+$x\in S_n$ such that $d_i(x) = 0$ for $0\le i < n$. 
+It follows that $N(X)_n$ is the intersection of the kernels of the 
+$d_i: X_n\lra X_{n-1}$ for $0\le i < n$.
+Also, $d_n : N(X)_n\lra N(X)_{n-1}$ is induced by $d_n : X_n\lra X_{n-1}$,
+making $N(X)$ a chain complex in $\CV$.    
+
+We have the composite adjunction
+\[ \xymatrix @R-3mm {
+[\mathbb{D}^{\mathrm{op}},\CV] \ar@<1.5ex>[rr]^{\mathrm{Res}_{J^{\mathrm{op}}}} \ar@{}[rr]|-{\perp} && [\DelCat_{\mathrm{inj}}^{\mathrm{op}},\CV] \ar@<1.5ex>[ll]^{\mathrm{Ran}_{J^{\mathrm{op}}}} \ar@<1.5ex>[rr]^{\mathrm{Lan}_{K^{\mathrm{op}}}} \ar@{}[rr]|-{\perp} && [\DelCat^{\mathrm{op}},\CV] \ar@<1.5ex>[ll]^{\mathrm{Res}_{K^{\mathrm{op}}}} 
+}\]
+where $\mathrm{Res}_{H}$ denotes restriction along $H$ and its adjoints are
+left and right Kan extension along $H$. In our cases of $H$, the Kan extensions
+exist when $\CV$ is finitely complete (and so has a bit of cocompleteness since
+it has finite direct sums).
+
+Above we have identified the composite right-adjoint functor $\mathrm{Ran}_{J^{\mathrm{op}}} \mathrm{Res}_{K^{\mathrm{op}}}$ as the normalization functor $N$
+from simplicial objects to chain complexes. 
+It is this functor that is proved an equivalence by Dold-Puppe-Kan~\cite{Dold, DoldPuppe, Kan}. 
+
+Since $K$ is strong monoidal, it follows from \cite{DaySt1995} that
+$\mathrm{Lan}_{K^{\mathrm{op}}}$ is strong monoidal for the convolution
+monoidal structures on $[\DelCat^{\mathrm{op}},\CV]$ and  $[\DelCat_{\mathrm{inj}}^{\mathrm{op}},\CV]$.   
+
+Although I have not completed the calculation, it seems that 
+$\mathrm{Res}_{J^{\mathrm{op}}}$ is also strong monoidal for convolution
+monoidal structures on $[\DelCat_{\mathrm{inj}}^{\mathrm{op}},\CV]$
+and the usual tensor product on $[\mathbb{D}^{\mathrm{op}},\CV] $. 
+Since $\mathrm{Res}_{J^{\mathrm{op}}}$ is colimit preserving, we
+only need check the result on representables.   
+
+This would imply that $N : [\DelCat^{\mathrm{op}},\CV]\lra [\mathbb{D}^{\mathrm{op}},\CV]$ is a monoidal equivalence. 
+
+The monoidal structure on $\DelCat$ is not symmetric and so neither is the
+monoidal structure on $[\DelCat^{\mathrm{op}},\mathrm{Set}]$.
+As often happens, when we move to the additive context, a symmetry can be
+found: just transport the usual symmetry on chain complexes across the equivalence $N$. 
+
+\begin{thebibliography}{00}
+
+\bibitem{CEF2012} Thomas Church, Jordan S. Ellenberg and Benson Farb \textit{FI-modules: a new approach to stability for $S_n$-representations}, (\url{arXiv:1204.4533v2}, 28 Jun 2012).\label{CEF2012}
+
+\bibitem{DaySt1995} Brian J. Day and Ross Street, \textit{Kan extensions along promonoidal functors}, Theory and Applications of Categories \textbf{1(4)} (1995) 72--77. \label{DaySt1995} 
+
+\bibitem{DaySt1997} Brian J. Day and Ross Street, \textit{Monoidal bicategories and Hopf algebroids}, Advances in Math. \textbf{129} (1997) 99--157. \label{DaySt1997}
+
+\bibitem{Dold} Albrecht Dold, \textit{Homology of symmetric products and other functors of complexes}, Annals of Math. \textbf{68} (1958) 54--80.\label{Dold}
+ 
+\bibitem{DoldPuppe} Albrecht Dold and Dieter Puppe, \textit{Homologie nicht-additiver Funktoren. Anwendungen}, Ann. Inst. Fourier Grenoble \textbf{11} (1961) 201--312.\label{DoldPuppe}
+
+\bibitem{FreydKelly} Peter J. Freyd and G. Max Kelly, \textit{Categories of continuous functors I}, J. Pure and Applied Algebra \textbf{2} (1972) 169--191; Erratum Ibid. \textbf{4} (1974) 121.\label{FreydKelly}
+
+\bibitem{Species} Andr\'e Joyal, \textit{Une theory combinatoire des series formelles}, Advances in Mathematics \textbf{42} (1981) 1--82.\label{Species}
+
+\bibitem{AnalFunct} Andr\'e Joyal, \textit{Foncteurs analytiques et especes de structures}, Lecture Notes in Mathematics \textbf{1234} (Springer 1986) 126--159.\label{AnalFunct} 
+
+\bibitem{TYBO} Andr\'e Joyal and Ross Street, \textit{Tortile Yang-Baxter operators in tensor categories}, J. Pure Appl. Algebra \textbf{71} (1991) 43--51.\label{TYBO}
+
+\bibitem{ITD&QG} Andr\'e Joyal and Ross Street, \textit{An introduction to Tannaka duality and quantum groups}; Part II of Category Theory, Proceedings, Como 1990 (Editors A. Carboni, M.C. Pedicchio and G. Rosolini) Lecture Notes in Math. \textbf{1488} (Springer-Verlag Berlin, Heidelberg 1991) 411--492.\label{ITD&QG}
+
+\bibitem{repfgl} Andr\'e Joyal and Ross Street, \textit{The category of representations of the general linear groups over a finite field}, J. Algebra \textbf{176 (3)} (1995) 908--946.\label{repfgl}
+
+\bibitem{Kan} Daniel Kan, \textit{Functors involving c.s.s complexes}, Transactions of the American Mathematical Society \textbf{87} (1958) 330--346.\label{Kan}
+
+\bibitem{Lindner1976} Harald Lindner, \textit{A remark on Mackey functors}, Manuscripta Mathematica \textbf{18} (1976) 273--278.\label{Lindner1976}
+
+\bibitem{NHA} Bodo Pareigis, \textit{A non-commutative non-cocommutative Hopf algebra in nature}, Journal of Algebra \textbf{70} (1981) 356--374.\label{NHA}
+
+\bibitem{QG} Ross Street, \textit{Quantum Groups: A Path to Current Algebra}, Australian Mathematical Society Lecture Series \textbf{19} (Cambridge University Press, 2007).\label{QG} 
+
+\bibitem{CBA} D. Tambara, \textit{The coendomorphism bialgebra of an algebra}, Journal of The Faculty of Science, The University of Tokyo, Section IA, Mathematics, \textbf{37} (1990) 425--456.\label{CBA}
+
+\bibitem{Ulbrich} K.-H. Ulbrich, \textit{On Hopf algebras and rigid monoidal categories}, Israel Journal of 
+Math. \textbf{72} (1990) 252--256.\label{Ulbrich}
+
+\end{thebibliography}
+
+\end{document}

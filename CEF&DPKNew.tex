@@ -1,0 +1,639 @@
+%Document Class
+\documentclass[a4paper,12pt,reqno]{amsart}
+
+
+  \headheight0.6in
+  \headsep22pt
+  \textheight23cm
+  \topmargin-1.7cm
+  \oddsidemargin 0.5cm
+  \evensidemargin0.5cm
+  \textwidth15.3cm
+
+%Packages 
+\usepackage{amscd,amssymb,amsmath,amsfonts,amsthm, mathrsfs,xspace}
+\usepackage{graphicx}
+\usepackage{verbatim,enumerate,paralist}
+\usepackage{textcomp}
+%\usepackage[authoryear]{natbib}
+\usepackage[pagebackref,colorlinks]{hyperref}
+\hypersetup{%
+  urlcolor=blue,linkcolor=blue,citecolor=blue
+}
+\usepackage{pdfpages}
+%\usepackage{pdfsync}%  remove this when finalised
+
+% import these fonts by hand here to avoid clashes with usual blackboard bold usage.
+%\pdfmapfile{+bbold.map}
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+% Macro to typeset part of a math formula at a bigger size
+\def\makebigger#1#2#3{\hbox{#1$\mathsurround=0pt #2{#3}$}}
+\def\bigger#1#2{{\relax\mathpalette{\makebigger#1}{#2}}}
+
+% Macro for the category Delta
+\newcommand{\DelCat}{{\bigger\large{\mathbbe{\Delta}}}}
+\newcommand{\DelCAT}{{\bigger\Huge{\mathbbe{\Delta}}}}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[all,2cell,poly,knot,tips]{xy}
+\UseAllTwocells
+% \CompileMatrices
+
+\def\blue{\color{blue}}
+\def\red{\color{red}}
+\def\black{\color{black}}
+
+%\usepackage{xypdf} % may not be necessary
+\setlength{\marginparwidth}{2cm}
+\newcommand{\missing}[1]{\marginpar{\color{red}missing:\\#1}}
+
+%Theoretic Environment Setup
+\newcounter{Definitioncount}
+\setcounter{Definitioncount}{0}
+
+\newtheorem*{Theorem}{Theorem}% no counter
+\newtheorem{theorem}{Theorem}[section] % with counter
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+% \newtheorem*{Proposition}{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+% \newtheorem*{Corollary}{Corollary}% no counter
+
+\newtheorem*{Conjecture}{Conjecture}% no counter
+\newtheorem*{Lemma}{Lemma}% no counter
+
+\theoremstyle{definition}
+\newtheorem*{Definition}{Definition}% no counter
+\newtheorem*{Observation}{Observation}% no counter
+\newtheorem*{Observations}{Observations}% no counter
+\newtheorem*{Remark}{Remark}% no counter
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{Example}{Example}% no counter
+\newtheorem{example}[theorem]{Example}
+
+\renewcommand{\theexample}{\arabic{example}}
+
+\newtheoremstyle{fact}{\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{Fact}
+\theoremstyle{fact}
+\newtheorem*{Fact}{Fact}% no counter
+
+\newtheoremstyle{genquest}{\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{General Question}
+\theoremstyle{genquest}
+\newtheorem*{GenQuest}{General Question}% no counter
+
+% use \newtheoremstyle to underline the header
+\newtheoremstyle{step}{2\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{\underline{Step~\thestep}}
+\theoremstyle{step}
+\newtheorem{step}{Step}[subsection]
+\renewcommand{\thestep}{\arabic{step}}
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Lra}{\Longrightarrow}
+\newcommand{\Lla}{\Longleftarrow}
+\newcommand{\ldual}[1]{\mathord{{\let\nolimits\relax\sideset{^\wedge}{}{#1}}}}
+\newcommand{\laction}[2]{\mathord{{\let\nolimits\relax\sideset{^{#1}}{}{#2}}}}
+\newcommand{\conj}[2]{\mathord{{\let\nolimits\relax\sideset{^{#1}}{}{#2}}}}
+\newcommand{\xylongto}[2][2pt]{{\UseTips{}\xymatrix @C+#1{ \ar[r]^{#2}&}}}
+\newcommand{\ola}{\overleftarrow}
+\newcommand{\ora}{\overrightarrow}
+
+\DeclareMathOperator{\im}{im}
+
+%% Script Shortcuts 
+\def\CA{{\mathscr A}}
+\def\CB{{\mathscr B}}
+\def\CC{{\mathscr C}}
+\def\CD{{\mathscr D}}
+\def\CE{{\mathscr E}}
+\def\CF{{\mathscr F}}
+\def\CG{{\mathscr G}}
+\def\CH{{\mathscr H}}
+\def\CI{{\mathscr I}}
+\def\CJ{{\mathscr J}}
+\def\CK{{\mathscr K}}
+\def\CL{{\mathscr L}}
+\def\CM{{\mathscr M}}
+\def\CN{{\mathscr N}}
+\def\CO{{\mathscr O}}
+\def\CP{{\mathscr P}}
+\def\CQ{{\mathscr Q}}
+\def\CR{{\mathscr R}}
+\def\CS{{\mathscr S}}
+\def\CT{{\mathscr T}}
+\def\CU{{\mathscr U}}
+\def\CV{{\mathscr V}}
+\def\CW{{\mathscr W}}
+\def\CX{{\mathscr X}}
+\def\CY{{\mathscr Y}}
+\def\CZ{{\mathscr Z}}
+\def\ordm{{\mathbf{m}}}
+\def\ordn{{\mathbf{n}}}
+\def\ordk{{\mathbf{k}}}
+
+
+\newcommand{\ox}{\otimes}
+\newcommand{\x}{\times}
+
+\newcommand{\op}{\ensuremath{^{\textnormal{op}}}}
+
+
+\def\theequation{{\thesection.\arabic{equation}}}
+
+
+\begin{document}
+
+\title{Combinatorial categorical equivalences, take 2}
+
+\author{Stephen Lack}
+\address{Department of Mathematics, Macquarie University, NSW 2109, Australia}
+\email{steve.lack@mq.edu.au}
+
+\author{Ross Street}
+\address{Department of Mathematics, Macquarie University, NSW 2109, Australia}
+\email{ross.street@mq.edu.au}
+
+\thanks{Both authors gratefully acknowledge the support of the Australian Research Council Discovery Grant DP130101969; Lack acknowledges with equal gratitude the support of an Australian Research Council Future Fellowship}
+
+\date{\today}
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+The purpose is to generalize our work in \cite{PMSE} concerning 
+the Morita equivalence of partial maps and strong epimorphisms
+to include the Dold-Puppe-Kan Theorem \cite{Dold, DoldPuppe, Kan} 
+on additive simplicial objects and chain complexes. 
+
+\section{The setting}\label{setting}
+
+Let $\CP$ be a category. 
+Suppose $\CM$ is a subcategory of $\CP$ containing all the objects of $\CP$ and containing all the isomorphisms.
+Suppose $\CS$ is a class of morphisms such that every morphism $f$ in $\CP$ factors as $f=m\circ s$
+uniquely up to isomorphism. We do not assume $\CS$ is closed under composition.
+It does follow that $m=n\circ f$ with $m:U\ra A$, and $n:V\ra A$ in $\CM$ implies $f\in \CM$;
+we write $m\le n$ when such an $f$ exists.
+
+Suppose there is a conservative faithful functor $(-)^*: \CM^{\mathrm{op}} \lra \CP$ which is
+the identity on objects and has $m^*\circ m=1$ for all morphisms $m\in \CM$. 
+It follows that $m\le n$ and $n\le m$ imply $m$ and $n$ are isomorphic in the slice category $\CP/A$. 
+Write $\mathrm{Sub}_{\CM}A$ for the ordered set of isomorphism classes $[m]$ over $X$ of
+morphisms $m:U\ra A$ in $\CM$. 
+Write $\mathrm{Subp}_{\CM}A$ for the ordered set of isomorphism classes over $X$ of
+noninvertible morphisms $m:U\ra A$ in $\CM$; the `p' stands for `proper'.
+
+Suppose $\CR$ is a subclass of $\CS$ with the following properties:
+\begin{enumerate}[(a)]
+\item all the isomorphisms of $\CP$ are in $\CR$;
+\item if $u, r, v$ are composable with $u$ and $v$ invertible and $r\in \CR$ then $v\circ r \circ u\in \CR$;
+\item every morphism $s\in \CS$ can be written uniquely as $s=r\circ m^*$ with $m\in \CM$ and $r\in \CR$;
+\item if $m \in \CM$ and $r \in \CR$ is composable with $m^*$ then $m^*\circ r \in \CS$;
+\item if $m^*\circ n \in \CR$ with $m,n \in \CM$ then $m^*\circ n$ is invertible and $m\circ m^*\circ n = n$;
+\item if $r, r^{\prime} \in \CR$ are composable then $r^{\prime}\circ r \in \CS$;
+\item if $s, t \in \CS$, $m\in \CM$ and $r\in \CR$ with $t\circ s = m\circ r$ then $s \in \CR$ and $t\in \CR$. 
+\end{enumerate}
+
+We define a pointed category (that is, one whose homs have zero morphisms preserved by composition
+on either side) which we denote by $\CD$. It has the same objects at $\CP$ and the non-zero morphisms are those of $\CR$.
+Composition is as in $CP$ when the result is in $\CR$ and zero otherwise.
+
+\begin{example}\label{Ex1+}
+Take a category $\CA$ with a factorization system $(\CE,\CM)$. 
+Assume that the pullback of any morphism with one in $\CM$ exist. 
+Assume every morphism in $\CM$ is a monomorphism. 
+Let $\CP$ be the category $\mathrm{Par}_{\CM}\CA$ of $\CM$-partial maps in $\CA$.
+We have the functors $(-)_*: \CA \lra \CP$ and $(-)^*: \CM^{\mathrm{op}} \lra \CP$
+taking $f : A\lra B$ to $[A \stackrel{1_A}\lla A\stackrel{f} \lra B]$
+and $m : A\lra B$ to $[B \stackrel{m}\lla A\stackrel{1_A} \lra A]$, respectively.   
+Identify $\CM$ in $\CA$ with the morphisms $m_*$ in $\CP$ for $m\in \CM$.
+Take $\CS$ to consist of the partial maps of the form $e_*\circ m^*$ with $m \in \CM$ and $e\in \CE$.
+Take $\CR$ to consist of the morphisms $e_*$ in $\CP$ with $e\in \CE$.
+\end{example}
+
+\begin{example}\label{Ex2+}
+Take $\CP$ to be the category $\DelCat_{\bot,\top}$ of finite
+non-empty ordinals $n = \{0,1,\dots,n-1\}$ with morphisms those functions which preserve
+first element, last element and order.
+We write $\sigma_k : m+1 \ra m$ for the order-preserving surjection which takes the value $k$ twice.
+We write $\partial_k : m \ra m+1$ for the order-preserving injection which does not have $k$ in its image.
+Take $\CM$ to consist of all the injective functions in $\DelCat_{\bot,\top}$
+and take $\CS$ to consist of all the surjective functions. 
+Define $(-)^*: \CM^{\mathrm{op}} \lra \CP$ to be the functor which takes $\partial_k : m \ra m+1$
+to $\sigma_k : m+1 \ra m$. (Note that $\sigma_k \dashv \partial_k$ in $\mathrm{Cat}$.) 
+Take $\CR$ to consist of the isomorphisms and the surjections $\sigma_0 : m+1 \lra m$.
+\end{example}
+
+\section{The tilde construction}\label{tilde}
+
+Assume we are in the setting of Section~\ref{setting}. 
+
+Let $\CX$ be an additive category with sufficient limits. There is a functor
+\begin{equation}\label{tilde}
+\widetilde{(-)} : [\CP,\CX] \lra [\CD,\CX]_{\mathrm{pt}}
+\end{equation}
+where the codomain category consists of the pointed functors.
+The definition on objects is:
+\begin{equation}\label{tildeformula}
+\widetilde{T}A = \bigcap_{[U\stackrel{m}\ra A] \in \mathrm{Subp}_{\CM}A} {\mathrm{ker}}T(m^*:A\ra U)
+\end{equation}
+and, for $r:A\ra B$ in $\CR$, the morphism 
+$\widetilde{T}r : \widetilde{T}A \lra \widetilde{T}B$
+is the restriction of $Tr : TA \ra TB$. 
+Why does it restrict? Let $i_A : \widetilde{T}A \ra TA$
+be the inclusion. Take any $n : V \ra B$ in $\mathrm{Subp}_{\CM}B$.   
+Then $(Tn^*)(Tr)i_A = T(n^*\circ r)i_A = T(r^{\prime} \circ m^*)i_A = (Tr^{\prime})(Tm^*)i_A = 0$
+using properties (c), (d) and (e) in Section~\ref{setting}. 
+So there exists $\widetilde{T}r$ such that $i_B (\widetilde{T}r) = (Tr)i_A$,
+as claimed.
+
+\section{The hat construction}\label{hat}
+
+We can also construct a functor
+\begin{equation}\label{hat}
+\widehat{(-)} : [\CD,\CX]_{\mathrm{pt}} \lra [\CP,\CX]
+\end{equation}
+whose value at the pointed functor $F : \CD\lra \CX$
+is the functor $\widehat{F} : \CP \lra \CX$ defined as follows.   
+On objects, put
+$$\widehat{F}A = \sum_{[U\stackrel{m}\ra A] \in \mathrm{Sub}_{\CM}A}{FU} \ .$$  
+The morphism $\widehat{F}f: \widehat{F}A \ra \widehat{F}B$
+has composite with the injection $\mathrm{in}_m : FU \ra \widehat{F}A$
+\footnote{We abuse notation by writing $\mathrm{in}_m$ instead of $\mathrm{in}_{[m]}$.} 
+equal to zero unless $s\in \CR$ in which case it is the composite $\mathrm{in}_n \circ Fs$
+where we take the factorization $f\circ m = n\circ s$ with $n$ in $\CM$ and $s\in \CS$.
+That is,
+\begin{equation*}
+\widehat{F}f \circ \mathrm{in}_m =
+\begin{cases}
+\mathrm{in}_n \circ Fs & \text{for }  s \in \CR \\
+0 & \text{for } s \notin \CR \ .
+\end{cases}
+\end{equation*}
+
+Why is $\widehat{F}$ a functor? Preservation of identities is clear since identities are in $\CR$.
+Now take $f:A\ra B$ and $g:B\ra C$ in $\CP$. Take $m:U\ra A$ in $\CM$. Factorize 
+$$f\circ m = n\circ s, \ g\circ n = \ell \circ t, \ t\circ s = n_1\circ s_1$$ 
+with $n, \ell, n_1 \in \CM$ and $s, t, s_1\in \CS$. 
+We first show that $s_1\in \CR$ if and only if $s, t, s\circ t \in \CR$.
+By (f) of Section~\ref{setting}, if $s, t \in \CR$ then $t\circ s\in \CS$,
+and so, by uniqueness of $(\CS ,\CM)$-factorisation, $n_1$ is invertible.
+If also $s\circ t \in \CR$ then $s_1 \in \CR$. Conversely, if $s_1 \in \CR$,
+then, by (g) of Section~\ref{setting}, we have $s, t \in \CR$; so
+$n_1$ is invertible and so $s\circ t \in \CR$.       
+Now we can calculate 
+$$\widehat{F}g\circ \widehat{F}f \circ \mathrm{in}_m 
+= \widehat{F}g\circ \mathrm{in}_n \circ Fs
+= \mathrm{in}_{\ell} \circ Ft\circ Fs$$      
+for $s\in \CR$ and $t\in \CR$, zero otherwise.
+By definition of $\CD$ and functoriality of $F$, we have $Ft\circ Fs = F(t\circ s)$
+for $t\circ s \in \CR$, and $Ft\circ Fs = 0$ otherwise. So
+$$\widehat{F}g\circ \widehat{F}f \circ \mathrm{in}_m 
+= \mathrm{in}_{\ell} \circ F(t\circ s)$$
+for $s\in \CR$, $t\in \CR$ and $t\circ s \in \CR$, zero otherwise. 
+From our first observation, this becomes
+$$\widehat{F}g\circ \widehat{F}f \circ \mathrm{in}_m 
+= \mathrm{in}_{\ell \circ n_1} \circ Fs_1$$
+for $s_1 \in \CR$, zero otherwise. That is, 
+$$\widehat{F}g\circ \widehat{F}f \circ \mathrm{in}_m 
+= \widehat{F}(g\circ f) \circ \mathrm{in}_m$$
+for all $[m]\in \mathrm{Sub}_{\CM}A$.
+
+\section{Adjointness}\label{adjointness}
+
+\begin{theorem}\label{adjthm}
+\begin{equation*}
+\widehat{(-)} \dashv \widetilde{(-)} : [\CP,\CX] \lra [\CD,\CX]_{\mathrm{pt}}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+We must prove that there is a natural isomorphism
+$$[\CP,\CX](\widehat{F}, T) \cong [\CD,\CX]_{\mathrm{pt}}[F,\widetilde{T}] \ .$$
+Take a natural transformation $\theta : \widehat{F}\Rightarrow T :\CP \ra \CX$. 
+As in the definition of $\widehat{F}f$, with $f\circ m = n \circ s$ and $s\in \CR$,
+we have commutativity in the following diagram. 
+\begin{equation}\label{thetanat}
+\begin{aligned}
+\xymatrix{
+FA \ar[r]^-{\mathrm{in}_m} \ar[d]_-{Fs} & \widehat{F}A \ar[d]^-{\widehat{F}f} \ar[r]^-{\theta_A} & TA \ar[d]^-{Tf}\\
+FB \ar[r]_-{\mathrm{in}_n} & \widehat{F}B \ar[r]_-{\theta_B} & TB}
+\end{aligned}
+\end{equation}
+Consider a noninvertible $\ell : W \ra A$ in $\CM$. 
+Then, by the properties of $\CR$, $\ell^* \in \CS$ and $\ell^* \notin \CR$.
+So $T\ell^*\circ \theta_A \circ \mathrm{in}_{1_A} = \theta_W \circ \widehat{F}\ell^*\circ \mathrm{in}_{1_A} = \theta_W \circ 0 = 0$. This implies there exists a unique morphism $\phi_A : FA \lra \widetilde{T}A$ 
+such that the following square commutes.
+\begin{equation}\label{defphi}
+\begin{aligned}
+\xymatrix{
+FA \ar[rr]^-{\phi_A} \ar[d]_-{\mathrm{in}_{1_A}} && \widetilde{T}A \ar[d]^-{i_A} \\
+\widehat{F}A \ar[rr]_-{\theta_A} && TA}
+\end{aligned}
+\end{equation}
+Naturality of $\phi$ is proved as follows using \eqref{thetanat} with $f=r \in \CR$:
+$i_B\circ \phi_B\circ Fr = \theta_B \circ \mathrm{in}_{1_B} \circ Fr = \theta_B \circ \widehat{F}r \circ \mathrm{in}_{1_A} = Tr \circ \theta_A \circ \mathrm{in}_{1_A} = Tr \circ i_A \circ \phi_A = i_B\circ \widetilde{T}r\circ \phi_A $. 
+
+For the inverse direction, take any natural transformation $\phi : F\Rightarrow \widetilde{T} : \CD\ra \CX$.
+Define $\theta$ by commutativity of the following diagram.
+\begin{equation}\label{thetadef}
+\begin{aligned}
+\xymatrix{
+FU \ar[r]^-{\mathrm{in}_m} \ar[d]_-{\phi_U} & \widehat{F}A  \ar[r]^-{\theta_A} & TA \\
+\widetilde{T}U \ar[rr]_-{i_U} &  & TU \ar[u]_-{Tm}}
+\end{aligned}
+\end{equation}       
+We need to prove the right-hand square of \eqref{thetanat} commutes when precomposed
+with any $\mathrm{in}_m$ for any $m \in \CM$. Put $f\circ m = n\circ s$ as usual. In the case
+where $s\in \CR$, this follows from the following three commuting squares.
+\begin{equation}\label{pfthetanat}
+\begin{aligned}
+\xymatrix{
+FU \ar[r]^-{\phi_U} \ar[d]_-{Fs} & \widetilde{T}U \ar[d]_-{\widetilde{T}s} \ar[r]^-{i_A} & TU \ar[r]^-{Tm} \ar[d]^-{Ts} & TA \ar[d]^-{Tf}\\
+FV \ar[r]_-{\phi_V} & \widetilde{T}V  \ar[r]_-{i_B} & TV \ar[r]_-{Tn} & TB}
+\end{aligned}
+\end{equation}
+In the case where $s\notin \CR$, we can write $s = r\circ \ell^*$ for some $\ell \in \CM$ noninvertible.
+Then $Tf \circ \theta_A \circ \mathrm{in}_m = T(f\circ m)\circ i_U \circ \phi_U =T(n\circ r) \circ T\ell^*\circ i_U \circ \phi_U = T(n\circ r) \circ 0 \circ \phi_U = 0 = \theta_B \circ \widehat{F}f \circ \mathrm{in}_m$, as required.
+
+To show that the assignments are mutually inverse, take $\theta$ and define $\phi$ by \eqref{defphi}. 
+Let $\bar{\theta}$ be as $\theta$ is in \eqref{thetadef}. Then $\bar{\theta}_A\circ \mathrm{in}_m = Tm \circ i_U\circ \phi_U = Tm \circ \theta_U \circ \mathrm{in}_{1_U} = \theta_A \circ \widehat{F}m\circ \mathrm{in}_{1_U} = \theta_A \circ \mathrm{in}_m$. So $\bar{\theta} = \theta$. 
+
+On the other hand, take $\phi$ and define $\theta$ by \eqref{thetadef}. 
+Let $\phi^{\prime}$ be as $\phi$ is in \eqref{defphi}. 
+Then $i_A \circ \phi^{\prime}_A = \theta_A \circ \mathrm{in}_{1_A} = i_A\circ \phi_A$. 
+So $\phi^{\prime} = \phi$.     
+\end{proof}
+
+\section{The equivalence}
+
+We assume now that $\mathrm{Sub}_{\CM}A$ is a finite set for some $A\in \CP$.
+Every finite ordered set has a linear refinement. So we can choose representatives
+$$m_0:U_0\ra A, m_1:U_1\ra A, \dots ,m_p:U_p\ra A$$ of all the $\CM$-subobjects of $A$
+such that $m_i > m_j$ implies $i<j$. We can take $U_0=A$ and $m_0=1_A$. 
+
+Then the $\CM$-subobjects of $U_i$ are all amongst the $m_j$ for $j\ge i$. 
+So we have a function $\rho : [p]\ra \mathcal{P}[p]$ from $[p] = \{0,1,\dots,p\}$
+to the set of subsets of $[p]$ with the property that all the $\CM$-subobjects of $U_i$
+are represented by $m_{ij} : U_j\ra U_i$ where $m_i\circ m_{ij} = m_j$ and $j\in \rho(i)$. 
+We have $\rho(i) = \{\rho(i)_0 > \rho(i)_1 > \dots > \rho(i)_{\sigma(i)}\}$
+where $\rho(i)_0=i$. 
+
+Take a pointed functor $F:\CD \lra \CX$. Take $0< i\le p$ and consider the morphism
+$$\widehat{F}m_i^* : \widehat{F}A=FU_0\oplus FU_1 \oplus \dots \oplus FU_p\lra FU_{\rho(i)_0}\oplus FU_{\rho(i)_1} \oplus \dots \oplus FU_{\rho(i)_{\sigma(i)}}= \widehat{F}U_i \ .$$
+Its composite with the $j$th inclusion is obtained by factoring $m_i^*\circ m_j = m_{i \rho(i)_k}\circ s$ with $s\in \CS$. 
+That composite is $0$ unless $s\in \CR$. However, using property (e) of 
+Section~\ref{setting}, $m_{i \rho(i)_k}^*\circ m_i^*\circ m_j =  s \in \CR$ implies 
+$s$ invertible and $m_i \circ m_{i \rho(i)_k} \circ s = m_j$.  
+Since we are dealing with one representative of each isomorphism
+class of $\CM$-subobjects, $s=1_{U_j}$ and $\rho(i)_k = j$.
+So $\widehat{F}m_i^*\circ \mathrm{in}_j = 0$ unless $j\le i$ and there
+exists $k$ with $j= \rho(i)_k$, in which case 
+$$\widehat{F}m_i^*\circ \mathrm{in}_j = \mathrm{in}_{\rho(i)_k} \ .$$     
+
+Write the inclusion $i_A : \widetilde{\widehat{F}}A \lra \widehat{F}A$ as
+$$i_A = (a_0,a_1,\dots a_p)$$
+where $a_i = \mathrm{pr}_i \circ i_A : \widetilde{\widehat{F}}A \lra FU_i$. 
+
+\begin{lemma}\label{as=0} 
+$a_i = 0$ for $1\le i \le p$.
+\end{lemma} 
+\begin{proof}
+We use induction. We have $a_p : \widetilde{\widehat{F}}A \lra FU_p$
+where $U_p$ has no proper $\CM$-subobjects, giving $FU_p = \widehat{F}U_p$. 
+So $a_p$ is the restriction of $\widehat{F}m_p^*: \widehat{F}A \lra \widehat{F}U_p$
+to the subobject $\widetilde{\widehat{F}}A$ of its kernel. This gives the start
+$a_p = 0$ to our induction.
+
+Assume $a_j = 0$ for $i < j \le p$. Using the preamble to the Lemma, we see
+that $(a_i,a_{\rho(i)_1},\dots, a_{\rho(i)_{\sigma{i}}})$ is the restriction of
+$\widehat{F}m_i^*: \widehat{F}A \lra \widehat{F}U_i$ to the subobject 
+$\widetilde{\widehat{F}}A$ of its kernel. By induction, 
+$a_{\rho(i)_1}=\dots= a_{\rho(i)_{\sigma{i}}}=0$. So $a_i = 0$,
+completing the proof.    
+\end{proof}
+
+\begin{proposition}\label{unitinv}
+The component at $A$ of the unit $\eta_F : F \Lra \widetilde{\widehat{F}}$ of the adjunction
+of Theorem~\ref{adjthm} is invertible. 
+\end{proposition}
+\begin{proof}
+The component $\eta_FA : FA \ra \widehat{F}A$ of the unit is, using
+the above notation, defined by $i_A\circ \eta_FA = \mathrm{in}_0$;
+it is clearly a monomorphism. Lemma~\ref{as=0} can be stated as
+saying $i_A = \mathrm{in}_0 \circ a_0$. So
+$$i_A \circ \eta_FA \circ a_0 = \mathrm{in}_0 \circ a_0 = i_A = i_A \circ 1_{\widetilde{\widehat{F}}A} \ ,$$
+yielding $\eta_FA \circ a_0 = 1_{\widetilde{\widehat{F}}A}$. Hence $\eta_FA$ has inverse $a_0 = \mathrm{pr}_0$.     
+\end{proof}
+
+Now suppose $T: \CP \lra \CX$ is any functor.
+We have the idempotents $$e_i = Tm_i \circ Tm_i^*$$ on $TA$.
+
+\begin{lemma}\label{Tdecomp} 
+If the ordered set $\mathrm{Sub}_{\CM}A$ is finite with infima existing then the morphism 
+$$\bigcap_{i=k}^p{\mathrm{ker }e_i} \oplus \bigoplus_{i=k}^p{\widetilde{T}U_i} \lra TA \ ,$$
+induced by the inclusions $\mathrm{ker }e_i \ra TA$ and the 
+$Tm_i \circ i_{U_i} : \widetilde{T}U_i \ra TA$, is invertible for $1\le k \le p$. 
+\end{lemma} 
+\begin{proof}
+For $k=p$ we have $\widetilde{T}U_p = TU_p$. The splitting $e_i = Tm_i \circ Tm_i^*$
+yields the desired isomorphism $\mathrm{ker }e_p \oplus \widetilde{T}U_p \cong TA$.  
+
+For $k=p-1$, the only possibility for the infimum of $m_{p-1}$ and $m_p$ is $m_p$.
+Then we have $m_{p-1,p} : U_p \ra U_{p-1}$. So 
+$$\mathrm{ker }e_p =\mathrm{ker }Tm_p^*= \mathrm{ker }Tm_{p-1,p}^*\circ Tm_{p-1}^* \ge \mathrm{ker }e_{p-1} \ ,$$
+yielding $\mathrm{ker }e_p \cap \mathrm{ker }e_{p-1} = \mathrm{ker }e_{p-1}$.
+We also have the split idempotent $e_{p-1,p} = Tm_{p-1,p} \circ Tm_{p-1,p}^*$ on $TU_{p-1}$
+yielding $TU_{p-1} \cong \mathrm{ker }Tm_{p-1,p}^*\oplus TU_p \cong \widetilde{T}U_{p-1} \oplus \widetilde{T}U_p$. So
+$$TA \cong \mathrm{ker }e_{p-1} \oplus TU_{p-1} \cong \mathrm{ker }e_p \cap \mathrm{ker }e_{p-1} \oplus \widetilde{T}U_{p-1} \oplus \widetilde{T}U_p \ ,$$
+as required.   
+
+And so on, inductively. However, a clearer proof will be given in the Appendix Section~\ref{Append}.
+\end{proof}
+
+\begin{theorem}
+For any additive category $\CX$ which has finite products and splittings for idempotents, 
+the adjunction of Theorem~\ref{adjthm} is an equivalence 
+$$[\CP,\CX] \simeq [\CD,\CX]_{\mathrm{pt}}$$
+if the ordered set $\mathrm{Sub}_{\CM}A$ is a finite inf-semilattice for all objects $A$ of $\CP$.
+\end{theorem}
+\begin{proof}
+After Proposition~\ref{unitinv} it suffices to prove the counit invertible.
+However, case $k=1$ of Lemma~\ref{Tdecomp} gives the third isomorphism in the string
+$$\widetilde{\widehat{T}}A \cong \widetilde{T}A + \sum_{i=1}^p{\widetilde{T}U_i} \cong \bigcap_{i=1}^p{\mathrm{ker }e_i} \oplus \bigoplus_{i=1}^p{\widetilde{T}U_i} \cong TA \ ,$$
+and the composite is indeed the component of the counit at $A$.  
+\end{proof}
+
+\section{Appendix: Idempotents and meet-semilattices}\label{Append}
+
+Let $\CX$ be an additive category which has splittings for idempotents.
+Suppose $e$ is an idempotent on an object $A$ of $\CX$. A splitting for $e$ will be denoted as
+follows:
+\begin{equation}
+\begin{aligned}
+\xymatrix{
+A \ar[rr]^-{e} \ar[d]_-{r_e} && A \ar[d]^-{r_e} \\
+eA \ar[rr]_-{1_{eA}} \ar[urr]_{i_e} && eA \ .}
+\end{aligned}
+\end{equation}
+
+We also have the idempotent $\bar{e} = 1_A-e$ on $A$ yielding a direct sum situation:
+\begin{equation}
+ \xymatrix @C+5mm{
+ \bar{e}A \ar @<3pt> [r]^{i_{\bar{e}}}  
+ & A \ar @<3pt> [r]^{r_e} \ar @<3pt>[l]^{r_{\bar{e}}}
+ & eA \ar @<3pt> [l]^{i_e} \ .}
+\end{equation}
+Consequently, we have an isomorphism
+$$A \cong  \bar{e}A \oplus eA \ .$$ 
+
+Now suppose we have another idempotent $f$ on $A$ which commutes with $e$.
+It follows that $fe = f \circ e = e\circ f$ is also an idempotent on $A$. Moreover,
+$f$ induces an idempotent on $eA$ whose splitting is also a splitting $feA$ for $fe$. 
+This gives the following $3\times 3$-diagram of split exact sequences:
+
+\begin{equation*}
+\xymatrix{
+\bar{f}\bar{e}A \ar[d] \ar[r] & \bar{e}A \ar[d]  \ar[r] & f\bar{e}A \ar[d] \\
+\bar{f}A \ar[d] \ar[r] & A \ar[d] \ar[r] & fA \ar[d]\\
+\bar{f}eA \ar[r] & eA  \ar[r] & feA \ . }
+\end{equation*}
+Consequently, we have an isomorphism
+$$A \cong  \bar{f}\bar{e}A \oplus f\bar{e}A \oplus \bar{f}eA \oplus feA \ .$$
+
+Now suppose we have a family $(e_i)_{i\in I}$ of idempotents $e_i$ on $A$
+which commute with each other. For each subset $S$ of $I$, let $e_S$ be the
+composite of the idempotents $x_i$, for all $i\in I$, where
+\begin{equation*}
+x_i =
+\begin{cases}
+e_i & \text{for }  i \in S \\
+\bar{e}_i & \text{for } i\notin S \ .
+\end{cases}
+\end{equation*}
+A simple induction proves:
+
+\begin{lemma}[Idempotents Cube Lemma]\label{CubeLem}
+$$A\cong \bigoplus_{S\subseteq I}{e_SA}$$ 
+\end{lemma}
+
+We can order the set $I$ by defining $i\le j$ when $e_i e_j = e_i$. 
+In this case, notice that $e_i\bar{e}_j = e_i - e_i e_j = 0$; so $e_i\bar{e}_jA = 0$.
+This shows that some terms in the direct sum in Lemma~\ref{CubeLem}
+could be zero. 
+
+Now suppose we have a finite lattice $L$; that is, $L$ is an ordered set
+which, when regarded as a category, has finite limits. 
+(A finite ordered set with finite products has finite coproducts too and
+so is a lattice.) As usual, we write
+$x\wedge y$ for the meet (= infimum = product) of $x$ and $y$. 
+The largest element of $L$ is denoted by $t$.
+We can construct the usual category $\mathrm{Spn}L$ 
+whose objects are the elements $x\in L$ and
+whose morphisms $u : x \ra y$ are elements $u\in L$ such that $u\le x\wedge y$. 
+Composition in $\mathrm{Spn}L$ is meet. 
+
+Each endomorphism $u:x\ra x$ in $\mathrm{Spn}L$ is an idempotent and all these
+idempotents on $x$ commute since meet is commutative.
+
+Suppose we are given a functor $T: \mathrm{Spn}L \lra \CX$. Put $A=Tt$.
+Each $x\in L$ gives an idempotent $e_x = T(x:t\ra t)$ on $A$.
+This gives us a family $(e_x)_{x\in L}$ of commuting idempotents on $A$
+to which Lemma~\ref{CubeLem} applies. 
+Notice that $x\le u$ implies $e_x e_u = e_x$, $\bar{e}_x \bar{e}_u = \bar{e}_u$ and $e_x\bar{e}_u =0$.
+
+\begin{lemma}\label{filter}
+If $e_S\ne 0$ then $S$ is a filter and $e_S = e_z d_z$,
+where $z = \bigwedge_{x\in S}{x}$ and $d_z$ is 
+the composite of all the idempotents $\bar{e}_u$
+with $u < z$.
+\end{lemma}
+\begin{proof}
+Suppose $x\le u$ with $x\in S$. Assume $u\notin S$. 
+Then $e_S$ factors through
+$e_x  \bar{e}_u = 0$, so $e_S=0$, a contradiction. 
+So $u\in S$ proving that $S$ is a right ideal. 
+Now suppose $x,y\in S$ and $x\wedge y\notin S$.
+Then $e_S$ factors through 
+$e_x e_y \bar{e}_{x\wedge y} = e_{x\wedge y} \bar{e}_{x\wedge y} = 0$,
+a contradiction. So $S$ is a filter.
+
+Every filter on a finite set is principal: $S=\{x\in L : z\le x\}$ for $z$ as in the
+statement of the Lemma. Then $e_z$ is the composite of the $e_x$ with $x\in S$. 
+Moreover, if $u\notin S$ and $u \not< z$ then we
+have $u \wedge z < z$ and $\bar{e}_u \bar{e}_{u \wedge z} = \bar{e}_{u \wedge z}$.
+So $d_z$ is the composite of the $\bar{e}_u$ for $u\notin S$.
+This yields $e_S = e_z d_z$.  
+\end{proof}
+
+As a consequence, Lemma~\ref{CubeLem} gives
+\begin{equation}
+A\cong \bigoplus_{x\in L}{d_xe_xA} \ .
+\end{equation}
+
+For $u<x$, notice that $K_{u,x} = \bar{e}_ue_x$ is the kernel of $Tu : Tx \ra Tx$.
+This gives 
+\begin{equation}
+\widetilde{T}x= \bigcap_{u<x}K_{u,x} = d_xe_xA \ , 
+\end{equation}
+and so
+\begin{equation}
+Tt \cong \bigoplus_{x\in L}{\widetilde{T}x} \ . 
+\end{equation}
+Applying this to $L = \mathrm{Sub}_{\CM}A$, we obtain Lemma~\ref{Tdecomp} 
+in the case of Example~\ref{Ex1+}. For the general case we need further work.
+ 
+\begin{thebibliography}{00}
+
+\bibitem{Berger1996} Clemens Berger, \textit{Op\'erades cellulaires et espaces de lacets it\'er\'es}, Annales de L'Institut Fourier \textbf{46(4)} (1996) 1125--1157.\label{Berger1996} 
+
+\bibitem{CEF2012} Thomas Church, Jordan S. Ellenberg and Benson Farb, \textit{FI-modules: a new approach to stability for $S_n$-representations}, (\url{arXiv:1204.4533v2}, 28 Jun 2012).\label{CEF2012}
+
+\bibitem{DaySt1995} Brian J. Day and Ross Street, \textit{Kan extensions along promonoidal functors}, Theory and Applications of Categories \textbf{1(4)} (1995) 72--77. \label{DaySt1995} 
+
+\bibitem{DaySt1997} Brian J. Day and Ross Street, \textit{Monoidal bicategories and Hopf algebroids}, Advances in Math. \textbf{129} (1997) 99--157. \label{DaySt1997}
+
+\bibitem{Dold} Albrecht Dold, \textit{Homology of symmetric products and other functors of complexes}, Annals of Math. \textbf{68} (1958) 54--80.\label{Dold}
+ 
+\bibitem{DoldPuppe} Albrecht Dold and Dieter Puppe, \textit{Homologie nicht-additiver Funktoren. Anwendungen}, Ann. Inst. Fourier Grenoble \textbf{11} (1961) 201--312.\label{DoldPuppe}
+
+\bibitem{FreydKelly} Peter J. Freyd and G. Max Kelly, \textit{Categories of continuous functors I}, J. Pure and Applied Algebra \textbf{2} (1972) 169--191; Erratum Ibid. \textbf{4} (1974) 121.\label{FreydKelly}
+
+\bibitem{HillarDarren2007} Christopher J. Hillar and Darren L. Rhea, \textit{Automorphisms of finite abelian groups}, American Mathematical Monthly \textbf{114(10)} (2007) 917--923; \url{arXiv:math/0605185}.\label{HillarDarren2007}
+
+\bibitem{Species} Andr\'e Joyal, \textit{Une theory combinatoire des series formelles}, Advances in Mathematics \textbf{42} (1981) 1--82.\label{Species}
+
+\bibitem{AnalFunct} Andr\'e Joyal, \textit{Foncteurs analytiques et esp\`eces de structures}, Lecture Notes in Mathematics \textbf{1234} (Springer 1986) 126--159.\label{AnalFunct} 
+
+\bibitem{TYBO} Andr\'e Joyal and Ross Street, \textit{Tortile Yang-Baxter operators in tensor categories}, J. Pure Appl. Algebra \textbf{71} (1991) 43--51.\label{TYBO}
+
+\bibitem{ITD&QG} Andr\'e Joyal and Ross Street, \textit{An introduction to Tannaka duality and quantum groups}; Part II of Category Theory, Proceedings, Como 1990 (Editors A. Carboni, M.C. Pedicchio and G. Rosolini) Lecture Notes in Math. \textbf{1488} (Springer-Verlag Berlin, Heidelberg 1991) 411--492.\label{ITD&QG}
+
+\bibitem{repfgl} Andr\'e Joyal and Ross Street, \textit{The category of representations of the general linear groups over a finite field}, J. Algebra \textbf{176 (3)} (1995) 908--946.\label{repfgl}
+
+\bibitem{Kan} Daniel Kan, \textit{Functors involving c.s.s complexes}, Transactions of the American Mathematical Society \textbf{87} (1958) 330--346.\label{Kan}
+
+\bibitem{PMSE} Stephen Lack and Ross Street, \textit{Morita equivalence of partial maps and strong epimorphisms}, preprint 2013.\label{PMSE}
+
+\bibitem{Lindner1976} Harald Lindner, \textit{A remark on Mackey functors}, Manuscripta Mathematica \textbf{18} (1976) 273--278.\label{Lindner1976}
+
+\bibitem{ML1963} Saunders Mac Lane, \textit{Natural associativity and commutativity}, Rice University Studies \textbf{49} (1963) 28--46.\label{ML1963}
+
+\bibitem{NHA} Bodo Pareigis, \textit{A non-commutative non-cocommutative Hopf algebra in nature}, Journal of Algebra \textbf{70} (1981) 356--374.\label{NHA}
+
+\bibitem{QG} Ross Street, \textit{Quantum Groups: A Path to Current Algebra}, Australian Mathematical Society Lecture Series \textbf{19} (Cambridge University Press, 2007).\label{QG} 
+
+\bibitem{CBA} D. Tambara, \textit{The coendomorphism bialgebra of an algebra}, Journal of The Faculty of Science, The University of Tokyo, Section IA, Mathematics, \textbf{37} (1990) 425--456.\label{CBA}
+
+\bibitem{Ulbrich} K.-H. Ulbrich, \textit{On Hopf algebras and rigid monoidal categories}, Israel Journal of 
+Math. \textbf{72} (1990) 252--256.\label{Ulbrich}
+
+\end{thebibliography}
+
+\end{document}

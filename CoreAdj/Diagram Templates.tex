@@ -1,0 +1,106 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{amscd,amssymb,amsmath,graphicx,verbatim,hyperref}
+\usepackage[OT1,T1]{fontenc}
+
+\usepackage[all]{xypic}
+\usepackage{pdfpages}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcounter{Definitioncount}
+\setcounter{Definitioncount}{0}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}] }{\end{trivlist}}
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}] \refstepcounter{Definitioncount} \textbf{\arabic{Definitioncount}} }{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+%Extra stuff
+\newcommand{\fc}{\mathscr{C}}
+\newcommand{\bm}{{\cal{M}}}
+\newcommand{\bid}{{\cal{I}}}
+\newcommand{\bc}{{\cal{C}}}
+\newcommand{\ba}{{\cal{A}}}
+\newcommand{\bk}{{\cal{K}}}
+\newcommand{\by}{{\cal{Y}}}
+\newcommand{\bx}{{\cal{X}}}
+\newcommand{\bB}{{\cal{B}}}
+\newcommand{\duof}{{\cal{F}}}
+\newcommand{\oop}{\operatorname{op}}
+\newcommand{\op}{^{\oop}}
+\newcommand{\pps}{\operatorname{ps}}
+\newcommand{\ps}{^{\pps}}
+\newcommand{\lowps}{_{\pps}}
+\newcommand{\ttract}{\operatorname{tract}}
+\newcommand{\tract}{_{\ttract}}
+\newcommand{\rrep}{\operatorname{rep}}
+\newcommand{\rep}{_{\rrep}}
+\newcommand{\bicat}{\mathrm{Bicat}(\bc\op,\bm\op)\op}
+\newcommand{\ev}{\mathcal{V} }
+\newcommand{\lom}{\ell{om}}
+\newcommand{\rom}{r{om}}
+\newcommand{\warmon}{\,\Box\,}
+\numberwithin{equation}{section}
+
+
+\begin{document}
+
+This is a commutative square:
+
+\begin{equation}
+\xymatrix{
+X \ar[rr]^-{f} \ar[d]_-{g} && Y \ar[d]^-{h} \\
+Z \ar[rr]_-{k} && W}
+\end{equation}
+
+This is a commutative pentagon:
+
+\begin{equation}
+\xymatrix{
+& Y \ar[rd]^-{ g}  & \\
+X \ar[ru]^-{f} \ar[d]_-{u} & & Z \ar[d]^-{h} \\
+V \ar[rr]_-{v} & & W }
+\end{equation}
+
+Playing around:
+
+\begin{equation}
+\xymatrix{
+& Y \ar[rd]^-{ g}  & \\
+X \ar[ru]^-{f} \ar[rd]_-{u} & & Z \ar[ld]^-{h} \\
+& W }
+\end{equation}
+
+More playing:
+
+\begin{equation}
+\xymatrix{
+X \ar[rr]^-{f}  && Y \ar[d]^-{h} \\
+Z \ar[rr]_-{k} \ar[u]_-{g} && W}
+\end{equation}
+
+
+This is a commutative hexagon:
+
+\begin{equation}
+\xymatrix{
+& Y \ar[r]^-{y} & Z \ar[rd]^-{z} & \\
+X \ar[ru]^-{x} \ar[rd]_-{u} & & & W \\
+& U \ar[r]_-{v} & V \ar[ru]_-{w} &}
+\end{equation}
+
+
+\end{document}
+

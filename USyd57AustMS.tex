@@ -1,0 +1,574 @@
+% $Header: /cvsroot/latex-beamer/latex-beamer/solutions/generic-talks/generic-ornate-15min-45min.en.tex,v 1.4 2004/10/07 20:53:08 tantau Exp $
+
+%\documentclass[trans]{beamer}
+%\documentclass[draft]{beamer}
+\documentclass{beamer}
+
+\usepackage{enumerate}
+\usepackage{amscd,amsmath,xspace,amssymb,amsfonts,mathrsfs,latexsym}
+\usepackage{graphicx}
+
+\usepackage{array}
+%\usepackage{mbboard}
+%\usepackage{multicol}
+%\usepackage[pdftex]{color}
+
+%\includeonlyframes{current}
+
+\usepackage[all,poly,knot,tips]{xy}
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\Lra}{\Longrightarrow}
+\newcommand{\Lla}{\Longleftarrow}
+
+%% Script Shortcuts 
+\def\CA{{\mathscr A}}
+\def\CB{{\mathscr B}}
+\def\CC{{\mathscr C}}
+\def\CD{{\mathscr D}}
+\def\CE{{\mathscr E}}
+\def\CF{{\mathscr F}}
+\def\CG{{\mathscr G}}
+\def\CH{{\mathscr H}}
+\def\CI{{\mathscr I}}
+\def\CJ{{\mathscr J}}
+\def\CK{{\mathscr K}}
+\def\CL{{\mathscr L}}
+\def\CM{{\mathscr M}}
+\def\CN{{\mathscr N}}
+\def\CO{{\mathscr O}}
+\def\CP{{\mathscr P}}
+\def\CQ{{\mathscr Q}}
+\def\CR{{\mathscr R}}
+\def\CS{{\mathscr S}}
+\def\CT{{\mathscr T}}
+\def\CU{{\mathscr U}}
+\def\CV{{\mathscr V}}
+\def\CW{{\mathscr W}}
+\def\CX{{\mathscr X}}
+\def\CY{{\mathscr Y}}
+\def\CZ{{\mathscr Z}}
+
+\newcommand{\A}{\ensuremath{\mathcal{A}}\xspace}
+\newcommand{\B}{\ensuremath{\mathcal{B}}\xspace}
+\newcommand{\Af}{\ensuremath{\mathcal{A}_f}\xspace}
+\newcommand{\C}{\ensuremath{\mathcal{C}}\xspace}
+\newcommand{\D}{\ensuremath{\mathcal{D}}\xspace}
+\newcommand{\F}{\ensuremath{\mathcal{F}}\xspace}
+\newcommand{\I}{\ensuremath{\mathcal{I}}\xspace}
+\newcommand{\K}{\ensuremath{\mathcal{K}}\xspace}
+\newcommand{\Kt}{\ensuremath{\mathcal{K}_t}\xspace}
+\newcommand{\Kl}{\ensuremath{\mathcal{K}_{\ell}}\xspace}
+\renewcommand{\L}{\ensuremath{\mathcal{L}}\xspace}
+\renewcommand{\S}{\ensuremath{\mathcal{S}}\xspace}
+\newcommand{\T}{\ensuremath{\mathcal{T}}\xspace}
+\newcommand{\V}{\ensuremath{\mathcal{V}}\xspace}
+\newcommand{\Vf}{\ensuremath{\mathcal{V}_f}\xspace}
+\newcommand{\W}{\ensuremath{\mathcal{W}}\xspace}
+\newcommand{\X}{\ensuremath{\mathcal{X}}\xspace}
+
+\newcommand{\op}{\ensuremath{^{\textrm{op}}}\xspace}
+\newcommand{\ps}{\ensuremath{^{\textrm{ps}}}\xspace}
+\newcommand{\lax}{\ensuremath{^{\textrm{lax}}}\xspace}
+\newcommand{\oplax}{\ensuremath{^{\textrm{oplax}}}\xspace}
+
+
+\newcommand{\EMK}{\textnormal{\sf EM(\K)}\xspace}
+\newcommand{\EM}{\textnormal{\sf EM}\xspace}
+\newcommand{\EMwK}{\ensuremath{\EM^w(\K)}\xspace}
+
+%\newcommand{\Cat}{\textnormal{\bf Cat}\xspace}
+\newcommand{\Lex}{\textnormal{\sf Lex}\xspace}
+\newcommand{\Lan}{\textnormal{\sf Lan}\xspace}
+\newcommand{\Hom}{\textnormal{\sf Hom}\xspace}
+\renewcommand{\t}{\times}
+\newcommand{\ot}{\otimes}
+\newcommand{\two}{\mathbf{2}\xspace}
+
+
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\beamerdefaultoverlayspecification{<+->}
+
+%\newenvironment{\next}{\uncover<+->{}{}}
+
+\mode<presentation>
+{
+%  \usetheme[compress,subsection=false]{Szeged}
+  % or ...
+%  \useoutertheme[subsection=false]{miniframes}
+%\useoutertheme[subsection=false, footline=authortitle, frame number]{miniframes}
+\useoutertheme{infolines}
+\setbeamercolor{separation line}{use=structure,bg=structure.fg!50!bg}
+\usecolortheme{whale}
+\usecolortheme{orchid}
+\usecolortheme{rose}
+\setbeamercolor{titlelike}{parent=structure}
+
+
+%  \setbeamercovered{transparent}
+  % or whatever (possibly just delete it)
+}
+
+
+\usepackage[english]{babel}
+% or whatever
+
+\usepackage[latin1]{inputenc}
+% or whatever
+
+%\usepackage{times}
+%\usepackage[T1]{fontenc}
+% Or whatever. Note that the encoding and the font should match. If T1
+% does not look nice, try deleting the line with the fontenc.
+
+
+\title%[Short Paper Title] % (optional, use only with long paper titles)
+{\textbf{Skew monoidal categories and bialgebroids}}
+
+%{Presentation Subtitle} % (optional)
+
+\author{Ross Street}
+\institute{Macquarie University}
+%[Universities of Somewhere and Elsewhere] % (optional, but mostly needed)
+%{
+%  \inst{1}%
+%  Department of Computer Science\\
+%  University of Somewhere
+%  \and
+%  \inst{2}%
+%  Department of Theoretical Philosophy\\
+%  University of Elsewhere}
+% - Use the \inst command only if there are several affiliations.
+% - Keep it simple, no one is interested in your street address.
+
+\date[Sept-Oct 2013]{\small Algebra Special Session,
+57th Annual Meeting of AustMS,
+University of Sydney} 
+
+\subject{Algebra Special Session}
+% This is only inserted into the PDF information catalog. Can be left
+% out. 
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+% If you wish to uncover everything in a step-wise fashion, uncomment
+% the following command: 
+
+\beamerdefaultoverlayspecification{<.->}
+
+\begin{document}
+
+%  \begin{frame}
+%    \titlepage
+%  \end{frame}
+
+
+\begin{frame}%[plain]
+%  \frametitle{titlepage}
+
+  \begin{centering}
+    {\usebeamerfont{title}\usebeamercolor[fg]{title}\inserttitle
+
+\medskip 
+
+{\small Ross Street}
+
+{\small Macquarie University} 
+
+\medskip
+\uncover<1->{{}}
+}
+
+\vfill
+
+\centerline{\usebeamerfont{title}\usebeamercolor[fg]{title}\insertdate}
+% CT09, Cape Town}
+
+  \end{centering}
+
+
+\end{frame}
+
+
+% \begin{frame}
+%   \frametitle{Outline}
+%   \tableofcontents
+%   % You might wish to add the option [pausesections]
+% \end{frame}
+
+%\section[Stricts and weaks]{The strict/weak dichotomy}
+
+%\subsection{Classical universal algebra}
+\begin{frame}
+  \frametitle{Outline}
+\begin{itemize}
+\item {\em Skew monoidal categories} and other kinds of lax monoidal categories were considered by category theorists over the years.
+\pause
+\item The subject and the name became active last year when Kornel Szlach\'anyi related them to the bialgebroids as studied in the quantum group literature.
+\pause
+\item The work in this talk is joint with Steve Lack.
+\pause
+\item I shall begin by defining {\em flocks} and giving examples.
+\pause
+\item Then we will look at skew monoidal categories and examples.
+\pause 
+\item Categories themselves and bialgebroids will be characterized as closed skew monoidal structures.
+\pause 
+\item We will conclude by discussing the free skew monoidal category and `coherence'.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Herds}
+
+ \begin{itemize}
+\item A herd is a group without a distinguished leader. 
+\pause
+\item More precisely, a {\em herd} $A$ is a set with a ternary operation 
+$$q : A\times A \times A \lra A$$ 
+satisfying $$q(a,b,q(c,d,e))=q(q(a,b,c),d,e) \ ,$$
+$$q(a,b,b) = a \ \ \text{and} \ \  b = q(a,a,b)\ .$$
+\pause
+\item Each group $G$ is a herd with $q(a,b,c)=ab^{-1}c$.
+\pause
+\item For any herd, choice of any element $j\in A$ makes $A$ a group with
+multiplication $ab = q(a,j,b)$, identity element $j$ and $a^{-1}=q(j,a,j)$.
+\pause
+\item Let $\mathrm{Iso}_{\CC}(X,Y)$ be the set of invertible morphisms 
+$a : X\lra Y$ in any category $\CC$. It becomes a herd via $q(a,b,c)=ab^{-1}c$.
+
+Choice of $j\in \mathrm{Iso}_{\CC}(X,Y)$ gives a group isomorphic to the group
+$\mathrm{Aut}_{\CC}(X)$ of automorphisms of $X\in \CC$. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Flocks}
+
+ \begin{itemize}
+\item Flocks categorify herds. 
+\pause
+\item More precisely, a {\em right flock} $\CA$ is a category with a functor 
+$$Q : \CA\times \CA^{\mathrm{op}} \times \CA \lra \CA$$ 
+equipped with natural transformations
+\begin{gather*}
+\phi_{ABCDE} :Q( A,B,Q(C,D,E)) \longrightarrow Q(Q(A,B,C),D,E)
+\end{gather*}
+\begin{gather*}
+\xi _{A}^{B}:Q( A,B,B) \longrightarrow A
+\end{gather*}
+\begin{equation*}
+\zeta _{B}^{A}:B\longrightarrow Q( A,A,B) \ ,
+\end{equation*}
+\end{itemize}
+\end{frame}
+\begin{frame}
+such that the following five conditions hold:
+\begin{gather*}
+\begin{split}
+\xymatrix{
+Q(Q(A,B,C),D,Q(E,F,G)) \ar[d]_{\phi}="1" & Q(A,B,Q(C,D,Q(E,F,G))) \ar[l]_{\phi} \ar[dd]^{Q(1,1,\phi)}\\
+Q(Q(Q(A,B,C),D,E),F,G)  &  \\
+Q(Q(A,B,Q(C,D,E)),F,G)\ar[u]^{Q(\phi,1,1)}  & Q(A,B,Q(Q(C,D,E),F,G) \ar[l]^{\phi}
+} 
+\end{split}\\ 
+\begin{split}
+\xymatrix{
+Q(A,B,Q(B,B,C)) \ar[rr]^-{\phi} && Q(Q(A,B,B),B,C) \ar[d]^{Q(\xi,1,1)}="2" \\
+Q(A,B,C) \ar[u]^{Q(1,1,\zeta)}="1" \ar[rr]_{1} && Q(A,B,C)
+} 
+\end{split}
+\end{gather*}
+\end{frame}
+\begin{frame}
+\begin{equation*}
+\xymatrix{
+Q(A,A,Q(B,C,D)) \ar[rr]^{\phi}   && Q(Q(A,A,B),C,D)  \\
+& Q(B,C,D) \ar[lu]^{\zeta} \ar[ru]_{Q(\zeta,1,1)}  &
+}
+\end{equation*}
+\begin{equation*}
+\xymatrix{
+Q(A,B,Q(C,D,D)) \ar[rd]_{Q(1,1,\xi)}\ar[rr]^{\phi}   && Q(Q(A,B,C),D,D) \ar[ld]^{\xi} \\
+& Q(A,B,C)  &
+}
+\end{equation*}
+\begin{gather*}
+\begin{split}
+\xymatrix{
+&& Q(A,A,A)\ar[rrd]^{\xi} && \\
+A \ar[rru]^{\zeta} \ar[rrrr]_-{1} &&  &&  A \ . \ \square 
+} 
+\end{split}
+\end{gather*}
+\end{frame}
+
+\begin{frame}
+\begin{example}
+Consider the category $\mathrm{Vect}$ of finite dimensional (right) vector spaces over some fixed field $k$.
+For $V\in \mathrm{Vect}$, write $V^*$ for the vector space of linear functions $\ell : V\lra k$. 
+We have linear functions $\varepsilon : V^*\otimes V \lra k$ and $\eta : k \lra V\otimes V^*$
+defined by $\varepsilon (\ell \otimes v) =\ell (v)$ and $\eta (1) = \sum_{i=1}^n e_i\otimes e^*_i$
+where $\sum_{i=1}^n e_ie^*_i(v)=v$.  
+Put $$Q(U,V,W)=U\otimes V^*\otimes W \ .$$ 
+Take $\phi$ to be the identity function of
+$U\otimes V^*\otimes W\otimes X^*\otimes Y$. 
+Take $$\xi = 1_U\otimes \varepsilon : U\otimes V^*\otimes V \lra U$$ and
+$$\zeta = \eta \otimes 1_V : V \lra U\otimes U^*\otimes V \ .$$
+The five flock axioms can be verified.
+\end{example}
+
+\pause
+A flock with $\phi$ invertible is called {\em Hopf}.
+\end{frame}
+\begin{frame}
+\begin{example}
+We make the category $\mathrm{Ab}^R$ of left $R$-modules into a flock.
+Put $$Q(L,M,N)=\mathrm{Hom}_R(\mathrm{Hom}(N,M),L) \ .$$
+\pause
+We have the canonical left R-module morphism
+$$\tau : \mathrm{Hom}(N,M) \otimes_R \mathrm{Hom}(L,K) \lra \mathrm{Hom}(\mathrm{Hom}_R(\mathrm{Hom}(N,M),L),K)$$
+defined by $\tau (f\otimes_Rg)(\theta)=g(\theta(f))$.
+Applying the contravariant functor $\mathrm{Hom}_R(-,H)$ to $\tau$ 
+and using the $\otimes_R$-$\mathrm{Hom}_R$ adjunction, we obtain our  
+\begin{eqnarray*}
+\phi : \mathrm{Hom}_R(\mathrm{Hom}(\mathrm{Hom}_R(\mathrm{Hom}(N,M),L),K),H) \\
+\lra \mathrm{Hom}_R(\mathrm{Hom}(N,M),\mathrm{Hom}_R(\mathrm{Hom}(L,K),H)) \ .
+\end{eqnarray*}
+\pause
+Moreover, $\xi :\mathrm{Hom}_R(\mathrm{Hom}(M,M),L)\lra L$ evaluates at $1_M$ 
+
+and
+$\zeta : L\lra \mathrm{Hom}_R(\mathrm{Hom}(M,L),L)$ is $\zeta (x)(\theta)=\theta (x)$.
+\end{example}
+\end{frame}
+
+\begin{frame}
+\begin{example}
+Again we make the category $\mathrm{Ab}^R$ of left $R$-modules into a flock.
+
+Put $$Q(L,M,N)=N\otimes \mathrm{Hom}_R(M,L) \ .$$
+\pause
+The obvious morphism
+$$\mathrm{Hom}_R(M,L)\otimes \mathrm{Hom}_R(K,H) \lra \mathrm{Hom}_R(M,L\otimes \mathrm{Hom}_R(K,H)$$
+yields $\phi$ on applying the covariant functor $N\otimes-$.
+
+\pause
+\bigskip
+Take $\xi : M\otimes \mathrm{Hom}_R(M,L) \lra L$ to be evaluation 
+\bigskip
+and $\zeta : M \lra M\otimes \mathrm{Hom}_R(L,L)$ to be $\zeta(x) = x\otimes 1_L$. 
+
+\end{example}
+\end{frame}
+\begin{frame}
+  \frametitle{Skew monoidal categories}
+
+A category $\CR$ is {\em right skew-monoidal} when it is equipped with 
+
+  \begin{itemize}
+\item<1-> a functor $\otimes : \CR \times \CR \lra \CR$ and object $I\in \CR$ 
+
+\item<2-> natural families of (not necessarily invertible) morphisms 
+$$\alpha : A\otimes (B\otimes C) \lra (A\otimes B)\otimes C$$ 
+$$\lambda : A\lra I\otimes A$$
+$$\rho : A\otimes I \lra A$$ 
+(A skew monoidal category is {\em Hopf} when $\alpha$ is invertible.)
+\item<3-> plus five axioms as follows:
+
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{The pentagon and trivial unit condition}
+  
+\begin{equation}\label{pentagon}
+\xymatrix{
+& (W\otimes X)\otimes (Y\otimes Z) \ar[rd]^-{{\alpha_{W\otimes X,Y, Z}}}  & \\
+W\otimes (X\otimes (Y\otimes Z)) \ar[ru]^-{{\alpha_{W, X,Y\otimes Z}}} \ar[d]_-{1_W\otimes {\alpha_{X, Y,Z}}} & & ((W\otimes X)\otimes Y)\otimes Z  \\
+W\otimes ((X\otimes Y)\otimes Z) \ar[rr]_-{{\alpha_{W,X\otimes Y,Z}}} & &  (W\otimes (X\otimes Y))\otimes Z\ar[u]_-{{\alpha_{W,X,Y}} \otimes 1_Z} }
+\end{equation}
+
+\begin{equation}\label{unitunit}
+\xymatrix{
+I \ar[rd]_{\lambda_I}\ar[rr]^{1_I}   && I  \\
+& I\otimes I \ar[ru]_{\rho_I} 
+}
+\end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Three more unit conditions}
+\begin{equation}\label{leftunit}
+\xymatrix{
+ I\otimes (X\otimes Y)\ar[rr]^{\alpha_{I,X,Y}}   && (I\otimes X)\otimes Y  \\
+& X\otimes Y \ar[lu]^{\lambda_{X\otimes Y}} \ar[ru]_{\lambda_{X} \otimes 1_Y}  &
+}
+\end{equation}
+
+\begin{equation}\label{midunit}
+\xymatrix{
+ X\otimes (I\otimes Y)\ar[rr]^-{\alpha_{X,I,Y}} && (X\otimes I)\otimes Y \ar[d]^-{\rho_X \otimes 1_Y} \\
+X\otimes Y \ar[u]^-{1_X\otimes \lambda_Y} \ar[rr]_-{1_{X\otimes Y}} && X\otimes Y}
+\end{equation}
+
+\begin{equation}\label{rightunit}
+\xymatrix{
+X\otimes (Y\otimes I) \ar[rr]^{\alpha_{X,Y,I}} \ar[rd]_{1_X\otimes \rho_Y}   && (X\otimes Y)\otimes I  \ar[ld]^{\rho_{X \otimes Y}} \\
+& X\otimes Y   &
+}
+\end{equation}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Examples from a flock}
+  
+ \begin{itemize}
+\item<1->  Let $\CA$ be a flock. 
+\item<2-> Choose any object $J\in \CA$. 
+\item<3-> We can define a right skew monoidal structure on $\CA$.
+\item<4-> Put $A\otimes B = Q(A,J,B)$ and take $J$ as skew unit.
+\item<5-> $\alpha : A\otimes (B\otimes C) \lra (A\otimes B)\otimes C$ is 
+$$\phi : Q(A,J,Q(B,J,C)) \lra Q(Q(A,J,B),J,C) \ .$$
+\item<6-> $\lambda : A \lra J\otimes A$ is $\zeta : A \lra Q(J,J,A)$.
+\item<7-> $\rho : A\otimes J \lra A$ is $\xi : Q(A,J,J) \lra A$.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example from a bialgebra}
+  
+ \begin{itemize}
+\item<1->  Let $H$ be a bialgebra: so we have linear functions 
+$$k \stackrel{\varepsilon}\lla H \stackrel{\delta}\lra H\otimes H \stackrel{\mu}\lra H\stackrel{\eta}\lla k \ .$$ 
+\item<2-> The fusion or Galois map $\nu$ is defined to be the composite 
+$$\nu : H\otimes H \stackrel{\delta \otimes 1_H}\lra H\otimes H\otimes H  \stackrel{1_H \otimes \mu}\lra H\otimes H \ .$$ 
+\item<3-> We can define a skew monoidal structure on $\mathrm{Vect}$ with skew unit $k$, however, with the brand new tensor product $A\star B = H\otimes A \otimes B$.
+\item<4-> $\alpha : H\otimes A\otimes H\otimes B\otimes C \lra H\otimes H\otimes A\otimes B\otimes C$ 
+does a switch of the second and third factors followed by $\nu \otimes 1_{A\otimes B\otimes C}$.
+\item<5-> $\lambda : A \lra H\otimes A$ is $\eta \otimes 1_A$ and $\rho : H\otimes A \lra A$ is $\varepsilon \otimes 1_A$.
+\item<6-> This skew monoidal structure on $\mathrm{Vect}$ is Hopf if and only if the bialgebra $H$ is a Hopf algebra.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example from a category}
+  
+ \begin{itemize}
+\item<1->  Let $A$ be a category. Put $X=\mathrm{ob}A$, assumed small.
+\item<2-> $\mathrm{Set}^X$ is the category of families $M=(M_x)_{x\in X}$ of sets. 
+\item<3-> We shall define a right-skew monoidal structure on $\mathrm{Set}^X$.
+\item<4-> The tensor product $M\ast_A N$ is defined by
+$$(M\ast_A N)_x = \sum_y{M_x \times A(x,y) \times N_y} \ .$$
+\item<5-> The unit object $J$ is defined by $J_x=1$ for all $x\in X$.
+\item<6-> Observe that
+$$(M\ast_A (N\ast_A L))_x = \sum_{y,z} {M_x \times A(x,y) \times N_y \times A(y,z)\times L_z}$$
+$$((M\ast_A N)\ast_A L)_x = \sum_{y,z} {M_x \times A(x,y) \times N_y \times A(x,z)\times L_z} $$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Example from a category (continued)}
+ \begin{itemize}
+\item<1->The morphism $\alpha : M\ast_A (N\ast_A L) \lra (M\ast_A N)\ast_A L$ uses the function
+$$\nu : A(x,y)\times A(y,z) \lra A(x,y)\times A(x,z)$$
+defined by $$\nu(u:x\rightarrow y, v: y\rightarrow z) = (u:x\rightarrow y, v\circ u:x\rightarrow z) \ .$$ 
+\item<2-> 
+The morphism $\lambda : N \lra J\ast_A N$ has components
+$$N_x \stackrel{\mathrm{id_x}\times 1}\lra A(x,x)\times N_x \stackrel{\mathrm{in}_x}\lra \sum_y{A(x,y)\times N_x} \ .$$ 
+\item<3-> 
+The morphism $\rho : M\ast_A J\lra M$ projects $\sum_y{M_x\times A(x,y) \lra M_x}$. 
+\item<4-> This skew monoidal structure on $\mathrm{Set}^X$ is Hopf iff $A$ is a groupoid. 
+ \end{itemize}
+\end{frame}
+
+ \begin{frame}
+  \frametitle{Closed skew monoidal categories}
+\begin{itemize}
+\item A skew monoidal category $\CR$ is {\em closed} when all the endofunctors 
+$A\otimes -$ and $-\otimes A$ on $\CR$ have right adjoints (called {\em internal homs}).
+\pause
+\item For nice categories like categories of modules, existence of these internal homs
+amounts to preservation of colimits by $A\otimes -$ and $-\otimes A$.
+ \end{itemize}
+  \pause
+ \begin{theorem}
+Category structures with object set $X$ are equivalent to closed right-skew monoidal structures
+on the category $\mathrm{Set}^{X}$ of $X$-indexed families of sets for which the skew unit is the terminal object. 
+ \end{theorem}
+ \end{frame}
+ 
+\begin{frame}
+  \frametitle{Bialgebroids}
+\begin{itemize}
+\item Under a different name, bialgebroids occurred in the work of Takeuchi (1977). 
+They arose again in the quantum group literature. 
+\item If you know what bialgebroids are, the following will be a Theorem. Otherwise, it can be a Definition.
+  \pause
+ \item
+ \begin{theorem}[Szlach\'anyi 2012]
+Bialgebroids with base ring $R$ are equivalent to closed right-skew monoidal structures
+on the additive category $\mathrm{Ab}^{R^{\circ}}$ of right $R$-modules for which the skew unit is $R$. 
+ \end{theorem}
+ \pause
+ \item The proof begins by noting that tensor products 
+ $$\mathrm{Ab}^{R^{\circ}} \otimes \mathrm{Ab}^{R^{\circ}} \lra \mathrm{Ab}^{R^{\circ}} \ ,$$
+ which are colimit-preserving in each variable, are induced by tensoring with a left 
+ $R\otimes R$-, right-$R$-bimodule $A$. This $A$ becomes a ring with two
+ ring morphisms $s : R^{\circ} \lra A$ and $t : R \lra A$ with commuting images. 
+\end{itemize}
+
+\end{frame}
+ \begin{frame}
+  \frametitle{Two more skew monoidal categories}
+  \begin{itemize}
+\item Write $\mathbf{Fsk}$ for the free right skew monoidal category on a single generating object $N$.
+\pause 
+\item For each object $A$ of any right skew monoidal category $\CR$, there exists a unique
+strict monoidal functor $\mathbf{Fsk} \lra \CR$ taking $N$ to $A$. 
+\pause
+\item In the joint work with Steve Lack, we have a concrete combinatorial model for this.
+\pause
+\item Let $\mathbf{\Delta}_{\top}$ denote the category whose objects are the finite ordinals 
+$\mathbf{n} = \{0,1,\dots , n-1\}$
+with last element (so that $n>0$), 
+and whose morphisms are last-element-and-order-preserving functions.
+\pause
+\item $\mathbf{\Delta}_{\top}$ is Hopf left skew monoidal with ordinal sum as
+tensor product, with unit $\mathbf{1}$, with right unit constraint $\rho : \mathbf{n+1}\lra \mathbf{n}$
+the surjection identifying $n-1$ and $n$, and with left unit constraint $\lambda : \mathbf{m}\lra \mathbf{1+m}$ the injection whose image does not contain $0$.   
+\end{itemize}
+\end{frame}
+
+ \begin{frame}
+  \frametitle{Coherence for skew monoidal categories}
+  \begin{itemize}
+\item Monoidal categories are skew monoidal categories in which all the constraints are invertible. 
+\pause
+\item Mac Lane (1963) proved a `coherence theorem' for monoidal categories: roughly, 
+``all diagrams made up of constraints and their inverses commute''.  
+\pause
+\item More precisely, all diagrams in the free monoidal category $\mathbf{Fmc}$ on a single generating object commute. In other words, the unique functor $\mathbf{Fmc} \lra \mathbf{1}$ is faithful. 
+\end{itemize}
+\pause
+\begin{theorem}[Lack-Street 2013]
+The unique strict monoidal functor $\mathbf{Fsk} \lra \mathbf{\Delta}_{\top}$, which takes the 
+generating object $N$ of $\mathbf{Fsk}$ to the object $\mathbf{1}$ of 
+$\mathbf{\Delta}_{\top}$, is faithful.  
+\end{theorem}
+\end{frame}
+\end{document}

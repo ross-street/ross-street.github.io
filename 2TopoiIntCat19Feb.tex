@@ -1,0 +1,1603 @@
+%Document Class
+\documentclass[a4paper,12pt]{article}
+
+
+%Packages 
+\usepackage{amscd,amssymb,amsmath,amsfonts,graphicx,verbatim,hyperref}
+\usepackage[OT1,T1]{fontenc}
+\usepackage[all]{xypic}
+\usepackage{pdfpages}
+
+
+%Theoretic Environment Setup
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+%Tom's Not-So-Ridiculous Shortcuts
+\newcommand{\oop}{\operatorname{op}}
+\newcommand{\op}{^{\oop}}
+\newcommand{\pps}{\operatorname{ps}}
+\newcommand{\ps}{^{\pps}}
+\newcommand{\lowps}{_{\pps}}
+\newcommand{\ttract}{\operatorname{tract}}
+\newcommand{\tract}{_{\ttract}}
+\newcommand{\rrep}{\operatorname{rep}}
+\newcommand{\rep}{_{\rrep}}
+\newcommand{\bicat}{\mathrm{Bicat}(\bc\op,\bm\op)\op}
+\newcommand{\lom}{\ell{om}}
+\newcommand{\rom}{r{om}}
+\newcommand{\warmon}{\,\Box\,}
+\numberwithin{equation}{section}
+
+
+%French Greek Shortcuts
+\def\th{\theta}
+\def\Th{\Theta}
+\def\ga{\gamma}
+\def\Ga{\Gamma}
+\def\be{\beta}
+\def\al{\alpha}
+\def\ep{\epsilon}
+\def\la{\lambda}
+\def\La{\Lambda}
+\def\de{\delta}
+\def\De{\Delta}
+\def\om{\omega}
+\def\Om{\Omega}
+\def\sig{\sigma}
+\def\Sig{\Sigma}
+\def\vphi{\varphi}
+
+
+%French Calligraphic Character Shortcuts 
+\def\CA{{\cal A}}
+\def\CB{{\cal B}}
+\def\CC{{\cal C}}
+\def\CD{{\cal D}}
+\def\CE{{\cal E}}
+\def\CF{{\cal F}}
+\def\CG{{\cal G}}
+\def\CH{{\cal H}}
+\def\CI{{\cal J}}
+\def\CJ{{\cal J}}
+\def\CK{{\cal K}}
+\def\CL{{\cal L}}
+\def\CM{{\cal M}}
+\def\CN{{\cal N}}
+\def\CO{{\cal O}}
+\def\CP{{\cal P}}
+\def\CQ{{\cal Q}}
+\def\CR{{\cal R}}
+\def\CS{{\cal S}}
+\def\CT{{\cal T}}
+\def\CU{{\cal U}}
+\def\CV{{\cal V}}
+\def\CW{{\cal W}}
+\def\CX{{\cal X}}
+\def\CY{{\cal Y}}
+\def\CZ{{\cal Z}}
+
+%Ross' Shortcuts 
+
+\def\lra{{\longrightarrow}}
+\def\Lra{{\Longrightarrow}}
+\def\lla{{\longleftarrow}}
+\def\Lla{{\Longleftarrow}}
+
+
+%French LaTeX Oddities
+\def\qq{ \begin{eqnarray} }
+\def\qqq{ \end{eqnarray} }
+\def\non{ \nonumber }
+
+\newcommand{\no}{\noindent}
+\newcommand{\vs}{\vspace}
+\newcommand{\hs}{\hspace}
+\newcommand{\e}{é}
+\newcommand{\ef}{è}
+\newcommand{\p}{\partial}
+\newcommand{\un}{\underline}
+\newcommand{\ha}{{1\over 2}}
+\newcommand{\pa}{\partial}
+\newcommand{\sh}{\sinh}
+\newcommand{\ch}{\cosh}
+\newcommand{\rea}{{\rm Re}}
+\newcommand{\ima}{{\rm Im}}
+
+\def\theequation{{\thesection.\arabic{equation}}}
+
+
+%French Document Margins
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{23.315cm}
+\hoffset -1.2cm
+\topmargin= -1cm
+\raggedbottom
+\renewcommand{\baselinestretch}{1.5}
+\pagestyle{plain}
+
+
+%Begin Document Body
+
+\begin{document}
+
+\author{Ross Street\footnote{The author gratefully acknowledges the support of an Australian Research Council Discovery Grant DP1094883.}}
+\title{Categories in categories, and size matters}
+\date{}
+\maketitle
+
+\noindent {\small{\emph{2010 Mathematics Subject Classification} \quad 18D10; 18D20; 18D35}}
+\\
+{\small{\emph{Key words and phrases.} internal category; category object; internal full subcategory; fibration; double category; descent category; distributors; profunctors; modules.}}
+
+\begin{abstract}
+\noindent We look again at internal categories and internal full subcategories in a category $\CC$. We look at the relationship between a generalised Yoneda lemma and the descent construction. Application to $\CC = \mathrm{Cat}$ gives results on double categories.
+
+\end{abstract}
+
+
+
+\section*{Introduction}
+
+We revisit the theory of categories in a category.  We look in particular at categories in the category of categories; that is, at double categories.
+
+\tableofcontents
+
+\section{Categories in categories}\label{Cic}
+
+A \textit{category} $C$ \textit{in} a category $\CC$ is a diagram 
+\begin{equation}
+\xymatrix{
+C : & C_{3} \ar@<+3ex>[rr]|-{d_{0}} \ar@<+1ex>[rr]|-{d_{1}} \ar@<-1ex>[rr]|-{d_{2}} \ar@<-3ex>[rr]|-{d_{3}} && \ar@<+4ex>[rr]|-{d_{0}} \ar@{<-}@<+2ex>[rr]|-{i_{0}} \ar[rr]|-{d_{1}} \ar@{<-}@<-2ex>[rr]|-{i_{1}} \ar@<-4ex>[rr]|-{d_{2}} C_{2} && C_{1} \ar@<+2ex>[rr]|-{d_{0}} \ar@{<-}[rr]|-{i} \ar@<-2ex>[rr]|-{d_{1}} && C_{0}
+}
+\end{equation}
+in $\CC$ such that
+\begin{itemize}
+\item[C1.] $d_p d_q = d_{q-1} d_p$ for $p<q$
+\item[C2.] $d_0 i = d_1 i = 1_{C_0},   d_0 i_0 = d_1 i_0 = d_1 i_1 = d_2 i_1 = 1_{C_1}$
+\item[C3.] $i_0 i= i_1 i, d_2 i_0 = i d_1, d_0 i_1 = i d_0$
+\item[C4.] the following two squares are pullbacks.
+\begin{equation}\label{pbc}
+\xymatrix{
+C_2 \ar[rr]^-{d_0} \ar[d]_-{d_2} && C_1 \ar[d]^-{d_1} \\
+C_1 \ar[rr]_-{d_0} && C_0}\qquad
+\xymatrix{
+C_3 \ar[rr]^-{d_0} \ar[d]_-{d_3} && C_2 \ar[d]^-{d_2} \\
+C_2 \ar[rr]_-{d_0} && C_1}
+\end{equation}
+\end{itemize}
+The definition goes back to Ehresmann \cite{Ehres1963}.
+
+For any object $U$ of $\CC$ and any category $C$ in $\CC$, we obtain a category $\CC (U,C)$ as follows. An object is a morphism $u:U\lra C_0$ in $\CC$. A morphism $\gamma : u \lra v$ is a morphism $\gamma : U \lra C_1$ in $\CC$ such that $d_0 \gamma = u$ and $d_1 \gamma = v$. The identity $1_u : u \lra u$ is $iu : U \lra C_1$. The composite of $\gamma : u \lra v$ and $\delta : v \lra w$ is $d_1 (\ga , \de) : U \lra C_1$ where $(\ga , \de):U\lra C_2$ is defined by $d_0 (\ga , \de) = \ga$ and $d_2 (\ga , \de) =\de$.
+
+For each morphism $h:V\lra U$ in $\CC$, we have a functor $$\CC (h,C): \CC (U,C) \lra \CC (V,C)$$ taking $u$ to $uh$ and $\ga$ to $\ga h$. Thus we obtain a functor $$\CC (-,C): \CC^{\mathrm{op}} \lra \mathrm{Cat} \ .$$
+
+A \textit{functor} $f:C\lra D$ between categories $C$ and $D$ in $\CC$ is a morphism of diagrams 
+$$\xymatrix{
+\ar@<+2ex>[rr]|-{d_{0}} \ar[rr]|-{d_{1}} \ar@<-2ex>[rr]_(0){\phantom{.}}="2a"|-{d_{2}} C_{2} \ar@{}[ddrr]|-{ } && C_{1} \ar@<+2ex>[rr]|-{d_{0}} \ar@{<-}[rr]|-{i} \ar@<-2ex>[rr]_(0){\phantom{.}}="1a"_(1){\phantom{.}}="0a"|-{d_{1}} \ar@{}[ddrr]|-{ } && C_{0}  \\ \\
+\ar@<+2ex>[rr]^(0){\phantom{.}}="2b"|-{d_{0}} \ar[rr]|-{d_{1}} \ar@<-2ex>[rr]|-{d_{2}} D_{2} && D_{1} \ar@<+2ex>[rr]^(0){\phantom{.}}="1b"^(1){\phantom{.}}="0b"|-{d_{0}} \ar@{<-}[rr]|-{i} \ar@<-2ex>[rr]|-{d_{1}} && D_{0} 
+\ar"2a";"2b"_{f_{2}} \ar"1a";"1b"_{f_{1}} \ar"0a";"0b"_{f_{0}}
+}$$
+
+Write $\mathrm{Cat} \CC$ for the category of categories in $\CC$ and functors between them.
+
+Each functor $f:C\lra D$ defines a functor $$\CC (U,f):\CC (U,C) \lra \CC (U,D)$$ taking $u$ to $f_0 u$ and $\ga$ to $f_1 \ga$. Thus we obtain a functor $$\CC (-,-) : \CC^{\mathrm{op}} \times \mathrm{Cat} \CC \lra \mathrm{Cat}$$ which can be recast as a functor
+\begin{equation}\label{eYe}
+\mathrm{Yon} : \mathrm{Cat} \CC \lra [\CC^{\mathrm{op}} , \mathrm{Cat}]
+\end{equation}
+extending the usual Yoneda embedding $\CC \lra [\CC^{\mathrm{op}} , \mathrm{Set}] $.
+
+A \textit{natural transformation} $\theta : f \Lra g : C \lra D$ between functors $f$ and $g$ is a morphism $$\theta : C_0 \lra D_1$$ in $\CC$ such that
+\begin{itemize}
+\item[N1.] $d_0 \theta = f_0$ and $d_1 \theta = g_0$
+\item[N2.] the following diagram commutes.
+\begin{equation}
+\xymatrix{
+ & C_{1}  \ar@<+1ex>[rr]|-{(f_{1}, \theta d_{1})} \ar@<-1ex>[rr]|-{(\theta d_{0},g_{1})}  &&  \ar[rr]|-{d_{1}}  D_{2} && D_{1} 
+}
+\end{equation}
+\end{itemize}
+
+Given a diagram
+
+\begin{equation}
+ \xymatrix{B \ar[rr]^r  && C  \ar@/^1pc/[rr]^f 
+\ar@/_1pc/[rr]_{g} \ar@{}[rr]|{\Downarrow \; \theta}&& D  \ar[rr]^s && E}
+\end{equation}
+of functors $r$, $f$, $g$, $s$ and natural transformation $\theta$, we obtain a `whiskered' natural transformation $s\theta r : sfr \Longrightarrow sgr$ defined as the composite
+\begin{equation}
+ \xymatrix{B_0 \ar[rr]^{r_{0}}  && C_0 \ar[rr]^{\theta} && D_1  \ar[rr]^{s_{1}} && E_1 \ \ .}
+\end{equation}
+Given a diagram
+
+\begin{equation}
+ \xymatrix{\ar[rr]|{g} C \ar@/^1.5pc/[rr]^{f}_{\Downarrow \; \theta}  \ar@/_1.5pc/[rr]_{h}^{\Downarrow \; \phi} & & D 
+ }
+\end{equation}
+of functors $f$, $g$, $h$ and natural transformations $\theta$, $\phi$, we obtain a natural transformation $\phi \circ \theta : f \Longrightarrow h$ defined as the composite
+\begin{equation}
+ \xymatrix{C_0 \ar[rr]^{(\theta , \phi)}  && D_2 \ar[rr]^{d_1} && D_1  \ \ .}
+\end{equation}
+In this way, $\mathrm{Cat} \CC$ becomes a 2-category.
+
+Each object $U$ of $\CC$ and natural transformation $\theta:f \Lra g:C \lra D$ define a natural transformation
+ $$
+ \xymatrix{\CC(U,C) \ar@/^1pc/[rr]^{\CC(U,f)}  \ar@/_1pc/[rr]_{\CC(U,g)}  \ar@{}[rr]|{\Downarrow \; \CC(U,\theta)}&& \CC(U,D) 
+ }$$
+ whose component at $u \in \CC(U,C)$ is $\theta u : fu\lra gu$ in $\CC(U,D)$. In this way, we see that the extended Yoneda embedding \eqref{eYe} is a 2-functor.
+ 
+For each category $C$ in $\CC$, there is a category $\int C$ defined as follows. The objects are pairs $(U,u)$ where $U$ is an object of $\CC$ and $u$ is an object of $\CC(U,C)$. A morphism $(h,\theta):(U,u)\lra (V,v)$ consists of a morphism $h:U\lra V$ in $\CC$ and a morphism $\theta :u\lra vh$ in $\CC(U,C)$. Regarding each object $U$ of $\CC$ as a `discrete category' in $\CC$ (that is, all $U_n =U$ and $d_p =1_U$), we can say that morphisms of $\int C$ are diagrams
+
+\begin{equation}
+\xymatrix{
+U \ar[rd]_{u}^(0.5){\phantom{a}}="1" \ar[rr]^{h}  && V \ar[ld]^{v}_(0.5){\phantom{a}}="2" \ar@{=>}"1";"2"^-{\theta}
+\\
+& C 
+}
+\end{equation}
+in $\mathrm{Cat}\CC$; composition in $\int C$ is by pasting these triangles. There is a functor
+\begin{equation}\label{Pfromint} 
+P : \begingroup\textstyle\int\endgroup C \lra \CC
+\end{equation}
+defined by $P(U,u)=U$ and $P(h,\theta)=h$.
+
+\section{Fibrations and the generalized Yoneda Lemma}\label{FgYL}
+
+Consider a functor $P:\CX\lra\CC$. A morphism $x:Y\lra X$ in $\CX$ is \textit{cartesian} (with respect to $P$) when the following square is a pullback for all objects $K$ of $\CX$.
+\begin{equation}
+\xymatrix{
+\CX(K,Y) \ar[rr]^-{\CX(K,x)} \ar[d]_-{P} && \CX(K,X) \ar[d]^-{P} \\
+\CX(PK,PY) \ar[rr]_-{\CX(PK,Px)} && \CX(PK,PX)}
+\end{equation}
+
+\begin{lemma}\label{cart&pb} Consider a commutative square
+$$
+\xymatrix{
+Y^{\prime} \ar[rr]^-{x^{\prime}} \ar[d]_-{k} && X^{\prime} \ar[d]^-{h} \\
+Y \ar[rr]_-{x} && X}
+$$
+in $\CX$, which is taken to a pullback in $\CC$ by the functor $P:\CX\lra\CC$, and where $x$ is cartesian. The square is a pullback if and only if $x^{\prime}$ is cartesian. 
+
+\end{lemma}
+
+\begin{proof} Contemplate the two diagrams below.
+$$
+\xymatrix{
+\CX(K,Y^{\prime}) \ar[rr]^-{\CX(1,x^{\prime})} \ar[d]_-{\CX(1,k)} && \CX(K,X^{\prime}) \ar[d]^-{\CX(1,h)} \\
+\CX(K,Y)\ar[rr]_-{\CX(1,x)} \ar[d]_-{P} && \CX(K,X) \ar[d]^-{P} \\
+\CC(PK,PY) \ar[rr]_-{\CC(1,Px)} && \CC(PK,PX)}\qquad
+\xymatrix{
+\CX(K,Y^{\prime}) \ar[rr]^-{\CX(1,x^{\prime})} \ar[d]_-{P} && \CX(K,X^{\prime}) \ar[d]^-{P} \\
+\CC(PK,PY^{\prime}) \ar[rr]_-{\CC(1,Px^{\prime})} \ar[d]_-{\CC(1,Pk)} && \CC(PK,PX^{\prime}) \ar[d]^-{\CC(1,Ph)} \\
+\CC(PK,PY) \ar[rr]_-{\CC(1,Px)} && \CC(PK,PX}
+$$
+The two squares obtained by composing both diagrams vertically are equal. By hypothesis, the bottom square in each diagram is a pullback. It follows that the top square in one diagram is a pullback if and only if the top square in the other is.  \hfill{$\square$}
+
+\end{proof}
+
+For any functor $P:\CX\lra\CC$ and any category $C$ in $\CC$, we define a category $\CX^C$. The objects are categories $X$ in $\CX$ such that $PX=C$ and $d_0 :X_1 \lra X_0$ is cartesian. A morphism $r:X \lra Y$ is a functor in $\CX$ such that $Pr:PX\lra PY$ is the identity functor of $C$.
+
+\begin{remark}\label{pbcart} By Lemma~\ref{cart&pb}, the pullback requirement C4 \eqref{pbc}) on a category $X$ in $\CX$ belonging to $\CX^C$ can be replaced by the requirement that $$d_0:X_2\lra X_1 \ \  \text{and} \ \   d_0:X_3\lra X_2$$ should be cartesian.
+\end{remark}
+
+For functors $P:\CX\lra \CC$ and $Q:\CY\lra \CC$, we write 
+$$\mathrm{Cat}_{/\CC}(\CX,\CY)$$ 
+for the category of functors $F:\CX\lra \CY$ with $QF=P$. The morphisms are natural transformations taken to identities by $Q$. We write
+$$\mathrm{Cart}_{/\CC}(\CX,\CY)$$
+for the full subcategory of $\mathrm{Cat}_{/\CC}(\CX,\CY)$ consisting of those functors $F$ which preserve cartesian morphisms. Such an $F$ defines a functor $$F^C :\CX^C\lra \CY^C$$ given by $F^CX=FX$; this uses Remark~\ref{pbcart}. We obtain a functor
+\begin{equation}
+(-)^C: \mathrm{Cart}_{/\CC}(\CX,\CY)\lra[\CX^C,\CY^C]
+\end{equation}
+for each category $C$ in $\CC$.
+
+A functor $P:\CX\lra \CC$ is called a \textit{fibration} (in the sense of Grothendieck \cite{GrothDesc}, \cite{GrothFond}) when, for all $h:V\lra U$ in $\CC$ and $X$ in $\CX$ with $PX=U$, there exists a cartesian morphism $x:Y\lra X$ with $Px=h$. Such an $x:Y\lra X$ is called an \textit{inverse image} of $X$ along $h$. A choice of inverse image for all such $X$ and $h$ is called a \textit{cleavage} for $P$; we write $$h^X:h^{\star}X\lra X$$ for the chosen cartesian morphisms. 
+
+\noindent {\bf Convention} Given a cleavage, by $\CX^C$ we will then mean the restriction of $\CX^C$ to those objects $X$ with all the morphisms $d_0:X_{n+1}\lra X_n$ taken to be chosen cartesian.  
+
+Let us now return to the functor $P: \int C \lra \CC$ of \eqref{Pfromint}. A morphism $(h,\theta):(U,u)\lra (V,v)$ is cartesian if and only if $\theta :u \lra vh$ is invertible in the category $\CC(U,C)$. In fact, $P: \int C \lra \CC$  is a fibration and there is a cleavage for which the chosen cartesian $(h,\theta)$ have $\theta$ an identity.
+
+The following diagram defines a category $\hat{C}$ in $\int C$:
+\begin{equation}
+\xymatrix{
+& (C_{2}, d_0d_0) \ar@<+2ex>[rr]|-{(d_{0}, id_0d_0)} \ar@<+0ex>[rr]|-{(d_{1},id_0d_0)} \ar@<-2 ex>[rr]|-{(d_{2},d_0)} &&   (C_{1},d_0) \ar@<+2ex>[rr]|-{(d_{0},id_0)} \ar@{<-}[rr]|-{(i,i)} \ar@<-2ex>[rr]|-{(d_{1},1_{C_1})} && (C_{0},1_{C_0}) \ \ . 
+}
+\end{equation}
+For each object $(U,u)$ of $\int C$, we can identify the category
+\begin{equation}
+\begingroup\textstyle\int\endgroup C((U,u), \hat{C})=u/\CC(U,C)
+\end{equation}
+as the category of objects of $\CC(U,C)$ under the object $u$.
+
+Note moreover that $\hat C$ is actually an object of $(\int C)^C$. The generalized Yoneda Lemma of \cite{CoIC} Theorem 5.15 expresses the `generic' property of $\hat{C} \in (\int C)^C$.
+
+\begin{theorem}\label{gYl} For any fibration $P:\CX \lra \CC$ and category $C$ in $\CC$, the composite functor 
+$$\mathrm{Cart}_{/\CC}(\begingroup\textstyle\int\endgroup C,\CX) \stackrel{(-)^C}{\lra} [(\begingroup\textstyle\int\endgroup C)^C,\CX^C]  \stackrel{\mathrm{eval}_{\hat{C}}}{\lra}\CX^C$$
+is an equivalence of categories.
+\end{theorem}
+
+\begin{proof} Take $X\in \CX ^C$. We must define a cartesian-morphism-preserving functor
+$$\bar{X} : \begingroup\textstyle\int\endgroup C \lra \CX$$
+over $\CC$. For $(U,u)\in \begingroup\textstyle\int\endgroup C$, put 
+$$\bar{X} (U,u)=u^{\star}X_0 \ \ .$$ 
+For $(h,\theta):(U,u)\lra (V,v)$ in $\begingroup\textstyle\int\endgroup C$, notice that the composite of cartesian morphisms
+$$\theta^{\star}X_1\stackrel{\theta^{X_1}}{\lra} X_1 \stackrel{d_0}{\lra}X_0$$
+is cartesian over $u:U\lra C_0$ (since $d_0 \theta = u$), so we have an isomorphism $u^{\star}X_0 \cong \theta^{\star} X_1$ over $U$ and commuting with $u^{X_0}$ and $d_0\theta^{X_1}$. Define $\bar{X}(h,\theta):\bar{X}(U,u) \lra \bar{X}(V,v)$ such that
+$$
+\xymatrix{
+u^{\star}X_0 \ar[r]^-{\cong} \ar[d]_-{\bar{X}(h,\theta)} & \theta^{\star}X_1 \ar[r]^-{ \theta^{X_1}}  & X_1 \ar[d]^-{d_1} \\
+V \ar[rr]_-{v^{X_0}} & & X_0 }
+$$
+commutes and $P\bar{X}(h,\theta)=h$. Please see \cite{CoIC} Theorem 5.15 for further details.  \hfill{$\square$}
+
+\end{proof}
+
+A \textit{split} fibration is a fibration equipped with a cleavage satisfying the identities
+$$ {1_U}^{\star}X=X \ \ , \ \  {1_U}^{X}=1_X \ \ , $$
+and
+$$(uv)^{\star}X=v^{\star}u^{\star}X \ \ , \ \  (uv)^{X}=u^{X}v^{u^{\star}X} \ \ .$$
+Write $\mathrm{Spl}_{/\CC}(\CX,\CY)$ for the full subcategory of $\mathrm{Cart}_{/\CC}(\CX,\CY)$ consisting of those $F:\CX\lra \CY$ which preserve the cleavages given in $\CX$ and $\CY$. Recall our convention about $\CX^C$ in the cloven case. 
+
+Notice that $P: \int C \lra \CC$ is a split fibration. In fact, \cite{CoIC} Theorem 5.15 actually included the following result. Here we make implicit use of our convention.
+
+\begin{proposition}\label{gYlspl} For any split fibration $P:\CX\lra \CC$ and category $C$ in $\CC$, the equivalence of Theorem~\ref{gYl} restricts to an isomorphism of categories $$\mathrm{Spl}_{/\CC}(\begingroup\textstyle\int\endgroup C,\CX) \cong \CX^C \ \ . $$ 
+\end{proposition}
+
+\begin{corollary}\label{discretedensity} The 2-functor \eqref{eYe} $$\mathrm{Yon} : \mathrm{Cat} \CC \lra [\CC^{\mathrm{op}} , \mathrm{Cat}]$$ is fully faithful. That is, the inclusion 2-functor $$\CC\lra \mathrm{Cat}\CC$$ is dense.
+\end{corollary}
+
+\begin{proof} For categories $C$ and $D$ in $\CC$, we have a commutative square
+$$\xymatrix{
+(\begingroup\textstyle\int\endgroup D)^C \ar[rr]^-{\cong} \ar[d]_-{\cong} && \mathrm{Spl}_{/\CC}(\begingroup\textstyle\int\endgroup C,\begingroup\textstyle\int\endgroup D) \ar[d]^-{\cong} \\
+\mathrm{Cat}\CC(C,D) \ar[rr]_-{\mathrm{Yon}} &&  [\CC^{\mathrm{op}} , \mathrm{Cat}](\CC(-,C),\CC(-,D))}
+$$
+where the vertical isomorphisms are fairly straightforward and the top isomorphism comes from Proposition~\ref{gYlspl}.  \hfill{$\square$}
+
+\end{proof}
+
+\begin{corollary}\label{discretedetectlim} Limits in the 2-category $\mathrm{Cat}\CC$ are detected by discrete categories in $\CC$.  That is, a (weighted) diagram in $\mathrm{Cat}\CC$ is a limit if and only if the 2-functor \eqref{eYe} takes it to a limit in $[\CC^{\mathrm{op}} , \mathrm{Cat}]$.
+\end{corollary}
+
+Perhaps the reader noticed that $d_1:\hat{C}_2\lra \hat{C}_1$ in the generic example is actually cartesian; in fact, it is part of the cleavage. So the following is actually a consequence of Theorem~\ref{gYl}. We give a direct proof.
+
+\begin{proposition} For any object $X$ of $\CX^C$, the morphism $d_1:X_2\lra X_1$ is cartesian.
+\end{proposition}
+
+\begin{proof} We have $d_0d_1 = d_0d_0$ and commutative diagrams.
+$$
+\xymatrix{
+\CX(K,X_2) \ar[rr]^-{P} \ar[d]_-{\CX(1,d_1)} && \CC(PK,C_2) \ar[d]^-{\CC(1,d_1)} \\
+\CX(K,X_1) \ar[rr]_-{P} \ar[d]_-{\CX(1,d_0)} && \CC(PK,C_1) \ar[d]^-{\CC(1,d_0)} \\
+\CX(K,X_0) \ar[rr]_-{P} && \CC(PK,C_0)}\qquad
+\xymatrix{
+\CX(K,X_2) \ar[rr]^-{P} \ar[d]_-{\CX(1,d_0)} && \CC(PK,C_2) \ar[d]^-{\CC(1,d_0)} \\
+\CX(K,X_1) \ar[rr]_-{P} \ar[d]_-{\CX(1,d_0)} && \CC(PK,C_1) \ar[d]^-{\CC(1,d_0)} \\
+\CX(K,X_0) \ar[rr]_-{P} && \CC(PK,C_0)}
+$$
+So the top left square is a pullback, implying $d_1:X_2\lra X_1$ is cartesian.  \hfill{$\square$}
+
+\end{proof}
+
+We conclude this section with some facts all due to Grothendieck \cite{GrothFond}.
+
+A cleavage for a fibration $P:\CX\lra \CC$ allows the definition of a pseudofunctor 
+$$\CX^-:\CC^{\mathrm{op}} \lra \mathrm{Cat} \ \ .$$
+The value at $U \in \CX$ is the fibre $\CX^U$ of $P$ over $U$: it is the subcategory of $\CX$ consisting of the objects $X \in \CX$ with $PU=U$ and morphisms $x:Y\lra X$ with $Px=1_U$. (This agrees with the previous notation $\CX^C$ when $C=U$ is discrete.) The value of the pseudofunctor at $h:V\lra U$ in $\CC$ is the functor 
+$$h^{\star} : \CX^U \lra \CX^V$$
+taking $X$ to $h^{\star}X$ and using the universal property of cartesian morphisms to define $h^{\star}$ on morphisms. If $P:\CX\lra \CC$ is a split fibration, $\CX^-:\CC^{\mathrm{op}} \lra \mathrm{Cat}$ is a functor. If $\mathrm{Spl}_{/\CC}$ is the 2-category of split fibrations over $\CC$ then we obtain an equivalence of 2-categories
+\begin{equation}
+\mathrm{Spl}_{/\CC} \simeq [\CC^{\mathrm{op}}, \mathrm{Cat}]
+\end{equation}
+taking $P:\CX\lra \CC$ to $\CX^-$.
+
+
+\section{Internal full subcategories}\label{IFSC}
+
+Suppose $\CC$ is a category admitting pullbacks. Let $\CC^{\mathbf{2}} =[\mathbf{2},\CC]$ be the category of morphisms in $\CC$. The functor
+$$\mathrm{cod} : \CC^{\mathbf{2}} \lra \CC \ \ ,$$
+taking each morphism to its codomain, is a fibration. The cartesian morphisms in $\CC^{\mathbf{2}} $ are the pullback squares in $\CC$.
+
+For any category $C$ in $\CC$, the category $(\CC^{\mathbf{2}})^C$ has objects those functors $p:E\lra C$ in $\CC$ such that the square
+\begin{equation}\label{discopfib}
+\xymatrix{
+E_1 \ar[rr]^-{d_0} \ar[d]_-{p_1} && E_0 \ar[d]^-{p_0} \\
+C_1 \ar[rr]_-{d_0} && C_0}
+\end{equation}
+is a pullback. Such functors $p$ are called \textit{discrete opfibrations over} $C$. We think of them as internalized functors $C\lra \CC$. By Theorem~\ref{gYl}, each discrete opfibration $p:E\lra C$ corresponds to a cartesian-morphism-preserving functor 
+\begin{equation}\label{pbptotal}
+\bar{p} : \begingroup\textstyle\int\endgroup C \lra \CC^{\mathbf{2}}
+\end{equation}
+taking $(U,u)$ to $p_u:E_u\lra U$ where the square 
+\begin{equation}\label{fibreoveru}
+\xymatrix{
+E_u \ar[rr]^-{i_u} \ar[d]_-{p_u} && E \ar[d]^-{p} \\
+U \ar[rr]_-{u} && C}
+\end{equation}
+is a pullback. For a morphism $(h,\theta):(U,u)\lra (V,v)$, we obtain the morphism $\bar{p}(h,\theta)$:
+\begin{equation}
+\xymatrix{
+E_u \ar[rr]^-{\bar{\theta}} \ar[d]_-{p_u} && E_v \ar[d]^-{p_v} \\
+U \ar[rr]_-{h} && V}
+\end{equation}
+in $\CC^{\mathbf{2}}$ using the pullback \eqref{fibreoveru} for $v$ and the diagram
+$$
+\xymatrix{
+E_u \ar[rr]^-{d_1(\theta p_u,p_0i_u)} \ar[d]_-{p_u} &  & E \ar[d]^-{p} \\
+U \ar[r]_-{h} & V \ar[r]_-{v} & C }
+$$
+for which the pullback \eqref{discopfib} is used to define $(\theta p_u,p_0i_u):E_u\lra E_1$ satisfying $$d_0(\theta p_u,p_0i_u) =i_u \ \ \mathrm{and} \ \ p_1(\theta p_u,p_0i_u) = \theta p_u \ \ .$$ 
+
+The split fibration $P:\int{C} \lra \CC$ corresponds to the functor 
+$$\CC(-,C):\CC^{\mathrm{op}}\lra \mathrm{Cat} \ \ .$$
+A choice of pullbacks in $\CC$ means that the fibration $\mathrm{cod} : \CC^{\mathbf{2}} \lra \CC$ leads to a pseudofunctor $$\CC/-: \CC^{\mathrm{op}}\lra \mathrm{Cat}$$ taking each object $U$ to the slice category $\CC/U$ and defined on morphisms by pullback along them. It follows that $\bar{p}$ induces a pseudonatural transformation with component at $U\in \CC$ denoted by 
+\begin{equation}\label{pbp}
+\bar{p}^U:\CC(U,C)\lra \CC/U \ \ .
+\end{equation}
+\begin{proposition}\label{ffonfib} A functor 
+\begin{equation}\label{funover}
+\xymatrix{
+\CX \ar[rd]_{P}\ar[rr]^{F}   && \CY \ar[ld]^{Q} \\
+& \CC  &
+}
+\end{equation}
+over $\CC$ induces a family of functors
+\begin{equation} F^U:\CX^U\lra \CY^U \ \ , \ \ U \in \CC \ \ ,
+\end{equation}
+on the fibres. If $F$ is fully faithful then so are all the functors $F^U$, $U\in \CC$. The converse holds if $P$ is a fibration and $F$ preserves cartesian morphisms.
+\end{proposition}
+
+\begin{proof} If $y:FX\lra FX^{\prime}$ in $\CY$ is in $\CY^U$ then any $x:X\lra X^{\prime}$ in $\CX$ with $Fx=y$ is in $\CX^U$. This proves the second sentence of the Proposition. For the converse, take any $h:U\lra U^{\prime}$ in $\CC$ and $x:Z\lra X^{\prime}$ cartesian with $Px=h$. We have a diagram of four pullbacks as below.
+$$
+\xymatrix{
+\CX^U(X,Z) \ar[rr]^-{\mathrm{incl}} \ar[d]_-{F^U} && \CX(X,Z) \ar[rr]^-{\CX(1,x)} \ar[d]^-{F} && \CX(X,X^{\prime}) \ar[d]^-{F} \\
+\CY^U(FX,FZ) \ar[rr]_-{\mathrm{incl}} \ar[d]_-{!} && \CY (FX,FZ) \ar[rr]_-{\CY(1,Fx)} \ar[d]^-{Q} && \CY(FX,FX^{\prime}) \ar[d]^-{Q} \\
+1 \ar[rr]_-{\ulcorner 1_U \urcorner} && \CC(U,U) \ar[rr]_-{\CC(1,h)} && \CC(U,U^{\prime})}
+$$
+By assumption, the top left vertical function is invertible. So $F$ is fully faithful on those morphisms over $h$; but all morphisms are over some $h$. So $F$ is fully faithful. \hfill{$\square$}
+
+\end{proof}
+
+An \textit{internal full subcategory} of the category $\CC$ is a discrete opfibration $p:E\lra C$ for which each of the functors $\bar{p}^U$ \eqref{pbp} is fully faithful. By Proposition~\ref{ffonfib}, this is the same as the requirement that the functor $\bar{p} : \begingroup\textstyle\int\endgroup C \lra \CC^{\mathbf{2}}$ \eqref{pbptotal} be fully faithful.
+
+For any discrete opfibration $p:E\lra C$, we have a factorization
+\begin{equation}\label{doffact}
+\xymatrix{
+\CC/C_0 \ar[rd]_{\mathrm{incl}}\ar[rr]^{\bar{p_0}}   && \CC^{\mathbf{2}} \\
+& \begingroup\textstyle\int\endgroup C \ar[ru]_{\bar{p}}  &
+}
+\end{equation}
+of $\bar{p_0}$ over $\CC$ in which the first functor is bijective on objects. All three functors preserve cartesian morphisms; indeed, $\CC/C_0 \lra \begingroup\textstyle\int\endgroup C$ preserves the cleavages.
+
+For any cartesian-morphism-preserving functor $F$ \eqref{funover} over $\CC$, we can take the `full image'
+\begin{equation}\label{facttri}
+\xymatrix{
+\CX \ar[r]^-{H} \ar[rd]_-{P} & \CZ \ar[d]^-{R} \ar[r]^-{G}  & \CY \ar[ld]^-{Q} \\
+& \CC  }
+\end{equation}
+where $\CZ$ is the category with the same objects as $\CX$ and with homsets $\CZ(X^{\prime},X)=\CY(FX^{\prime},FX)$. The functor $H$ is the identity on objects and defined by 
+$$F: \CX(X^{\prime},X)\lra \CY(FX^{\prime},FX)=\CZ(X^{\prime},X)$$
+on morphisms. The functor $G$ is defined to be $F$ on objects and the identity on morphisms. The functor $R$ is unique making \eqref{facttri} commutative. The cartesian morphisms in $\CZ$ are those which are cartesian in $\CY$. If $P$ is a fibration then so is $R$; given $h:V\lra U$ in $\CC$ and $X\in \CZ$ with $RX=PX=U$, there is a cartesian $x:X^{\prime}\lra X$ over $h$ for $P$, and $Fx:X^{\prime}\lra X$ in $\CZ$ is cartesian over $h$ for $R$. Both $H$ and $G$ preserve cartesian morphisms.
+
+Let us write $P_F : \CX[F]\lra \CC$ for the functor $R:\CZ \lra \CC$ obtained using the above full image construction.
+
+A morphism $k:M\lra N$ in $\CC$ (can be regarded as a discrete opfibration between discrete categories in $\CC$ and so) gives rise to a cartesian-morphism-preserving functor
+\begin{equation}
+\xymatrix{
+\CC/N \ar[rd]_{\mathrm{dom}}\ar[rr]^{\bar{k}}   && \CC^{\mathbf{2}} \ar[ld]^{\mathrm{cod}} \\
+& \CC  &
+}
+\end{equation}
+over $\CC$. We can factor $\bar{k}$ as
+\begin{equation}\label{factkbar}
+\xymatrix{
+\CC/N \ar[r]^-{H} \ar[rd]_-{\mathrm{dom}} & (\CC/N)[\bar{k}] \ar[d]^-{P_{\bar{k}}} \ar[r]^-{ G}  & \CC^{\mathbf{2}} \ar[ld]^-{\mathrm{cod}} \\
+& \CC  }
+\end{equation}
+where $H$ is the identity on objects and $G$ is fully faithful. The objects of $(\CC/N)[\bar{k}]$ are pairs $(U,u)$ for $u:U\lra N$ in $\CC$ and the morphisms are commutative squares
+\begin{equation}
+\xymatrix{
+M_u \ar[rr]^-{} \ar[d]_-{k_u} && M_v \ar[d]^-{k_v} \\
+U \ar[rr]_-{h} && V}
+\end{equation}
+where $k_u$ is the pullback of $k$ along $u$.
+
+The following result is due to B\'enabou \cite{Ben1973Top}. It is Theorem 6.2 of \cite{CoIC} and Example 2.38 of \cite{Johnstone1977}. 
+Also see \cite{Ben1975Fib}, \cite{Wraith1975} and \cite{JohnstWraith}.  
+
+\begin{proposition}  For a morphism $k:M\lra N$ in a finitely complete category $\CC$, the following three conditions are equivalent:
+\begin{itemize}
+\item[(i)] there exists an internal full subcategory $p:E\lra C$ of $\CC$ with $p_0=k$;
+\item[(ii)] there exists a category $C$ in $\CC$ with $C_0=N$ and an isomorphism
+$${\begingroup\textstyle\int\endgroup}C\cong (\CC/N)[\bar{k}]$$ 
+of categories over $\CC$;
+\item[(iii)] there exists a cartesian internal hom for the two objects
+$$k\times 1: M\times N \lra N\times N \ \ \mathit{and} \ \ 1\times k: N \times M \lra N\times N$$
+of the category $\CC/N\times N$.
+\end{itemize}
+\end{proposition}
+
+\begin{proof} (i) $\Rightarrow$ (ii) Given (i), compare the factorizations \eqref{doffact} and \eqref{factkbar}. Since bijective-on-objects and fully faithful functors form a factorization system on $\mathrm{Cat}$, the two factorizations are isomorphic, yielding (ii).
+
+\noindent (ii) $\Rightarrow$ (iii) The product of $(u,v):U\lra N \times N$ and $k\times 1 :M\times N\lra N\times N$ in $\CC/N\times N$ is the main diagonal of the pullback
+$$
+\xymatrix{
+M_u \ar[rr]^-{} \ar[d]_-{k_u} && M\times N \ar[d]^-{k\times 1} \\
+U \ar[rr]_-{(u,v)} && N\times N}
+$$
+in $\CC$. So   
+\begin{equation}\label{slicehom1}
+(\CC/N\times N)(U\operatorname*{\times }\limits_{N\times N} (M \times N)\to N \times N,  N \times M \stackrel{1\times k}{\lra} N \times N)
+\cong
+(\CC/U)(M_u \stackrel{k_u}{\lra} U,M_v \stackrel{k_v}{\lra} U) \ .
+\end{equation}
+On the other hand, for any category $C$ with $C_0=N$, we have
+\begin{equation}\label{slicehom2}
+(\CC/N\times N)(U\stackrel{(u,v)}{\lra} N\times N, C_1 \stackrel{(d_0,d_1)}{\lra} N\times N)\cong \CC(U,C)(u,v) \ .
+\end{equation}
+The isomorphism of (ii) yields an isomorphism between the right hand side of \eqref{slicehom1} and the right hand side of \eqref{slicehom2}. This shows that 
+$$(d_0,d_1):C_1\lra N\times N$$
+is an internal hom as required for (iii).
+
+\noindent (iii) $\Rightarrow$ (i) Let $(d_0,d_1):C_1\lra N\times N$ be an internal hom as in (iii) and let $C_0=N$. Despite $C$ not yet being a category, only a graph, the left hand side of \eqref{slicehom1} and that of \eqref{slicehom2} are isomorphic. Therefore, looking at the right hand sides, we have a fully faithful graph morphism
+$$\CC(U,C) \lra \CC/U \ , \ \ u \mapsto k_u \ .$$ 
+Since the codomain is a category, a category structure is induced on $\CC(U,C)$. The family of functors is pseudonatural in $U$ and so yields a fully faithful cartesian-morphism-preserving functor $\int C \lra \CC^{\mathbf{2}}$ over $\CC$. By Theorem~\ref{gYl}, (i) follows. \hfill{$\square$}
+\end{proof}
+
+\section{Slices and left extensions}\label{Sle} 
+
+For functors $F:\CA \lra \CC$ and $G:\CB \lra \CC$, the so-called \textit{comma category} $F/G$ (for example, see \cite{CWM}) has objects $(A,h:FA\lra GB,B)$ where $A$ is an object of $\CA$, $B$ is an object of $\CB$, and $h:FA\lra GB$ is a morphism of $\CC$. A morphism $(f,g): (A,h,B)\lra (A^{\prime},h^{\prime},B^{\prime})$ in $F/G$ consists of a morphism $f:A\lra A^{\prime}$ in $\CA$ and a morphism $f:B\lra B^{\prime}$ in $\CB$ such that $h^{\prime}\circ Ff = Gg \circ h$. We write $P:F/G \lra \CA$ and $Q:F/G\lra \CB$ for the projection functors. The special case where $F$ is the identity functor of $\CC$ and $\CB$ is the terminal category, so that $G$ can be identified with an object $U$ of $\CC$, is called traditionally called the \textit{slice} of $\CC$ over $U$.  
+
+We propose to use the term \textit{slice of} $F$ \textit{over} $G$ for the general comma category $F/G$. This terminology seems to work better than my traditional term `comma object' \cite{FYl} for the construction internalized to a pair of morphisms in a 2-category (recalled below). Weber \cite{Weber2007} uses the term `lax pullback'.
+
+Before internalizing definitions to a 2-category, we remind the reader (see \cite{CWM}) 
+that the left Kan extension $K:\CB \lra \CC$ of a functor $F:\CA \lra \CC$ along a functor $H:\CA \lra \CB$ can be calculated by Lawvere's pointwise formula
+$$KB = \mathrm{colim} (H/B \stackrel{P}\lra \CA \stackrel{F}\lra \CC)$$
+when the colimits exist. Furthermore, the colimit of a functor is none other than a left Kan extension along a functor into the terminal category $\mathbf{1}$. 
+
+Let $\CK$ be a 2-category. In $\CK$, a \textit{slice} of a morphism $f:A\lra C$ over a morphism $g:B\lra C$ is a square
+\begin{equation}\label{slicesq}
+\xymatrix{
+f/g \ar[d]_{p}^(0.5){\phantom{aaa}}="1" \ar[rr]^{q}  && B \ar[d]^{g}_(0.5){\phantom{aaa}}="2" \ar@{=>}"1";"2"^-{\lambda}
+\\
+A \ar[rr]_-{f} && C 
+}
+\end{equation} 
+such that, for all objects $X$, the functor 
+\begin{equation}\label{slicereptble} 
+\CK(X,f/g) \lra \CK(X,f)/\CK(X,g) \ ,
+\end{equation} 
+taking $r:X\lra f/g$ to $(pr,\lambda r, qr)$, is an isomorphism. A slice of the identity morphism $1_C:C\lra C$ over itself is the \textit{cotensor} $C^{\mathbf{2}}$ \textit{of} $C$ \textit{with the arrow category} $\mathbf{2}$.   
+
+A 2-category $\CK$ is \textit{(finitely) complete} \cite{Licv2f} when it has (finite) products and equalizers (in the $\mathrm{Cat}$-enriched sense), and has cotensors with $\mathbf{2}$. It follows that all slices exist. Also all cotensors with (finite) categories exist. 
+
+If $\CC$ is a (finitely) complete category then $\CK=\mathrm{Cat}\CC$ is a (finitely) complete 2-category; see \eqref{arrobj} for the construction of cotensors with $\mathbf{2}$. By Corollary~\ref{discretedetectlim}, the square \eqref{slicesq} is a slice if and only if the functor \eqref{slicereptble} is invertible for all discrete $X$.    
+
+The 2-category $\mathrm{Cat}/\CC$ is complete. In particular, we are interested in the slice $F/_{\CC}F^{\prime}$ in $\mathrm{Cat}/\CC$ of two functors over $\CC$ as in the following diagram.
+\begin{equation}
+\xymatrix{
+\CX \ar[r]^-{F} \ar[rd]_-{P} & \CY \ar[d]^-{Q}  & \CX^{\prime} \ar[l]_-{F^{\prime}} \ar[ld]^-{P^{\prime}} \\
+& \CC  }
+\end{equation}
+Indeed, $F/_{\CC}F^{\prime}$ is the full subcategory of the slice category $F/F^{\prime}$ consisting of those objects $(X,y,X^{\prime})$, where $X\in \CX$, $X^{\prime}\in \CX^{\prime}$ and $y\in \CY(FX,F^{\prime}X^{\prime})$, for which $Qy$ is an identity morphism in $\CC$. We have a universal square containing a natural transformation, as in the following square, taken to an identity by $Q:\CY\lra \CC$.
+\begin{equation}
+\xymatrix{
+F/_{\CC}F^{\prime} \ar[d]_{\mathrm{dom}}^(0.5){\phantom{aaaa}}="1" \ar[rr]^{\mathrm{cod}}  && \CX^{\prime} \ar[d]^{F^{\prime}}_(0.5){\phantom{aaaa}}="2" \ar@{=>}"1";"2"^-{\lambda}
+\\
+\CX \ar[rr]_-{F} && \CY 
+}
+\end{equation}
+If $F$ and $F^{\prime}$ preserve cartesian morphisms then so do $\mathrm{dom}$ and $\mathrm{cod}$, and the cartesian morphisms of $F/_{\CC}F^{\prime}$ are precisely those taken to cartesian morphisms by $\mathrm{dom}$ and $\mathrm{cod}$. 
+
+\begin{proposition} The 2-functor 
+$$\begingroup\textstyle\int\endgroup : \mathrm{Cat}\CC\lra \mathrm{Cat}/\CC$$
+preserves slices.
+\end{proposition}
+
+\begin{proof} The universal property of a slice
+\begin{equation}
+\xymatrix{
+f/f^{\prime} \ar[d]_{d}^(0.5){\phantom{aaaa}}="1" \ar[rr]^{d^{\prime}}  && C^{\prime} \ar[d]^{f^{\prime}}_(0.5){\phantom{aaaa}}="2" \ar@{=>}"1";"2"^-{\lambda}
+\\
+C \ar[rr]_-{f} && D 
+}
+\end{equation}
+in $\mathrm{Cat}\CC$ immediately yields that the functor 
+$$\begingroup\textstyle\int\endgroup (f/f^{\prime}) \lra {\begingroup\textstyle\int\endgroup} f /_{\CC} {\begingroup\textstyle\int\endgroup} f^{\prime} \ \  , $$
+taking the morphism
+$$
+\xymatrix{
+U \ar[rd]_{u}^(0.5){\phantom{A}}="1" \ar[rr]^{h}  && V \ar[ld]^{v}_(0.5){\phantom{A}}="2" \ar@{=>}"1";"2"^-{\theta}
+\\
+& f/f^{\prime} 
+}
+$$
+in ${\begingroup\textstyle\int\endgroup}f/_{\CC}{\begingroup\textstyle\int\endgroup}f^{\prime}$ to the morphism
+$$((h,d\theta),(h,d^{\prime}\theta)):((U,du),\lambda u,(U,d^{\prime} u))\lra((V,dv),\lambda v,(V,d^{\prime} v))$$
+in ${\begingroup\textstyle\int\endgroup}f/_{\CC}{\begingroup\textstyle\int\endgroup}f^{\prime}$, is an isomorphism.    \hfill{$\square$}
+\end{proof}
+
+In a 2-category $\CK$, a diagram
+\begin{equation}\label{lextn}
+\xymatrix{
+A \ar[rd]_{f}^(0.5){\phantom{a}}="1" \ar[rr]^{h}  && B \ar[ld]^{k}_(0.5){\phantom{a}}="2" \ar@{=>}"1";"2"^-{\kappa}
+\\
+& C 
+}
+\end{equation}
+is said \cite{FTM} to exhibit $k$ as a \textit{left extension} of 
+$f$ along $h$ when, for all $g:B\lra C$, pasting with the triangle 
+yields a bijection between 2-cells $k\Lra g$ 
+and 2-cells $f\Lra gh$. To say such a left extension exists for 
+each $f$, is to say the functor 
+$$\CK(h,C) : \CK(B,C) \lra \CK(A,C)$$
+has a left adjoint.
+
+The diagram \eqref{lextn} is said \cite{FYl} to exhibit $k$ as 
+a \textit{pointwise left extension} of $f$ along $h$ when, for all
+morphisms $b:X\lra B$ for which the slice of $h$ over $b$ exists,
+the diagram
+\begin{equation}\label{pwlextn}
+\xymatrix{h/b \ar[d]_{p}^(0.5){\phantom{aaaaaa}}="1" \ar[rr]^{q}  && X \ar[d]^{b}_(0.5){\phantom{aaaaaa}}="2" \ar@{=>}"1";"2"^-{\lambda}
+\\
+A \ar[rd]_{f}^(0.5){\phantom{aa}}="1" \ar[rr]^{h}  && B \ar[ld]^{k}_(0.5){\phantom{aa}}="2" \ar@{=>}"1";"2"^-{\kappa}
+\\
+& C 
+}
+\end{equation}
+exhibits $kb$ as a left extension of $fp$ along $q$. It is shown in \cite{FYl} that every pointwise left extension is a left extension, provided the slice $h/1_B$ exists, and that
+\eqref{pwlextn} furthermore exhibits $kb$ as a pointwise left extension of $fp$ along $q$. 
+  
+\begin{definition}\label{ff} \em{\cite{FYl} A morphism $f:A\lra B$ in $\CK$ is \textit{(representably) fully faithful} when the functor $\CK (X,f):\CK (X,A) \lra \CK (X,B)$ is fully faithful for all objects $X$ of $\CK$. This is equivalent, when the cotensor with $\mathbf{2}$ exists, to saying that the square
+$$
+\xymatrix{
+A^{\mathbf{2}} \ar[d]_{d_0}^(0.5){\phantom{aaaa}}="1" \ar[rr]^{d_1}  && A \ar[d]^{f}_(0.5){\phantom{aaaa}}="2" \ar@{=>}"1";"2"^-{f\lambda}
+\\
+A \ar[rr]_-{f} && B 
+}
+$$
+exhibits $A^{\mathbf{2}}$ as the slice $f/f$.}
+\end{definition}
+
+\begin{definition}\label{dense} \em{\cite{EC} A morphism $f:A\lra B$ in $\CK$ is {\em{dense}}  when the triangle
+$$
+\xymatrix{
+A \ar[rd]_{f}^(0.5){\phantom{a}}="1" \ar[rr]^{f}  && B \ar[ld]^{1_B}_(0.5){\phantom{a}}="2" \ar@{=>}"1";"2"^-{1_f}
+\\
+& B 
+}
+$$
+exhibits $1_B$ as a pointwise left extension of $f$ along $f$.}
+\end{definition}
+
+\section{Descent categories}\label{Dc}
+
+As usual we write $\mathbf{\Delta}$ for the (topologists') simplicial category. The objects are the non-empty linearly ordered sets 
+$$[n]=\{0,1,\dots,n\}$$ 
+for $n\geq 0$, and the morphisms are order-preserving functions. We write
+$$\partial_p:[n-1]\lra [n] \ \  \text{ and } \ \  \sigma_q:[n+1]\lra [n]$$
+for the injective order-preserving function which omits the element $p$ in its image and the surjective order-preserving function which identifies only the elements $q$ and $q+1$. The squares
+$$
+\xymatrix{
+[n-1] \ar[rr]^-{\partial_0} \ar[d]_-{\partial_n} && [n] \ar[d]^-{\partial_{n+1}} \\
+[n] \ar[rr]_-{\partial_0} && [n+1]}
+$$
+are pushouts in $\mathbf{\Delta}$.
+ 
+\noindent {\bf Convention} When thinking of $\partial_p$ and $\sigma_q$ as morphisms of the category $\mathbf{\Delta}^{\mathrm{op}}$, we write them respectively as
+$$d_p:[n]\lra [n-1]  \ \  \text{ and } \ \  i_q:[n] \lra [n+1] \ .$$
+
+Let $\mathbf{D}$ denote the category
+\begin{equation}\label{D}
+\xymatrix{
+[3] \ar@<+3ex>[rr]|-{d_{0}} \ar@<+1ex>[rr]|-{d_{1}} \ar@<-1ex>[rr]|-{d_{2}} \ar@<-3ex>[rr]|-{d_{3}} && \ar@<+4ex>[rr]|-{d_{0}} \ar@{<-}@<+2ex>[rr]|-{i_{0}} \ar[rr]|-{d_{1}} \ar@{<-}@<-2ex>[rr]|-{i_{1}} \ar@<-4ex>[rr]|-{d_{2}} [2] && [1] \ar@<+2ex>[rr]|-{d_{0}} \ar@{<-}[rr]|-{i} \ar@<-2ex>[rr]|-{d_{1}} && [0]
+}
+\end{equation}
+in $\mathbf{\Delta}^{\mathrm{op}}$.
+
+The origins of the following construction go back to Grothendieck \cite{GrothDesc}.
+
+\begin{definition}\label{Desc} \em{The \textit{descent category} for a functor $P:\CE \lra \mathbf{\Delta}^{\mathrm{op}}$ is 
+$$\mathrm{Desc}\CE = \CE^{\mathbf{D}} \ .$$
+ Objects $E$ of $\mathrm{Desc}\CE$ are called \textit{descent data} for $P$}.
+\end{definition} 
+
+If, in Definition~\ref{Desc}, the functor $P$ is a fibration, a cleavage determines a pseudofunctor
+$$\CE^{-} : \mathbf{\Delta} \lra \mathrm{Cat} \  ;$$
+that is, a pseudocosimplicial category. We write $\CE_n$ for the fibre $\CE^{[n]}$ of $P$ over $[n]$, yielding a diagram
+\begin{equation}
+\xymatrix{
+\CE_{3} \ar@{<-}@<+3ex>[rr]|-{\partial_{0}} \ar@{<-}@<+1ex>[rr]|-{\partial_{1}} \ar@{<-}@<-1ex>[rr]|-{\partial_{2}} \ar@{<-}@<-3ex>[rr]|-{\partial_{3}} && \ar@{<-}@<+4ex>[rr]|-{\partial_{0}} \ar@<+2ex>[rr]|-{\sigma_{0}} \ar@{<-}[rr]|-{\partial_{1}} \ar@<-2ex>[rr]|-{\sigma_{1}} \ar@{<-}@<-4ex>[rr]|-{\partial_{2}} \CE_{2} && \CE_{1} \ar@{<-}@<+2ex>[rr]|-{\partial_{0}} \ar [rr]|-{\sigma} \ar@{<-}@<-2ex>[rr]|-{\partial_{1}} && \CE_{0}
+}
+\end{equation}
+in $\mathrm{Cat}$ in which the cosimplicial identities hold up to coherent isomorphism: for example,
+$$\partial_q \partial_p \cong \partial_p \partial_{q-1} \text{ \  for \ } p<q \ .$$
+
+For descent data $E$, define
+\begin{equation}\label{eDesc}
+e:\partial_0 E_0 \lra \partial_1 E_0
+\end{equation}
+to be the unique morphism in $\CE_1$ such that the triangle
+$$\xymatrix{
+E_1 = \partial_0 E_0 \ar[rd]_{d_1}\ar[rr]^{e}   && \partial_1 E_0 \ar[ld]^{{d_1}^{E_0}} \\
+&  E_0  &
+}
+$$
+commutes. We readily see that the hexagon
+\begin{equation}\label{ehexDesc}
+\xymatrix{
+& \partial_1\partial_0E_0 \ar[r]^-{\partial_1e} & \partial_1\partial_1E_0 \ar[rd]^-{\cong} & \\
+\partial_0\partial_0E_0 \ar[ru]^-{\cong} \ar[rd]_-{\partial_0e} & & & \partial_2\partial_1E_0 \\
+& \partial_0\partial_1E_0 \ar[r]_-{\cong} & \partial_2\partial_0E_0 \ar[ru]_-{\partial_2e} &}
+\end{equation}
+commutes in $\CE_2$ and
+\begin{equation}\label{etriDesc}
+\xymatrix{
+\sigma_0\partial_0E_0 \ar[rd]_{\cong}\ar[rr]^{\sigma_0e}   && \sigma_0\partial_1E_0 \ar[ld]^{\cong} \\
+& E_0  &
+}
+\end{equation}
+commutes in $\CE_0$. In fact, we can reconstruct $E$ from $E_0$ and $e$ \eqref{eDesc} satisfying \eqref{ehexDesc} and \eqref{etriDesc}.
+
+While we have defined the descent category, for a category `parametrized' by $\mathbf{\Delta}^{\mathrm{op}}$, in terms of the $\CX^C$ construction, we can go the other way too. Suppose $P:\CX \lra \CC$ is a functor and $C$ is a category in $\CC$. For simplicity we suppose $\CC$ has pullbacks chosen so that we can complete the diagram for $C$ to a simplicial object (functor)
+$$C:\mathbf{\Delta}^{\mathrm{op}} \lra \CC \ .$$
+Form the pullback
+\begin{equation}\label{PCpb}
+\xymatrix{
+C^{\star}\CX\ar[rr]^-{ } \ar[d]_-{P_C} && \CX \ar[d]^-{P} \\
+\mathbf{\Delta}^{\mathrm{op}} \ar[rr]_-{C} && \CC}
+\end{equation}
+in $\mathrm{Cat}$.
+\begin{proposition} There is a canonical equivalence of categories 
+$$\CX^C \simeq \mathrm{Desc}C^{\star}\CX$$
+\[
+\xymatrix @C+5mm {
+E \ar @{<->} [r] |-*@{|} & (\mathbf{D},E) }.
+\]
+For cloven $P$, this is an isomorphism.
+\end{proposition}
+
+For any functor $P:\CX\lra \CC$ and category $\CH$, the cotensor of $\CH$ with $P$ in the 2-category $\mathrm{Cat}/\CC$ is defined by the pullback
+$$
+\xymatrix{
+[\CH,\CX]_{\CC} \ar[rr]^-{ } \ar[d]_-{P^{\CH}} && [\CH,\CX] \ar[d]^-{[1,P]} \\
+\CC \ar[rr]_-{\mathrm{diag}} && [\CH,\CC]}
+$$
+in $\mathrm{Cat}$. For a cloven fibration $P$, the pseudofunctor corresponding to the cloven fibration $P^{\CH}$ is the composite
+$$\CC^{\mathrm{op}} \stackrel{\CX^{-}} {\lra} \mathrm{Cat} \stackrel{[\CH,-]} {\lra} \mathrm{Cat} \ .$$ 
+\begin{proposition}\label{DescRep} For any functor $P:\CE \lra \mathbf{\Delta}^{\mathbf{op}}$ and category $\CH$, there is a canonical isomorphism of categories
+$$[\CH,\mathrm{Desc}\CE] \cong \mathrm{Desc}[\CH,\CE]_{\mathbf{\Delta}^{\mathbf{op}}} \ . 
+$$
+\end{proposition}
+
+Loosely speaking, this says that the descent construction is preserved by representable 2-functors out of $\mathrm{Cat}$. It therefore makes sense to define the construction in a 2-category $\CK$.
+
+\section{Descent and codescent objects} 
+
+For a pseudofunctor $T:\mathbf{\Delta} \lra \mathrm{Cat}$, we write $\mathrm{Desc}T$ for the category $\mathrm{Desc}\CE$ where $P:\CE \lra \mathbf{\Delta}^{\mathbf{op}}$ is the cloven fibration obtained from $T$ by the Grothendieck construction described at the end of Section~\ref{FgYL}.
+
+\begin{definition}\label{descobj} For a pseudofunctor 
+$$T:\mathbf{\Delta}\lra \CK \ ,$$
+a \textit{descent object} is an object $\mathrm{Desc}T$ of $\CK$ equipped with a 2-natural isomorphism
+$$\CK(K, \mathrm{Desc}T) \cong \mathrm{Desc}\CK(K,T) \ .$$
+A \textit{codescent object} in $\CK$ for a pseudofunctor $S: \mathbf{\Delta}^{\mathbf{op}} \lra \CK$ is a descent object for $S^{\mathrm{op}} : \mathbf{\Delta} \lra \CK^{\mathrm{op}}$. 
+\end{definition}
+
+\begin{proposition} A descent object for a functor $T: \mathbf{\Delta} \lra \CK$ is a limit for $T$ weighted by the inclusion $\mathbf{\Delta} \lra \mathrm{Cat}$.
+\end{proposition}
+
+B\'enabou-Roubaud \cite{BenRou1970} and Jon Beck (unpublished) expressed descent data in terms of Eilenberg-Moore algebras for monads. We shall describe a version of this. 
+
+A functor $P:\CX \lra \CC$ is called an \textit{opfibration} (originally Grothendieck used the term `cofibration' and some authors persist with this) when $P^{\mathbf{op}}:\CX^{\mathbf{op}} \lra \CC^{\mathbf{op}}$ is a fibration. Cartesian morphisms and inverse images for $P^{\mathbf{op}}$ are called \textit{opcartesian morphisms} and \textit{direct images} for $P$.
+
+\begin{proposition} If a cloven fibration $P:\CX \lra \CC$ is also an opfibration then the inverse image functor
+$$h^{\star}:\CX^U \lra \CX^V \ ,$$
+for each $h:V \lra U$ in $\CC$, has a left adjoint defined by direct image $h_{\star}$ along $h$.
+\end{proposition}
+
+\begin{proof} $\CX^V(Y,h^{\star}X) \cong \{x:Y \lra X | Px=h\} \cong \CX^U(h_{\star}Y,X) \ .$ \hfill{$\square$}
+\end{proof}
+
+For any functor $P:\CX \lra \CC$, consider a commutative square
+\begin{equation}\label{commsq}
+\xymatrix{
+R \ar[rr]^-{q} \ar[d]_-{p} && Y \ar[d]^-{y} \\
+X \ar[rr]_-{x} && Z}
+\end{equation}
+in $\CX$. The following condition is attributed to Chevalley in \cite{BenRou1970} and to Jon Beck in other places.
+
+\noindent \textbf{Chevalley-Beck condition} \textit{If \eqref{commsq} is a pullback in} $\CX$ \textit{preserved by} $P$ \textit{with} $x$ \textit{cartesian and} $y$ \textit{opcartesian then} $p$ \textit{is opcartesian}.  
+
+By Lemma~\ref{cart&pb}, the hypothesis here that \eqref{commsq} be a pullback in $\CX$ is equivalent to the assumption that $q$ be cartesian. 
+
+\begin{example}\label{CBforcod} 
+\em{The Chevalley-Beck condition holds for $\mathrm{cod}:\CC^{\mathbf{2}} \lra \CC$ for any category $\CC$. To see this, notice that a square \eqref{commsq} in $\CC^{\mathbf{2}}$ is a cube \eqref{cube}.
+\begin{equation}\label{cube}
+\xymatrix{
+R \ar[rrr]^-{q_0} \ar[rd] \ar[ddd]_-{p_0} & & & Y \ar[ld] \ar[ddd]^-{y_0} \\
+& M \ar[d]_-{p_1} \ar[r]^-{q_1} & V \ar[d]^-{y_1} \\
+& U \ar[r]_-{x_1} & W \\
+X \ar[ru] \ar[rrr]_-{x_0} & & & Z \ar[lu] } 
+\end{equation}
+The assumptions of Chevalley-Beck are that the front, back, top and bottom faces of \eqref{cube} are pullbacks, and that $y_0$ is invertible. Since the top face is a pullback, $p_0$ is also invertible. So $p$ is opcartesian.}
+\end{example}
+
+If $P$ is a cloven fibration and opfibration, the Chevalley-Beck condition is the requirement that, for all pullback squares
+\begin{equation}\label{CBgamma}
+\xymatrix{
+M \ar[rr]^-{q} \ar[d]_-{p} && V \ar[d]^-{k} \\
+U \ar[rr]_-{h} && W}
+\end{equation}
+in $\CC$, the canonical natural transformation
+\begin{equation}
+\xymatrix{
+\CX^U \ar[d]_{p^{\star}}^(0.5){\phantom{aaa}}="1" \ar[rr]^{h_{\star}}  && \CX^W \ar[d]^{k^{\star}}_(0.5){\phantom{aaa}}="2" \ar@{=>}"1";"2"^-{\gamma}
+\\
+\CX^M \ar[rr]_-{q_{\star}} && \CX^V 
+}
+\end{equation}
+is invertible. Under these circumstances, each category $C$ in $\CC$ determines a monad $T_C$ on the category $\CX^{C_0}$ as follows. The endofunctor for the monad is the composite
+$$ \CX^{C_0} \stackrel{d_0^{\star}} {\lra}\CX^{C_1} \stackrel{d_{1\star}} {\lra}\CX^{C_0} \ . $$
+The unit is the composite natural transformation
+$$ 1 \cong (d_1 i)_{\star} (d_0 i)^{\star} \cong d_{1\star}i_{\star}i^{\star}d_0^{\star} 
+\stackrel{d_{1\star}\varepsilon d_0^{\star}} {\lra}d_{1\star}d_0^{\star}$$
+where $\varepsilon : i_{\star}i^{\star} \lra 1$ is the counit for $i_{\star} \dashv i^{\star}$. The multiplication is the composite natural transformation
+$$d_{1\star}d_0^{\star}d_{1\star}d_0^{\star}\stackrel{d_{1\star}\gamma^{-1}d_0^{\star}}\lra d_{1\star}d_{2\star}d_0^{\star}d_0^{\star} \cong d_{1\star}d_{1\star}d_1^{\star}d_0^{\star}\stackrel{d_{1\star}\varepsilon d_0^{\star}} {\lra}d_{1\star}d_0^{\star}$$
+using the $\gamma^{-1}$ of \ref{CBgamma} for a pullback in condition (C4) of Section \ref{Cic} and the counit $\varepsilon$ for $d_{1\star} \dashv d_0^{\star}$.
+
+The following result appears as Proposition (9.10) of \cite{CoIC}.
+
+\begin{proposition}\label{FibasEM} 
+If $P:\CX \lra \CC$ is a cloven fibration and opfibration satisfying 
+the Chevalley-Beck condition then, for each category $C$ in $\CC$ 
+there is an equivalence of categories 
+$$\CX^C \simeq (\CX^{C_0})^{T_C}$$ 
+where the right-hand side is the category of Eilenberg-Moore algebras for the monad $T_C$.
+\end{proposition}
+
+\begin{proof} Just as for descent data with \eqref{eDesc}, for each $X\in\CX^C$, we obtain a unique morphism
+\begin{equation}
+e:d_0^{\star} X_0 \lra d_1^{\star} X_0
+\end{equation}  
+in $\CX^C_1$ defined by the equation 
+$$(d_0^{\star} X_0  \stackrel{e} {\lra} d_1^{\star} X_0 \stackrel{d_1^{X_0}}{\lra}X_0) = (d_0^{\star} X_0 = X_1 \stackrel{d_1}\lra X_0) \ .$$
+Diagrams as in \eqref{ehexDesc} and \eqref{etriDesc} hold, yielding that the mate 
+$$\hat{e}:T_C X_0=d_{1\star}d_0^{\star} X_0 \lra X_0 \ ,$$
+of $e$ under the adjunction $d_{1\star}\dashv d_1^{\star}$, is a $T_C$-algebra structure on $X_0$. The remainder is left to the reader. \hfill{$\square$}
+\end{proof}
+
+\begin{example} \em{For the moment, consider $\mathrm{Cat}$ as a category and let us look at the fibration 
+$$\mathrm{cod}: \mathrm{Cat}^{\mathbf{2}} \lra \mathrm{Cat} \ .$$
+The cartesian morphisms for a cleavage are the chosen pullbacks in $\mathrm{Cat}$. The chosen opcartesian morphisms over $H:\CC \lra \CD$ are commutative squares of the following form.
+\[
+\xymatrix{
+\CX \ar[rr]^-{1_{\CX}} \ar[d]_-{} && \CX \ar[d]^-{} \\
+\CC \ar[rr]_-{H} && \CD}
+\]
+As we saw using \eqref{cube}, the Chevalley-Beck condition holds. For any category $\CC$, we have a category
+
+\begin{equation}\label{sqdoubcat}
+\xymatrix{
+& \mathrm{sq}\CC :  \CC^{\mathbf{3}} \ar@<+2ex>[rr]|-{ } \ar@<+0ex>[rr]|-{\mathrm{comp}} \ar@<-2 ex>[rr]|-{ } &&   \CC^{\mathbf{2}} \ar@<+2ex>[rr]|-{\mathrm{dom}} \ar@{<-}[rr]|-{\mathrm{id}} \ar@<-2ex>[rr]|-{\mathrm{cod}} && \CC 
+}
+\end{equation}
+in $\mathrm{Cat}$ obtained as
+$$\mathbf{\Delta}^{\mathrm{op}} \stackrel{\mathrm{incl}}\lra \mathrm{Cat}^{\mathrm{op}} \stackrel{[-,\CC]} \lra \mathrm{Cat} \ .$$
+The reason for the name $\mathrm{sq}\CC$ is because it is the `double category of squares' in the category $\CC$. Proposition \ref{FibasEM} yields an equivalence of categories
+\begin{equation}\label{sqfun}
+(\mathrm{Cat})^{\mathrm{sq}\CC} \simeq (\mathrm{Cat}/\CC)^{T_{\mathrm{sq}\CC}} \ .
+\end{equation}
+The monad $T_{\mathrm{sq}\CC}$ is easily described. 
+The endofunctor of $\mathrm{Cat}/\CC$ takes a functor $P:\CX\lra \CC$ to the split opfibration 
+$$\mathrm{cod} : P/\CC \lra \CC$$
+with domain the slice $P/\CC$ of the functor $P:\CX\lra \CC$ over $1_{\CC} : \CC \lra \CC$. 
+The objects of $P/\CC$ are $(X,h,U)$ where $X\in \CX$ and $h:PX\lra U$ in $\CC$. The multiplication of the monad at $P$ is the functor
+\[
+\xymatrix{
+\mathrm{cod}/\CC \ar[rd]_{\mathrm{cod}}\ar[rr]^{\mu}   && P/\CC \ar[ld]^{\mathrm{cod}} \\
+& \CC  &}
+\]
+taking $(X,h,U,r,V)$ to $(X,rh,V)$ and the unit of the monad at $P$ is the functor
+\[
+\xymatrix{
+\CX \ar[rd]_{P}\ar[rr]^{\eta}   && P/\CC \ar[ld]^{\mathrm{cod}} \\
+& \CC  &}
+\]
+taking $X$ to $(X,1_{PX},PX)$. In fact, the categories in \eqref{sqfun} 
+are 2-categories in an obvious way ($T_{\mathrm{sq}\CC}$ 
+is a 2-monad on $\mathrm{Cat}/\CC$) and the equivalence is an equivalence of 2-categories. 
+The $T_{\mathrm{sq}\CC}$-algebras are easily identified as split opfibrations $P:\CX \lra \CC$; 
+the $T_{\mathrm{sq}\CC}$-action is defined by the functor 
+$$\alpha : P/\CC \lra \CX$$
+taking $(X,h,U)$ to $h_{\star}X \in \CX^U$. If we write $\mathrm{Spl}_{\mathrm{op}\CC}$ for
+the 2-category of split opfibrations over $\CC$, cleavage preserving functors over $\CC$, 
+and natural transformations over $\CC$, we see that \eqref{sqfun} can be prolonged to equivalences of 2-categories
+\begin{equation}
+(\mathrm{Cat})^{\mathrm{sq}\CC} \simeq (\mathrm{Cat}/\CC)^{T_{\mathrm{sq}\CC}} \cong \mathrm{Spl}_{\mathrm{op}\CC} \simeq [\CC,\mathrm{Cat}] \ .
+\end{equation}}
+\end{example}
+
+\begin{example}\label{codescofdiscrete}
+\em{For any category $B$ in $\CC$, the codescent object of the simplicial object
+\begin{equation}\label{nerveB}
+\xymatrix{
+& B_2 \ar@<+2ex>[rr]|-{d_0} \ar@<+0ex>[rr]|-{d_1} \ar@<-2 ex>[rr]|-{d_2} &&   B_1 \ar@<+2ex>[rr]|-{d_0} \ar@{<-}[rr]|-{i} \ar@<-2ex>[rr]|-{d_1} && B_0 }
+\end{equation}
+in $\mathrm{Cat}\CC$ is easily seen to be $B$ itself. For, the definitions at the beginning of
+Section \ref{Cic} make it clear that 
+$$(\mathrm{Cat}\CC)(B,C)$$
+is the descent category for the simplicial category
+\begin{equation}
+\xymatrix
+{\dots   \ar@{<-}@<+4ex>[rr]|-{\partial_{0}} \ar@<+2ex>[rr]|-{\sigma_{0}} \ar@{<-}[rr]|-{\partial_{1}} \ar@<-2ex>[rr]|-{\sigma_{1}} \ar@{<-}@<-4ex>[rr]|-{\partial_{2}} (\mathrm{Cat}\CC)(B_2,C) && (\mathrm{Cat}\CC)(B_1,C) \ar@{<-}@<+2ex>[rr]|-{\partial_{0}} \ar [rr]|-{\sigma} \ar@{<-}@<-2ex>[rr]|-{\partial_{1}} && (\mathrm{Cat}\CC)(B_0,C)
+}
+\end{equation}
+where $\partial_p = (\mathrm{Cat}\CC) (d_p,1_C)$. Observe too that, for each $U$ in $\CC$, the nerve of the category $\CC(U,B)$ is
+\[
+\xymatrix{
+\dots \CC(U,B_2) \ar@<+2ex>[rr]|-{\CC(1,d_0)} \ar@<+0ex>[rr]|-{\CC(1,d_1)} \ar@<-2 ex>[rr]|-{\CC(1,d_2)} &&    \CC(U,B_1) \ar@<+2ex>[rr]|-{ \CC(1,d_0)} \ar@{<-}[rr]|-{\CC(1,i)} \ar@<-2ex>[rr]|-{ \CC(1,d_1)} &&  \CC(U,B_0) \ ; }
+\]
+so the codescent object of \eqref{nerveB} is preserved by the 2-functors 
+$\CC(U,-) : \mathrm{Cat}\CC \lra \mathrm{Cat}$. 
+This provides another proof of Corollary \ref{discretedensity} that $\CC \lra \mathrm{Cat}\CC$ is dense, by showing that there is a density presentation via a codescent construction. }
+\end{example}
+
+\section{Split fibrations in a category}\label{SFiaC}
+
+Let $\CC$ be a category with pullbacks. For each category $B$ in $\CC$, we can construct a category $B^{\mathbf{2}}$ in $\CC$ as follows. Form the diagram 
+$$
+\xymatrix{
+&& P \ar[ld]_-{p} \ar[rd]^-{q}  \\
+& B_2 \ar[ld]_-{d_0} \ar[rd]^-{d_1} && B_2 \ar[ld]_-{d_1} \ar[rd]^-{d_2}  \\
+B_1 && B_1  && B_1 \ ,}
+$$
+in which the diamond is a pullback, to obtain the graph
+$$
+\xymatrix{
+ & P  \ar@<+1ex>[rr]|-{d_0 p} \ar@<-1ex>[rr]|-{d_2 q}  &&   B_{1} \ ,
+}
+$$
+which underlies our category $B^{\mathbf{2}}$. There is a graph isomorphism
+\begin{equation}\label{arrobj}
+\CC(U,B^{\mathbf{2}}) \cong \CC(U,B)^{\mathbf{2}}
+\end{equation}
+natural in $U$. The right-hand side of \eqref{arrobj} has a category structure: the arrow category of $\CC(U,B)^{\mathbf{2}}$.
+Since pullbacks exist in $\CC$, we can construct the objects required to complete $B^{\mathbf{2}}$
+to a simplicial object in $\CC$ and, by Yoneda, we transport the morphisms across \eqref{arrobj} then internalize them to $\CC$. Using Corollary \ref{discretedensity} or \eqref{nerveB}, we extend the isomorphism \eqref{arrobj} to an isomorphism   
+\begin{equation}\label{arrobj2}
+(\mathrm{Cat}\CC)(A,B^{\mathbf{2}}) \cong (\mathrm{Cat}\CC)(U,B)^{\mathbf{2}} \ ,
+\end{equation}
+2-natural in $A$. This says that $B^{\mathbf{2}}$ is the cotensor of $\mathbf{2}$ and $B$ in the 2-category $\mathrm{Cat}\CC$.  
+
+The 2-category $\mathrm{Cat}\CC$ has pullbacks formed pointwise with the simplicial objects. We can therefore compose the span
+$$
+\xymatrix{
+B \ar@{<-}[r]^-{d_0}  & B^{\mathbf{2}} \ar[r]^-{d_1}  & B  }
+$$
+with itself; for example, we obtain
+$$
+\xymatrix{
+&& B^{\mathbf{3}} \ar[ld]_-{p} \ar[rd]^-{q}  \\
+& B^{\mathbf{2}} \ar[ld]_-{d_0} \ar[rd]^-{d_1} && B^{\mathbf{2}} \ar[ld]_-{d_1} \ar[rd]^-{d_2}  \\
+B && B  && B }
+$$
+and then a functor $d_1:B^{\mathbf{3}} \lra B^{\mathbf{2}}$ lifting $d_1:B_2 \lra B_1$. This gives a category
+$$
+\xymatrix{
+\mathrm{sq}B \ : \ B^{\mathbf{3}} \ar@<+2ex>[rr]|-{d_0} \ar@<+0ex>[rr]|-{d_1} \ar@<-2 ex>[rr]|-{d_2} &&   B^{\mathbf{2}}  \ar@<+2ex>[rr]|-{d_0} \ar@{<-}[rr]|-{i} \ar@<-2ex>[rr]|-{d_1} && B  }
+$$
+in $\mathrm{Cat}\CC$ such that there is a natural isomorphism
+$$ \CC(U,\mathrm{sq}B)\cong \mathrm{sq}\CC(U,B)$$
+where the right-hand side is explained at \eqref{sqdoubcat}. 
+Using \eqref{nerveB}, we extend the isomorphism to
+\begin{equation}
+(\mathrm{Cat}\CC)(A,\mathrm{sq}B)\cong \mathrm{sq}(\mathrm{Cat}\CC)(U,B) \ .
+\end{equation}
+
+Looking at the fibration
+$$\mathrm{cod} : (\mathrm{Cat}\CC)^{\mathbf{2}} \lra \mathrm{Cat}\CC$$
+and the category $\mathrm{sq}B$ in $\mathrm{Cat}\CC$, we obtain a category
+$$\mathrm{Spl}_{\mathrm{op}B} : = ((\mathrm{Cat}\CC)^{\mathbf{2}})^{\mathrm{sq}B} \ .$$
+By Proposition \ref{FibasEM}, we have an equivalence  
+\begin{equation}
+\mathrm{Spl}_{\mathrm{op}B} \simeq ((\mathrm{Cat}\CC)/B)^{T_{\mathrm{sq}B}} \ .
+\end{equation}
+The monad $T_{\mathrm{sq}B}$ is easily identified. For any functor $f:X \lra B$ in $\CC$, form the pullback as in the square
+$$
+\xymatrix{
+f/B \ar[rr]^-{q} \ar[d]_-{d_0} && B^{\mathbf{2}} \ar[d]^-{d_0} \ar[rr]^-{d_1}  && B \\
+X \ar[rr]_-{f} && B \ .}
+$$
+The endofunctor of $T_{\mathrm{sq}B}$ takes $f:X\lra B$ to $d_1 = d_1 q : f/B \lra B$. 
+We see that $T_{\mathrm{sq}B}$  is actually a 2-monad on $(\mathrm{Cat}\CC)/B$ 
+yielding a 2-category $\mathrm{Spl}_{\mathrm{op}B}$. 
+
+The objects of $\mathrm{Spl}_{\mathrm{op}B}$ are called \textit{split opfibrations over} $B$ in $\CC$.
+Such an object is a functor $p:E\lra B$ in $\CC$ equipped with a functor $d_1:p/B\lra E$ for which
+there exists a category structure in $(\mathrm{Cat}\CC)^{\mathbf{2}}$ extending the following diagram.
+\begin{equation}\label{Splopfib}
+\xymatrix{
+p/B \ar[d]_-{} \ar@<+2ex>[rr]|-{d_{0}} \ar@{<-}[rr]|-{i} \ar@<-2ex>[rr]|-{d_{1}} &&E \ar[d]^-{p} \\
+B^{\mathbf{2}} \ar@<+2ex>[rr]|-{d_{0}} \ar@{<-}[rr]|-{i} \ar@<-2ex>[rr]|-{d_{1}} && B}
+\end{equation}
+The functor $i$ in the top line of \eqref{Splopfib} is defined by the requirement that the pasted composite
+2-cell
+\begin{equation}
+\xymatrix{
+E \ar@/_/[ddr]_1 \ar@/^/[drrr]^p
+\ar@{-->}[dr]^{i} \\
+& p/B \ar[d]_{d_0}^(0.5){\phantom{aaa}}="1" \ar[rr]^{d_1}
+&& B \ar[d]^{1}_(0.5){\phantom{aaa}}="2" \ar@{=>}"1";"2"^-{\lambda} \\
+& E \ar[rr]_p && B }
+\end{equation}
+should be the identity 2-cell of $p$. In fact, the action $d_1:p/B\lra E$ of the monad $T_{\mathrm{sq}B}$
+is unique up to isomorphism since one can show that it is left adjoint $d_1\dashv i$ to $i$.
+
+We already defined discrete opfibration in Section \ref{IFSC}. Replacing $C$ by $B$ in the pullback \eqref{discopfib},
+we can deduce the pullback 
+\begin{equation}\label{discopfibint}
+\xymatrix{
+E^{\mathbf{2}} \ar[rr]^-{d_0} \ar[d]_-{p^{\mathbf{2}}} && E \ar[d]^-{p} \\
+B^{\mathbf{2}} \ar[rr]_-{d_0} && B}
+\end{equation}
+in $\mathrm{Cat}\CC$. Define $j:E^{\mathbf{2}} \lra p/B$ by the following equation.
+\begin{equation}
+\xymatrix{
+E^{\mathbf{2}} \ar@/_/[ddr]_{d_0} \ar@/^/[drrr]^{pd_1}
+\ar@{-->}[dr]^{j} \\
+& p/B \ar[d]_{d_0}^(0.5){\phantom{aaa}}="1" \ar[rr]^{d_1}
+&& B \ar[d]^{1}_(0.5){\phantom{aaa}}="2" \ar@{=>}"1";"2"^-{\lambda} \\
+& E \ar[rr]_p && B } \quad
+\xymatrix{
+\\ =} \quad
+ \xymatrix{\\ E^{\mathbf{2}}  \ar@/^1pc/[rr]^{d_0} 
+\ar@/_1pc/[rr]_{d_1} \ar@{}[rr]|{\Downarrow \; \lambda}&& E  \ar[rr]^p && B}
+\end{equation}
+It follows that a functor $p:E\lra B$ in $\CC$ is a discrete opfibration if and only if $j$ is invertible. We
+can see then that $p$ is indeed an opfibration by taking the $d_1$ of \eqref{Splopfib} to be the composite
+\begin{equation}
+p/B\stackrel{j^{-1}}{\lra} E^{\mathbf{2}} \stackrel{d_1}{\lra} E \ .
+\end{equation}
+We can also then see that every commutative triangle
+\begin{equation}
+\xymatrix{
+E \ar[rd]_{p}\ar[rr]^{f}   && F \ar[ld]^{q} \\
+& B  &
+}
+\end{equation}
+in $\mathrm{Cat}\CC$, with $q$ a discrete opfibration and $p$ any split opfibration, is a morphism in $\mathrm{Spl}_{\mathrm{op}B}$. Write $\mathrm{Disc}_{\mathrm{op}B}$ for the full subcategory of $\mathrm{Spl}_{\mathrm{op}B}$ whose objects are the discrete 
+opfibrations. Our observations show that the 2-functor
+\begin{equation}
+\mathrm{Disc}_{\mathrm{op}B}\stackrel{\mathrm{incl.}}{\lra} \mathrm{Spl}_{\mathrm{op}B} \stackrel{{\mathrm{und.}}}{\lra} (\mathrm{Cat}\CC)/B
+\end{equation}
+is fully faithful.
+
+Let $p:E\lra C$ be a discrete opfibration in $\CC$. Recall the definition of $\bar{p}^U :\CC(U,C)\lra \CC/U$ in Section~\ref{IFSC} \eqref{pbp}. For each category $B$ in $\CC$, we have a morphism of diagrams
+\begin{equation}
+\xymatrix{
+\ar@<+2ex>[rr]|-{\CC(d_0,1)} \ar@{<-}[rr]|-{\CC(i,1)} \ar@<-2ex>[rr]_(0){\phantom{.}}="2a"|-{\CC(d_2,1)} \CC(B_0,C) \ar@{}[ddrr]|-{ } && \CC(B_1,C) \ar@<+2ex>[rr]|-{\CC(d_0,1)} \ar[rr]|-{\CC(d_1,1)} \ar@<-2ex>[rr]_(0){\phantom{.}}="1a"_(1){\phantom{.}}="0a"|-{\CC(d_2,1)} \ar@{}[ddrr]|-{ } && \CC(B_2,C)  \\ \\
+\ar@<+2ex>[rr]^(0){\phantom{.}}="2b"|-{d_{0}^{\star}} \ar@{<-}[rr]|-{i^{\star}} \ar@<-2ex>[rr]|-{d_{1}^{\star}} \CC/B_0 && \CC/B_1 \ar@<+2ex>[rr]^(0){\phantom{.}}="1b"^(1){\phantom{.}}="0b"|-{d_{0}^{\star}} \ar[rr]|-{d_{1}^{\star}} \ar@<-2ex>[rr]|-{d_{2}^{\star}} && \CC/B_2 
+\ar"2a";"2b"_{\bar{p}^{B_0}} \ar"1a";"1b"_{\bar{p}^{B_1}} \ar"0a";"0b"_{\bar{p}^{B_2}}
+}\end{equation}
+in the `pseudo' sense. This induces a functor
+\begin{equation}\label{catpbp}
+\bar{p}^B :(\mathrm{Cat}\CC)(B,C) \lra \mathrm{Spl}_{\mathrm{op}B}
+\end{equation}
+on the descent categories. Clearly then:
+
+\begin{proposition} If $p:E\lra C$ is an internal full subcategory of $\CC$ then, for all categories $B$ in $\CC$, the functors $\bar{p}^B$ of (\ref{catpbp}) are fully faithful.
+\end{proposition}
+
+\begin{corollary}\label{2toposofintcats} 
+If $\CC$ is a finitely complete, cartesian closed category and $p:E\lra C$ is an internal full subcategory then the 2-category $\mathrm{Cat}\CC$ equipped with the usual duality involution interchanging $d_0$ and $d_1$, and the classifying discrete opfibration $p$, is a 2-topos in the sense of Weber \cite{Weber2007}.
+\end{corollary} 
+
+\section{Size and cocompleteness}\label{Sac}
+
+In Section 5 of \cite{Weber2007}, given a 2-topos, it is shown how to construct a 
+Yoneda structure in the sense of Street-Walters \cite{StW1978} which is `good' in Weber's sense (compare Theorem 7 of \cite{EC}). After Corollary~\ref{2toposofintcats}, we are in a position to do this. 
+However, it is of particular interest when the Yoneda morphisms provide some kind
+of cocompletion of their domain object. This section addresses that question by
+looking at cocompleteness concepts for an internal full subcategory. 
+
+If $p:E\lra C$ is an internal full subcategory of $\CC$, we say a morphism $q:F\lra U$ in $\CC$ is $C$\textit{-fibred} when there exist a morphism $f:U\lra C$ and a pullback square
+\begin{equation}
+\xymatrix{
+F \ar[rr]^-{ } \ar[d]_-{q} && E \ar[d]^-{p} \\
+U \ar[rr]_-{f} && C & .}
+\end{equation}  
+Clearly $C$-fibred morphisms are stable under pullback.   
+
+We say the internal full subcategory $C$ \textit{has coproducts} when the composite of any two composable $C$-fibred morphisms is $C$-fibred. We say the internal full subcategory $C$ \textit{has a terminator} when every identity morphism $1_U:U\lra U$ in $\CC$ is $C$-fibred.  
+
+An object $A$ of any 2-category $\CK$ is said to \textit{admit coequalizers} 
+when, for all objects $X$, the category $\CK(X,A)$ admits coequalizers and 
+these are preserved by all functors of the form 
+$\CK(h,A):\CK(X,A)\lra \CK(Y,A)$ where $h:Y\lra X$. Let $\mathbf{Pp}$ be the free category on the `parallel pair' directed graph
+$$
+\xymatrix{
+ & \centerdot  \ar@<+1ex>[rr]|-{} \ar@<-1ex>[rr]|-{}  &&   \centerdot \ .
+}
+$$
+A functor from $\mathbf{Pp}$ to a category $\CA$ amounts to a pair 
+of morphisms in $\CA$ with the same domain and the same codomain. 
+Suppose the cotensor $A^{\mathbf{Pp}}$ of $\mathbf{Pp}$ with $A$ exists
+in the 2-category $\CK$. There is a `diagonal morphism' 
+$\delta : A \lra A^{\mathbf{Pp}}$ corresponding to the parallel pair 
+$(1_A,1_A)$ of morphisms in the category $\CK(A,A)$. It is easy to see that
+the object $A$ admits coequalizers if and only if the morphism $\delta$ 
+has a left adjoint.
+
+\begin{proposition}\label{lanintofsc}
+Suppose $C$ is an internal full subcategory of the finitely complete 
+category $\CC$. The following properties pertain to the 2-category $\CK = \mathrm{Cat}\CC$.
+\begin{itemize}
+\item[(i)] If $C$ has a terminator then each category $\CC(U,C)$ has a terminal object preserved by each functor $\CC(r,C): \CC(U,C)\lra \CC(V,C)$ for $r:V\lra U$. Indeed, there exists a right adjoint $t$ to the unique functor $C\lra 1$.
+\item[(ii)] If $C$ has coproducts and $h:U\lra V$ in $\CC$ is $C$-fibred 
+then every morphism 
+$f:U\lra C$ has a pointwise left extension along $h$. 
+\item[(iii)] If $C$ has coproducts and admits coequalizers, and $h:A\lra B$ is a 
+functor for which $h_0:A_0\lra B_0$, $d_1:A_1\lra A_0$ and $d_1:B_1\lra B_0$ 
+are $C$-fibred, then every functor $f:A\lra C$ has a left extension along $h$. 
+\end{itemize} 
+\end{proposition} 
+
+\begin{proof}
+\begin{itemize}
+\item[(i)] By hypothesis, there is an object $u$ in $\CC(U,C)$ taken by the fully faithful $\bar{p}^U$ of \eqref{pbp} to the terminal object $1_U$ of $\CC/U$. It follows that $u$ is a terminal object of $\CC(U,C)$. By pseudonaturality of the $\bar{p}^U$, the functor $\CC(r,C)$ preserves terminal objects since pullback $r^{\star}:\CC/U\lra \CC/V$ along $r$ does. A right adjoint for $C\lra 1$ is any $t:1\lra C$ with $\bar{p}^1(t)=1_1$.      
+\item[(ii)] Since $h^{\star}:\CC/V\lra \CC/U$ has a left adjoint $\Sigma_h$ 
+defined by composition with $h$, and since each $\bar{p}^U(f)$ is $C$-fibred, $C$ 
+having coproducts implies $\Sigma_h(\bar{p}^U(f))$ is in the image of $\bar{p}^V$. 
+So $\CC(h,1):\CC(V,C)\lra \CC(U,C)$ has a left adjoint obtained by restricting
+$\Sigma_h$ along the components of $\bar{p}$. Now next notice that each slice
+of the form $h/b$ is actually a pullback 
+$$
+\xymatrix{
+P \ar[rr]^-{s } \ar[d]_-{r} && X \ar[d]^-{b} \\
+U \ar[rr]_-{h} && V & .}
+$$
+in $\mathrm{Cat}\CC$ since $V$ is in $\CC$. 
+Form the cube   
+$$
+\xymatrix{
+\CC(V,C) \ar[rrr]^-{\CC(h,1)} \ar[rd] \ar[ddd]_-{\CC(b,1)} & & & \CC(U,C) \ar[ld] \ar[ddd]^-{\CC(r,1)} \\
+& \CC/V \ar[d]_-{b^{\star}} \ar[r]^-{h^{\star}} & \CC/U \ar[d]^-{r^{\star}} \\
+& \mathrm{Disc}_{\mathrm{op}X} \ar[r]_-{s^{\star}} & \mathrm{Disc}_{\mathrm{op}P} \\
+\CC(X,C) \ar[ru] \ar[rrr]_-{\CC(s,1)} & & & \CC(P,C) \ar[lu] } 
+$$
+in which all face squares commute up to isomorphism (indeed, the big front 
+face commutes on the nose). The sloping inward edges are all fully faithful
+since they are components of $\bar{p}$. We need to see that the big front face
+commutes when the top and bottom edges are replaced by their left adjoints.
+Since $U$ and $V$ are discrete objects of $\mathrm{Cat}\CC$, the morphism $h$
+is a discrete opfibration. So the pullback $s$ of $h$ along $b$ is also a discrete opfibration. 
+So the left adjoint of $s^{\star}$ is the functor $\Sigma_s$ defined by composition 
+with $s$. Since a horizontally pasted composite of pullbacks is a pullback, the square
+$$
+\xymatrix{
+\CC/U \ar[rr]^-{\Sigma_s} \ar[d]_-{r^{\star}} && \CC/V \ar[d]^-{b^{\star}} \\
+\mathrm{Disc}_{\mathrm{op}P} \ar[rr]_-{\Sigma_h} && \mathrm{Disc}_{\mathrm{op}X}}
+$$
+commutes up to isomorphism. Evaluating this square at a $C$-fibred object $t:F\lra U$ 
+of $\CC$ and using that $ht$ is $C$-fibred, we obtain an object of 
+$\mathrm{Disc}_{\mathrm{op}X}$ in the replete image of $\bar{p}^X$, as required.   
+  
+\item[(iii)]  Consider commutative the square
+$$
+\xymatrix{
+\CK(B,C) \ar[rr]^-{\CK(h,1)} \ar[d]_-{} && \CK(A,C) \ar[d]^-{} \\
+\CC(B_0,C) \ar[rr]_-{\CC(h_0,1)} && \CC(A_0,C)  .}
+$$
+It follows from Example \ref{codescofdiscrete} and Proposition \ref{FibasEM} that the 
+left and right sides of the square are monadic since $\CC(d_1,1_C)$ has a left adjoint
+for both $d_1:A_1\lra A_0$ and $d_1:B_1\lra B_0$.   Since $\CK(B,C)$ has
+coequalizers and $\CC(h_0,1)$ has a left adjoint, the adjoint triangle theorem 
+of Dubuc \cite{Dubuc1968} implies that $\CK(h,1)$ has a left adjoint, as required.  \hfill{$\square$}
+\end{itemize} 
+\end{proof} 
+
+Using ideas of Theorems 3 and 28 of \cite{EC}, I strongly suspect that the left extensions in (iii) of Proposition \ref{lanintofsc} are pointwise. At this point, a direct proof eludes me. 
+
+\begin{proposition}\label{Eastslice}
+Suppose $C$ is an internal full subcategory of the finitely complete 
+category $\CC$. Suppose $C$ has a terminator with $t:1\lra C$ right adjoint to the unique $C\lra 1$. Then there exists a 2-cell
+\begin{equation}
+\xymatrix{
+E \ar[d]_{}^(0.5){\phantom{aaa}}="1" \ar[rr]^{p}  && C \ar[d]^{1_C}_(0.5){\phantom{aaa}}="2" \ar@{=>}"1";"2"^-{\lambda}
+\\
+1 \ar[rr]_-{t} && C 
+}
+\end{equation}  
+in $\mathrm{Cat}\CC$ exhibiting $E$ as the slice $t/C$. Moreover, the morphism $t:1\lra C$ of $\mathrm{Cat}\CC$ is dense \eqref{dense}. 
+\end{proposition}
+
+\begin{proof} First note that the fully faithful functor $\bar{p}^X$ takes $X\lra 1 \stackrel{t}\lra C$ to $1_X:X\lra X$. So $\bar{p}^X$ on morphisms determines a bijection between 2-cells 
+$$  
+\xymatrix{
+X \ar[d]_{}^(0.5){\phantom{aaa}}="1" \ar[rr]^{f}  && C \ar[d]^{1_C}_(0.5){\phantom{aaa}}="2" \ar@{=>}"1";"2"^-{\theta}
+\\
+1 \ar[rr]_-{t} && C 
+}
+$$
+and morphisms $X \lra \bar{p}^X(f)$ over $X$. Since $ \bar{p}^X(f)$ is a pullback of $p$ along $f$, these are in bijection with morphisms $g:X\lra E$ such that $pg=f$. Taking $\lambda$ to correspond to $g = 1_E$ and a bit more work with 2-cells, we obtain the slice property required.
+
+For the last sentence of the Proposition, we need to see that the diagram
+$$  
+\xymatrix{
+t/b \ar[d]_{!}^(0.5){\phantom{aaa}}="1" \ar[rr]^{}  && X \ar[d]^{b}_(0.5){\phantom{aaa}}="2" \ar@{=>}"1";"2"^-{\lambda}
+\\
+1 \ar[rr]_-{t} && C 
+}
+$$
+exhibits $b$ as a left extension of $t!$ along the top horizontal morphism. By the universal property of the slice $t/f$, 2-cells 
+$$  
+\xymatrix{
+t/b \ar[d]_{!}^(0.5){\phantom{aaa}}="1" \ar[rr]^{}  && X \ar[d]^{f}_(0.5){\phantom{aaa}}="2" \ar@{=>}"1";"2"^-{\theta}
+\\
+1 \ar[rr]_-{t} && C 
+}
+$$
+are in bijection with morphisms $t/b\lra t/f$ over $X$. Since the fully faithful $\bar{p}^X$ is defined by slicing $t/-$, these morphisms $t/b\lra t/f$ over $X$ are in bijection with 2-cells $\phi:b\Lra f:X\lra C$, as required. \hfill{$\square$}
+\end{proof}
+
+Proposition~\ref{Eastslice} suggests a simplification of the description of an internal full subcategory with terminator. Recall Definitions \ref{ff} and \ref{dense}.
+
+\begin{proposition} Suppose $t:1\lra C$ is a fully faithful dense morphism in $\mathrm{Cat}\CC$ where $\CC$ is a finitely complete category. Then $C$ together with the discrete opfibration $d_1:t/C\lra C$ is an internal full subcategory of $C$ with terminator.
+\end{proposition} 
+
+\begin{proof} Since $t$ is dense, the square
+$$  
+\xymatrix{
+t/f \ar[d]_{!}^(0.5){\phantom{aaa}}="1" \ar[rr]^{d_1}  && U \ar[d]^{f}_(0.5){\phantom{aaa}}="2" \ar@{=>}"1";"2"^-{\lambda}
+\\
+1 \ar[rr]_-{t} && C 
+}
+$$
+exhibits $f$ as a left extension of $t!$ along $d_1$. It follows that morphisms $\theta:f\lra g$ in the category $\CC(U,C)$ are in bijection with 2-cells $\phi:t!\lra gd_1$. But such $\phi$ are in bijection with morphisms $t/f \lra t/g$ over $U$ by the universal property of the slice $t/g$. So the functor $\CC(U,C)\lra \CC/U$, taking $f$ to $d_1:t/f \lra U$, is fully faithful. That functor is pullback along $d_1:t/C\lra C$. It follows that $C$ is an internal full subcategory as asserted.  
+
+To say $t:1\lra C$ is fully faithful is to say the square
+$$  
+\xymatrix{
+1 \ar[d]_{}^(0.5){\phantom{aaa}}="1" \ar[rr]^{}  && 1 \ar[d]^{t}_(0.5){\phantom{aaa}}="2" \ar@{=}"1";"2"^-{}
+\\
+1 \ar[rr]_-{t} && C 
+}
+$$
+has the slice property for $t/t$. So the square
+$$  
+\xymatrix{
+U \ar[d]_{1_U}^(0.5){\phantom{aaa}}="1" \ar[rr]^{}  && 1 \ar[d]^{t}_(0.5){\phantom{aaa}}="2" \ar@{=}"1";"2"^-{}
+\\
+U \ar[rr]_-{t!} && C 
+}
+$$
+has the slice property for $t!/t$. It follows that $C$ has a terminator.  \hfill{$\square$}
+\end{proof}
+
+
+\section{Internal full subcategories of $\mathrm{Cat}$}\label{IFSCoCat}
+
+An algorithm for finding internal full subcategories of a locally presentable category $\CC$ was provided in \cite{CoIC}. This was applied to $\CC = \mathrm{Cat}$ in 
+Section 8.10 of that paper. However, here we shall give an
+internal full subcategory of $\mathrm{Cat}$ without going through the discovery process.
+
+For a (small) category $A$, write $\hat{A}$ for the category $[A^{\mathrm{op}},\mathrm{Set}]$ of contravariant set-valued functors on $A$. It is the small-colimit completion of $A$ in the sense that 
+restriction along the Yoneda embedding $y_A:A\lra \hat{A}$ yields an equivalence of categories
+\begin{equation}\label{cocompletion}
+\mathrm{Cocts}(\hat{A},X)\simeq [A,X] \ ,
+\end{equation}
+where the left side is the full subcategory of $[\hat{A},X]$ consisting of the small-colimit-preserving functors into the small cocomplete category $X$.
+
+Let $\mathrm{mod_0}$ denote the category whose objects are small categories $A$ and whose morphisms $m:A\lra B$ are colimit-preserving functors $m:\hat{A} \lra \hat{B}$. Each morphism
+$m:A\lra B$ determines a functor 
+$$\overline{m}:B^{\mathrm{op}}\times A\lra \mathrm{Set}$$
+defined by
+\begin{equation}
+\overline{m}(b,a)=m(A(-,a))(b) \ .
+\end{equation}
+By \eqref{cocompletion}, $m$ is uniquely determined up to isomorphism by $\overline{m}$. For
+each $\phi \in A$, we have a natural family
+$$\kappa : \phi(a)\times \overline{m}(b,a) \lra m(\phi)(b)$$
+defined by
+\begin{equation}
+\kappa(x,y)=m(\hat{x})_b(y)
+\end{equation}
+where $\hat{x}:A(-,a)\lra \phi$ is the unique natural transformation with
+$$\hat{x}_a(1,a)=x \in \phi(a) \ . $$
+In particular, for $m:A\lra B$ and $n:B \lra C$ in $\mathrm{mod_0}$, we have
+$$\kappa :\overline{m}(b,a)\times \overline{n}(c,b) \lra \overline{nm}(c,a) \ ,$$
+which is a universal extraordinary natural family in the variable $b$; in other words, $\kappa$ induces an isomorphism
+\begin{equation}\label{modcompcoend}
+\int^b \overline{m}(b,a)\times \overline{n}(c,b) \cong \overline{nm}(c,a) \ .
+\end{equation}
+
+Let $T:X\lra \mathrm{mod_0}$ be a functor and define a category $\mathrm{El(T)}$ as follows. The
+objects are pairs $(x,a)$ where $x\in X$ and $a \in Tx$. Morphisms $(\xi ,\tau):(x,a)\lra (y,b)$ 
+consist of $\xi:x\lra y$ in $X$ and $\tau \in \overline{T\xi}(b,a)$. Composition is defined by
+\begin{equation}\label{Elcomp}
+\xymatrix{
+(x,a) \ar[rd]_{(\xi , \tau)}\ar[rr]^{(\zeta \xi , \upsilon \star \tau)}   && (z,c) \ar@{<-}[ld]^{(\zeta , \upsilon)} \\
+& (y,b)  &
+}
+\end{equation}
+where $ \upsilon \star \tau$ is the value of the function
+$$\kappa : \overline{T\xi}(b,a)\times \overline{T\zeta}(c,b) \lra \overline{T(\zeta \xi)}(c,a) $$
+at $(\tau,\upsilon)$. The identity morphism of $(x,a)$ is $(1_x,1_a)$ where we note that
+$$\overline{T1_x}(a,a)=(Tx)(a,a) \ .$$
+There is a projection functor 
+\begin{equation}\label{Elproj}
+p_T:\mathrm{El(T)}\lra X
+\end{equation}
+defined by $p_T(x,a)=x$ and $p_T(\xi,\tau)=\xi$.
+
+Let $\mathrm{mod_1}$ denote the category whose objects are functors $f:A\lra B$ between small categories. A morphism is a square
+\begin{equation}\label{modsquare}
+\xymatrix{
+A \ar[d]_{m}^(0.5){\phantom{aaa}}="1" \ar[rr]^{f}  && B \ar[d]^{n}_(0.5){\phantom{aaa}}="2" \ar@{=>}"1";"2"^-{\theta}
+\\
+C \ar[rr]_-{g} && D 
+}
+\end{equation}
+where $f$ and $g$ are the domain and codomain functors, where $m$ and $n$ are morphisms 
+of $\mathrm{mod_0}$, and where $\theta$ is a natural family of functions
+$$\theta_{b,a} : \overline{m}(c,a) \lra  \overline{n}(gc,fa) \ .$$
+There is a bijection between such $\theta$ and natural transformations $\theta$ as in the diagram
+\begin{equation}\label{hatsquare}
+\xymatrix{
+\hat{A} \ar[d]_{m}^(0.5){\phantom{aaa}}="1" \ar@{<-}[rr]^{\hat{f}}  && \hat{B} \ar[d]^{n}_(0.5){\phantom{aaa}}="2" \ar@{=>}"1";"2"^-{\theta}
+\\
+\hat{C} \ar@{<-}[rr]_-{\hat{g}} && \hat{D} & .
+}
+\end{equation}
+Composition is achieved by vertically pasting the squares of the form \eqref{hatsquare}.
+
+We have functors
+\begin{equation}\label{gphmod}
+d_0, d_1 : \mathrm{mod_1}\lra \mathrm{mod_0}
+\end{equation}
+defined by 
+$$d_0(f)=A, \ \ d_0(m,\theta ,n)=m,$$
+$$d_1(f)=B, \ \ d_1(m,\theta ,n)=n,$$
+referring to \eqref{modsquare}. This defines a graph
+in $\mathrm{Cat}$. There is also a canonical structure of category in $\mathrm{Cat}$
+having \eqref{gphmod} as underlying graph. Composition for this category $\mathrm{mod}$
+in $\mathrm{Cat}$ is derived from horizontal pasting of squares of the form \eqref{hatsquare}.   
+
+At present, we are regarding $\mathrm{Cat}$ as a category, not a 2-category. When we write 
+$\mathrm{Cat}(X,\mathrm{mod})$ we mean in the sense of 
+$\CC(U,C)$ as described at the beginning of Section \ref{Cic}.
+
+Now we shall extend the construction of \eqref{Elproj} to a functor 
+\begin{equation}\label{El}
+\mathrm{El} : \mathrm{Cat}(X,\mathrm{mod})\lra \mathrm{Cat}/X \ .
+\end{equation}
+Let $T$ and $S$ be objects of $\mathrm{Cat}(X,\mathrm{mod})$; that is, they are functors from $X$ to $\mathrm{mod_0}$. A morphism $\Theta:T\lra S$ in $\mathrm{Cat}(X,\mathrm{mod})$ is 
+a functor $\Theta : X \lra \mathrm{mod}$ with $d_0 \Theta = T$ and $d_1 \Theta = S$. Each
+morphism $\xi : x\lra y$ in $X$ yields a diagram
+\[
+\xymatrix{
+Tx \ar[d]_{T\xi}^(0.5){\phantom{aaa}}="1" \ar[rr]^{\Theta_x}  && Sx \ar[d]^{S\xi}_(0.5){\phantom{aaa}}="2" \ar@{=>}"1";"2"^-{\theta_{\xi}}
+\\
+Ty \ar[rr]_-{\Theta_y} && Sy 
+}
+\]
+in which $\Theta_x$ and $\Theta-y$ are functors. Define a functor
+\begin{equation}\label{Elonarr}
+\xymatrix{
+\mathrm{El}(T) \ar[rd]_{p_T}\ar[rr]^{\mathrm{El}(\Theta)=F}   && \mathrm{El}(S) \ar[ld]^{p_T} \\
+& X  &
+}
+\end{equation}
+over $X$ as follows:
+$$F(x,a)=(x,\Theta_x(a)), \ \ F(\xi,\tau)=(\xi,\theta_{\xi}(\tau))$$
+using $\theta_{\xi} : \overline{T\xi}(b,a)\lra \overline{S\xi}(\Theta_y(b),\Theta_x(a))$. By
+looking at \eqref{Elcomp} and using the fact that $\Theta$ is a functor, we 
+see that $F$ is a functor. Clearly \eqref{Elonarr} commutes. Composition 
+in $\mathrm{Cat}(X,\mathrm{mod})$ involves horizontal pasting of squares
+\eqref{hatsquare}, from which we see that we do have a functor \eqref{El}.
+
+The following result is related to Gray's Yoneda-like lemma on page 290 of \cite{Gray1969}; also see page 210 of Kelly \cite{Kelly1974a}.
+
+\begin{theorem} The functors $\mathrm{El}$ of \eqref{El} are fully faithful for all $X$. The 
+family of these functors is pseudonatural in $X$.
+\end{theorem}
+
+\begin{proof} 
+The proof of the first sentence is a mere re-tracing of the steps in the definition of $\mathrm{El}$ on morphisms. The second sentence follows from the observation that we have
+a pullback square
+$$\xymatrix{
+\mathrm{El}(Tr) \ar[rr]^-{} \ar[d]_-{p_{Tr}} && \mathrm{El}(T) \ar[d]^-{p_T} \\
+Y \ar[rr]_-{r} && X}
+$$
+for all functors $r:Y\lra X$. \hfill{$\square$}
+\end{proof}
+
+\begin{corollary} The family of functors \eqref{El} exhibits $\mathrm{mod}$ as an internal full subcategory of $\mathrm{Cat}$.
+\end{corollary}
+
+By the generalized Yoneda lemma of Section \ref{FgYL} (see Theorem \ref{gYl} and \eqref{discopfib}), the pseudonatural family \eqref{El} is determined by a discrete opfibration  
+\begin{equation}\label{genericp}
+p: \mathrm{obj}\lra \mathrm{mod}
+\end{equation}
+between categories in $\mathrm{Cat}$. We shall describe $\mathrm{obj}$ explicitly.
+
+The category $\mathrm{obj_0}$ has objects pairs $(A,a)$ where $A$ is a small category
+and $a$ is an object of $A$. A morphism $(m,\mu):(A,a)\lra (B,b)$ 
+in $\mathrm{obj_0}$
+consists of a morphism $m:A\lra B$ in $\mathrm{mod_0}$ together 
+with $\mu \in \overline{m}(b,a)$. Composition is a special case of \eqref{Elcomp} and uses the $\kappa$ of \eqref{modcompcoend}. We have the projection functor
+\begin{equation}\label{genericp0}
+p_0: \mathrm{obj_0}\lra \mathrm{mod_0}
+\end{equation}
+taking $(m,\mu):(A,a)\lra (B,b)$ to $m:A\lra B$.
+
+\begin{proposition} The functor $p_0$ of \eqref{genericp0} is 
+powerful in the category $\mathrm{Cat}$. That is, the functor 
+$$p_0^{\star} : \mathrm{Cat}/\mathrm{mod}_0 \lra \mathrm{Cat}/\mathrm{obj}_0$$
+has a right adjoint.
+\end{proposition}
+
+\begin{proof}
+We must show that the functor $p_0$ has the factorization lifting property of Giraud-Conduch\'e (see \cite{Giraud1964}, \cite{Cond1972} and \cite{StVer}). Take a composable pair
+$$A\stackrel{m}\lra B\stackrel{n}\lra C$$
+in $\mathrm{mod_0}$ and a lifting
+$$(A,a)\stackrel{(nm,\lambda)}\lra (C,c)$$
+to $\mathrm{obj_0}$ of the composite $nm$. By \eqref{modcompcoend},
+there exists $b\in B$ and $(\mu,\nu) \in \overline{m}(b,a)\times \overline{n}(c,b)$ 
+such that $\kappa (\mu,\nu)=\lambda$. This gives a factorization
+$$(A,a)\stackrel{(m,\mu)}\lra (B,b)\stackrel{(n,\nu)}\lra (C,c)$$
+of $(nm,\lambda)$ which, using \eqref{modcompcoend} again, 
+determines a unique path component in the category of such 
+liftings, as required.      \hfill{$\square$}
+\end{proof}
+
+Now we shall define the category $\mathrm{obj}_1$. The objects are pairs $(f,a)$ where $f:A\lra B$ is a functor and $a \in A$. A morphism
+\begin{equation}\label{obj1morph}
+(m,\mu,n,\theta):(f,a)\lra (g,c)
+\end{equation}
+consists of a morphism $(m,n,\theta):f\lra g$ as in \eqref{modsquare} and 
+$\mu \in \overline{m}(c,a)$. Composition is such that we have the functor 
+\begin{equation}\label{genericp1}
+p_1: \mathrm{obj_1}\lra \mathrm{mod_1}
+\end{equation}
+taking \eqref{obj1morph} to $(m,n,\theta)$. We also have the functor
+\begin{equation}\label{genericd0}
+d_0: \mathrm{obj_1}\lra \mathrm{obj_0}
+\end{equation}
+taking \eqref{obj1morph} to $(m,\mu):(A,a)\lra (C,c)$, and the functor 
+\begin{equation}\label{genericd1}
+d_1: \mathrm{obj_1}\lra \mathrm{obj_0}
+\end{equation}
+taking \eqref{obj1morph} to $(n,\theta_{c,a}(\mu)):(B,fa)\lra (D,gc)$. By
+the general theory in Section \ref{IFSC}, the functors $d_0$ and $d_1$
+of \eqref{genericd0} and \eqref{genericd1} form the underlying graph
+in $\mathrm{Cat}$ of a category $\mathrm{obj}$ in $\mathrm{Cat}$, and
+the functors $p_0$ and $p_1$ of \eqref{genericp0} and \eqref{genericp1}
+form a functor $$p:\mathrm{obj}\lra \mathrm{mod}$$ in $\mathrm{Cat}$. Indeed,
+we also know that $p$ is a discrete opfibration, pullback along which gives 
+the functor $\mathrm{El}$ of \eqref{El}. 
+
+Categories in $\mathrm{Cat}$ are called \textit{double categories}. They were defined by 
+Ehresmann in \cite{Ehres1963}. Another reference is \cite{KelSt1974}. We write $\mathrm{Dbl}$ for the 2-category $\mathrm{Cat}(\mathrm{Cat})$ of 
+double categories. Actually, looking only at this 2-category structure on
+$\mathrm{Dbl}$ loses quite a bit of the symmetry of the situation. Since
+$\mathrm{Cat}$ is cartesian closed, so too is $\mathrm{Dbl}$ and that is
+important from the viewpoint of the 2-topos structure. It also means that
+$\mathrm{Dbl}$ is hom-enriched in itself. There are two underlying functors
+$$\mathrm{Dbl} \lra \mathrm{Cat}$$
+which induce two 2-functors
+$$\mathrm{Dbl\text{-}Cat} \lra \mathrm{Cat\text{-}Cat}=\mathrm{2\text{-}Cat}$$
+whose values at $\mathrm{Dbl}$ itself give two ways to regard $\mathrm{Dbl}$
+as a 2-category.
+
+
+
+\begin{center}
+--------------------------------------------------------
+\end{center}
+
+\appendix
+\begin{thebibliography}{000}
+
+\bibitem{Ben1967} Jean B\'enabou, \textit{Introduction to bicategories}, Lecture Notes in Mathematics \textbf{47} (Springer-Verlag, 1967) 1--77.\label{Ben1967}
+
+\bibitem{Ben1973Top} Jean B\'enabou, \textit{Probl\`emes dans les topos}, Univ. Catholique de Louvain, Inst. de Math. Pure et Appliqu\'ee, Rapport no. \textbf{34} (1973).\label{Ben1973Top} 
+
+\bibitem{Ben1975Fib} Jean B\'enabou, \textit{Fibrations petites et localement petites}, Comptes Rendus de l'Acad\'emie des Sciences, Paris, \textbf{281} (1975) 897--900.\label{Ben1975Fib} 
+
+\bibitem{BenRou1970} Jean B\'enabou and Jacques Roubaud, \textit{Monades et descente}, Comptes Rendus de l'Acad\'emie des Sciences, Paris, \textbf{270} (1970) 96--98.\label{BenRou1970} 
+
+\bibitem{BCSW} Renato Betti, Aurelio Carboni, Ross Street and Robert Walters, \textit{Variation through enrichment}, Journal of Pure and Applied Algebra \textbf{29} (1983) 109--127.\label{BCSW}
+
+\bibitem{Borceux} Francis Borceux, \textit{Handbook of Categorical Algebra 1, 2 and 3}, Encyclopedia of Mathematics and its Applications \textbf{50}, \textbf{51} and \textbf{52} (Cambridge University Press, 1994).\label{Borceux}
+
+\bibitem{CKS} Aurelio Carboni, Stefano Kasangian and Ross Street, \textit{Bicategories of spans and relations}, Journal of Pure and Applied Algebra \textbf{33} (1984) 259--267.\label{CKS}
+
+\bibitem{Cond1972} Fran\c cois Conduch\'e, Au sujet de l'existence d'adjoints \`a droite aux foncteurs image r\'eciproque dans la cat\'egorie des cat\'egories, Compte Rendue Acad. Sci. Paris S\'er. A-B \textbf{275} (1972) A891--A894.\label{Cond1972}
+
+\bibitem{DayConv} Brian J. Day, \textit{On closed categories of functors}, Lecture Notes in Mathematics \textbf{137} (Springer-Verlag, 1970) 1--38.\label{DayConv}
+
+\bibitem{Dubuc1968} Eduardo Dubuc, \textit{Adjoint triangles}, Lecture Notes in Mathematics \textbf{61} (Springer-Verlag 1968) 69--91.\label{Dubuc1968}
+
+\bibitem{Ehres1963} Charles Ehresmann, \textit{Cat\'egories doubles et cat\'egories structur\'ees} Comptes Rendue Acad. Sci. Paris \textbf{256} (1963) 1198--1201.\label{Ehres1963} 
+
+\bibitem{EilKel1966} Samuel Eilenberg and G. Max Kelly, \textit{Closed categories}, Proceedings of the Conference on Categorical Algebra (La Jolla, 1965), (Springer-Verlag,1966) 421--562.\label{EilKel1966}
+
+\bibitem{Giraud1964} Jean Giraud, \textit{M\'ethode de la descente}, Bull. Soc. Math. France M\'em. \textbf{2} (1964).\label{Giraud1964}
+
+\bibitem{GPS} Robert Gordon, A. John Power and Ross Street, \textit{Coherence for tricategories}, Memoirs of the American Mathematical Society \textbf{117} no. 558 (1995) vi+81 pp.\label{GPS}
+
+\bibitem{Gray1969} John W. Gray, \textit{The categorical comprehension scheme}, Lecture Notes in Mathematics \textbf{99} (Springer-Verlag, Berlin and New York, 1969) 242--312.\label{Gray1969}
+
+\bibitem{GrothDesc} Alexander Grothendieck, \textit{Technique de descente et th\'eor\`emes d'existence en g\'eom\'etrie alg\'ebrique. I. G\'en\'eraliti\'es. Descente par morphismes fid\`element plats} S\'eminaire Bourbaki \textbf{5} (Expos\'e 190; 1959) viii+150 pp.\label{GrothDesc}
+
+\bibitem{GrothFond} Alexander Grothendieck, \textit{Rev\^etements \'etales et groupe fondamental} \textbf{Fasc. II}
+(Expos\'es 6, 8 \`a 11; S\'eminaire de G\'eom\'etrie Alg\'ebrique, 1960/61. Troisi\`eme \'edition, corrig\'ee) Institut des Hautes \'Etudes Scientifiques, Paris 1963 i+163 pp.\label{GrothFond}
+
+\bibitem{Johnstone1977} Peter T. Johnstone, \textit{Topos theory} London Mathematical Society Monographs \textbf{10} (Academic Press, London-New York, 1977) xxiii+367 pp.\label{Johnstone1977}
+
+\bibitem{JohnstWraith} Peter T. Johnstone and Gavin C. Wraith, \textit{Algebraic theories in toposes}, Lecture Notes in Mathematics \textbf{661} (Springer, Berlin, 1978) 141--242.\label{JohnstWraith}
+
+\bibitem{Kan1958} Daniel M. Kan, \textit{Adjoint functors}, Transactions of the American Mathematical Society \textbf{87} (1958) 294--329. \label{Kan1958}
+
+\bibitem{Kelly1969} G. Max Kelly, \textit{Adjunction for enriched categories}, Lecture Notes in Mathematics \textbf{106} (Springer-Verlag, 1969) 166--177.\label{Kelly1969}
+
+\bibitem{Kelly1974a} G. Max Kelly, \textit{On clubs and doctrines}, Lecture Notes in Mathematics \textbf{420} (Springer-Verlag, 1974) 181--256.\label{Kelly1974a}
+
+\bibitem{Kelly1974b} G. Max Kelly, \textit{Doctrinal adjunction}, Lecture Notes in Mathematics \textbf{420} (Springer-Verlag, 1974) 257--280.\label{Kelly1974b}
+
+\bibitem{KellyBook} G. Max Kelly, \textit{Basic concepts of enriched category theory}, London Mathematical Society Lecture Note Series \textbf{64} (Cambridge University Press, Cambridge, 1982). \label{KellyBook}
+
+\bibitem{KelSt1974} G. Max Kelly and Ross Street, \textit{Review of the elements of 2-categories}, Lecture Notes in Mathematics \textbf{420} (Springer-Verlag, 1974) 75--103.\label{KelSt1974}
+
+\bibitem{Lack2000} Stephen Lack, \textit{A coherent approach to pseudomonads}, Advances in Mathematics \textbf{152} (2000) 179--202.\label{Lack2000} 
+
+\bibitem{FTMII} Stephen Lack and Ross Street, \textit{The formal theory of monads II}, Journal of Pure and Applied Algebra \textbf{175} (2002) 243--265.\label{FTMII} 
+
+\bibitem{Law1969} F. William Lawvere, \textit{Ordinal sums and equational doctrines},  Lecture Notes in Mathematics \textbf{80} (Springer-Verlag, 1969) 141--155.\label{Law1969}
+
+\bibitem{CWM} Saunders Mac Lane, \textit{Categories for the Working Mathematician}, Graduate Texts in Mathematics \textbf{5} (Springer-Verlag, 1971).\label{CWM} 
+
+\bibitem{MacLPar} Saunders Mac Lane and Robert Par\'e, \textit{Coherence for bicategories and indexed categories}, Journal of Pure and Applied Algebra \textbf{37} (1985) 59--80.\label{MacLPar}
+
+\bibitem{Marmolejo} Francisco Marmolejo, \textit{Distributive laws for pseudomonads}, Theory and Applications of Categories \textbf{5} (1999) 91--147.\label{Marmolejo}
+
+\bibitem{Par\'e2011} Robert Par\'e, \textit{Yoneda theory for double categories}, Theory and Applications of Categories \textbf{25} (2011) 436--489.\label{Par\'e2011} 
+
+\bibitem{FTM} Ross Street, \textit{The formal theory of monads}, Journal of Pure and Applied Algebra \textbf{2} (1972) 149--168.\label{FTM} 
+
+\bibitem{FYl} Ross Street, \textit{Fibrations and Yoneda's lemma in a 2-category}, Lecture Notes in Mathematics \textbf{420} (Springer-Verlag, 1974) 104--133.\label{FYl}
+
+\bibitem{EC} Ross Street, \textit{Elementary cosmoi I}, Lecture Notes in Mathematics \textbf{420} (Springer-Verlag, 1974) 134--180.\label{EC}
+
+\bibitem{Licv2f} Ross Street, \textit{Limits indexed by category-valued 2-functors}, Journal of Pure and Applied Algebra \textbf{8} (1976) 149--181.\label{Licv2f}
+
+\bibitem{FiB} Ross Street, \textit{Fibrations in bicategories}, Cahiers de topologie et g\'eom\'etrie diff\'erentielle \textbf{21} (1980) 111--160.\label{FiB}
+
+\bibitem{CoIC} Ross Street, \textit{Cosmoi of internal categories}, Transactions of the American Mathematical Society \textbf{258} (1980) 271--318.\label{CoIC}
+
+\bibitem{HCSCSE} Ross Street, \textit{Higher categories, strings, cubes and simplex equations}, Applied Categorical Structures \textbf{3} (1995) 29--77.\label{HCSCSE}
+
+\bibitem{CatStr} Ross Street, \textit{Categorical structures}, Handbook of Algebra \textbf{1} (edited by M. Hazewinkel, Elsevier Science, 1996) 529--577.\label{CatStr}
+
+\bibitem{StVer} Ross Street and Dominic Verity, \textit{The comprehensive factorization and torsors}, Theory and Applications of Categories \textbf{23} (2010) 42--75.\label{StVer}
+
+\bibitem{StW1978} Ross Street and Robert F.C. Walters, \textit{Yoneda structures on 2-categories}, Journal of Algebra \textbf{50} (1978) 350--379.\label{StW1978} 
+
+\bibitem{Weber2007} Mark Weber, \textit{Yoneda structures from 2-toposes}, Applied Categorical Structures \textbf{15} (2007) 259--323.\label{Weber2007}
+
+\bibitem{Wraith1975} Gavin C. Wraith, \textit{Lectures on elementary topoi}, Lecture Notes in Mathematics, \textbf{445} (Springer, Berlin, 1975) 114--206.\label{Wraith1975}
+
+\bibitem{Zoeb} Volker Z\"oberlein, \textit{Doctrines on 2-categories}, Mathematische Zeitschrift \textbf{148} (1976) 267--279. \label{Zoeb}
+
+
+
+\end{thebibliography}
+
+\end{document}

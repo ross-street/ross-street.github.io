@@ -1,0 +1,483 @@
+%Document Class
+\documentclass[a4paper,12pt,reqno]{amsart}
+
+
+  \headheight0.6in
+  \headsep22pt
+  \textheight23cm
+  \topmargin-1.7cm
+  \oddsidemargin 0.5cm
+  \evensidemargin0.5cm
+  \textwidth15.3cm
+
+%Packages 
+\usepackage{amscd,amssymb,amsmath,amsfonts,amsthm, mathrsfs,xspace}
+\usepackage{graphicx}
+\usepackage{verbatim,enumerate,paralist}
+\usepackage{textcomp}
+%\usepackage[authoryear]{natbib}
+\usepackage[pagebackref,colorlinks]{hyperref}
+\hypersetup{%
+  urlcolor=blue,linkcolor=blue,citecolor=blue
+}
+\usepackage{pdfpages}
+%\usepackage{pdfsync}%  remove this when finalised
+
+% import these fonts by hand here to avoid clashes with usual blackboard bold usage.
+%\pdfmapfile{+bbold.map}
+\newcommand{\bbefamily}{\fontencoding{U}\fontfamily{bbold}\selectfont}
+\newcommand{\textbbe}[1]{{\bbefamily #1}}
+\DeclareMathAlphabet{\mathbbe}{U}{bbold}{m}{n}
+
+% Macro to typeset part of a math formula at a bigger size
+\def\makebigger#1#2#3{\hbox{#1$\mathsurround=0pt #2{#3}$}}
+\def\bigger#1#2{{\relax\mathpalette{\makebigger#1}{#2}}}
+
+% Macro for the category Delta
+\newcommand{\DelCat}{{\bigger\large{\mathbbe{\Delta}}}}
+\newcommand{\DelCAT}{{\bigger\Huge{\mathbbe{\Delta}}}}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[all,2cell,poly,knot,tips]{xy}
+\UseAllTwocells
+% \CompileMatrices
+
+\def\blue{\color{blue}}
+\def\red{\color{red}}
+\def\black{\color{black}}
+
+%\usepackage{xypdf} % may not be necessary
+\setlength{\marginparwidth}{2cm}
+\newcommand{\missing}[1]{\marginpar{\color{red}missing:\\#1}}
+
+%Theoretic Environment Setup
+\newcounter{Definitioncount}
+\setcounter{Definitioncount}{0}
+
+\newtheorem*{Theorem}{Theorem}% no counter
+\newtheorem{theorem}{Theorem}[section] % with counter
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+% \newtheorem*{Proposition}{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+% \newtheorem*{Corollary}{Corollary}% no counter
+
+\newtheorem*{Conjecture}{Conjecture}% no counter
+\newtheorem*{Lemma}{Lemma}% no counter
+
+\theoremstyle{definition}
+\newtheorem*{Definition}{Definition}% no counter
+\newtheorem*{Observation}{Observation}% no counter
+\newtheorem*{Observations}{Observations}% no counter
+\newtheorem*{Remark}{Remark}% no counter
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{Example}{Example}% no counter
+\newtheorem{example}[theorem]{Example}
+
+\renewcommand{\theexample}{\arabic{example}}
+
+\newtheoremstyle{fact}{\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{Fact}
+\theoremstyle{fact}
+\newtheorem*{Fact}{Fact}% no counter
+
+\newtheoremstyle{genquest}{\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{General Question}
+\theoremstyle{genquest}
+\newtheorem*{GenQuest}{General Question}% no counter
+
+% use \newtheoremstyle to underline the header
+\newtheoremstyle{step}{2\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{\underline{Step~\thestep}}
+\theoremstyle{step}
+\newtheorem{step}{Step}[subsection]
+\renewcommand{\thestep}{\arabic{step}}
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\Lra}{\Longrightarrow}
+\newcommand{\Lla}{\Longleftarrow}
+\newcommand{\ldual}[1]{\mathord{{\let\nolimits\relax\sideset{^\wedge}{}{#1}}}}
+\newcommand{\laction}[2]{\mathord{{\let\nolimits\relax\sideset{^{#1}}{}{#2}}}}
+\newcommand{\conj}[2]{\mathord{{\let\nolimits\relax\sideset{^{#1}}{}{#2}}}}
+\newcommand{\xylongto}[2][2pt]{{\UseTips{}\xymatrix @C+#1{ \ar[r]^{#2}&}}}
+\newcommand{\ola}{\overleftarrow}
+\newcommand{\ora}{\overrightarrow}
+
+\DeclareMathOperator{\im}{im}
+
+%% Script Shortcuts 
+\def\CA{{\mathscr A}}
+\def\CB{{\mathscr B}}
+\def\CC{{\mathscr C}}
+\def\CD{{\mathscr D}}
+\def\CE{{\mathscr E}}
+\def\CF{{\mathscr F}}
+\def\CG{{\mathscr G}}
+\def\CH{{\mathscr H}}
+\def\CI{{\mathscr I}}
+\def\CJ{{\mathscr J}}
+\def\CK{{\mathscr K}}
+\def\CL{{\mathscr L}}
+\def\CM{{\mathscr M}}
+\def\CN{{\mathscr N}}
+\def\CO{{\mathscr O}}
+\def\CP{{\mathscr P}}
+\def\CQ{{\mathscr Q}}
+\def\CR{{\mathscr R}}
+\def\CS{{\mathscr S}}
+\def\CT{{\mathscr T}}
+\def\CU{{\mathscr U}}
+\def\CV{{\mathscr V}}
+\def\CW{{\mathscr W}}
+\def\CX{{\mathscr X}}
+\def\CY{{\mathscr Y}}
+\def\CZ{{\mathscr Z}}
+\def\ordm{{\mathbf{m}}}
+\def\ordn{{\mathbf{n}}}
+\def\ordk{{\mathbf{k}}}
+
+
+\newcommand{\ox}{\otimes}
+\newcommand{\x}{\times}
+
+\newcommand{\op}{\ensuremath{^{\textnormal{op}}}}
+
+
+\def\theequation{{\thesection.\arabic{equation}}}
+
+
+\begin{document}
+
+\title{Combinatorial categorical equivalences}
+
+\author{Stephen Lack}
+\address{Department of Mathematics, Macquarie University, NSW 2109, Australia}
+\email{steve.lack@mq.edu.au}
+
+\author{Ross Street}
+\address{Department of Mathematics, Macquarie University, NSW 2109, Australia}
+\email{ross.street@mq.edu.au}
+
+\thanks{Both authors gratefully acknowledge the support of the Australian Research Council Discovery Grant DP130101969; Lack acknowledges with equal gratitude the support of an Australian Research Council Future Fellowship}
+
+\date{\today}
+\maketitle
+
+\tableofcontents
+
+\section{Introduction}
+
+The purpose is to generalize our work in \cite{PMSE} to include the 
+Dold-Puppe-Kan Theorem \cite{Dold, DoldPuppe, Kan} 
+on additive simplicial objects and chain complexes. 
+
+\section{A setting for one direction}\label{settingone}
+
+Let $\CP$ be a category. Let $\CZ$ be a class of non-invertible retractions
+in $\CP$, closed under composition. Write $\bar{\CZ}$ for the left
+ideal generated by $\CZ$. That is, $\bar{\CZ}$ consists of all the morphisms $g\circ z$ with $z\in \CZ$.  
+Let $\CR$ be a class of morphisms $r$ in $\CP$ having the following properties: 
+\begin{enumerate}[(a)]
+\item $\CR \cap \bar{\CZ} = \emptyset$;
+\item If $r : X \rightarrow A$ is in $\CR$ and $z:A\rightarrow U$ is in $\CZ$ then $z\circ r : X \rightarrow U$ is in $\bar{\CZ}$.
+\end{enumerate}
+
+\begin{example}\label{Ex1} As in \cite{PMSE}, take a category $\CA$ with a factorization system $(\CE,\CM)$. Assume that the pullback of any 
+morphism with one in $\CM$ exist. Assume every morphism in $\CM$
+is a monomorphism. Let $\CP$ be the category 
+$\mathrm{Par}_{\CM}\CA$ of $\CM$-partial maps in $\CA$.
+Take $\CZ$ to consist of the partial maps $m^*:A \lra U$ for
+all non-invertible $m : U \lra A$ in $\CM$.
+Let $\CR$ consist of the partial maps $e_* : X \lra Y$ 
+for $e : X \lra Y$ in $\CE$.  
+
+To see that property (a) holds, assume $e_* = g\circ m^*$ with 
+$e\in \CE$ and $m\in \CM$. Then we have the diagram
+\begin{equation}\label{pmcomp}
+\begin{aligned}
+\xymatrix{
+& & A \ar[ld]^-{p_0} \ar@/_2pc/[lldd]_-{1_A} \ar[rd]_-{p_1} \ar@/^2pc/[rrdd]^-{e} \\
+& U \ar[ld]^-{m} \ar[rd]_-{1_U} & & V \ar[rd]_-{g_1} \ar[ld]^-{g_0} \\
+A & & U & & B}
+\end{aligned}
+\end{equation}
+in which the diamond is a pullback. So $p_1$ is invertible and 
+$mp_0=1_A$. Since $m$ is a monomorphism and a retraction, it is invertible.
+So $m^*\notin \CZ$.
+
+To see that the property (b) holds, consider $r = e_*$ and $z = m^*$
+with $e\in \CE$ and $m\in \CM$. We have 
+$$m^*\circ e_* = q_*\circ n^*$$ 
+as per the pullback
+\begin{equation}\label{ExAx2}
+\begin{aligned}
+\xymatrix{
+P \ar[rr]^-{q} \ar[d]_-{n} && U \ar[d]^-{m} \\
+X \ar[rr]_-{e} && A \ .}
+\end{aligned}
+\end{equation}
+If $n$ is invertible then $mq=en\in \CE$, so $m\in \CE \cap \CM$
+is invertible. So $m^*\in \CZ$ implies $n^*\in \CZ$.
+\end{example}
+
+\begin{example}\label{Ex2}
+Take $\CP$ to be the category $\DelCat_{\bot,\top}$ of finite
+non-empty ordinals $n = \{0,1,\dots,n-1\}$
+with morphisms those functions which preserve
+first element, last element and order.
+Take $\CZ$ to consist of the non-invertible surjections $\sigma : m \lra n$
+such that $\sigma (i) = 0$ implies $i = 0$; that is, $\sigma (1) = 1$.
+In particular, for $k \neq 0$, the surjections $\sigma_k : m+1 \lra m$ with 
+$\sigma_k(k)=\sigma_k(k+1)$ are in $\CZ$;
+and every member of $\CZ$ is a composite of these.
+Take $\CR$ to consist of the isomorphisms and the surjections 
+$\sigma_0 : m+1 \lra m$ such that $\sigma_0 (1) = 0$.
+
+To see that property (a) holds, suppose $\sigma_0 = \xi \sigma$ with
+$\sigma : m+1 \lra n$ a non-invertible surjection. The
+last statement implies $n< m+1$. Since $\sigma_0$ is surjective,
+$\xi$ is surjective. So $n\geq m$. So $m=n$ and $\xi$ is an
+identity. This means $\sigma = \sigma_0$ is not in $\CZ$.
+
+To see that property (b) holds, just notice that, for $0<k$, 
+$$\sigma_k \sigma_0 = \sigma_0 \sigma_{k+1} \ .$$ 
+\end{example}
+
+\bigskip
+Returning to the general setting, we define a pointed category 
+(that is, a category enriched in pointed sets) $\CD$ with the same objects
+as $\CP$ and the non-zero morphisms those of $\CR$.
+Composition is as in $\CP$ when the result is in $\CR$ but it is zero
+otherwise.
+
+Let $\CX$ be an additive category with sufficient limits including
+finite direct sums. There is a functor
+\begin{equation}\label{tilde}
+\widetilde{(-)} : [\CP,\CX] \lra [\CD,\CX]_{\mathrm{pt}}
+\end{equation}
+where the codomain category consists of the pointed functors.
+The definition on objects is:
+\begin{equation}\label{tildeformula}
+\widetilde{T}A = \bigcap_{(A\stackrel{z}\lra U) \in \CZ} {\mathrm{ker}}(Tz)
+\end{equation}
+and, for $r:A\lra B$ in $\CR$, the morphism 
+$\widetilde{T}r : \widetilde{T}A \lra \widetilde{T}B$
+is the restriction of $Tr : TA \lra TB$. 
+Why does it restrict? Let $i_A : \widetilde{T}A \lra TA$
+be the inclusion. Take any $z : B \lra V$ in $\CZ$.   
+Then $(Tz)(Tr)i_A = T(zr)i_A = T(g\bar{z})i_A = (Tg)(T\bar{z})i_A = 0$
+since $\bar{z} \in \CZ$ using property (b). 
+So there exists $\widetilde{T}r$ such that $i_B (\widetilde{T}r) = (Tr)i_A$,
+as claimed.
+
+\section{A tighter setting}\label{settingtwo}
+
+We again start with a category $\CP$.
+We assume we have two classes $\CM$ and $\CR$ of morphisms in $\CP$. 
+
+We ask that $\CM$ be closed under composition, contain the isomorphisms,
+and consist of coretractions (= split monomorphisms). 
+
+We ask that $\CR$ should contain the isomorphisms, contain composites
+on both sides with isomorphisms, and have the property that 
+$g\circ f \in \CR$ implies $g\in \CR$.
+
+This time we {\em define} $\CZ$ to consist of those morphisms $z : X \rightarrow U$
+which have a right inverse $z_* \in \CM$ and, if $g \circ z = f\circ m$ with 
+$m\in \CM$, then $f \notin \CR$.
+Clearly $\CZ$ includes no invertible morphisms yet is closed under composition.
+In fact, if $g$ has a right inverse and $z\in \CZ$ then $g \circ z\in \CZ$. 
+
+We require a set $\CI$ of pairs of morphisms $(m,m^*)$ where $m\in \CM$,
+$m^*\circ m = 1$, and either $m^*\in\CZ$ or $m^*=1$. 
+We assume every $z\in \CZ$ has the form $z = g\circ m^*$ for some 
+retraction $g$ and $(m,m^*)\in \CI$ with $m^*\neq 1$.
+
+The extra property we require is
+\begin{align}\label{factorization}
+& \textit{every } f\in \CP \textit{ factors uniquely as } f=m\circ r \circ z \textit{ with }
+m\in \CM, r\in \CR, \nonumber \\ 
+& \textit{ and either } z\in \CZ \textit{ or } z \textit{ an identity.} 
+\end{align}
+
+Property (a) of Section~\ref{settingone} is now a tautology.
+We also have property (b) of Section~\ref{settingone}:
+\begin{proposition}
+Given $z : X \ra U$ in $\CZ$ and $r : A \ra X$ in $\CR$, there exist
+$\zeta : A \ra B$ in $\CZ$ and some $g:B\ra U$ in $\CP$ such that 
+$z\circ r = g\circ \zeta$. 
+\end{proposition}
+\begin{proof}
+Apply \eqref{factorization} to $z\circ r$ to obtain $z\circ r = m\circ s \circ \zeta$
+with $m\in \CM$, $s\in \CR$, and either $\zeta \in \CZ$ or $\zeta$ an identity.
+If $\zeta$ is an identity then 
+$m^*\circ z\circ r = s \in \CR$ where $m^*$ is a left inverse for $m$. 
+It follows that $m^*\circ z \in \CR$. But this contradicts $z\in \CZ$. So
+$\zeta$ is not an identity. Hence $\zeta \in \CZ$ and we take $g = m\circ s$.  
+\end{proof} 
+
+\begin{proposition}
+Given $n : U \ra X$ in $\CM$ and $s : X \ra Y$ in $\CR$, there exist
+unique $r : U \ra V$ in $\CR$ and $m:V\ra Y$ in $\CM$ such that 
+$s\circ n = m\circ r$. 
+\end{proposition}
+\begin{proof}
+Apply \eqref{factorization} to $s\circ n$ to obtain $s\circ n = m\circ r \circ z$
+with $m\in \CM$, $r\in \CR$, and either $z \in \CZ$ or $z$ an identity.
+By definition of $\CZ$ we cannot have both $z \in \CZ$ and $s\in \CR$.
+So $z$ is an identity. So take $s\circ n = m\circ r$ as required.    
+\end{proof}
+
+It behooves us to show that our two examples of Section~\ref{settingone}
+are still included. 
+
+\begin{example}\label{Ex1+}
+As in Example~\ref{Ex1}, take a category $\CA$ with a factorization 
+system $(\CE,\CM)$. 
+Assume that the pullback of any morphism with one in $\CM$ exist. 
+Assume every morphism in $\CM$ is a monomorphism. 
+Let $\CP$ be the category $\mathrm{Par}_{\CM}\CA$ of $\CM$-partial maps in $\CA$.
+Identify $\CM$ in $\CA$ with the morphisms $m_*$ in $\CP$ for $m\in \CM$.
+Take $\CR$ to consist of the morphisms $e_*$ in $\CP$ with $e\in \CE$.
+With $\CZ$ as defined in this Section, for this example we claim
+$$\CZ = \{m^* : m \text{ non-invertible in } \CM \} \ . $$
+Take $z : X \lra U$ in $\CZ$. In order for a partial map $z = [z_0,V,z_1]$ to have 
+a right inverse in $\CM$,
+we see from the diagram
+\begin{equation*}
+\xymatrix{
+& & U \ar[ld]^-{1_U} \ar@/_2pc/[lldd]_-{1_U} \ar[rd]_-{n} \ar@/^2pc/[rrdd]^-{1_U} \\
+& U \ar[ld]^-{1_U} \ar[rd]_-{m} & & V \ar[rd]_-{z_1} \ar[ld]^-{z_0} \\
+U & & X & & U}
+\end{equation*}
+with $m,n\in \CM$, we must have $n$, and hence $z_1$, invertible. So $z = m^*$.
+So each $z\in \CZ$ is in the set claimed.
+
+Now suppose we have $e_*\circ m_* = g \circ n^*$ with $e\in \CE$ and $m,n\in \CM$.
+It follows that $n\circ g_0 = 1$. So $n^*\notin \CZ$.  
+Our characterization of $\CZ$ follows.
+
+We take $\CI = \{(m_*,m^*) : m\in \CM \}$.
+
+Finally, every $f$ in $\CP$ uniquely factors as $f = m_*\circ e_* \circ n^*$ with
+$m,n\in \CM$ and $e\in \CE$. But then $n^*$ is either invertible or in $\CZ$.    
+\end{example}
+
+\begin{example}\label{Ex2+}
+As in Example~\ref{Ex2},take $\CP$ to be the category $\DelCat_{\bot,\top}$ of finite
+non-empty ordinals $n = \{0,1,\dots,n-1\}$ with morphisms those functions which preserve
+first element, last element and order.
+We write $\sigma_k : m+1 \ra m$ for the order-preserving surjection which takes the value $k$ twice.
+We write $\partial_k : m \ra m+1$ for the order-preserving injection which does not have $k$ in its image.
+Take $\CM$ to consist of all the injective functions in $\DelCat_{\bot,\top}$. 
+Take $\CR$ to consist of the isomorphisms and the surjections $\sigma_0 : m+1 \lra m$.
+With $\CZ$ as defined in this Section, for this example we claim
+$$\CZ = \{\tau \sigma_k : k > 0 \text{ and } \tau \text{ surjective} \} \ . $$
+If $z$ is to have a right inverse it must be a surjection and not be $\sigma_0 : 2\ra 1$.
+In fact no $\sigma_0 : m+1\ra m$ can be in $\CZ$ since $\partial_1 \sigma_0 = \sigma_0 \partial_2$
+with $\sigma_0\in \CR$ and $\partial_2 \in \CM$. 
+
+Now take any non-invertible surjection $\sigma$ with $\sigma(1) =1$.
+We shall show that $\sigma \in \CZ$. Assume $\xi \sigma = \rho \partial$
+where $\rho \in \CR$ and $\partial \in \CM$. Clearly $\rho$ cannot be
+invertible or else $\sigma$ would be injective and so be invertible.
+So $\rho = \sigma_0$. Using the fact that $\sigma \partial_i$ is an
+identity for $i = 1$ and equal to $\partial_{i-1} \sigma_0$ for $i>1$,
+we see that $\sigma_0 \partial$ is either injective or of the form
+$\nu \sigma_0$ for some injective $\nu$. 
+Factor $\xi = \mu \tau$ with $\tau$ surjective and $\mu$ injective. 
+We have $\mu \tau \sigma$ either injective or equal to $\nu \sigma_0$.
+The first case is impossible since $\sigma$ is not injective. By uniqueness
+of factorization, the second case implies $\tau \sigma = \sigma_0$
+and $\mu = \nu$. So $\tau = 1$ and $\sigma = \sigma_0$,
+contradicting $\sigma(1) = 1$. So our assumption was impossible and
+we are left with $\sigma \in \CZ$. In particular, this implies 
+$\sigma_k \in \CZ$ for $k>0$ and hence $\tau \sigma_k \in \CZ$
+for any surjective $\tau$.
+
+Now suppose $(\sigma : m+1 \ra m) \in \CZ$. Let $0\le k < m$ be the largest 
+such that $\sigma(k)=\sigma(k+1)$. Then $\sigma = \tau \sigma_k$ for some
+surjection $\tau$. If $k=0$ then $\sigma = \sigma_0$ which we have seen is 
+contrary to $\sigma \in \CZ$. So $\sigma = \tau \sigma_k$ with $k>0$.
+This proves our characterization of $\CZ$.
+
+We take $\CI = \{(\partial_k,\sigma_k) : k>0 \}$.
+ 
+ Finally, for the factorization, take any $\xi$ in $\DelCat_{\bot,\top}$.
+ If $\xi$ is injective, the required factorization is clear. 
+ If $\xi = \partial \sigma_k$ with $\partial$ injective, the factorization is clear,
+ breaking into two cases depending on whether $k=0$ or $k>0$.  
+ Otherwise we can uniquely factorize $\xi = \partial \sigma_i \tau \sigma_k$ where
+ $\partial$ is injective, $i<k$ and $\tau$ is a surjection for which $\tau(j)=\tau(j+1)$ implies $i<j<k$;
+ again we have the desired factorization in each of the two cases $i=0$ or $i>0$.
+ \end{example}
+
+\bigskip
+Returning to the general situation of this Section, notice that the formula \eqref{tildeformula}
+for $\widetilde{T}: \CD\lra \CX$ now can be rewritten
+\begin{equation}\label{tildeformula2}
+\widetilde{T}A = \bigcap_{(U\stackrel{m}\lra A,m^*) \in \CI, m^*\neq 1} {\mathrm{ker}}(Tm^*) \ .
+\end{equation}
+We can also construct a functor
+\begin{equation}\label{hat}
+\widehat{(-)} : [\CD,\CX]_{\mathrm{pt}} \lra [\CP,\CX]
+\end{equation}
+whose value at the pointed functor $F : \CD\lra \CX$
+is the functor $\widehat{F} : \CP \lra \CX$ defined as follows.   
+On objects, put
+$$\widehat{F}A = \sum_{(U\stackrel{m}\lra A,m^*) \in \CI}{FU} \ .$$
+For a morphism $f:A\lra B$ in $\CP$, take the factorization
+$f = n_1rz$ with $z:X\ra U$ in $\CZ$ or an identity, $r\in \CR$ 
+and $n_1:V\ra Y$ in $\CM$.  
+The morphism $\widehat{F}f: \widehat{F}A \lra \widehat{F}B$
+has composite with the injection $\mathrm{in}_m : FU \ra \widehat{F}A$
+equal to zero unless 
+\begin{thebibliography}{00}
+
+\bibitem{Berger1996} Clemens Berger, \textit{Op\'erades cellulaires et espaces de lacets it\'er\'es}, Annales de L'Institut Fourier \textbf{46(4)} (1996) 1125--1157.\label{Berger1996} 
+
+\bibitem{CEF2012} Thomas Church, Jordan S. Ellenberg and Benson Farb, \textit{FI-modules: a new approach to stability for $S_n$-representations}, (\url{arXiv:1204.4533v2}, 28 Jun 2012).\label{CEF2012}
+
+\bibitem{DaySt1995} Brian J. Day and Ross Street, \textit{Kan extensions along promonoidal functors}, Theory and Applications of Categories \textbf{1(4)} (1995) 72--77. \label{DaySt1995} 
+
+\bibitem{DaySt1997} Brian J. Day and Ross Street, \textit{Monoidal bicategories and Hopf algebroids}, Advances in Math. \textbf{129} (1997) 99--157. \label{DaySt1997}
+
+\bibitem{Dold} Albrecht Dold, \textit{Homology of symmetric products and other functors of complexes}, Annals of Math. \textbf{68} (1958) 54--80.\label{Dold}
+ 
+\bibitem{DoldPuppe} Albrecht Dold and Dieter Puppe, \textit{Homologie nicht-additiver Funktoren. Anwendungen}, Ann. Inst. Fourier Grenoble \textbf{11} (1961) 201--312.\label{DoldPuppe}
+
+\bibitem{FreydKelly} Peter J. Freyd and G. Max Kelly, \textit{Categories of continuous functors I}, J. Pure and Applied Algebra \textbf{2} (1972) 169--191; Erratum Ibid. \textbf{4} (1974) 121.\label{FreydKelly}
+
+\bibitem{HillarDarren2007} Christopher J. Hillar and Darren L. Rhea, \textit{Automorphisms of finite abelian groups}, American Mathematical Monthly \textbf{114(10)} (2007) 917--923; \url{arXiv:math/0605185}.\label{HillarDarren2007}
+
+\bibitem{Species} Andr\'e Joyal, \textit{Une theory combinatoire des series formelles}, Advances in Mathematics \textbf{42} (1981) 1--82.\label{Species}
+
+\bibitem{AnalFunct} Andr\'e Joyal, \textit{Foncteurs analytiques et esp\`eces de structures}, Lecture Notes in Mathematics \textbf{1234} (Springer 1986) 126--159.\label{AnalFunct} 
+
+\bibitem{TYBO} Andr\'e Joyal and Ross Street, \textit{Tortile Yang-Baxter operators in tensor categories}, J. Pure Appl. Algebra \textbf{71} (1991) 43--51.\label{TYBO}
+
+\bibitem{ITD&QG} Andr\'e Joyal and Ross Street, \textit{An introduction to Tannaka duality and quantum groups}; Part II of Category Theory, Proceedings, Como 1990 (Editors A. Carboni, M.C. Pedicchio and G. Rosolini) Lecture Notes in Math. \textbf{1488} (Springer-Verlag Berlin, Heidelberg 1991) 411--492.\label{ITD&QG}
+
+\bibitem{repfgl} Andr\'e Joyal and Ross Street, \textit{The category of representations of the general linear groups over a finite field}, J. Algebra \textbf{176 (3)} (1995) 908--946.\label{repfgl}
+
+\bibitem{Kan} Daniel Kan, \textit{Functors involving c.s.s complexes}, Transactions of the American Mathematical Society \textbf{87} (1958) 330--346.\label{Kan}
+
+\bibitem{PMSE} Stephen Lack and Ross Street, \textit{Morita equivalence of partial maps and strong epimorphisms}, preprint 2013.\label{PMSE}
+
+\bibitem{Lindner1976} Harald Lindner, \textit{A remark on Mackey functors}, Manuscripta Mathematica \textbf{18} (1976) 273--278.\label{Lindner1976}
+
+\bibitem{ML1963} Saunders Mac Lane, \textit{Natural associativity and commutativity}, Rice University Studies \textbf{49} (1963) 28--46.\label{ML1963}
+
+\bibitem{NHA} Bodo Pareigis, \textit{A non-commutative non-cocommutative Hopf algebra in nature}, Journal of Algebra \textbf{70} (1981) 356--374.\label{NHA}
+
+\bibitem{QG} Ross Street, \textit{Quantum Groups: A Path to Current Algebra}, Australian Mathematical Society Lecture Series \textbf{19} (Cambridge University Press, 2007).\label{QG} 
+
+\bibitem{CBA} D. Tambara, \textit{The coendomorphism bialgebra of an algebra}, Journal of The Faculty of Science, The University of Tokyo, Section IA, Mathematics, \textbf{37} (1990) 425--456.\label{CBA}
+
+\bibitem{Ulbrich} K.-H. Ulbrich, \textit{On Hopf algebras and rigid monoidal categories}, Israel Journal of 
+Math. \textbf{72} (1990) 252--256.\label{Ulbrich}
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,278 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{amscd,amssymb,amsmath,graphicx,verbatim,hyperref}
+\usepackage[OT1,T1]{fontenc}
+
+\usepackage[all]{xypic}
+\usepackage{pdfpages}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcounter{Definitioncount}
+\setcounter{Definitioncount}{0}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}] }{\end{trivlist}}
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}] \refstepcounter{Definitioncount} \textbf{\arabic{Definitioncount}} }{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+%Extra stuff
+\newcommand{\fc}{\mathscr{C}}
+\newcommand{\bm}{{\cal{M}}}
+\newcommand{\bid}{{\cal{I}}}
+\newcommand{\bc}{{\cal{C}}}
+\newcommand{\ba}{{\cal{A}}}
+\newcommand{\bk}{{\cal{K}}}
+\newcommand{\by}{{\cal{Y}}}
+\newcommand{\bx}{{\cal{X}}}
+\newcommand{\bB}{{\cal{B}}}
+\newcommand{\duof}{{\cal{F}}}
+\newcommand{\oop}{\operatorname{op}}
+\newcommand{\op}{^{\oop}}
+\newcommand{\pps}{\operatorname{ps}}
+\newcommand{\ps}{^{\pps}}
+\newcommand{\lowps}{_{\pps}}
+\newcommand{\ttract}{\operatorname{tract}}
+\newcommand{\tract}{_{\ttract}}
+\newcommand{\rrep}{\operatorname{rep}}
+\newcommand{\rep}{_{\rrep}}
+\newcommand{\bicat}{\mathrm{Bicat}(\bc\op,\bm\op)\op}
+\newcommand{\ev}{\mathcal{V} }
+\newcommand{\lom}{\ell{om}}
+\newcommand{\rom}{r{om}}
+\newcommand{\warmon}{\,\Box\,}
+\numberwithin{equation}{section}
+
+
+\begin{document}
+
+\author{Ross Street\footnote{This author gratefully acknowledges the support of an Australian Research Council Discovery Grant DP1094883.}}
+\title{The core of adjoint functors}
+\date{}
+\maketitle
+\begin{center}
+{\small{\emph{2000 Mathematics Subject Classification.} \quad 18A40; 18D10}}
+\\
+{\small{\emph{Key words and phrases.} \quad adjoint functor; enriched category.}}
+--------------------------------------------------------
+\end{center}
+\begin{abstract}
+\noindent There is a lot of redundancy in the usual definition of adjoint functors. We define and prove the core of what is required.
+\end{abstract}
+\tableofcontents
+
+
+\section{Introduction}
+
+Kan [\ref{Kan1958}] introduced the notion of adjoint functors. By defining the unit and counit natural transformations, he paved the way for the notion to be internalized to any 2-category. This was done by Kelly [\ref{Kelly1969}] whose interest at the time was particularly in the 2-category of a-categories for a monoidal category a (in the sense of Eilenberg-Kelly [\ref{EilKel1966}]). 
+
+During my Topology lectures in the 1970s, I and the students realized that, in my proof that a function $f$ between posets was order preserving when there was a function $u$ in the reverse direction such that $f(x) \le a$ if and only if $x \le u(a)$, did not require $u$ to be order preserving. I realized then that knowing functors in the two directions only on objects and the usual hom adjointness isomorphism implied the effect of the functors on homs was uniquely determined. Writing this down properly led to the present paper. 
+
+Section \ref{adj} merely reviews adjunctions between enriched categories. Section \ref{Crs}  introduces the notion of core of an enriched adjunction: it only involves the object assignments of the two functors and a hom isomorphism with no naturality requirement. The main result characterizes when such a core is an adjunction. The final section is for mature audiences. It presents a result about adjunctions in the Eilenberg-Moore completion of a 2-category in the sense of [\ref{FTMII}]. In particular, this applies to adjunctions for categories internal to a finitely complete category.    
+
+
+\section{Adjunctions}\label{adj}
+
+For $\ev$-categories $\ba$ and $\bx$, an
+{\it adjunction} consists of
+\begin{enumerate}
+\item  $\ev$-functors $U:\ba\longrightarrow \bx$
+and $F:\bx\longrightarrow \mathcal{A}$;
+\item a $\ev$-natural family of isomorphisms $\pi :\mathcal{A}(
+F X,A) \cong \bx( X,U A) $ in $\ev$ indexed by $A\in
+\mathcal{A}$, $X\in \bx$.
+\end{enumerate}
+We write $\pi :F\dashv U:\mathcal{A}\longrightarrow \bx$.
+
+
+The following result is well known; for example see Section 1.11
+of \cite{KellyBook}.
+\begin{proposition}
+
+Suppose $U:\mathcal{A}\longrightarrow \bx$ is a $\ev$-functor,
+$F:\mathit{ob}\bx\longrightarrow \mathit{ob}\mathcal{A}$
+is a function, and, for each $X\in \bx$, $\pi :\mathcal{A}(
+F X,A) \cong \bx( X,U A) $ is a family of isomorphisms $\ev$-natural
+in $A\in \mathcal{A}$. Then there exists a unique adjunction $\pi
+:F\dashv U:\mathcal{A}\longrightarrow \bx$ for which $F:\mathrm{ob\bx}\longrightarrow
+\mathrm{ob\mathcal{A}}$ is the effect of the $\ev$-functor
+$F:\bx\longrightarrow \mathcal{A}$ on objects. \ \ \ \ \ \ \label{XRef-Proposition-121173012}
+\end{proposition}
+
+\section{Cores}\label{Crs}
+
+\begin{definition}
+For $\ev$-categories $\mathcal{A}$ and $\bx$, an
+{\it adjunction core} consists of
+\begin{enumerate}
+\item functions $U:\mathit{ob}\mathcal{A}\longrightarrow \mathit{ob}\bx$
+and $F:\mathit{ob}\bx\longrightarrow \mathit{ob}\mathcal{A}$;\ \ 
+\item a family of isomorphisms $\pi :\mathcal{A}( F X,A) \cong \bx(
+X,U A) $ in $\ev$ indexed by $A\in \mathcal{A}$, $X\in \bx$.
+\end{enumerate}
+\end{definition}
+
+
+Given such a core, we make the following definitions:
+
+(a)  $\eta _{X}:X\longrightarrow U F X$ is the composite
+\[I\overset{j}{\longrightarrow }\mathcal{A}( F X,F X) \overset{\pi}{\longrightarrow }\bx( X,U F X) ;\]
+
+(b)  $\varepsilon _{A}:F U A\longrightarrow A$ is the composite\[I\overset{j}{\longrightarrow }\bx( U A,U A) \overset{\pi^{-1}}{\longrightarrow }\mathcal{A}( F U A,X) ;\]
+
+(c)  $U_{A B}:\mathcal{A}( A,B) \longrightarrow \bx( UA,U B) $ is the composite\[\mathcal{A}( A,B) \overset{\mathcal{A}( \varepsilon _{A},1) \ \ }{\longrightarrow}\mathcal{A}( F U A,B) \overset{\pi }{\longrightarrow }\bx(U A,U B) ;\]
+
+(d)  $F_{X Y}:\bx( X,Y) \longrightarrow \mathcal{A}( FX,F Y) $ is the composite \[\bx( X,Y) \overset{\bx( 1,\eta _{Y}) \ \ }{\longrightarrow}\bx( X,U F Y) \overset{\pi ^{-1}}{\longrightarrow }\mathcal{A}(F X,F Y) .\]
+
+Clearly each adjunction $\pi :F\dashv U:\mathcal{A}\longrightarrow\bx$ includes an adjunction core as part of its data. Then it follows directly from the Yoneda lemma and the definitions (a) and (b) that the effect of $U$ and $F$ on homs are as in (c) and (d).
+
+\begin{theorem}
+An adjunction core extends to an adjunction if and only if one of
+the diagrams (\ref{XRef-Equation-121162956} or (\ref{XRef-Equation-121163025})
+below commutes. The adjunction is unique when it exists.
+
+\begin{equation}\label{XRef-Equation-121162956}
+\xymatrix{\ba (A,B) \otimes \ba (FX,A) \ar[rr]^-{U_{A,B}\otimes\pi} \ar[d]_-{\mathrm{comp}} && \bx (UA,UB) \otimes \bx (X, UA) \ar[d]^-{\mathrm{comp}} \\\ba (FX,B) \ar[rr]_-{\pi} && \bx (X,UB)}
+\end{equation}
+
+\begin{equation}\label{XRef-Equation-121163025}
+\xymatrix{
+\bx (Y,UA) \otimes \bx (X,Y) \ar[rr]^-{\pi^{-1}\otimes F_{X,Y}} \ar[d]_-{\mathrm{comp}} && \ba (FY,A) \otimes \ba (FX, FY) \ar[d]^-{\mathrm{comp}} \\
+\bx (X,UA) \ar[rr]_-{\pi^{-1}} && \ba (FX,A)}
+\end{equation}
+\end{theorem}
+
+\begin{proof} 
+We deal first with the version involving diagram
+(\ref{XRef-Equation-121162956}). For an adjunction, (\ref{XRef-Equation-121162956})
+expresses the $\ev$-naturality of $\pi $ in $A\in \mathcal{A}$.
+Conversely, given an adjunction core satisfying (\ref{XRef-Equation-121162956}),
+we paste to the left of (\ref{XRef-Equation-121162956} with $X =UC$, the diagram 
+\begin{equation}
+\xymatrix{
+\ba (A,B) \otimes \ba (C,A) \ar[rr]^-{1 \otimes \ba (\varepsilon _C ,1) } \ar[d]_-{\mathrm{comp}} && \ba (A,B) \otimes \ba (FUC,A) \ar[d]^-{\mathrm{comp}} \\
+\bx (X,UA)  \ar[rr]_-{\pi^{-1} } && \ba (FX,A) }
+\end{equation}
+which commutes by naturality of composition. This leads to the following commutative square.
+\begin{equation}\label{XRef-Equation-121172723}
+\xymatrix{
+\ba (A,B) \otimes \ba (C,A)  \ar[rr]^-{U \otimes U} \ar[d]_-{\mathrm{comp}} && \bx (UA,UB) \otimes \bx (UC,UA)  \ar[d]^-{\mathrm{comp}} \\
+\ba (C,B)  \ar[rr]_-{U} && \bx (UC,UB) }
+\end{equation}
+We also have the equality
+\begin{equation}
+\left( I\overset{j}{\longrightarrow }\mathcal{A}( A,A) \overset{U}{\longrightarrow
+}\bx( U A,U B) \right) =\left( I\overset{j}{\longrightarrow
+}\bx( U A,U B) \right) %
+\label{XRef-Equation-121172748}
+\end{equation}
+straight from the definitions (b) and (c). Together (\ref{XRef-Equation-121172723})
+and (\ref{XRef-Equation-121172748}) tell us that $U$ is a $\ev$-functor.
+Now the general diagram (\ref{XRef-Equation-121162956}) expresses
+the $\ev$-naturality of $\pi $ in $A$. By Proposition \ref{XRef-Proposition-121173012},
+we have an adjunction determined uniquely by the core.
+
+Writing $\ev^{\mathrm{rev}}$ for $\ev$ with the
+reversed monoidal structure $A\otimes ^{\mathrm{rev}}B=B\otimes
+A$, and applying the first part of this proof to the $\ev^{\mathrm{rev}}$-enriched
+adjunction $\pi ^{-1}:U^{\mathrm{op}}\dashv F^{\mathrm{op}}:\bx^{\mathrm{op}}\longrightarrow
+\mathcal{A}^{\mathrm{op}}$, which is the same as an adjunction $\pi
+:F\dashv U:\mathcal{A}\longrightarrow \bx$, we see that
+it is equivalent to an adjunction core satisfying (\ref{XRef-Equation-121163025}).
+\end{proof}
+
+\begin{corollary}
+If $\ev$ is a poset then adjunction cores are adjunctions.
+\end{corollary}
+\begin{proof}
+All diagrams, including (\ref{XRef-Equation-121162956}),
+commute in such a $\ev$.\qed
+\end{proof}
+
+\begin{equation}
+\xymatrix{
+X \ar[rr]^-{f} \ar[d]_-{g} && Y \ar[d]^-{h} \\
+Z \ar[rr]_-{k} && W}
+\end{equation}
+
+\section{Adjunctions between monads}\label{abm} 
+
+This section will discuss adjunctions in a particular bicategory 
+$\mathrm{KL} (\bk)$ of monads in a bicategory $\bk$. 
+The results will apply to adjunctions between categories internal to a category $\bc$ with pullbacks.
+
+As well as defining bicategories B\'enabou [\ref{Ben1967}] defined, 
+for each pair of bicategories $\ba$ and $\bk$, a bicategory $\mathrm{Bicat} (\ba,\bk)$ 
+whose objects are morphisms $\ba \longrightarrow \bk$ of bicategories (also called lax functors), whose morphisms are transformations (also called lax natural transformations), 
+and whose 2-cells are modifications. 
+In particular, $\mathrm{Bicat} (\bf{1} ,\bk)$ is one bicategory whose objects are monads in $\bk$; 
+it was called $\mathrm{Mnd}(\bk)$ in [\ref{FTM}] for the case of a 2-category $\bk$, 
+where it was used to discuss Eilenberg-Moore objects in $\bk$. 
+We shall also use the notation $\mathrm{Mnd}(\bk)$ when $\bk$ is a bicategory.  
+
+We write $\bk^{\mathrm{op}}$ for the dual of $\bk$ obtained by reversing morphisms (not 2-cells). 
+Monads in $\bk^{\mathrm{op}}$ are the same as monads in $\bk$. 
+So we also have the bicategory 
+$$\mathrm{Mnd}^{\mathrm{op}}(\bk) = \mathrm{Bicat} (\bf{1} ,\bk^{\mathrm{op}})^{\mathrm{op}}$$
+whose objects are monads in $\bk$. This was used in [\ref{FTM}] to discuss Kleisli objects in $\bk$.
+
+Two more bicategories $\mathrm{EM} (\bk)$ and $\mathrm{KL} (\bk)$, with objects monads in $\bk$, were defined in [\ref{FTMII}]. 
+The first freely adjoins Eilenberg-Moore objects and the second freely adjoins Kleisli objects to $\bk$. 
+In fact, $\mathrm{EM} (\bk)$ has the same objects and morphisms as $\mathrm{Mnd}(\bk)$ 
+but different 2-cells while $\mathrm{KL} (\bk)$ has the same objects and morphisms as 
+$\mathrm{Mnd}^{\mathrm{op}}(\bk)$ but different 2-cells.  
+
+A {\it monad} in a bicategory $\bk$ is an object $A$ equipped with a morphism 
+$s:A \longrightarrow A$ and 2-cells $\eta : 1_A \longrightarrow s$ and $\mu : ss \longrightarrow s$ 
+such that 
+\begin{equation}\xymatrix{
+& s(ss) \ar[rd]^-{ s \mu}  & \\
+(ss)s \ar[ru]^-{\cong} \ar[d]_-{\mu s} & & ss \ar[d]^-{\mu} \\
+ss \ar[rr]_-{\mu} & & w 
+}\end{equation}
+
+\begin{equation}\xymatrix{
+& Y \ar[rd]^-{ g}  & \\
+X \ar[ru]^-{f} \ar[d]_-{u} & & Z \ar[d]^-{h} \\
+V \ar[rr]_-{v} & & W 
+}\end{equation}
+
+
+\begin{center}
+--------------------------------------------------------
+\end{center}
+
+\appendix
+\begin{thebibliography}{000}
+
+\bibitem{Ben1967} Jean B\'enabou, Introduction to bicategories, Lecture Notes in Mathematics \textbf{47} (Springer-Verlag, 1967),
+1--77.\label{Ben1967}
+
+\bibitem{Kan1958} Daniel M. Kan, \textit{Adjoint functors}, Transactions of the American Mathematical Society
+\textbf{87} (1958) 294--329. \label{Kan1958}
+
+\bibitem{Kelly1969} G. Max Kelly, Adjunction for enriched categories, Lecture Notes in Mathematics \textbf{106} (Springer-Verlag, 1969),
+166--177.\label{Kelly1969}
+
+\bibitem{EilKel1966} Samuel Eilenberg and G. Max Kelly, \textit{Closed categories}, Proceedings of the Conference on Categorical Algebra (La Jolla, 1965), Springer (1966) 421--562.\label{EilKel1966}
+
+\bibitem{KellyBook} G. Max Kelly, \textit{Basic concepts of enriched category theory}, London Mathematical Society Lecture Note Series \textbf{64} (Cambridge University Press, Cambridge, 1982). 
+
+\bibitem{FTMII} Stephen Lack and Ross Street, \textit{The formal theory of monads II}, Journal of Pure and Applied Algebra \textbf{175} (2002) 243--265.\label{FTMII} 
+
+\bibitem{FTM} Ross Street, \textit{The formal theory of monads}, Journal of Pure and Applied Algebra \textbf{2} (1972) 149--168.\label{FTM} 
+
+\end{thebibliography}
+
+\end{document}

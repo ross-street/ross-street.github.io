@@ -1,0 +1,146 @@
+\documentclass[a4paper,10pt]{article}
+
+\usepackage{amscd,amssymb,amsmath,graphicx,verbatim,hyperref}
+\usepackage{textcomp}
+\usepackage[OT1,T1]{fontenc}
+
+\usepackage[all,graph,curve]{xypic}
+\usepackage{pdfpages}
+\makeatletter
+ \def\setlabelmargin#1{\labelmargin@=#1\relax }
+\makeatother
+
+%\newcommand{\qed}{\nobreak \ifvmode \relax \else
+%      \ifdim\lastskip<1.5em \hskip-\lastskip
+%      \hskip1.5em plus0em minus0.5em \fi \nobreak
+%      \vrule height0.75em width0.5em depth0.25em\fi}
+
+\newcounter{Definitioncount}
+\setcounter{Definitioncount}{0}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}] }{\end{trivlist}}
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}] \refstepcounter{Definitioncount} \textbf{\arabic{Definitioncount}} }{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+%Extra stuff
+\newcommand{\fc}{\mathscr{C}}
+\newcommand{\bm}{{\cal{M}}}
+\newcommand{\bid}{{\cal{I}}}
+\newcommand{\bc}{{\cal{C}}}
+\newcommand{\ba}{{\cal{A}}}
+\newcommand{\bk}{{\cal{K}}}
+\newcommand{\by}{{\cal{Y}}}
+\newcommand{\bx}{{\cal{X}}}
+\newcommand{\bB}{{\cal{B}}}
+\newcommand{\duof}{{\cal{F}}}
+\newcommand{\oop}{\operatorname{op}}
+\newcommand{\op}{^{\oop}}
+\newcommand{\pps}{\operatorname{ps}}
+\newcommand{\ps}{^{\pps}}
+\newcommand{\lowps}{_{\pps}}
+\newcommand{\ttract}{\operatorname{tract}}
+\newcommand{\tract}{_{\ttract}}
+\newcommand{\rrep}{\operatorname{rep}}
+\newcommand{\rep}{_{\rrep}}
+\newcommand{\bicat}{\mathrm{Bicat}(\bc\op,\bm\op)\op}
+\newcommand{\ev}{\mathcal{V}}
+\newcommand{\lom}{\ell{om}}
+\newcommand{\rom}{r{om}}
+\newcommand{\warmon}{\,\Box\,}
+\numberwithin{equation}{section}
+
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\textbf{{\Large Some diagrammatic monoidalities}}
+\newline
+\newline
+
+\noindent Only nodes:
+
+$$\xymatrix{
+& A \otimes (B \otimes C) & (B\otimes C) \otimes A & \\
+(A\otimes B)\otimes C & & & B \otimes (C \otimes A) \\
+& (B \otimes A) \otimes C & B \otimes (A \otimes C) &
+}$$
+\newline
+\newline
+
+\noindent With arrows and all frivolities:
+
+$$\xymatrix{
+& A \otimes (B \otimes C) \ar[r]^-{\gamma} & (B\otimes C) \otimes A \ar[rd]^-{\alpha} & \\
+(A\otimes B)\otimes C \ar[ru]^-{\alpha} \ar[rd]_-{\gamma \otimes 1} & & & B \otimes (C \otimes A) \\
+& (B \otimes A) \otimes C \ar[r]_-{\alpha} & B \otimes (A \otimes C) \ar[ru]_-{1 \otimes \gamma} &
+}$$
+\newline
+\newline
+
+\noindent A pentagon:
+
+$$\xymatrix{
+& (A \otimes (B \otimes C)) \otimes D \ar[rd]^-{\phantom{A}\alpha_{A,B\otimes C,D}}  & \\
+((A \otimes B )\otimes C) \otimes D \ar[ru]^-{\alpha_{A,B,C}\otimes 1_{D}\phantom{A}} \ar[d]_-{\alpha_{A\otimes B,C,D}} & & A \otimes ((B \otimes C) \otimes D ) \ar[d]^-{1_{A}\otimes\alpha_{B,C,D}} \\
+(A \otimes B) \otimes (C \otimes D) \ar[rr]_-{\alpha_{A,B,C\otimes D }} & & A \otimes (B \otimes (C \otimes D)) 
+}$$
+\newline
+
+\noindent You'll notice that I've used some phantom characters in the above diagram's label code.
+Try removing them to see what happens.
+Things like this are great little quick and dirty tricks to fix some common positional and layout problems.
+
+\newpage
+
+\thispagestyle{empty}
+
+
+\noindent A triangle:
+
+$$\xymatrix{
+(A\otimes I)\otimes B \ar[rr]^-{\alpha_{A,I,B}} \ar[rd]_-{\rho_{A}\otimes 1_{B}} && A\otimes (I\otimes B) \ar[ld]^-{1_{A}\otimes \lambda_{B}} \\
+& A\otimes B &
+}$$
+\newline
+\newline
+
+\noindent Here is a version of the pentagon diagram that's been made too big to fit on the page:
+
+$$\xymatrix{
+& & (A \otimes (B \otimes C)) \otimes D \ar[rrdd]^-{\phantom{A}\alpha_{A,B\otimes C,D}}  & & \\
+& & & & \\
+((A \otimes B )\otimes C) \otimes D \ar[rruu]^-{\alpha_{A,B,C}\otimes 1_{D}\phantom{A}} \ar[rdd]_-{\alpha_{A\otimes B,C,D}} & & & & A \otimes ((B \otimes C) \otimes D ) \ar[ldd]^-{1_{A}\otimes\alpha_{B,C,D}} \\
+& & & & \\
+& (A \otimes B) \otimes (C \otimes D) \ar[rr]_-{\alpha_{A,B,C\otimes D }} && A \otimes (B \otimes (C \otimes D)) &
+}$$
+\newline
+\newline
+
+
+\noindent Short of redesigning it so that it does fit, one may simply scale the image by encapsulating the entire diagram's code in a scale-box with a scale factor between $0$ and $1$.
+Here I've used $0.75$:
+
+$$\scalebox{0.75}{\xymatrix{
+& & (A \otimes (B \otimes C)) \otimes D \ar[rrdd]^-{\phantom{A}\alpha_{A,B\otimes C,D}}  & & \\
+& & & & \\
+((A \otimes B )\otimes C) \otimes D \ar[rruu]^-{\alpha_{A,B,C}\otimes 1_{D}\phantom{A}} \ar[rdd]_-{\alpha_{A\otimes B,C,D}} & & & & A \otimes ((B \otimes C) \otimes D ) \ar[ldd]^-{1_{A}\otimes\alpha_{B,C,D}} \\
+& & & & \\
+& (A \otimes B) \otimes (C \otimes D) \ar[rr]_-{\alpha_{A,B,C\otimes D }} && A \otimes (B \otimes (C \otimes D)) &
+}}$$
+\newline
+
+\noindent In most situations this is not ideal (including this one in my opinion) and it is better to choose a different style of diagram.
+In fact it would be better to use xygraph or xy instead of xymatrix due to not being bound to the rigid matrix-entry-like positioning (i.e. in xy you can have nodes overlapping each other and, while you can force this in xymatrix, it is pretty hopeless).
+
+
+\end{document}

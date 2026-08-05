@@ -1,0 +1,1237 @@
+(************** Content-type: application/mathematica **************
+                       CreatedBy='Publicon 1.0'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     29736,        998]*)
+(*NotebookOutlinePosition[     33848,       1116]*)
+(*  CellTagsIndexPosition[     33294,       1097]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["F R O N T M A T T E R", "FrontmatterGroup"],
+
+Cell[CellGroupData[{
+
+Cell[" The core of adjoint functors", "Title"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[Cell[TextData[{
+  ButtonBox["Ross",
+    ButtonData:>"AuthorFirstName1",
+    ButtonStyle->"AuthorFirstName"],
+  " ",
+  ButtonBox["Street",
+    ButtonData:>"AuthorLastName1",
+    ButtonStyle->"AuthorLastName"],
+  Cell[BoxData[
+      FormBox[
+        SuperscriptBox["", 
+          ButtonBox[
+            OverscriptBox["\[EmptySmallSquare]", 
+              AdjustmentBox["\[Hacek]",
+                BoxMargins->{{0.03125, -0.03125}, {-0.791667, 0.791667}},
+                BoxBaselineShift->0.791667]],
+            ButtonData:>{
+              URL[ "mailto:ross.street@mq.edu.au"], None},
+            ButtonStyle->"AuthorEmail"]], TraditionalForm]], "AuthorData"]
+}], "Author",
+  TaggingRules:>{"AuthorData" -> {"TeX" -> {
+    "\\author{Ross Street}\n\\address{Centre of Australian Category Theory, \
+Department of Mathematics, Macquarie University, NSW 2109, Australia}\n\
+\\curraddr{Department of Mathematics, Macquarie University, NSW 2109, \
+Australia}\n\\email{ross.street@mq.edu.au}\n\
+\\urladdr{http://www.maths.mq.edu.au/{\\textasciitilde}street/}"}, 
+    "XML" -> {}}, "RadioButtonData" -> {"Settings" -> {}, "TeX" -> {}, 
+    "XML" -> {}}}]], "AuthorGroup",
+  TaggingRules:>{"RadioButtonCorrelations" -> {"ButtonLabels" -> {}, 
+    "TeX" -> {}, "XML" -> {}}, "FieldCorrelations" -> {"Fields" -> {
+    "Institution", "Current Address", "Email", "Home Page", "Support Info"}, 
+    "TeX" -> {"AUTHORNAME" -> "\\author{}", "Institution" -> "\\address{}", 
+    "Current Address" -> "\\curraddr{}", "Email" -> "\\email{}", "Home Page" -> 
+    "\\urladdr{}", "Support Info" -> "\\thanks{}"}, "XML" -> {}}}],
+
+Cell[TextData[ButtonBox["Centre of Australian Category Theory, Department of \
+Mathematics, Macquarie University, NSW 2109, Australia",
+  ButtonData:>"InstitutionName1",
+  ButtonStyle->"InstitutionName"]], "Institution",
+  CellTags->"I1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["1 December 2011", "Date"],
+
+Cell["18A40; 18D20", "SubjectClassification"],
+
+Cell["adjoint functor; enriched category; counit.", "Keywords"]
+}, Open  ]],
+
+Cell[TextData[{
+  Cell[TextData[{
+    "A",
+    StyleBox["BSTRACT", "SmallCaps"],
+    ". "
+  }], "Nil",
+    TaggingRules:>{"CellLabel" -> True}],
+  "There is a lot of redundancy in the usual definition of adjoint functors. \
+We define and prove the core of what is required.   "
+}], "Abstract"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["B O D Y", "MainmatterGroup"],
+
+Cell[TextData[{
+  "Kan ",
+  StyleBox["\[InvisibleSpace]", "RefSep"],
+  ButtonBox["[1]",
+    ButtonData:>"KanAdjFun",
+    ButtonStyle->"Citation",
+    ButtonNote->"KanAdjFun"],
+  " introduced the notion of adjoint functors. By defining the unit and \
+counit natural transformations, he paved the way for the notion to be \
+internalized to any 2-category. This was done by Kelly ",
+  StyleBox["\[InvisibleSpace]", "RefSep"],
+  ButtonBox["[2]",
+    ButtonData:>"Kelly1969",
+    ButtonStyle->"Citation",
+    ButtonNote->"Kelly1969"],
+  " whose interest at the time was particularly in the 2-category of ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  "-categories for a monoidal category ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  " (in the sense of Eilenberg-Kelly ",
+  StyleBox["\[InvisibleSpace]", "RefSep"],
+  ButtonBox["[3]",
+    ButtonData:>"EilKel1966",
+    ButtonStyle->"Citation",
+    ButtonNote->"EilKel1966"],
+  "). "
+}], "Text",
+  CellTags->{":bib:EilKel1966", ":bib:KanAdjFun", ":bib:Kelly1969"}],
+
+Cell["", "TextContinuation"],
+
+Cell[TextData[{
+  "For ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  "-categories ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalA]\)]],
+  " and ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalX]\)]],
+  ", an ",
+  StyleBox["adjunction",
+    FontSlant->"Italic"],
+  " consists of"
+}], "Text"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+  " ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  "-functors ",
+  Cell[BoxData[
+      \(TraditionalForm\`U : \[ScriptCapitalA]\[LongRightArrow]\
+\[ScriptCapitalX]\)]],
+  " and ",
+  Cell[BoxData[
+      \(TraditionalForm\`F : \[ScriptCapitalX]\[LongRightArrow]\
+\[ScriptCapitalA]\)]],
+  ";"
+}], "Item1Numbered",
+  CounterAssignments->{{"Item1Numbered", 0}}],
+
+Cell[TextData[{
+  "a ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  "-natural family of isomorphisms ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[Pi] : \[ScriptCapitalA](F\ X, 
+            A) \[TildeFullEqual] \[ScriptCapitalX](X, U\ A)\)]],
+  " in ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  " indexed by ",
+  Cell[BoxData[
+      \(TraditionalForm\`A \[Element] \[ScriptCapitalA]\)]],
+  ", ",
+  Cell[BoxData[
+      \(TraditionalForm\`X \[Element] \[ScriptCapitalX]\)]],
+  "."
+}], "Item1Numbered"]
+}, Open  ]],
+
+Cell[TextData[{
+  "We write ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[Pi] : 
+        F \[LeftTee] \(U : \
+\[ScriptCapitalA]\[LongRightArrow]\[ScriptCapitalX]\)\)]],
+  ". "
+}], "TextContinuation"],
+
+Cell["", "TextContinuation"],
+
+Cell[TextData[{
+  "The following result is well known; for example see Section 1.11 of ",
+  StyleBox["\[InvisibleSpace]", "RefSep"],
+  ButtonBox["[4]",
+    ButtonData:>"KellyBook",
+    ButtonStyle->"Citation",
+    ButtonNote->"KellyBook"],
+  "."
+}], "Text",
+  CellTags->":bib:KellyBook"],
+
+Cell[TextData[{
+  Cell[TextData[{
+    "Proposition ",
+    
+    CounterBox["Section"],
+    ".",
+    
+    CounterBox["Theorem"],
+    ". "
+  }], "PropositionLabel",
+    TaggingRules:>{"CellLabel" -> True}],
+  "Suppose ",
+  Cell[BoxData[
+      \(TraditionalForm\`U : \[ScriptCapitalA]\[LongRightArrow]\
+\[ScriptCapitalX]\)]],
+  " is a ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  "-functor, ",
+  Cell[BoxData[
+      FormBox[
+        RowBox[{"F", ":", 
+          RowBox[{
+            StyleBox[
+              RowBox[{
+                StyleBox["ob",
+                  FontSlant->"Italic"], "\[ScriptCapitalX]"}]], 
+            "\[LongRightArrow]", 
+            StyleBox[
+              RowBox[{
+                StyleBox["ob",
+                  FontSlant->"Italic"], "\[ScriptCapitalA]"}]]}]}], 
+        TraditionalForm]]],
+  " is a function, and, for each ",
+  Cell[BoxData[
+      \(TraditionalForm\`X \[Element] \[ScriptCapitalX]\)]],
+  ", ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[Pi] : \[ScriptCapitalA](F\ X, 
+            A) \[TildeFullEqual] \[ScriptCapitalX](X, U\ A)\)]],
+  " is a family of isomorphisms ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  "-natural in ",
+  Cell[BoxData[
+      \(TraditionalForm\`A \[Element] \[ScriptCapitalA]\)]],
+  ". Then there exists a unique adjunction ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[Pi] : 
+        F \[LeftTee] \(U : \
+\[ScriptCapitalA]\[LongRightArrow]\[ScriptCapitalX]\)\)]],
+  " for which ",
+  Cell[BoxData[
+      \(TraditionalForm\`F : 
+        ob\[ScriptCapitalX]\[LongRightArrow]ob\[ScriptCapitalA]\)]],
+  " is the effect of the ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  "-functor ",
+  Cell[BoxData[
+      \(TraditionalForm\`F : \[ScriptCapitalX]\[LongRightArrow]\
+\[ScriptCapitalA]\)]],
+  " on objects.      "
+}], "Proposition",
+  TaggingRules:>{"ExtraConversionRules" -> {"General" -> {"RestartList" -> 
+    True}}},
+  ParagraphIndent->0,
+  CounterIncrements->"Theorem",
+  CellTags->"XRef-Proposition-121173012"],
+
+Cell["", "TextContinuation"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+  Cell[TextData[{
+    "Definition ",
+    
+    CounterBox["Section"],
+    ".",
+    
+    CounterBox["Theorem"],
+    ". "
+  }], "DefinitionLabel",
+    TaggingRules:>{"CellLabel" -> True}],
+  "For ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  "-categories ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalA]\)]],
+  " and ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalX]\)]],
+  ", an ",
+  StyleBox["adjunction core",
+    FontSlant->"Italic"],
+  " consists of"
+}], "Definition",
+  TaggingRules:>{"ExtraConversionRules" -> {"General" -> {"RestartList" -> 
+    True}}},
+  ParagraphIndent->0,
+  CounterIncrements->"Theorem"],
+
+Cell[TextData[{
+  "functions ",
+  Cell[BoxData[
+      FormBox[
+        RowBox[{"U", ":", 
+          RowBox[{
+            StyleBox[
+              RowBox[{
+                StyleBox["ob",
+                  FontSlant->"Italic"], "\[ScriptCapitalA]"}]], 
+            "\[LongRightArrow]", 
+            StyleBox[
+              RowBox[{
+                StyleBox["ob",
+                  FontSlant->"Italic"], "\[ScriptCapitalX]"}]]}]}], 
+        TraditionalForm]]],
+  " and ",
+  Cell[BoxData[
+      FormBox[
+        RowBox[{"F", ":", 
+          RowBox[{
+            StyleBox[
+              RowBox[{
+                StyleBox["ob",
+                  FontSlant->"Italic"], "\[ScriptCapitalX]"}]], 
+            "\[LongRightArrow]", 
+            StyleBox[
+              RowBox[{
+                StyleBox["ob",
+                  FontSlant->"Italic"], "\[ScriptCapitalA]"}]]}]}], 
+        TraditionalForm]]],
+  ";  "
+}], "Item1Numbered"],
+
+Cell[TextData[{
+  "a family of isomorphisms ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[Pi] : \[ScriptCapitalA](F\ X, 
+            A) \[TildeFullEqual] \[ScriptCapitalX](X, U\ A)\)]],
+  " in ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  " ",
+  "indexed by ",
+  Cell[BoxData[
+      \(TraditionalForm\`A \[Element] \[ScriptCapitalA]\)]],
+  ", ",
+  Cell[BoxData[
+      \(TraditionalForm\`X \[Element] \[ScriptCapitalX]\)]],
+  ".",
+  " "
+}], "Item1Numbered"]
+}, Open  ]],
+
+Cell["", "TextContinuation"],
+
+Cell["Given such a core, we make the following definitions:", "Text"],
+
+Cell[TextData[{
+  " ",
+  Cell[BoxData[
+      \(TraditionalForm\`\(\[Eta]\_X\) : X\[LongRightArrow]U\ F\ X\)]],
+  " is the composite"
+}], "Item2Numbered",
+  CounterAssignments->{{"Item2Numbered", 0}}],
+
+Cell[BoxData[
+    \(TraditionalForm\`\(I\(\[LongRightArrow]\&j\)\(\[ScriptCapitalA](F\ X, 
+          F\ X)\)\)\(\[LongRightArrow]\&\[Pi]\)\(\[ScriptCapitalX](X, 
+        U\ F\ X)\); \)], "Equation"],
+
+Cell[TextData[{
+  " ",
+  Cell[BoxData[
+      \(TraditionalForm\`\(\[CurlyEpsilon]\_A\) : 
+        F\ U\ A\[LongRightArrow]A\)]],
+  " is the composite"
+}], "Item2Numbered"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\(I\(\[LongRightArrow]\&j\)\(\[ScriptCapitalX](U\ A, 
+          U\ A)\)\)\(\[LongRightArrow]\&\(\[Pi]\^\(-1\)\)\)\(\[ScriptCapitalA]\
+(F\ U\ A, X)\); \)], "Equation"],
+
+Cell[TextData[{
+  " ",
+  Cell[BoxData[
+      \(TraditionalForm\`\(U\_\(A\ B\)\) : \(\[ScriptCapitalA](A, 
+            B)\)\[LongRightArrow]\(\[ScriptCapitalX](U\ A, U\ B)\)\)]],
+  " is the composite"
+}], "Item2Numbered"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\(\(\[ScriptCapitalA](A, 
+          B)\)\(\[LongRightArrow]\&\(\(\[ScriptCapitalA](\[CurlyEpsilon]\_A, 
+              1)\)\(\ \ \)\)\)\(\[ScriptCapitalA](F\ U\ A, 
+          B)\)\)\(\[LongRightArrow]\&\[Pi]\)\(\[ScriptCapitalX](U\ A, 
+        U\ B)\); \)], "Equation"],
+
+Cell[TextData[{
+  " ",
+  Cell[BoxData[
+      \(TraditionalForm\`\(F\_\(X\ Y\)\) : \(\[ScriptCapitalX](X, 
+            Y)\)\[LongRightArrow]\(\[ScriptCapitalA](F\ X, F\ Y)\)\)]],
+  " is the composite"
+}], "Item2Numbered"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\(\(\(\(\[ScriptCapitalX](X, 
+            Y)\)\(\[LongRightArrow]\&\(\(\[ScriptCapitalX](
+                1, \[Eta]\_Y)\)\(\ \ \)\)\)\(\[ScriptCapitalX](X, 
+            U\ F\ Y)\)\)\(\[LongRightArrow]\&\(\[Pi]\^\(-1\)\)\)\(\
+\[ScriptCapitalA](F\ X, F\ Y)\)\)\(.\)\)\)], "Equation"],
+
+Cell["", "Text"],
+
+Cell[TextData[{
+  "Clearly each adjunction ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[Pi] : 
+        F \[LeftTee] \(U : \
+\[ScriptCapitalA]\[LongRightArrow]\[ScriptCapitalX]\)\)]],
+  " includes an adjunction core as part of its data. Then it follows directly \
+from the Yoneda lemma and the definitions (a) and (b) that the effect of ",
+  Cell[BoxData[
+      \(TraditionalForm\`U\)]],
+  " and ",
+  Cell[BoxData[
+      \(TraditionalForm\`F\)]],
+  " on homs are as in (c) and (d)."
+}], "Text"],
+
+Cell["", "TextContinuation"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+  Cell[TextData[{
+    "Theorem ",
+    
+    CounterBox["Section"],
+    ".",
+    
+    CounterBox["Theorem"],
+    ". "
+  }], "TheoremLabel",
+    TaggingRules:>{"CellLabel" -> True}],
+  "An adjunction core extends to an adjunction if and only if one of the \
+diagrams (",
+  ButtonBox[
+  CounterBox["Section", "XRef-Equation-121162956"],
+    ButtonData:>{"Counter" -> "EquationNumbered", "CounterTag" -> 
+      "XRef-Equation-121162956"},
+    ButtonStyle->"XRef"],
+  StyleBox[".", "Nil"],
+  StyleBox[
+  CounterBox["EquationNumbered", "XRef-Equation-121162956"], "Nil"],
+  StyleBox[")", "Nil"],
+  "\[InvisibleSpace] or (",
+  ButtonBox[
+  CounterBox["Section", "XRef-Equation-121163025"],
+    ButtonData:>{"Counter" -> "EquationNumbered", "CounterTag" -> 
+      "XRef-Equation-121163025"},
+    ButtonStyle->"XRef"],
+  StyleBox[".", "Nil"],
+  StyleBox[
+  CounterBox["EquationNumbered", "XRef-Equation-121163025"], "Nil"],
+  "\[InvisibleSpace]) below commutes. The adjunction is unique when it \
+exists."
+}], "Theorem",
+  TaggingRules:>{"ExtraConversionRules" -> {"General" -> {"RestartList" -> 
+    True}}},
+  ParagraphIndent->0,
+  CounterIncrements->"Theorem"],
+
+Cell[BoxData[
+    FormBox[GridBox[{
+          {\(\(\[ScriptCapitalA](A, B)\)\[CircleTimes]\(\[ScriptCapitalA](
+                F\ X, A)\)\), \(\[LongRightArrow]\&\(\(U\_\(A\ B\)\
+\[CircleTimes]\[Pi]\)\(\ \ \)\)\), \(\(\[ScriptCapitalX](U\ A, 
+                U\ B)\)\[CircleTimes]\(\[ScriptCapitalX](X, U\ A)\)\)},
+          {
+            RowBox[{
+              RowBox[{"\[InvisiblePrefixScriptBase]", 
+                SuperscriptBox["\[InvisiblePrefixScriptBase]", 
+                  StyleBox["comp",
+                    FontSlant->"Italic"]]}], "\[DownArrow]"}], "=", 
+            SuperscriptBox["\[DownArrow]", 
+              StyleBox["comp",
+                FontSlant->"Italic"]]},
+          {\(\[ScriptCapitalA](F\ X, 
+              B)\), \(\[LongRightArrow]\+\(\(\ \ \)\(\[Pi]\)\(\ \ \)\)\), \(\
+\[ScriptCapitalX](X, U\ B)\)}
+          }], TraditionalForm]], "EquationNumbered",
+  CellGroupingRules->"GraphicsGrouping",
+  TaggingRules:>{"ExtraConversionRules" -> {"General" -> {"RestartList" -> 
+    False}}},
+  CellTags->"XRef-Equation-121162956"],
+
+Cell[BoxData[
+    FormBox[GridBox[{
+          {\(\(\[ScriptCapitalX](Y, U\ A)\)\[CircleTimes]\(\[ScriptCapitalX](
+                X, Y)\)\), \(\[LongRightArrow]\&\(\(\[Pi]\^\(-1\)\
+\[CircleTimes]F\_\(X\ Y\)\)\(\ \ \)\)\), \(\(\[ScriptCapitalA](F\ Y, 
+                A)\)\[CircleTimes]\(\[ScriptCapitalA](F\ X, F\ Y)\)\)},
+          {
+            RowBox[{
+              RowBox[{"\[InvisiblePrefixScriptBase]", 
+                SuperscriptBox["\[InvisiblePrefixScriptBase]", 
+                  StyleBox["comp",
+                    FontSlant->"Italic"]]}], "\[DownArrow]"}], "=", 
+            SuperscriptBox["\[DownArrow]", 
+              StyleBox["comp",
+                FontSlant->"Italic"]]},
+          {\(\[ScriptCapitalX](X, 
+              U\ A)\), \(\[LongRightArrow]\+\(\(\ \ \)\(\[Pi]\^\(-1\)\)\)\), \
+\(\[ScriptCapitalA](F\ X, A)\)}
+          }], TraditionalForm]], "EquationNumbered",
+  CellGroupingRules->"GraphicsGrouping",
+  TaggingRules:>{"ExtraConversionRules" -> {"General" -> {"RestartList" -> 
+    False}}},
+  CellTags->"XRef-Equation-121163025"]
+}, Open  ]],
+
+Cell["", "TextContinuation"],
+
+Cell[TextData[{
+  StyleBox["Proof",
+    FontSlant->"Italic"],
+  " We deal first with the version involving diagram (",
+  ButtonBox[
+  CounterBox["Section", "XRef-Equation-121162956"],
+    ButtonData:>{"Counter" -> "EquationNumbered", "CounterTag" -> 
+      "XRef-Equation-121162956"},
+    ButtonStyle->"XRef"],
+  StyleBox[".", "Nil"],
+  StyleBox[
+  CounterBox["EquationNumbered", "XRef-Equation-121162956"], "Nil"],
+  "\[InvisibleSpace]). For an adjunction, (",
+  ButtonBox[
+  CounterBox["Section", "XRef-Equation-121162956"],
+    ButtonData:>{"Counter" -> "EquationNumbered", "CounterTag" -> 
+      "XRef-Equation-121162956"},
+    ButtonStyle->"XRef"],
+  StyleBox[".", "Nil"],
+  StyleBox[
+  CounterBox["EquationNumbered", "XRef-Equation-121162956"], "Nil"],
+  "\[InvisibleSpace]) expresses the ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  "-naturality of ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[Pi]\)]],
+  " in ",
+  Cell[BoxData[
+      \(TraditionalForm\`A \[Element] \[ScriptCapitalA]\)]],
+  ". Conversely, given an adjunction core satisfying (",
+  ButtonBox[
+  CounterBox["Section", "XRef-Equation-121162956"],
+    ButtonData:>{"Counter" -> "EquationNumbered", "CounterTag" -> 
+      "XRef-Equation-121162956"},
+    ButtonStyle->"XRef"],
+  StyleBox[".", "Nil"],
+  StyleBox[
+  CounterBox["EquationNumbered", "XRef-Equation-121162956"], "Nil"],
+  "\[InvisibleSpace]), we paste to the left of (",
+  ButtonBox[
+  CounterBox["Section", "XRef-Equation-121162956"],
+    ButtonData:>{"Counter" -> "EquationNumbered", "CounterTag" -> 
+      "XRef-Equation-121162956"},
+    ButtonStyle->"XRef"],
+  StyleBox[".", "Nil"],
+  StyleBox[
+  CounterBox["EquationNumbered", "XRef-Equation-121162956"], "Nil"],
+  StyleBox[")", "Nil"],
+  "\[InvisibleSpace] with ",
+  Cell[BoxData[
+      \(TraditionalForm\`X\  = U\ C\)]],
+  ", the diagram "
+}], "TextContinuation"],
+
+Cell[BoxData[
+    FormBox[GridBox[{
+          {\(\(\[ScriptCapitalA](A, B)\)\[CircleTimes]\(\[ScriptCapitalA](C, 
+                A)\)\), \(\[LongRightArrow]\&\(\(1\)\(\[CircleTimes]\)\(\
+\[ScriptCapitalA](\[CurlyEpsilon]\_C, 1)\)\(\ \ \)\)\), \(\(\[ScriptCapitalA](
+                A, B)\)\[CircleTimes]\(\[ScriptCapitalA](F\ U\ C, A)\)\)},
+          {
+            RowBox[{
+              RowBox[{"\[InvisiblePrefixScriptBase]", 
+                SuperscriptBox["\[InvisiblePrefixScriptBase]", 
+                  StyleBox["comp",
+                    FontSlant->"Italic"]]}], "\[DownArrow]"}], "=", 
+            SuperscriptBox["\[DownArrow]", 
+              StyleBox["comp",
+                FontSlant->"Italic"]]},
+          {\(\[ScriptCapitalA](C, 
+              B)\), \(\[LongRightArrow]\+\(\(\ \ \)\(\[ScriptCapitalA](\
+\[CurlyEpsilon]\_C, 1)\)\(\ \ \)\)\), \(\[ScriptCapitalA](F\ U\ C, B)\)}
+          }], TraditionalForm]], "EquationNumbered"],
+
+Cell["\<\
+which commutes by naturality of composition. This leads to the \
+following commutative square.\
+\>", "TextContinuation"],
+
+Cell[BoxData[
+    FormBox[GridBox[{
+          {\(\(\[ScriptCapitalA](A, B)\)\[CircleTimes]\(\[ScriptCapitalA](C, 
+                A)\)\), \(\[LongRightArrow]\&\(\(U\)\(\[CircleTimes]\)\(U\)\(\
+\ \ \)\)\), \(\(\[ScriptCapitalX](U\ A, 
+                U\ B)\)\[CircleTimes]\(\[ScriptCapitalX](U\ C, U\ A)\)\)},
+          {
+            RowBox[{
+              RowBox[{"\[InvisiblePrefixScriptBase]", 
+                SuperscriptBox["\[InvisiblePrefixScriptBase]", 
+                  StyleBox["comp",
+                    FontSlant->"Italic"]]}], "\[DownArrow]"}], "=", 
+            SuperscriptBox["\[DownArrow]", 
+              StyleBox["comp",
+                FontSlant->"Italic"]]},
+          {\(\[ScriptCapitalA](C, 
+              B)\), \(\[LongRightArrow]\+\(\(\ \ \)\(U\)\(\ \ \)\)\), \(\
+\[ScriptCapitalX](U\ C, U\ B)\)}
+          }], TraditionalForm]], "EquationNumbered",
+  CellTags->"XRef-Equation-121172723"],
+
+Cell["We also have the equality", "TextContinuation"],
+
+Cell[BoxData[
+    \(TraditionalForm\`\((I\(\[LongRightArrow]\&j\)\(\[ScriptCapitalA](A, 
+            A)\)\(\[LongRightArrow]\&U\)\(\[ScriptCapitalX](U\ A, 
+            U\ B)\))\) = \((I\(\[LongRightArrow]\&j\)\(\[ScriptCapitalX](
+            U\ A, U\ B)\))\)\)], "EquationNumbered",
+  CellTags->"XRef-Equation-121172748"],
+
+Cell[TextData[{
+  "straight from the definitions (b) and (c). Together (",
+  ButtonBox[
+  CounterBox["Section", "XRef-Equation-121172723"],
+    ButtonData:>{"Counter" -> "EquationNumbered", "CounterTag" -> 
+      "XRef-Equation-121172723"},
+    ButtonStyle->"XRef"],
+  StyleBox[".", "Nil"],
+  StyleBox[
+  CounterBox["EquationNumbered", "XRef-Equation-121172723"], "Nil"],
+  "\[InvisibleSpace]) and (",
+  ButtonBox[
+  CounterBox["Section", "XRef-Equation-121172748"],
+    ButtonData:>{"Counter" -> "EquationNumbered", "CounterTag" -> 
+      "XRef-Equation-121172748"},
+    ButtonStyle->"XRef"],
+  StyleBox[".", "Nil"],
+  StyleBox[
+  CounterBox["EquationNumbered", "XRef-Equation-121172748"], "Nil"],
+  "\[InvisibleSpace]) tell us that ",
+  Cell[BoxData[
+      \(TraditionalForm\`U\)]],
+  " is a ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  "-functor. Now the general diagram (",
+  ButtonBox[
+  CounterBox["Section", "XRef-Equation-121162956"],
+    ButtonData:>{"Counter" -> "EquationNumbered", "CounterTag" -> 
+      "XRef-Equation-121162956"},
+    ButtonStyle->"XRef"],
+  StyleBox[".", "Nil"],
+  StyleBox[
+  CounterBox["EquationNumbered", "XRef-Equation-121162956"], "Nil"],
+  "\[InvisibleSpace]) expresses the ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  "-naturality of ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[Pi]\)]],
+  " in ",
+  Cell[BoxData[
+      \(TraditionalForm\`A\)]],
+  ". By ",
+  "Proposition ",
+  ButtonBox[
+  CounterBox["Section", "XRef-Proposition-121173012"],
+    ButtonData:>{"Counter" -> "Theorem", "CounterTag" -> 
+      "XRef-Proposition-121173012"},
+    ButtonStyle->"XRef"],
+  StyleBox[".", "Nil"],
+  StyleBox[
+  CounterBox["Theorem", "XRef-Proposition-121173012"], "Nil"],
+  "\[InvisibleSpace], we have an adjunction determined uniquely by the core."
+}], "TextContinuation"],
+
+Cell[TextData[{
+  "Writing ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\^rev\)]],
+  " for ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  " with the reversed monoidal structure ",
+  Cell[BoxData[
+      \(TraditionalForm\`A\(\[CircleTimes]\^rev\)B = B\[CircleTimes]A\)]],
+  ", and applying the first part of this proof to the ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\^rev\)]],
+  "-enriched adjunction ",
+  Cell[BoxData[
+      \(TraditionalForm\`\(\[Pi]\^\(-1\)\) : 
+        U\^op \[LeftTee] \(\(F\^op\) : \[ScriptCapitalX]\^op\[LongRightArrow]\
+\[ScriptCapitalA]\^op\)\)]],
+  ", which is the same as an adjunction ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[Pi] : 
+        F \[LeftTee] \(U : \
+\[ScriptCapitalA]\[LongRightArrow]\[ScriptCapitalX]\)\)]],
+  ", we see that it is equivalent to an adjunction core satisfying (",
+  ButtonBox[
+  CounterBox["Section", "XRef-Equation-121163025"],
+    ButtonData:>{"Counter" -> "EquationNumbered", "CounterTag" -> 
+      "XRef-Equation-121163025"},
+    ButtonStyle->"XRef"],
+  StyleBox[".", "Nil"],
+  StyleBox[
+  CounterBox["EquationNumbered", "XRef-Equation-121163025"], "Nil"],
+  "\[InvisibleSpace]).  ",
+  StyleBox["\[EmptySquare]", "QED"]
+}], "Text"],
+
+Cell["", "TextContinuation"],
+
+Cell[TextData[{
+  Cell[TextData[{
+    "Corollary ",
+    
+    CounterBox["Section"],
+    ".",
+    
+    CounterBox["Theorem"],
+    ". "
+  }], "CorollaryLabel",
+    TaggingRules:>{"CellLabel" -> True}],
+  "If ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  " is a poset then adjunction cores are adjunctions."
+}], "Corollary",
+  TaggingRules:>{"ExtraConversionRules" -> {"General" -> {"RestartList" -> 
+    True}}},
+  ParagraphIndent->0,
+  CounterIncrements->"Theorem"],
+
+Cell["", "TextContinuation"],
+
+Cell[TextData[{
+  StyleBox["Proof",
+    FontSlant->"Italic"],
+  " All diagrams, including (",
+  ButtonBox[
+  CounterBox["Section", "XRef-Equation-121162956"],
+    ButtonData:>{"Counter" -> "EquationNumbered", "CounterTag" -> 
+      "XRef-Equation-121162956"},
+    ButtonStyle->"XRef"],
+  StyleBox[".", "Nil"],
+  StyleBox[
+  CounterBox["EquationNumbered", "XRef-Equation-121162956"], "Nil"],
+  "\[InvisibleSpace]), commute in such a ",
+  Cell[BoxData[
+      \(TraditionalForm\`\[ScriptCapitalV]\)]],
+  ".  ",
+  StyleBox["\[EmptySquare]", "QED"]
+}], "TextContinuation"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["B A C K M A T T E R", "BackmatterGroup"],
+
+Cell[CellGroupData[{
+
+Cell["References", "ReferenceSection"],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+  Cell[TextData[{
+    ButtonBox["[1]",
+      ButtonData:>{"CoreAdj.nb", ":bib:KanAdjFun"},
+      ButtonStyle->"RefReturnLink"],
+    " "
+  }], "ReferenceLabel"],
+  Cell[TextData[{
+    StyleBox["D", "RefAuthorFN"],
+    ".",
+    " ",
+    StyleBox["M", "RefAuthorMN"],
+    ".",
+    " ",
+    StyleBox["Kan", "RefAuthorLN"]
+  }], "RefAuthorGroup"],
+  ",",
+  " ",
+  StyleBox["Adjoint functors", "RefTitle"],
+  ",",
+  " ",
+  StyleBox["Transactions of the American Mathematical Society", 
+    "RefJournalTitle"],
+  " ",
+  StyleBox["87", "RefJournalVolume"],
+  " ",
+  "(",
+  StyleBox["1958", "RefYear"],
+  ")",
+  ",",
+  " ",
+  StyleBox["294", "RefFirstPage"],
+  "\[Dash]",
+  StyleBox["329", "RefLastPage"],
+  "."
+}], "Reference",
+  TaggingRules:>{"RefType" -> "Article"},
+  CellTags->"KanAdjFun"],
+
+Cell[TextData[{
+  Cell[TextData[{
+    ButtonBox["[2]",
+      ButtonData:>{"CoreAdj.nb", ":bib:Kelly1969"},
+      ButtonStyle->"RefReturnLink"],
+    " "
+  }], "ReferenceLabel"],
+  Cell[TextData[{
+    StyleBox["G", "RefAuthorFN"],
+    ".",
+    " ",
+    StyleBox["M", "RefAuthorMN"],
+    ".",
+    " ",
+    StyleBox["Kelly", "RefAuthorLN"]
+  }], "RefAuthorGroup"],
+  ",",
+  " ",
+  StyleBox["Adjunction for enriched categories", "RefTitle"],
+  ",",
+  " ",
+  StyleBox["Lecture Notes in Mathematics", "RefJournalTitle"],
+  " ",
+  StyleBox["106", "RefJournalVolume"],
+  " ",
+  "(",
+  StyleBox["Springer-Verlag, 1969", "RefYear"],
+  ")",
+  ",",
+  " ",
+  StyleBox["166", "RefFirstPage"],
+  "\[Dash]",
+  StyleBox["177", "RefLastPage"],
+  "."
+}], "Reference",
+  TaggingRules:>{"RefType" -> "Article"},
+  CellTags->"Kelly1969"],
+
+Cell[TextData[{
+  Cell[TextData[{
+    ButtonBox["[3]",
+      ButtonData:>{"CoreAdj.nb", ":bib:EilKel1966"},
+      ButtonStyle->"RefReturnLink"],
+    " "
+  }], "ReferenceLabel"],
+  Cell[TextData[{
+    StyleBox["S", "RefAuthorFN"],
+    ".",
+    " ",
+    StyleBox["Eilenberg", "RefAuthorLN"]
+  }], "RefAuthorGroup"],
+  " and ",
+  Cell[TextData[{
+    StyleBox["G", "RefAuthorFN"],
+    ".",
+    " ",
+    StyleBox["M", "RefAuthorMN"],
+    ".",
+    " ",
+    StyleBox["Kelly", "RefAuthorLN"]
+  }], "RefAuthorGroup"],
+  ",",
+  " ",
+  StyleBox["Closed categories", "RefTitle"],
+  ",",
+  " ",
+  StyleBox["Proceedings of the Conference on Categorical Algebra (La Jolla, \
+1965)", "RefBookTitle"],
+  ",",
+  " ",
+  StyleBox["Springer-Verlag", "RefPublisher"],
+  ",",
+  " ",
+  StyleBox["Berlin-New York", "RefCity"],
+  ",",
+  " ",
+  StyleBox["1966", "RefYear"],
+  ",",
+  " ",
+  StyleBox["421", "RefFirstPage"],
+  "\[Dash]",
+  StyleBox["526", "RefLastPage"],
+  "."
+}], "Reference",
+  TaggingRules:>{"RefType" -> "InBook"},
+  CellTags->"EilKel1966"],
+
+Cell[TextData[{
+  Cell[TextData[{
+    ButtonBox["[4]",
+      ButtonData:>{"CoreAdj.nb", ":bib:KellyBook"},
+      ButtonStyle->"RefReturnLink"],
+    " "
+  }], "ReferenceLabel"],
+  Cell[TextData[{
+    StyleBox["G", "RefAuthorFN"],
+    ".",
+    " ",
+    StyleBox["M", "RefAuthorMN"],
+    ".",
+    " ",
+    StyleBox["Kelly", "RefAuthorLN"]
+  }], "RefAuthorGroup"],
+  ",",
+  " ",
+  StyleBox["Basic Concepts of Enriched Category Theory", "RefBookTitle"],
+  ",",
+  " ",
+  StyleBox["Cambridge University Press, Lecture Notes in Mathematics 64", 
+    "RefPublisher"],
+  ",",
+  " ",
+  StyleBox["Cambridge", "RefCity"],
+  ",",
+  " ",
+  StyleBox["1982", "RefYear"],
+  ".",
+  " ",
+  Cell[TextData[{
+    ButtonBox["http://www.tac.mta.ca/tac/reprints/articles/10/tr10abs.html",
+      ButtonData:>{
+        URL[ "http://www.tac.mta.ca/tac/reprints/articles/10/tr10abs.html"], 
+        None},
+      ButtonStyle->"Hyperlink"],
+    " "
+  }], "ReferenceSourceURL"]
+}], "Reference",
+  TaggingRules:>{"RefType" -> "WholeBook"},
+  CellTags->"KellyBook"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"4.2 for Macintosh",
+ScreenRectangle->{{43, 1280}, {0, 746}},
+Editable->True,
+ScreenStyleEnvironment->"Screen",
+WindowToolbars->"RulerBar",
+Selectable->True,
+WindowSize->{856, 644},
+WindowMargins->{{1, Automatic}, {Automatic, 2}},
+PrintingCopies->1,
+PrintingStartingPageNumber->1,
+PrintingPageRange->{1, Automatic},
+PageHeaders->{{
+  Inherited, Cell[ "Ross Street", "Header"], Inherited}, {
+    Inherited, Cell[ "The core of adjoint functors", "Header"], Inherited}},
+PrintingOptions->{"PrintingMargins"->{{46.75, 50.375}, {50.375, 80}},
+"PaperOrientation"->"Portrait",
+"PrintCellBrackets"->False,
+"PrintSelectionHighlighting"->False,
+"PrintRegistrationMarks"->False,
+"PrintMultipleHorizontalPages"->False,
+"FirstPageHeader"->False,
+"FirstPageFooter"->True,
+"RestPagesHeader"->True,
+"RestPagesFooter"->True,
+"FacingPages"->True,
+"FirstPageFace"->Right,
+"GraphicsPrintingFormat"->"Automatic",
+"IncludeSpecialFonts"->True,
+"IncludePostScriptResourceDirectives"->True,
+"PostScriptOutputFile":>"Automatic",
+"UsePostScriptOutputFile"->False,
+"UnixShellPrintingCommand"->Automatic,
+"UseUnixShellPrintingCommand"->False,
+"Magnification"->1,
+"CellBackgroundHalftoneDensity"->Automatic,
+"CellBackgroundHalftoneAngle"->Automatic},
+TaggingRules:>{"NotesAsNotes" -> True, "Notes" -> {}},
+Magnification->1.5,
+StyleDefinitions -> "AMS_Journal.nb"
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{
+  "I1"->{
+    Cell[3541, 96, 238, 4, 44, "Institution",
+      CellTags->"I1"]},
+  ":bib:EilKel1966"->{
+    Cell[4355, 129, 1052, 29, 107, "Text",
+      CellTags->{":bib:EilKel1966", ":bib:KanAdjFun", ":bib:Kelly1969"}]},
+  ":bib:KanAdjFun"->{
+    Cell[4355, 129, 1052, 29, 107, "Text",
+      CellTags->{":bib:EilKel1966", ":bib:KanAdjFun", ":bib:Kelly1969"}]},
+  ":bib:Kelly1969"->{
+    Cell[4355, 129, 1052, 29, 107, "Text",
+      CellTags->{":bib:EilKel1966", ":bib:KanAdjFun", ":bib:Kelly1969"}]},
+  ":bib:KellyBook"->{
+    Cell[6993, 228, 287, 9, 29, "Text",
+      CellTags->":bib:KellyBook"]},
+  "XRef-Proposition-121173012"->{
+    Cell[7283, 239, 2046, 68, 112, "Proposition",
+      CounterIncrements->"Theorem",
+      CellTags->"XRef-Proposition-121173012"]},
+  "XRef-Equation-121162956"->{
+    Cell[15185, 518, 1054, 22, 115, "EquationNumbered",
+      CellGroupingRules->"GraphicsGrouping",
+      CellTags->"XRef-Equation-121162956"]},
+  "XRef-Equation-121163025"->{
+    Cell[16242, 542, 1062, 22, 127, "EquationNumbered",
+      CellGroupingRules->"GraphicsGrouping",
+      CellTags->"XRef-Equation-121163025"]},
+  "XRef-Equation-121172723"->{
+    Cell[20311, 649, 913, 19, 113, "EquationNumbered",
+      CellTags->"XRef-Equation-121172723"]},
+  "XRef-Equation-121172748"->{
+    Cell[21283, 672, 321, 5, 59, "EquationNumbered",
+      CellTags->"XRef-Equation-121172748"]},
+  "KanAdjFun"->{
+    Cell[26009, 826, 802, 37, 56, "Reference",
+      CellTags->"KanAdjFun"]},
+  "Kelly1969"->{
+    Cell[26814, 865, 814, 36, 56, "Reference",
+      CellTags->"Kelly1969"]},
+  "EilKel1966"->{
+    Cell[27631, 903, 1032, 47, 55, "Reference",
+      CellTags->"EilKel1966"]},
+  "KellyBook"->{
+    Cell[28666, 952, 1030, 41, 81, "Reference",
+      CellTags->"KellyBook"]}
+  }
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{
+  {"I1", 31514, 1048},
+  {":bib:EilKel1966", 31607, 1051},
+  {":bib:KanAdjFun", 31747, 1054},
+  {":bib:Kelly1969", 31887, 1057},
+  {":bib:KellyBook", 32027, 1060},
+  {"XRef-Proposition-121173012", 32137, 1063},
+  {"XRef-Equation-121162956", 32302, 1067},
+  {"XRef-Equation-121163025", 32479, 1071},
+  {"XRef-Equation-121172723", 32656, 1075},
+  {"XRef-Equation-121172748", 32787, 1078},
+  {"KanAdjFun", 32902, 1081},
+  {"Kelly1969", 32997, 1084},
+  {"EilKel1966", 33093, 1087},
+  {"KellyBook", 33190, 1090}
+  }
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1775, 53, 49, 0, 64, "FrontmatterGroup"],
+
+Cell[CellGroupData[{
+Cell[1849, 57, 46, 0, 98, "Title"],
+
+Cell[CellGroupData[{
+Cell[1920, 61, 1618, 33, 63, "AuthorGroup"],
+Cell[3541, 96, 238, 4, 44, "Institution",
+  CellTags->"I1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[3816, 105, 31, 0, 40, "Date"],
+Cell[3850, 107, 45, 0, 22, "SubjectClassification"],
+Cell[3898, 109, 63, 0, 40, "Keywords"]
+}, Open  ]],
+Cell[3976, 112, 293, 9, 84, "Abstract"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[4318, 127, 34, 0, 64, "MainmatterGroup"],
+Cell[4355, 129, 1052, 29, 107, "Text",
+  CellTags->{":bib:EilKel1966", ":bib:KanAdjFun", ":bib:Kelly1969"}],
+Cell[5410, 160, 28, 0, 29, "TextContinuation"],
+Cell[5441, 162, 337, 14, 29, "Text"],
+
+Cell[CellGroupData[{
+Cell[5803, 180, 394, 14, 26, "Item1Numbered",
+  CounterAssignments->{{"Item1Numbered", 0}}],
+Cell[6200, 196, 545, 18, 26, "Item1Numbered"]
+}, Open  ]],
+Cell[6760, 217, 199, 7, 29, "TextContinuation"],
+Cell[6962, 226, 28, 0, 29, "TextContinuation"],
+Cell[6993, 228, 287, 9, 29, "Text",
+  CellTags->":bib:KellyBook"],
+Cell[7283, 239, 2046, 68, 112, "Proposition",
+  CounterIncrements->"Theorem",
+  CellTags->"XRef-Proposition-121173012"],
+Cell[9332, 309, 28, 0, 29, "TextContinuation"],
+
+Cell[CellGroupData[{
+Cell[9385, 313, 677, 28, 34, "Definition",
+  CounterIncrements->"Theorem"],
+Cell[10065, 343, 921, 32, 26, "Item1Numbered"],
+Cell[10989, 377, 479, 17, 26, "Item1Numbered"]
+}, Open  ]],
+Cell[11483, 397, 28, 0, 29, "TextContinuation"],
+Cell[11514, 399, 69, 0, 29, "Text"],
+Cell[11586, 401, 199, 6, 26, "Item2Numbered",
+  CounterAssignments->{{"Item2Numbered", 0}}],
+Cell[11788, 409, 198, 3, 52, "Equation"],
+Cell[11989, 414, 171, 6, 26, "Item2Numbered"],
+Cell[12163, 422, 203, 3, 57, "Equation"],
+Cell[12369, 427, 220, 6, 26, "Item2Numbered"],
+Cell[12592, 435, 305, 5, 54, "Equation"],
+Cell[12900, 442, 220, 6, 26, "Item2Numbered"],
+Cell[13123, 450, 318, 5, 57, "Equation"],
+Cell[13444, 457, 16, 0, 29, "Text"],
+Cell[13463, 459, 494, 14, 81, "Text"],
+Cell[13960, 475, 28, 0, 29, "TextContinuation"],
+
+Cell[CellGroupData[{
+Cell[14013, 479, 1169, 37, 60, "Theorem",
+  CounterIncrements->"Theorem"],
+Cell[15185, 518, 1054, 22, 115, "EquationNumbered",
+  CellGroupingRules->"GraphicsGrouping",
+  CellTags->"XRef-Equation-121162956"],
+Cell[16242, 542, 1062, 22, 127, "EquationNumbered",
+  CellGroupingRules->"GraphicsGrouping",
+  CellTags->"XRef-Equation-121163025"]
+}, Open  ]],
+Cell[17319, 567, 28, 0, 29, "TextContinuation"],
+Cell[17350, 569, 1876, 53, 81, "TextContinuation"],
+Cell[19229, 624, 946, 18, 119, "EquationNumbered"],
+Cell[20178, 644, 130, 3, 29, "TextContinuation"],
+Cell[20311, 649, 913, 19, 113, "EquationNumbered",
+  CellTags->"XRef-Equation-121172723"],
+Cell[21227, 670, 53, 0, 29, "TextContinuation"],
+Cell[21283, 672, 321, 5, 59, "EquationNumbered",
+  CellTags->"XRef-Equation-121172748"],
+Cell[21607, 679, 1851, 54, 81, "TextContinuation"],
+Cell[23461, 735, 1255, 34, 81, "Text"],
+Cell[24719, 771, 28, 0, 29, "TextContinuation"],
+Cell[24750, 773, 487, 19, 34, "Corollary",
+  CounterIncrements->"Theorem"],
+Cell[25240, 794, 28, 0, 29, "TextContinuation"],
+Cell[25271, 796, 567, 17, 29, "TextContinuation"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[25875, 818, 46, 0, 64, "BackmatterGroup"],
+
+Cell[CellGroupData[{
+Cell[25946, 822, 38, 0, 116, "ReferenceSection"],
+
+Cell[CellGroupData[{
+Cell[26009, 826, 802, 37, 56, "Reference",
+  CellTags->"KanAdjFun"],
+Cell[26814, 865, 814, 36, 56, "Reference",
+  CellTags->"Kelly1969"],
+Cell[27631, 903, 1032, 47, 55, "Reference",
+  CellTags->"EilKel1966"],
+Cell[28666, 952, 1030, 41, 81, "Reference",
+  CellTags->"KellyBook"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

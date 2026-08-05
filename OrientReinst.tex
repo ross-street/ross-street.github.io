@@ -1,0 +1,1105 @@
+%Document Class
+\documentclass[a4paper,12pt,reqno]{amsart}
+
+
+  \headheight0.6in
+  \headsep22pt
+  \textheight23cm
+  \topmargin-1.7cm
+  \oddsidemargin 0.5cm
+  \evensidemargin0.5cm
+  \textwidth15.3cm
+
+%Packages 
+\usepackage{amscd,amssymb,amsmath,amsfonts,amsthm, mathrsfs,xspace}
+\usepackage{graphicx}
+\usepackage{verbatim,enumerate,paralist}
+\usepackage{textcomp}
+%\usepackage[authoryear]{natbib}
+\usepackage[pagebackref,colorlinks]{hyperref}
+\hypersetup{%
+  urlcolor=blue,linkcolor=blue,citecolor=blue
+}
+\usepackage{pdfpages}
+%\usepackage{pdfsync}%  remove this when finalised
+
+\usepackage[T1]{fontenc}
+\usepackage[all,2cell,poly,knot,tips]{xy}
+\UseAllTwocells
+\CompileMatrices
+
+\def\blue{\color{blue}}
+\def\red{\color{red}}
+\def\black{\color{black}}
+
+%\usepackage{xypdf} % may not be necessary
+\setlength{\marginparwidth}{2cm}
+\newcommand{\missing}[1]{\marginpar{\color{red}missing:\\#1}}
+
+%Theoretic Environment Setup
+\newcounter{Definitioncount}
+\setcounter{Definitioncount}{0}
+
+\newtheorem*{Theorem}{Theorem}% no counter
+\newtheorem{theorem}{Theorem}[section] % with counter
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+% \newtheorem*{Proposition}{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+% \newtheorem*{Corollary}{Corollary}% no counter
+
+\newtheorem*{Conjecture}{Conjecture}% no counter
+\newtheorem*{Lemma}{Lemma}% no counter
+
+\theoremstyle{definition}
+\newtheorem*{Definition}{Definition}% no counter
+\newtheorem*{Observation}{Observation}% no counter
+\newtheorem*{Observations}{Observations}% no counter
+\newtheorem*{Remark}{Remark}% no counter
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{Example}{Example}% no counter
+\newtheorem{example}[theorem]{Example}
+
+\renewcommand{\theexample}{\arabic{example}}
+
+\newtheoremstyle{fact}{\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{Fact}
+\theoremstyle{fact}
+\newtheorem*{Fact}{Fact}% no counter
+
+\newtheoremstyle{genquest}{\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{General Question}
+\theoremstyle{genquest}
+\newtheorem*{GenQuest}{General Question}% no counter
+
+% use \newtheoremstyle to underline the header
+\newtheoremstyle{step}{2\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{\underline{Step~\thestep}}
+\theoremstyle{step}
+\newtheorem{step}{Step}[subsection]
+\renewcommand{\thestep}{\arabic{step}}
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\Lra}{\Longrightarrow}
+\newcommand{\Lla}{\Longleftarrow}
+\newcommand{\ldual}[1]{\mathord{{\let\nolimits\relax\sideset{^\wedge}{}{#1}}}}
+\newcommand{\laction}[2]{\mathord{{\let\nolimits\relax\sideset{^{#1}}{}{#2}}}}
+\newcommand{\conj}[2]{\mathord{{\let\nolimits\relax\sideset{^{#1}}{}{#2}}}}
+\newcommand{\xylongto}[2][2pt]{{\UseTips{}\xymatrix @C+#1{ \ar[r]^{#2}&}}}
+\newcommand{\ola}{\overleftarrow}
+\newcommand{\ora}{\overrightarrow}
+
+\DeclareMathOperator{\im}{im}
+
+%% Script Shortcuts 
+\def\CA{{\mathscr A}}
+\def\CB{{\mathscr B}}
+\def\CC{{\mathscr C}}
+\def\CD{{\mathscr D}}
+\def\CE{{\mathscr E}}
+\def\CF{{\mathscr F}}
+\def\CG{{\mathscr G}}
+\def\CH{{\mathscr H}}
+\def\CI{{\mathscr I}}
+\def\CJ{{\mathscr J}}
+\def\CK{{\mathscr K}}
+\def\CL{{\mathscr L}}
+\def\CM{{\mathscr M}}
+\def\CN{{\mathscr N}}
+\def\CO{{\mathscr O}}
+\def\CP{{\mathscr P}}
+\def\CQ{{\mathscr Q}}
+\def\CR{{\mathscr R}}
+\def\CS{{\mathscr S}}
+\def\CT{{\mathscr T}}
+\def\CU{{\mathscr U}}
+\def\CV{{\mathscr V}}
+\def\CW{{\mathscr W}}
+\def\CX{{\mathscr X}}
+\def\CY{{\mathscr Y}}
+\def\CZ{{\mathscr Z}}
+\def\ordm{{\mathbf{m}}}
+\def\ordn{{\mathbf{n}}}
+\def\ordk{{\mathbf{k}}}
+
+\DeclareMathOperator{\Lan}{Lan}
+%\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Skew}{Skew}
+\DeclareMathOperator{\Mnd}{Mnd}
+\DeclareMathOperator{\LB}{LBrMon}
+\DeclareMathOperator{\Span}{Span}
+
+\newcommand{\K}{\ensuremath{\mathscr K}\xspace}
+\newcommand{\M}{\ensuremath{\mathscr M}\xspace}
+
+\renewcommand{\L}{\ensuremath{\LB(\M)}\xspace}
+
+%\newcommand{\Span}{\textnormal{Span}\xspace}
+
+\newcommand{\ox}{\otimes}
+\newcommand{\x}{\times}
+
+\newcommand{\op}{\ensuremath{^{\textnormal{op}}}}
+
+
+\def\theequation{{\thesection.\arabic{equation}}}
+
+
+\begin{document}
+
+\title{Orientals reinstated}
+
+\author{Stephen Lack}
+\address{Department of Mathematics, Macquarie University, NSW 2109, Australia}
+\email{steve.lack@mq.edu.au}
+
+\author{Ross Street}
+\address{Department of Mathematics, Macquarie University, NSW 2109, Australia}
+\email{ross.street@mq.edu.au}
+
+\thanks{Both authors gratefully acknowledge the support of the Australian Research Council Discovery Grant DP1094883; Lack acknowledges with equal gratitude the support of an Australian Research Council Future Fellowship}
+
+\date{\today}
+\maketitle
+
+\section{Introduction}
+
+Monoidal categories \cite{CWM} are important in the large as bases for enriched category theory \cite{KellyBook} 
+and other purposes \cite{dlVP}.  
+They are also important in the small as mathematical structures themselves: in their abstract form they are pseudomonoids
+(or monoidales) in monoidal bicategories \cite{{DaySt1997}, {DMcCS}}. 
+It is this small viewpoint which drove the generalization of monoidal category to skew-monoidal category \cite{Szl2012}.
+In particular, the relevant mathematical structure there is bialgebroid.
+We \cite{{SkMon}, {SkEH}} have developed that viewpoint somewhat in the setting of quantum categories.
+However, we also have found \cite{scc} that enriched category theory develops naturally with a skew-monoidal base.
+
+At the outset \cite{{Rice}, {Kelly1964}}, partly as a test for correctness of axioms, lay the question of coherence in monoidal categories. 
+That is, which diagrams involving the structural isomorphisms (constraints) commute? 
+A deeper understanding \cite{aac} of coherence questions for categorical structures was that they involved knowledge 
+of the free structures. 
+In some interesting cases (called ``clubbable''), it was seen that the free structures on any category could essentially be 
+constructed from the free structure on a single generating object (that is, on the one-object discrete category $\mathbf{1}$).
+Skew-monoidal categories fall under this classification.
+
+The notion of free needs to be made clear. One meaning is that we consider the underlying 2-functor from the 
+2-category of structures, with morphisms preserving structure up to coherent isomorphism, to the 2-category of categories;
+the left biadjoint to this gives the free structure on each category. These free structures are only unique up to equivalence.
+In the case of monoidal categories, we can take the free structure on $\mathbf{1}$ simply to be the discrete category $\mathbb{N}$
+with the natural numbers as objects and addition as the tensor product. One might call this notion of free {\em bicategorical}.   
+
+Another meaning is that we consider the underlying 2-functor from the 2-category of structures, with morphisms {\em strictly}
+preserving the structure, to the 2-category of categories; the left adjoint to this gives the free structure on each category. 
+These free structures are unique up to isomorphism. This is freeness in the {\em strict} sense. A discussion of these matters can be found in \cite{btc}.
+
+The present paper describes a model for the free skew-monoidal category $\mathrm{Fsk}$ on $\mathbf{1}$ in the strict sense.
+Our construction involves the orientals of \cite{aos} and the Tamari lattices of \cite{HT}.
+
+\section{Axioms, non-axioms and an important example}
+
+A {\em (left) skew-monoidal category} is a category $\CC$ equipped with an object $I$ (called the {\em unit} or {\em skew unit}),
+a functor $\otimes : \CC \times \CC \lra \CC$ (called {\em tensor product}), and
+natural families of {\em lax constraints} having the directions 
+\begin{equation}
+\alpha_{XYZ} : (X\otimes Y)\otimes Z \lra X\otimes (Y\otimes Z)
+\end{equation}
+\begin{equation}
+\lambda_X : I\otimes X \lra X
+\end{equation}
+\begin{equation}
+\rho_X :  X \lra X\otimes I
+\end{equation}
+subject to five conditions: 
+
+\begin{equation}\label{pentagon}
+\xymatrix{
+& (W\otimes X)\otimes (Y\otimes Z) \ar[rd]^-{{\alpha_{W,X,Y\otimes Z}}}  & \\
+((W\otimes X)\otimes Y)\otimes Z \ar[ru]^-{{\alpha_{W\otimes X,Y,Z}}} \ar[d]_-{{\alpha_{W,X,Y}} \otimes 1_Z} & & W\otimes (X\otimes (Y\otimes Z))  \\
+(W\otimes (X\otimes Y))\otimes Z \ar[rr]_-{{\alpha_{W,X\otimes Y,Z}}} & & W\otimes ((X\otimes Y)\otimes Z) \ar[u]_-{1_W\otimes {\alpha_{X, Y,Z}}} }
+\end{equation}
+
+\begin{equation}\label{leftunit}
+\xymatrix{
+(I\otimes X)\otimes Y \ar[rd]_{\lambda_{X} \otimes 1_Y}\ar[rr]^{\alpha_{I,X,Y}}   && I\otimes (X\otimes Y) \ar[ld]^{\lambda_{X\otimes Y}} \\
+& X\otimes Y  &
+}
+\end{equation}
+
+\begin{equation}\label{midunit}
+\xymatrix{
+(X\otimes I)\otimes Y \ar[rr]^-{\alpha_{X,I,Y}} && X\otimes (I\otimes Y) \ar[d]^-{1_X\otimes \lambda_Y} \\
+X\otimes Y \ar[u]^-{\rho_X \otimes 1_Y} \ar[rr]_-{1_{X\otimes Y}} && X\otimes Y}
+\end{equation}
+
+\begin{equation}\label{rightunit}
+\xymatrix{
+(X\otimes Y)\otimes I \ar[rr]^{\alpha_{I,X,Y}}   && X\otimes (Y\otimes I)  \\
+& X\otimes Y \ar[lu]^{\rho_{X \otimes Y}}  \ar[ru]_{1_X\otimes \rho_Y}&
+}
+\end{equation}
+
+\begin{equation}\label{unitunit}
+\xymatrix{
+I \ar[rd]_{\rho_I}\ar[rr]^{1_I}   && I  \\
+& I\otimes I \ar[ru]_{\lambda_I} & .
+}
+\end{equation}
+
+Notice that we obtain idempotents
+$$\epsilon^{\ell}_{X,Y} : (X\otimes I) \otimes Y \stackrel{\alpha_{X,I,Y}} \lra X\otimes (I \otimes Y)
+\stackrel{1_X \otimes \lambda_X} \lra X\otimes Y
+\stackrel{\rho_X \otimes 1_Y} \lra (X\otimes I)\otimes Y \ ,$$
+$$\epsilon^{r}_{X,Y} : X\otimes (I \otimes Y) \stackrel{1_X \otimes \lambda_X} \lra X\otimes Y
+\stackrel{\rho_X \otimes 1_Y} \lra (X\otimes I)\otimes Y \stackrel{\alpha_{X,I,Y}} \lra X\otimes (I \otimes Y)$$
+and
+$$\epsilon_0 : I\otimes I \stackrel{\lambda_I} \lra I \stackrel{\rho_I}\lra I\otimes I $$
+which are not identities in general. Moreover, 
+$$\alpha_{X,I,Y} : ((X\otimes I) \otimes Y, \epsilon^{\ell}_{X,Y}) \lra (X\otimes (I \otimes Y), \epsilon^{r}_{X,Y})$$
+is a morphism of idempotents. 
+
+We shall give an example of a skew-monoidal category that plays an important role in this paper.
+Along with it, we fix some notation.
+Recall the algebraists' simplicial category $\mathbf{\Delta}$.
+The objects are the finite ordinals $$\mathbf{n} = \{0,1,\dots ,n-1\} \ .$$
+The morphisms are order-preserving functions $\xi : \mathbf{m} \lra \mathbf{n}$. 
+For each such function, we put
+$$\xi_{\ell} = \{i\in \mathbf{m-1} : \xi (i) = \xi (i+1)\}$$
+and
+$$\xi_{r} = \{j \in \mathbf{n} : j \notin \mathrm{im} \xi \} \ .$$
+Notice that $\xi_{\ell} =\varnothing$ means $\xi$ is injective and $\xi_{r} =\varnothing$ means $\xi$ is surjective. 
+Then there is a unique factorization $\xi = \partial \circ \sigma$ where 
+$\sigma_{\ell} = \xi_{\ell}$, $\sigma_{r} = \varnothing$, $\partial_{\ell} = \varnothing$, and $\partial_{r} = \xi_r$.  
+
+It is well known \cite{osed} that $\mathbf{\Delta}$ is the free strict monoidal category containing a monoid.
+The unit object is $\mathbf{0}$ and tensor product is ordinal sum $\mathbf{m}\otimes \mathbf{n} = \mathbf{m+n}$, $\xi\otimes \zeta = \xi \mathbf{+} \zeta$.
+The generic monoid is $\mathbf{1}$ with the only multiplication and unit possible.
+
+Let $\mathbf{\Delta}_{\bot}$ denote the subcategory of $\mathbf{\Delta}$ consisting of non-empty finite ordinals $\mathbf{n}$
+and first-element-preserving functions; that is, the $\xi$ with $0\notin \xi_r$.
+The tensor product on 
+$\mathbf{\Delta}$ restricts to $\mathbf{\Delta}_{\bot}$ 
+but we replace the unit by the terminal object $\mathbf{1}$.
+This gives a skew-monoidal category with identity associativity constraint, where 
+$$\lambda_{\mathbf{n}} : \mathbf{1+n} \lra \mathbf{n}$$ is the surjection with 
+$(\lambda_{\mathbf{n}})_{\ell} = \{0\}$, and 
+$$\rho_{\mathbf{n}} : \mathbf{n} \lra \mathbf{n+1}$$ is the injection with
+$(\rho_{\mathbf{n}})_{r} = \{n\}$.
+
+When we write $\mathbf{\Delta}_{\bot}$ in future, we mean it equipped with the above skew-monoidal structure. 
+
+Each morphism $\xi : \mathbf{m}\lra \mathbf{n}$ in $\mathbf{\Delta}_{\bot}$
+has a right adjoint $\xi^* : \mathbf{n}\lra \mathbf{m}$ as order-preserving functions. 
+The formula is
+\begin{equation}\label{radj}
+\xi^*(j) = \mathrm{max}\{i : \xi(i) \le j \} \ .
+\end{equation}
+
+Let $\mathbf{\Delta}_{\top}$ denote the subcategory of $\mathbf{\Delta}$ consisting of non-empty finite ordinals $\mathbf{n}$
+and last-element-preserving functions.
+This becomes a right skew-monoidal category in the obvious way; in fact, in a dual way as reinforced by the next result.
+
+Each morphism $\xi : \mathbf{m}\lra \mathbf{n}$ in $\mathbf{\Delta}_{\top}$
+has a left adjoint $\xi^! : \mathbf{n}\lra \mathbf{m}$ as order-preserving functions. 
+The formula is
+\begin{equation}\label{ladj}
+\xi^!(j) = \mathrm{min}\{i : j \le \xi(i) \} \ .
+\end{equation}
+
+\begin{proposition}\label{bottop} 
+Formula \eqref{radj} defines an isomorphism of categories
+$$(\Delta_{\bot})^{\mathrm{op}} \cong \Delta_{\top} \ .$$ 
+If $\zeta : \mathbf{m}\lra \mathbf{n}$ in $\mathbf{\Delta}_{\top}$ is
+the image of $\xi : \mathbf{n}\lra \mathbf{m}$ in $\mathbf{\Delta}_{\bot}$ under the isomorphism then 
+$$ \zeta_r = \xi_{\ell}  \ \text{  and  } \  \zeta_{\ell} = \{i-1 : i\in \xi_r \}  \ .$$ 
+\end{proposition}
+\begin{proof}
+A functor between finite ordinals preserves limits if and only if it preserves last element.
+A functor between finite ordinals preserves colimits if and only if it preserves first element.
+So the isomorphism follows from the adjoint functor theorem and the fact that the right adjoint of a functor is the left Kan extension of the identity along the functor. 
+The second sentence follows using composition of adjunctions $\tau \dashv \sigma \dashv \partial$
+where $\partial$ and $\tau$ are injective, $\sigma$ is surjective, $\partial_r = \sigma_{\ell} = \{i\}$ and $\tau_r = \{i+1\}$
+for some natural number $i$.      
+\end{proof}
+
+\section{Lax monoidal categories}
+
+A {\em lax-monoidal category} is a category $\CC$ equipped with an object $I$ (called the {\em unit} or {\em lax unit}),
+a functor $\otimes : \CC \times \CC \lra \CC$ (called {\em tensor product}), and
+natural families of {\em lax constraints} having the directions 
+\begin{equation}
+\alpha_{XYZ} : (X\otimes Y)\otimes Z \lra X\otimes (Y\otimes Z)
+\end{equation}
+\begin{equation}
+\lambda_X : I\otimes X \lra X
+\end{equation}
+\begin{equation}
+\rho_X :  X\otimes I \lra X
+\end{equation}
+subject to five conditions: 
+
+\begin{equation}\label{pentagon}
+\xymatrix{
+& (W\otimes X)\otimes (Y\otimes Z) \ar[rd]^-{{\alpha_{W,X,Y\otimes Z}}}  & \\
+((W\otimes X)\otimes Y)\otimes Z \ar[ru]^-{{\alpha_{W\otimes X,Y,Z}}} \ar[d]_-{{\alpha_{W,X,Y}} \otimes 1_Z} & & W\otimes (X\otimes (Y\otimes Z))  \\
+(W\otimes (X\otimes Y))\otimes Z \ar[rr]_-{{\alpha_{W,X\otimes Y,Z}}} & & W\otimes ((X\otimes Y)\otimes Z) \ar[u]_-{1_W\otimes {\alpha_{X, Y,Z}}} }
+\end{equation}
+
+\begin{equation}\label{leftunit}
+\xymatrix{
+(I\otimes X)\otimes Y \ar[rd]_{\lambda_{X} \otimes 1_Y}\ar[rr]^{\alpha_{I,X,Y}}   && I\otimes (X\otimes Y) \ar[ld]^{\lambda_{X\otimes Y}} \\
+& X\otimes Y  &
+}
+\end{equation}
+
+\begin{equation}\label{midunit}
+\xymatrix{
+(X\otimes I)\otimes Y \ar[d]_-{\rho_X \otimes 1_Y} \ar[rr]^-{\alpha_{X,I,Y}} && X\otimes (I\otimes Y) \ar[d]^-{1_X\otimes \lambda_Y} \\
+X\otimes Y  \ar[rr]_-{1_{X\otimes Y}} && X\otimes Y}
+\end{equation}
+
+\begin{equation}\label{rightunit}
+\xymatrix{
+(X\otimes Y) \ar[rd]_{\rho_{X \otimes Y}}\otimes I \ar[rr]^{\alpha_{I,X,Y}}   && X\otimes (Y\otimes I)  \ar[ld]^{1_X\otimes \rho_Y}  \\
+& X\otimes Y &
+}
+\end{equation}
+
+\begin{equation}\label{unitunit}
+\xymatrix{
+I\otimes I \ar[rr]^{\lambda_I = \rho_I}   & & I \ .
+}
+\end{equation}
+
+\begin{example}\label{Dbt}
+Let $\Delta_{\bot \top}$ denote the subcategory of the algebraic simplicial category 
+$\Delta$ with those objects 
+$\ordm$ with $1\le m$ and morphisms those which preserve top and bottom element.  
+Actually, $\Delta_{\bot \top}\cong \Delta^{\mathrm{op}}$. 
+The tensor product of $\Delta$, which is ordinal sum, restricts to $\Delta_{\bot \top}$.
+As lax unit object for $\Delta_{\bot \top}$ we take $\mathbf{1}$.
+We have morphisms 
+$\lambda_{\mathbf{m}} = \sigma_0 : \mathbf{1+m} \lra \mathbf{m}$ and $\rho_{\mathbf{m}} = \sigma_{\mathbf{m-1}} : \mathbf{m +1} \lra \mathbf{m}$
+which are the order-preserving surjections equating $0$ and $1$, and equating 
+$m-1$ and $m$, respectively.
+The axioms for a lax-monoidal category are easily checked.   
+\end{example}
+
+\section{Bracketing functions}\label{Bf}
+
+A {\em left bracketing function} (lbf) is a function $\ell:\ordm \lra \ordm$ satisfying
+\begin{itemize}
+\item[(i)] $\ell(j) \le j$ for all $j\in \ordm$;
+\item[(ii)] $\ell(j)\le i \le j<m$ implies $\ell(j)\le \ell(i)$;
+\item[(iii)] $\ell(m-1)=m-1$.
+\end{itemize}
+Some consequences are:
+\begin{itemize}
+\item[(iv)] $\ell(0) =0$;
+\item[(v)] $\ell$ is idempotent.
+\end{itemize}
+As with any functions into a linearly ordered set, the lbf are ordered using value-wise order in $\ordm$.
+This is the Tamari lattice $\mathrm{Tam}_m$; see \cite{{Tamari51},{Tamari62}, {HT}} .
+
+A {\em right bracketing function} (rbf) is a function $r:\ordm \lra \ordm$ satisfying
+\begin{itemize}
+\item[(i)] $i \le r(i)$ for all $i\in \ordm$;
+\item[(ii)] $0\le i\le j \le r(i)$ implies $r(j)\le r(i)$;
+\item[(iii)] $r(0)=0$.
+\end{itemize}
+Some consequences are:
+\begin{itemize}
+\item[(iv)] $r(m-1) =m-1$;
+\item[(v)] $r$ is idempotent.
+\end{itemize}
+
+\begin{proposition}\label{bijbf}
+The following equations determine a bijection between lbfs $\ell:\ordm \lra \ordm$ 
+and rbfs $r:\ordm \lra \ordm$: for $0<i,j<m-1$,
+$$r(i) = \mathrm{min} \{j : \ell(j) < i \le j \}$$
+$$\ell(j) = \mathrm{max} \{i : i \le j < r(i) \} .$$
+\end{proposition}
+\begin{proof} 
+Given an lbf $\ell$, let $r$ be defined as in the proposition 
+together with the requirement that it should preserve $0$ and $m-1$. 
+We need to see first that $r$ is an $rbf$.
+As every $j$ with $\ell(j) < i \le j$ has $i \le j$, we obtain $i \le r(i)$.  
+To prove property (ii) for $r$, suppose $i\le j\le r(i)$.
+Then $\ell(k)<i \le k$ implies $j\le k$. If $r(i) < r(j)$ then there exists
+$k$ with $\ell(k)< i\le k$ but not $\ell(k)< j\le k$. Since we know $j\le k$,
+we must have $j \le \ell(k)$. Then we have the contradiction
+$i\le j\le \ell(k) < i$. So $r(j) \le r(i)$ as required.
+
+Now we need to show that we can recover $\ell$ from the second formula in the
+proposition. We need to see that $\ell(j)$ is the biggest $i$ such that $i\le j$ and, if
+$\ell(k) < i \le k$, then $j<k$. To see that $i = \ell(j)$ does have the property notice that
+$\ell(j) \le j$ by (i) for $\ell$, and, by (ii) for $\ell$, $\ell(k) < \ell(j) \le k$ and 
+$k\le j$ would imply $\ell(j)\le \ell(k)$, a contradiction. 
+To see that $\ell(j)$ is the biggest such $i$, suppose we had
+$\ell(j) < i$ with $i\le j$ and $\ell(k) < i \le k$ implying $j<k$. Then $j$ is such a $k$.
+So $j<j$, a contradiction.
+
+This proves half of the proposition. The other half is by left-right symmetry.  
+\end{proof}
+
+When $\ell$ and $r$ correspond under the bijection of Proposition~\ref{bijbf}
+we put $\ora{\ell} = r$ and $\ell=\ola{r}$.
+
+We emphasise that $\ell(0)=0=r(0)$, $\ell(m-1)=m-1=r(m-1)$ and, for $0<i,j<m-1$,
+we have $\ell(j)< m-1$ and $r(i)>0$. 
+Yet we can have $\ell(j)=0$ 
+(when $\{i : i \le j < r(i) \}=\varnothing$) or $r(i)=m-1$ 
+(when $\{j : \ell(j) < i \le j \}=\varnothing$).
+
+\begin{proposition}\label{ordbf}
+The bijection of Proposition~\ref{bijbf} is order preserving.
+\end{proposition}
+\begin{proof}
+Assume $\ell \le \ell_1$. Then $\{ j : \ell_1 (j)< i\le j \} \subseteq \{j: \ell (j)< i \le j\} $.
+So $\ora{\ell} \le \ora{\ell_1}$.
+\end{proof}
+
+Consequently, we may consider the elements of 
+$\mathrm{Tam}_m$ to be rbfs rather than lbfs.
+
+\begin{proposition}\label{fixbf}
+Suppose $\ell$ and $r$ correspond under the bijection of Proposition~\ref{bijbf}.
+\begin{itemize}
+\item[(i)] For $0<i<m-1$, $\ell(i)=i$ if and only if $r(i) \neq i$.
+\item[(ii)] For $0<i\le j <m-1$, if $\ell (j) = i$ then $r(i) \neq j$.
+\item[(iii)] If $0<i$ and $r(i)<m-1$ then $\ell r(i) \le \ell(i-1)$.
+\item[(iv)] If $j<m-1$ and $0<\ell(j)$ then $r(j+1) \le r\ell(j)$. 
+\item[(v)] If $0<i$, $0<\ell(i-1)$ and $r(i)<m-1$ then $\ell r(i) \neq \ell(i-1)$
+implies $r(i) = r\ell(i-1)$.  
+\end{itemize}
+\end{proposition}
+\begin{proof}
+For (i) we have $\ell(i)\neq i$ iff $\ell(i)<i$ iff $\ell(i)<i\le i$ iff $\ora{\ell}(i)\le i$
+iff $\ora{\ell}(i) = i$.   
+
+For (ii), if $i=\ell(j)$ then $j$ cannot be a $k$ with $\ell(k)<i \le k$ (let alone the first such).
+So $\ora{\ell}(i) \neq j$. 
+
+For (iii), since $r(i)<m-1$, $r(i)$ is a $k$ satisfying $\ell(k) < i\le k$ so $\ell r(i)<i$;
+so $\ell r(i)\le i-1$. But, by property (ii) for a lbf, 
+$\ell r(i)\le i-1< i \le r(i)$ implies $\ell r(i)\le \ell (i-1)$. 
+
+Then (iv) follows from (iii) by left-right symmetry. 
+
+Now to (vi). Assume $0<i$, $0<\ell(i-1)$, $r(i)<m-1$ and $\ell r(i) \neq \ell(i-1)$.
+By (ii), $\ell r(i) < \ell(i-1)$. Now $r\ell(i-1)$ is the minimum $j$ with 
+$\ell(j)<\ell(i-1)\le j$. Yet $\ell r(i) < \ell(i-1) \le r(i)$. So $r\ell(i-1)\le r(i)$.
+But, by (iv), $r(i)\le r\ell(i-1)$. So $r(i)= r\ell(i-1)$. 
+\end{proof}
+
+\begin{proposition}\label{lbf}
+Suppose $\xi : \ordm \lra \ordn$ preserves order and top and bottom element
+so that there are adjoints $\xi^! \dashv \xi \dashv \xi^*$. 
+If $\ell:\ordm \lra \ordm$ is an lbf then so is $\xi \ell \xi^*:\ordn \lra \ordn$. 
+If $r:\ordm \lra \ordm$ is an rbf then so is $\xi r \xi^!:\ordn \lra \ordn$.
+\end{proposition}
+\begin{proof} 
+Clearly $\ell_1=\xi \ell \xi^*$ preserves top element since all three factors do. Also $\ell_1(j) = \xi \ell \xi^*(j) \le \xi \xi^* (j) \le j$ using that (i) holds for $\ell$ and $\xi$ preserves order. 
+It remains to prove (ii) for $\ell_1$.
+Now $\ell_1(j) \le i \le j$ implies $\ell\xi^*(j) \le \xi^*(i) \le \xi^*(j)$ which implies, using (ii) for $\ell$, $\ell\xi^*(j) \le \ell\xi^*(i)$. 
+However $\xi$ is order preserving, so $\ell_1(j)\le \ell_1(i)$.
+The result for $r$ is obtained left-right symmetrically.
+\end{proof}
+
+\section{Motivation, orientals and the Tamari lattice}
+
+Our goal is to discover a nice model for the free skew-monoidal category $\mathrm{Fsk}$ generated by a single object $X$. 
+The objects are clearly words in the letters $I$ and $X$, bracketed meaningfully pairwise. 
+For example, there is the object 
+\begin{equation}
+(((X(IX))(XX))X) \ ;
+\end{equation}
+but we can write this as a triangulated polygon
+\begin{equation}\label{heptagon1}
+\xymatrix{
+& 0 \ar[rr]{} \ar[rrrd]{} \ar[rddd]{}  \ar[ld]_{X}  & & 6  &  \\
+1 \ar[rrdd]{} \ar[d]_{I} & & & & 5 \ar[lu]_{X} \\
+2  \ar[rrd]_{X} & & & & 4  \ar[u]_{X} \\
+& &  3 \ar[rruu]{}  \ar[rru]_{X} &
+}
+\end{equation}
+where the edges $i\lra i+1$ are labelled by the symbols $I$ or $X$.
+We can omit the labels $I$ since anything not labelled by $X$ can be understood to be labelled by $I$.
+
+We shall use the convention that each subset $x=\{x_0,x_1, \dots ,x_r\}$ of $\mathbf{m}\in \mathbf{\Delta}$ organizes itself as a list 
+$x=(x_0x_1\dots x_r)$ with $x_0<x_1< \dots <x_r$. 
+We may omit the curly brackets around some sets of such subsets and may also omit the commas between elements. 
+For $0\le p \le r$, the {\em $p$-th face} $x\partial_p$ of 
+$x$ is obtained by deleting $x_p$ from $x$.
+The face is called {\em odd} or {\em even} according as $p$ is odd or even.
+We write $x^-$ for the set of odd faces of $x$ and we write $x^+$ for the set of even faces. 
+Because we start with an even $0$, there is one more even than odd face.
+If $H$ is a set of subsets of $\ordm$ of cardinality $r+1$, we define
+\begin{eqnarray}
+H^- = \{x^- : x\in H\} \ \text{  and  } \ H^+ = \{x^+ : x\in H\} \ . 
+\end{eqnarray}
+Also, we define
+\begin{eqnarray}
+H^{\mp} = H^- \smallsetminus H^+ \ \text{  and  } \ H^{\pm} = H^+ \smallsetminus H^- \ . 
+\end{eqnarray}
+
+For each $\xi : \mathbf{m} \lra \mathbf{n}$ in $\mathbf{\Delta}$, we write
+$\xi x$ for $\{\xi(x_0)\xi(x_1) \dots \xi(x_r)\} \subseteq \mathbf{n}$. 
+So for each $\xi : \mathbf{m} \lra \mathbf{n}$ in $\mathbf{\Delta}_{\bot}$
+and $y=(y_0y_1\dots y_s) \subseteq \mathbf{n}$, we have
+$$\xi^* y = \{\xi^*(y_0)\xi^*(y_1) \dots \xi^*(y_s)\} \subseteq \mathbf{m} \ .$$ 
+
+Now we recall the {\em orientals} $\CO_m$ \cite{aos}. This is the free $m$-category on the $m$-simplex.
+However, we need no more than the underlying 4-category structure. 
+The objects (= 0-cells) of $\CO_m$ are the natural numbers $p$ with $0 \le p \le m$. 
+A morphism (= 1-cell) $a : p \lra q$ implies $p\le q$ and $a=(a_0 a_1\dots a_r)$ is a subset of $\mathbf{q}\smallsetminus \mathbf{p}$
+with $a_0 =p$; we think of $a$ as the path 
+$$p\stackrel{(pa_1)}\lra a_1\stackrel{(a_1a_2)}\lra a_2\lra \dots \stackrel{(a_rq)}\lra q \ .$$
+According to \cite{aos} we think of the morphism $a : p \lra q$ as a set of doublets 
+$$a=(pa_1)(a_1a_2)\dots (a_rq) \ .$$  
+For our purposes, we are interested in the morphism $b_m : 0 \lra m$ which is $0\stackrel{(0m)}\lra m$ and
+the morphism $e_m : 0 \lra m$ which is the path $0\stackrel{(01)}\lra 1 \stackrel{(12)}\lra 2 \dots  \stackrel{(\overline{m-1}m)}\lra m$. 
+
+Let $\CT_m = \CO_m (0,m)(b_m,e_m)$ as a 2-category. We shall examine this more explicitly. 
+
+The objects of $\CT_m$ are 2-cells $S:b_m \Lra e_m$ in $\CO_m$.
+A description of these, adapted from \cite{aos}, is as follows: 
+$S$ is a set of three-element subsets $x=(x_0x_1x_2)$ of $\mathbf{m+1}$ 
+satisfying the conditions:
+\begin{itemize}
+\item[(a)] for $x,y\in S$, if two of the three equations $x_0=y_0$, $x_1=y_1$, $x_2=y_2$ hold then $x=y$;
+\item[(b)] for $x,y\in S$, if $x_1=y_0$ then $x_2\neq y_1$;
+\item[(c)] $b_m = S^{\mp}$;
+\item[(d)] $e_m = S^{\pm}$.
+\end{itemize} 
+Some consequences are:
+\begin{itemize}
+\item[(e)] the function $S\lra \{1,2,\dots ,m-1\}$, taking $x$ to its middle element $x_1$, is a bijection;
+\item[(f)] for $x,y\in S$, if $x_0<y_1\le x_1$ then $x_0\le y_0$;
+\item[(g)] for $x,y\in S$, $y_2\le x_1$ if and only if $x_0< y_1<x_1$.
+\end{itemize} 
+Injectivity of the function in (e) follows from the alternating position (AP) condition proved in \cite{aos}; surjectivity is a simple induction related to the excision of extremals
+algorithm in \cite{aos}. 
+
+These objects $S$ are in bijection with triangulations of the polygon with $m$ sides.
+For example, the triangulation \eqref{heptagon1} of the heptagon has 
+\begin{equation}
+S=(013)(123)(035)(345)(056) \ .
+\end{equation} 
+It will be useful to have some notation involving the inverse $t_S$ of the bijection in (e) above:
+\begin{eqnarray}\label{tlr}
+t_S : \{1,2,\dots ,m-1\} \lra S \nonumber \\
+t_S(i) = (\ell_S(i-1), i , r_S(i)+1) \ .
+\end{eqnarray}
+Notice that, in the process, we are defining functions 
+\begin{eqnarray}
+\ell_S : \mathbf{m-1} \lra \mathbf{m-1}
+\end{eqnarray}
+and 
+\begin{eqnarray}\label{rightfns}
+r_S: \{1,2,\dots ,m-1\} \lra \{1,2,\dots ,m-1\} \ .
+\end{eqnarray}
+However, by putting $\ell_S(m-1)=m-1$ and $r_S(0)=0$, we extend them to bottom-and-top-preserving functions
+\begin{equation}\label{lr}
+\ell_S, r_S : \mathbf{m} \lra \mathbf{m} \ .
+\end{equation}
+
+We put 
+\begin{equation}
+S_{\ell} = \{i : 0\le i<m-1, \ell_S(i)=i \}
+\end{equation}
+and
+\begin{equation}
+S_r = \{i :  0<i\le m-1, r_S(i)=i \} \ .
+\end{equation}
+
+\begin{proposition}\label{Sbijlbf} 
+The formula
+$$S=\{(\ell(i-1), i , \ora{\ell}(i)+1) : 0<i<m-1\}$$
+establishes a bijection between lbf morphisms $\ell : \mathbf{m} \lra \mathbf{m}$ 
+and  2-cells $S:b_m \Lra e_m$ in $\CO_m$. 
+\end{proposition}
+\begin{proof}
+Suppose $\ell$ is a lbf. Put $r=\ora{\ell}$. 
+Define $S$ as in the proposition. 
+We need to prove properties (a), (b), (c), (d) for $S$.
+Property (e) is clear. So only one case for property (a) remains. 
+Take $x=(\ell(i-1), i , r(i)+1)$
+and $y=(\ell(j-1), j , r(j)+1)$ in $S$. We need to see that 
+$\ell (i-1) = \ell (j-1)$ and $r(i)=r(j)$ imply $i=j$.
+Assume $i<j$ since the hypotheses are symmetric.
+From $r(i)=r(j)$, we see that any $k$ with
+$\ell (k) < i \le k$ will have $r (j) \le k$. However, $j-1$ is just such
+a $k$ since $\ell (j-1) = \ell (i-1) \le i-1 < i \le j-1$. So $r (j) \le j-1$.
+But then $j \le r(j) \le j-1$ gives a contradiction.   
+
+For property (b), take $x$ and $y$ in $S$ as above. 
+This time we need to see that $x_1=y_0$ implies $x_2\neq y_1$;
+that is, $i=\ell(j-1)$ implies $r(i)+1\neq j$. We do have
+$j-1<m-1$ and $0<i=\ell(j-1)$, so, using (iv) of Proposition~\ref{fixbf},
+we have $r(i)=r\ell (j-1) \ge r(j) \ge j > j-1$. So $r(i)+1\neq j$.  
+
+Now we look at property (c). Since, by (i), $\ell(i-1) < i$, there must exist an 
+$i$ with $\ell (i-1) = 0$.
+Choose the largest such $i$. Then $\ell(k)<i\le k$ implies $\ell(k) \le i-1 <k$,
+so, by (ii) for an lbf, $\ell(k) \le \ell(i-1)=0$. So $\ell(k)=0$. 
+By maximality of $i$, $k\le i-1$, a contradiction. 
+So the set of $k$, for which $r(i)$ is the minimum, is empty.
+So $r(i) =m-1$. This shows that $b_m\subseteq S^-$.
+Yet $b_m\cap S^+=\varnothing$ since there is no $x\in S$
+with $x_0<0$ or $x_2>m$. 
+So $b_m\subseteq S^{\mp}$.
+Next we need to show that, for any $x\in S$, if $x^-\neq (0m)$ then $x^- \in S^+$.
+Assume $x=(\ell(i-1), i , r(i)+1)$ and $0< \ell(i-1)$ (since the case
+$r(i)+1<m$ will follow by left-right symmetry). 
+We need to show that there exists either $y$ or $z$ in $S$ with
+$y\partial_0 = (l(i-1),r(i)+1)$ or $z\partial_2 = (l(i-1),r(i)+1)$.
+The last two conditions force $y=(\ell(j-1),j, r(j)+1)$ to have $j=\ell(i-1)$
+and $z=(\ell(k-1),k, r(k)+1)$ to have $k=r(i)+1$. So we must see that,
+with these choices for $j$ and $k$, either  $r(j)=r(i)$ or $\ell(k-1)=\ell(i-1)$.
+Assume $\ell(k-1)\neq \ell(i-1)$; that is, $\ell r (i) \neq \ell(i-1)$. 
+Then part (v) of Proposition~\ref{fixbf} implies $r(i)=r\ell(i-1)=r(j)$.
+
+We also need to show $e_m = S^{\pm}$. Take $(i,i+1)\in e_m$. 
+By part (i) of Proposition~\ref{fixbf}, either $i = r(i)$ or $\ell(i) =i$. 
+So either $(i,i+1) = (\ell(i-1), i,r(i)+1)\partial_0$
+or $(i,i+1) = (\ell(i), i+1,r(i+1)+1)\partial_2$. 
+However we cannot have $(i,i+1) = (\ell(j-1), j,r(j)+1)\partial_1$
+since $\ell(j-1)$ and $r(j)+1)$ have $j$ strictly between them 
+and so cannot be consecutive.
+So $e_m\subseteq S^{\pm}$. 
+Now we prove $S^{\pm}\subseteq e_m$ by showing that $x\in S$
+with $(x_1,x_2)\notin e_m$ or $(x_0,x_1)\notin e_m$ implies $x^+ \subseteq S^-$.
+Suppose $x=(\ell(i-1), i , r(i)+1)$ and $(i , r(i)+1)\notin e_m$.
+Then $i<r(i)$, so, by part (i) of Proposition~\ref{fixbf}, we have $\ell(i)=i$. 
+Let $j$ be the largest such that $i\le j\le r(i)$ and $\ell(j)=i$.
+By part (v) of Proposition~\ref{fixbf}, we have $r(j) = r(i)$.
+So $x\partial_0 = (i , r(i)+1) = (\ell(j-1),j,r(j)+1)\partial_1 \in S^-$. 
+The case $x\partial_2\notin e_m$ is similar. 
+
+So far, we have defined a function $\mathrm{Tam}_m \lra \CT_m$ which
+is obviously injective. If we accept that the two sets have the same cardinality
+(given by a Catalan number), the bijection follows. However, we will
+describe the inverse function and complete the proof. 
+
+Suppose $S:b_m \Lra e_m$ is a 2-cell. Using property (e) for $S$, 
+define top-and-bottom-preserving functions 
+$\ell = \ell_S$ and $r=r_S$ by \eqref{tlr} and \eqref{lr}. 
+Then $\ell(i-1)< i < r(i)+1$ for $0<i<m-1$.
+This gives property (i) for $\ell$ to be an lbf  (and for $r$ to be an rbf).
+To prove property (ii) for $\ell$, take $\ell(j)\le i\le j<m$ and put
+$x=(\ell(j),j+1,r(j+1)+1)$ and $y=(\ell(i),i+1,r(i+1)+1)$ which are in $S$.
+Then $x_0<y_1\le x_1$. By property (f) for $S$, $x_0\le y_0$; so $\ell(j)\le \ell(i)$. 
+It remains to show that $r = \ora{\ell}$. 
+This breaks into two parts. First we must see that $r(i)<m-1$ implies 
+$\ell r(i)<i\le r(i)$. For this, take $x=(\ell r(i),r(i)+1,r(r(i)+1)+1)$ and
+$y=(\ell (i-1),i,r(i)+1)$ so that $x_1=y_2$. By the `only if' part of property (g) for $S$,
+$x_0<y_1<y_2$, our desired result. The second part is minimality; that is, to show
+$\ell(j)<i\le j$ implies $r(i)\le j$. Put $x=(\ell r(i),r(i)+1,r(r(i)+1)+1)$ and
+$y=(\ell(i-1),i,r(i)+1)$ so that $x_0<y_1<x_1$. 
+By the `if' part of property (g) for $S$, $y_2\le x_1$; that is, $r(i)\le j$.
+\end{proof}
+
+Now let us look at the morphisms of $\CT_m$.
+As 3-cells in $\CO_m$, they are well defined in \cite{aos} as sets $\theta$ of
+four-element subsets $x=(x_0x_1x_2x_3)$ of $\mathbf{m+1}$ satisfying
+well formedness and movement conditions; also see \cite{{pc},{pc:c}}.
+The indecomposable $\theta : S\lra T$ are precisely the singleton sets $\{ x\}$
+such that
+\begin{equation}\label{xmove}
+T = (S\smallsetminus x^{-})\cup x^{+} \ ,
+\end{equation}
+where 
+\begin{eqnarray*}
+x^{-} = (x_0x_1x_2)(x_0x_2x_3) \ \text{ and  }  \ x^{+} = (x_0x_1x_3)(x_1x_2x_3) \ .
+\end{eqnarray*}
+So $x^{-}$ consists of the odd faces of $x$ and $x^{+}$ the
+even faces in the sense of \cite{aos}, although the notation is from \cite{pc}. 
+Let us put
+\begin{equation}
+xS=T \ \text{   and   } \ S=Tx
+\end{equation}
+when \eqref{xmove} holds.
+In pictures, this means that $S$ should contain the domain of
+$x=(x_0x_1x_2x_3)$ in the diagram \eqref{indec3}
+as part of its triangulation and $T$ should be obtained from $S$ by 
+replacing that part by the codomain.
+
+\begin{eqnarray}\label{indec3}
+\xymatrix{
+x_0 \ar[r]^-{} \ar[rd]^-{} \ar[d]_-{} & x_3 \\
+x_1 \ar[r]_-{}  & x_2 \ar[u]^-{} }
+\qquad
+\xymatrix{
+\stackrel{x} \lra}
+\qquad
+\xymatrix{
+x_0 \ar[r]^-{} \ar[d]_-{} & x_3 \\
+x_1 \ar[r]_-{} \ar[ru]^-{}  & x_2 \ar[u]^-{} }
+\end{eqnarray}
+In terms of bracketings, it means that $T$ is obtained from $S$ by moving just 
+one set of brackets to the right:
+$$((W_0((W_1W_2)W_3))W_4) \lra ((W_0(W_1(W_2W_3)))W_4)$$
+or
+$$(W_0(((W_1W_2)W_3)W_4)) \lra (W_0((W_1(W_2W_3))W_4))$$
+where the $W_i$ are meaningfully binarily bracketed words in $I$ and $X$.
+
+Now let us look at the 2-cells of $\CT_m$.
+As 4-cells in $\CO_n$, they are well defined in \cite{aos} as sets $a$ of
+five-element subsets $x=(x_0x_1x_2x_3x_4)$ of $\mathbf{m+1}$ satisfying
+well formedness and movement conditions.
+The indecomposable $a : \theta \Lra \phi$ are precisely 
+the singleton sets $\{ x\}$ such that
+\begin{equation}
+\phi = (\theta \smallsetminus x^{-})\cup x^{+} \ ,
+\end{equation}
+where 
+$$x^{-} = (x_0x_1x_2x_4)(x_0x_2x_3x_4)$$ and 
+$$x^{+} = (x_1x_2x_3x_4)(x_0x_1x_3x_4)(x_0x_1x_2x_3) \ .$$
+In diagram~\eqref{O4}, we see the only non-identity 2-cell in $\CT_4$.
+
+\begin{equation}\label{O4}
+\xymatrix{
+(012)(023)(034) \ar[d]_{(0234)}^(0.8){\phantom{AAAAAAAA}}="1" \ar[rr]^{(0123)}  && (013)(123)(034) \ar[d]^{(0134)}_(0.8){\phantom{AAAAAAAA}}="2" \ar@{=>}"1";"2"^-{(01234)}
+\\
+(012)(024)(234) \ar[rd]_-{(0124)} && (014)(123)(134) \ar[ld]^-{(1234)} 
+\\
+& (014)(124)(234) 
+}
+\end{equation}
+
+The following result is immediate on combining Proposition~\ref{Sbijlbf}, \cite{HT} and \cite{aos}.
+
+\begin{proposition}\label{TLatt} For 2-cells $S,T:b_n\Lra e_n : 0\lra n$ in the $n$-category 
+$\CO_n$, the following conditions are equivalent:
+\begin{itemize}
+\item[(i)] $\ell_S \le \ell_T$;
+\item[(ii)] $r_S \le r_T$;
+\item[(iii)] there exists a 3-cell $S\lra T$ in $\CO_n$;
+\item[(iv)] for all $x\in S$ and $y\in T$, if $x_1=y_1$ then $x_0\le y_0$; 
+\item[(v)] for all $x\in S$ and $y\in T$, if $x_1=y_1$ then $x_2\le y_2$;
+\item[(vi)] for all $x\in S$ and $y\in T$, if $x_1=y_1$ then $x_0\le y_0$ and $x_2\le y_2$.
+\end{itemize}
+\end{proposition}
+
+So this means that the Tamari lattice $\mathrm{Tam}_m$ 
+(see Section~\ref{Bf}) is obtained from the 2-category
+$\CT_m$ by identifying all the 2-cells. That is, there is a 2-functor
+$\CT_m \lra \mathrm{Tam}_m$ (where the only 2-cells in 
+$\mathrm{Tam}_m$ are the identities); and every 2-functor 
+$\CT_m \lra \CC$ which takes all 2-cells in $\CT_m$ to identities
+factors uniquely through $\CT_m \lra \mathrm{Tam}_m$. 
+
+If $\ell_S \le \ell_T$ in $\mathrm{Tam}_n$, we define the {\em distance} 
+from $S$ to $T$ by
+\begin{equation}
+\mathrm{d}(S,T) = \mathrm{min} \{\# \theta : \theta : S \lra T \text{ in } \CT_n \} \ .
+\end{equation}
+Clearly, $\mathrm{d}(S,S) = 0$ and $\mathrm{d}(S,U) \le \mathrm{d}(S,T)+\mathrm{d}(T,U)$ for $S\le T\le U$. 
+As an example obtained by looking at diagram~\eqref{O4}, we have
+$$\mathrm{d}((012)(023)(034), (014)(124)(234)) = 2 \ .$$
+  
+
+For $m,n > 0$, there is an order-preserving function 
+\begin{equation}
+\star : \mathrm{Tam}_m \times \mathrm{Tam}_n \lra \mathrm{Tam}_{m+n}
+\end{equation}
+defined by 
+$$S\star T = S\cup \{(0,m,m+n)\} \cup (m+T) \ .$$
+Here $m+T = \{(m+i,m+j,m+k) : (i,j\k) \in T\}$.  
+In other words,
+\begin{equation*}
+  t_{S\star T} (i) =
+      \begin{cases}
+         t_S(i) & \text{if } \  i < m  \\
+         (0,m,m+n) & \text{if } \  i = m  \\
+         (m,m,m)+t_T(i-m) & \text{if } \ i>m \ .
+       \end{cases}
+\end{equation*}
+The existence of the 3-cell 
+$$(0,m,m+n,m+n+k) : (S\star T)\star U \Lra S\star (T\star U)$$
+in $\CO_{m+n+k}$ shows we have lax associativity in the form
+\begin{equation}\label{Tamlaxassoc}
+(S\star T)\star U \le S\star (T\star U) \ .
+\end{equation} 
+Note that $\mathrm{Tam}_1 = \{\varnothing\}$ is the terminal poset; 
+its element is the identity 2-cell of $b_1 = e_1 : 0\lra 1$ in $\CO_1$.
+This element does not act as a lax identity since we have 
+$$\varnothing \star S =  \{(0,1,1+m)\} \cup (1+S)$$ 
+and 
+$$S \star \varnothing = S\cup \{(0,m,m+1)\}$$
+in $\mathrm{Tam}_{m+1}$; so these cannot be Tamari compared with 
+$S\in \mathrm{Tam}_{m}$.  
+
+\section{Shrink morphisms}
+
+\begin{proposition}\label{surju}
+Suppose $\sigma :\ordm \lra \ordn$ is a surjective order-preserving function
+with right adjoint $\sigma^*$. 
+Suppose $u\subseteq \ordm$ and $v\subseteq \ordn$. 
+The following conditions are equivalent:
+\begin{itemize}
+\item[(i)] $\sigma^*$ induces a bijection between $v$ and $u$;
+\item[(ii)] $\sigma$ induces a bijection between $u$ and $v$, and 
+$\sigma_{\ell}\cap u = \varnothing$.
+\end{itemize}
+\end{proposition}
+\begin{proof}
+Both conditions imply $u$ and $v$ have the same cardinality: write
+$u=(u_0u_1\dots u_{p})$ and $v=(v_0v_1\dots v_{p})$.
+Recalling Proposition~\ref{bottop}, we have
+$\sigma_{\ell}=\sigma^*_{r}$; so
+$\sigma_{\ell}\cap u = \varnothing$ is equivalent to saying 
+$u$ is in the image of $\sigma^*$. 
+Since $\sigma$ is surjective, we also have $\sigma \sigma^*=1_{\ordn}$.
+Now (i) means $u_k=\sigma^*(v_k)$ for $0\le k\le p$; so certainly this shows
+$u$ is in the image of $\sigma^*$, while applying $\sigma$ gives
+$\sigma(u_k) = v_k$, showing that $\sigma$ induces a bijection 
+between $u$ and $v$. 
+
+Now assume condition (ii). Then $v_k=\sigma(u_k)$. But also $u_k$
+is in the image of $\sigma^*$, so $u_k=\sigma^*(i)$ for some $i$.
+Then $v_k=\sigma(u_k)=\sigma \sigma^*(i) = i$ and we have
+$u_k=\sigma^*(v_k)$.  
+\end{proof}
+
+\begin{Definition}
+Let $\mathrm{Fsk}_{\ell}$ denote the category whose objects are a triples 
+$(m,u,S)$ where $m>0$, $u\subseteq \ordm$ and $S\in \CT_m$.
+A morphism $\sigma : (m,u,S) \lra (n,v,T)$,
+called a {\em shrink morphism}, is a surjective
+order-preserving function $\sigma : \ordm \lra \ordn$ such that
+\begin{itemize}
+\item[(a)] $\sigma^*$ induces a bijection between $v$ and $u$; 
+\item[(b)] $\ell_T = \sigma \ell_S \sigma^*$;
+\item[(c)] $r_T = \sigma r_S \sigma^!$.
+\end{itemize}   
+Clearly shrink morphisms compose and we do have a category.
+\end{Definition}
+
+\begin{proposition}
+Suppose $\sigma :\ordm \lra \ordn$ is a surjective order-preserving function
+with right adjoint $\sigma^*$ and suppose $(m,u,S)$ is an object of $\mathrm{Fsk}_{\ell}$.
+There exists a shrink morphism of the form $\sigma : (m,u,S) \lra (n,v,T)$ 
+if and only if
+\begin{itemize}
+\item[(i)] $\sigma_{\ell}\cap u = \varnothing$, and
+\item[(ii)] $\ora{\sigma \ell_S \sigma^*} = \sigma r_S \sigma^!$.
+\end{itemize}
+\end{proposition}
+\begin{proof}
+The necessity of the conditions follows from
+Propositions \ref{surju},\ref{bijbf},and \ref{Sbijlbf}. 
+For sufficiency, notice that (i) implies the restriction of 
+$\sigma$ to $u$ is injective (since $i<j$ in $u$ with $\sigma(i)=\sigma(j)$
+implies $\sigma(i)=\sigma(i+1)$ contrary to $i\notin \sigma_{\ell}$).  
+Thus $\sigma$ induces a bijection between $u$ and $v=\sigma u$. 
+By Proposition~\ref{surju}, we have (a) of the Definition.
+By (b) and (c) of the Definition, we are forced to put
+$\ell_T = \sigma \ell_S \sigma^*$ and $r_T = \sigma r_S \sigma^!$.
+Using (ii), this defines $T\in \CT_n$ by Propositions \ref{lbf} and \ref{Sbijlbf}.  
+We have our shrink morphism as required.
+\end{proof}
+
+\begin{proposition}
+If $\sigma : (m,u,S) \lra (n,v,T)$ is a shrink morphism and $T \le T^{\prime}$
+(meaning $\ell_T\le \ell_{T^{\prime}}$ in $\mathrm{Tam}_n$) then there
+exists a shrink morphism of the form 
+$\sigma : (m,u,S^{\prime}) \lra (n,v,T^{\prime})$ 
+with $S\le S^{\prime}$. 
+\end{proposition}
+\begin{proof}
+Using Proposition~\ref{TLatt}, we only need to look at the case where
+there is an indecomposible 2-cell $y=(y_0y_1y_2y_3) : T\Lra T^{\prime}$. 
+Then $T^{\prime}$ is obtained from $T$ by replacing the elements
+$(y_0y_1y_2)$ and $(y_0y_2y_3)$ by $(y_0y_1y_3)$ and $(y_1y_2y_3)$
+with the same middle terms. So
+\begin{equation*}
+  \ell_{T^{\prime}} (k) =
+      \begin{cases}
+          \ell_T (k) & \text{if } \  k \neq y_2-1  \\
+           y_1 & \text{if } \ k = y_2-1 \ .
+       \end{cases}
+\end{equation*}
+Put $x_1=\sigma^*(y_1-1)+1$ and $x_2=\sigma^*(y_2-1)+1$ noting
+that $\sigma^*$ is strictly order preserving; so $x_1<x_2$. Define
+a function $\ell_{S^{\prime}}:\ordm\lra\ordm$ by
+\begin{equation*}
+  \ell_{S^{\prime}} (h) =
+      \begin{cases}
+          \ell_S (h) & \text{if } \  h \neq x_2-1  \\
+           x_1 & \text{if } \ h = x_2-1 \ .
+       \end{cases}
+\end{equation*}
+Applying adjointness to the inequality
+$$\sigma \ell_S \sigma^*(y_2-1)=\ell_T(y_2-1)=y_0\le y_1-1$$
+yields the inequality
+$$\ell_S(x_2-1)=\ell_S\sigma^*(y_2-1)\le \sigma^*(y_1-1)=x_1-1<x_1=\ell_{S^{\prime}}(x_2-1) \ .$$
+So $\ell_S\le \ell_{S^{\prime}}$ value-wise.
+We claim that $\ell_{S^{\prime}}$ is an lbf. 
+For property (i), we have $\ell_{S^{\prime}}(h)=\ell_S(h)\le h$ for $h\neq x_2-1$
+while $\ell_{S^{\prime}}(x_2-1)=x_1\le x_2-1$. For property (ii), assume
+$\ell_{S^{\prime}}(h)\le i < h <m$. If neither $i$ nor $h$ is $x_2-1$ then
+$\ell_{S^{\prime}}(h)=\ell_S(h) \le \ell_S(i)=\ell_{S^{\prime}}(i)$.
+If $i=x_2-1$ then $\ell_{S^{\prime}}(h) = \ell_S(h) \le x_2-1<h$; so 
+$\ell_{S^{\prime}}(h) = \ell_S(h) \le \ell_S(x_2-1) < x_1 = \ell_{S^{\prime}}(i)$.  
+In the case $h=x_2-1$ we need to show that $x_1\le i < x_2-1$ implies 
+$x_1\le \ell_S(i)$. 
+\red{I am stuck at this point and maybe this approach is wrong. However, 
+I hope Steve has a proof of this proposition.}
+\end{proof}
+
+\begin{proposition}
+If $\sigma : (m,u,S) \lra (n,v,T)$ and $\sigma : (m,u^{\prime},S^{\prime}) \lra (n,v,T)$ 
+are a shrink morphisms then $u=u^{\prime}$ and either $S \le S^{\prime}$
+or $S^{\prime} \le S$. 
+\end{proposition}
+\begin{proof}
+\red{Help Steve!!}
+\end{proof}
+
+\section{Swell morphisms and general morphisms}
+
+\begin{Definition}
+Let $\mathrm{Fsk}_r$ denote the category whose objects are a triples 
+$(m,u,S)$ where $m>0$, $u\subseteq \ordm$ and $S\in \CT_m$.
+A morphism $\partial : (m,u,S) \lra (n,v,T)$,
+called a {\em swell morphism}, is an injective
+order-and-bottom-preserving function 
+$\partial : \ordm \lra \ordn$ such that
+\begin{itemize}
+\item[(a)] $\partial$ induces a bijection between $u$ and $v$; 
+\item[(b)] $\ell_S = \partial^* \ell_T \partial^{**}$;
+\item[(c)] $r_S = \partial^* r_T \partial$.
+\end{itemize}   
+Clearly swell morphisms compose and we do have a category.
+\end{Definition}
+
+\begin{proposition}
+There is an isomorphism of categories
+$$\mathrm{Fsk}_r^{\mathrm{op}}\cong \mathrm{Fsk}_{\ell}$$
+which is the identity on objects and takes $\partial$ to $\partial^*$.
+\end{proposition}
+\red{I am confused here. The duality seems to require it to be $\partial^{**}$
+which induced a bijection between $u$ and $v$. But in the examples it is
+as in (a) above.} 
+
+\section{A bijection}
+
+It is well known that rbfs are in bijection with elements of the Catalan monoid.
+We give an account of this. In order to construct an inverse for a certain function 
+$\Theta$ from the Tamari lattice to the Catalan monoid, 
+we require a construction on certain partial maps.
+
+We will define a new partial map $h^{\prime} : \mathbf{n+1} \lra \mathbf{n}$ from a given one $h :\mathbf{n+1} \lra \mathbf{n}$.
+We will let $x_h \subseteq \mathbf{n+1}$ denote the domain of $h$ and use the same symbol $h$ for the function $h: x_h \lra \ordn$. 
+Let $a_h$ be the first $i \in x_h$ with $h(i) > 0$, if it exists.
+
+Obtain $x_{h^{\prime}} \subseteq \mathbf{n+1}$ from $x_h$ 
+by deleting precisely $h(i)$ 
+of the elements directly preceding $i$ in $x_h$. 
+Then define $h^{\prime} : x_{h^{\prime}} \lra \mathbf{n}$ to agree with $h$ on all elements of $x_{h^{\prime}}$
+except $a_h$ where $h^{\prime}(a_h) = 0$.
+
+Notice that $a_h < a_{h^{\prime}}$ if the latter exists.   
+
+The so-called {\em Catalan monoid} is defined by 
+$$\mathrm{Cln}_n = \{ \text{order-preserving functions} \ g : \mathbf{n-1} \rightarrow \mathbf{n-1} : g(i) \le i \ \text{for all} \ i\in \mathbf{n-1} \} $$
+with the multiplication given by composition of functions.
+
+There is a function $$\Theta : \mathrm{Tam}_n \lra \mathrm{Cln}_n $$
+defined by $\Theta (r) (j) = \#r^{-1} \{1, 2, \dots , j\}$ for $0 \le j \le n-2$
+for any rbf $r:\ordn \lra \ordn$.
+
+\begin{proposition} $\Theta$ is a bijection.
+\end{proposition}
+\begin{proof}
+Without going into the full proof, we define the inverse of $\Theta$.
+Let $g\in \mathrm{Cln}_n$.
+We recursively define a sequence of functions $h^m : x^m \lra \ordn$, $1 \le m \le q$, where $q$ is the number of non-empty fibres of $g$. 
+Put $x^1 = \ordn$ and $h^1 = \# g^{-1}(i)$. 
+Then $h^{m+1} = (h^m)^{\prime}$ with $x^{m} = x_{h^m}$.
+Notice that $$\bigcup_{1\le m \le q} x_m \smallsetminus x_{m+1} = \{1, \dots , n-1\} \ . $$
+For $i \in x_m \smallsetminus x_{m+1}$, define $$r(i) = a_{h^m}-1 \ .$$ 
+Then $\Theta(r) = g$.
+\end{proof}
+
+The pointwise order on $\mathrm{Tam}_n$ obviously transports across the bijection $\Theta : \mathrm{Tam}_n \lra \mathrm{Cln}_n$ to an order on 
+$\mathrm{Cln}_n$.
+However, this description takes some work to disentangle. 
+On the other hand, it is easy to describe the indecomposable
+inequalities $g_1 < g_2$ in $\mathrm{Cln}_n$.  
+
+\begin{proposition} The Tamari order on $\mathrm{Tam}_n$ transports across $\Theta$ to the partial order on 
+$\mathrm{Cln}_n$ generated by the relation
+$g_1 < g_2$ if there exists $0<i<j \le n-1$ such that 
+\begin{equation*}
+  g_1 (k) =
+      \begin{cases}
+         g_2 (k) + 1 & \text{if } \  i \le k \le j \ , \\
+         g_2 (k) & \text{otherwise }.
+       \end{cases}
+\end{equation*}
+\end{proposition}
+
+Clearly $\mathrm{Cln}_n$ is a monoid with zero under composition of endofunctions of $\mathbf{n-1}$.
+However, it is not an ordered monoid. 
+To see this, take $g_0$, $g_1$, $g_2$, $g_3$ to be the functions
+whose values are $012$, $011$, $002$, $001$, respectively. 
+While $g_0 < g_2$, when we multiply
+on the left by $g_1$ we see that $g_1 g_0 = g_1$ and $g_1 g_2 = g_3$; yet $g_1 \nleq g_3$. 
+
+
+\begin{thebibliography}{00}
+
+\bibitem{Cohn1965} P.M. Cohn, \textit{Universal Algebra} (Harper \& Row, 1965) pp. 269 and 289, Ex. 9.\label{Cohn1965}
+
+\bibitem{DaySt1997} Brian J. Day and Ross Street, \textit{Monoidal bicategories and Hopf algebroids}, Advances in Math. \textbf{129} (1997) 99--157. \label{DaySt1997}
+
+\bibitem{DMcCS} Brian J. Day, Paddy McCrudden and Ross Street, \textit{Dualizations and antipodes}, Applied Categorical Structures \textbf{11} (2003) 229--260. \label{DMcCS]}
+
+\bibitem{HT} Dani\`ele Huguet and Dov Tamari, \textit{Problems of associativity: a simple proof for the lattice property of
+systems ordered by a semi-associative law}, J. Comb. Theory (A) \textbf{13} (1972) 7--13.\label{HT}  
+
+\bibitem{btc}  Andr\'e Joyal and Ross Street, \textit{Braided tensor categories}, Advances in Mathematics \textbf{102} (1993) 20--78.\label{btc}
+
+\bibitem{Kelly1964} G. Max Kelly, \textit{On MacLane's conditions for coherence of natural associativities, commutativities, etc.}, Journal of Algebra \textbf{1} (1964) 397--402.\label{Kelly1964}
+
+\bibitem{aac} G. Max Kelly, \textit{An abstract approach to coherence}, Lecture Notes in Math. \textbf{281} (Springer-Verlag, 1972) 106--147.\label{aac}
+
+\bibitem{KellyBook} G. Max Kelly, \textit{Basic concepts of enriched category theory}, London Mathematical Society Lecture Note Series \textbf{64} (Cambridge University Press, Cambridge, 1982). \label{KellyBook}
+
+\bibitem{Steve20Dec2012} Stephen Lack and Ross Street, \textit{Triangulations, orientals, and skew monoidal categories} (Working notes, 20 December 2012).\label{Steve20Dec2012} 
+
+\bibitem{SkMon} Stephen Lack and Ross Street, \textit{Skew monoidales, skew warpings and quantum categories}, Theory and Applications of Categories \textbf{27(3)} (2012) 27--46.
+\label{SkMon}
+
+\bibitem{SkEH} Stephen Lack and Ross Street, \textit{A skew-duoidal Eckmann-Hilton argument and quantum categories}, (submitted; see http://arxiv.org/abs/1210.8192).\label{SkEH}
+
+\bibitem{osed} F. William Lawvere, \textit{Ordinal sums and equational doctrines}, Reprints in Theory and Applications of Categories \textbf{18} (2008) 113--121.\label{osed}
+
+\bibitem{Rice} Saunders Mac Lane, \textit{Natural associativity and commutativity}, Rice Univ. Studies \textbf{49} (1963) 28--46.\label{Rice}
+
+\bibitem{CWM} Saunders Mac Lane, \textit{Categories for the Working Mathematician}, Graduate Texts in Mathematics \textbf{5} (Springer-Verlag, 1971).\label{CWM} 
+
+\bibitem{aos} Ross Street, \textit{The algebra of oriented simplexes}, J. Pure Appl. Algebra \textbf{49} (1987) 283--335.\label{aos}
+
+\bibitem{pc} Ross Street, \textit{Parity complexes}, Cahiers de topologie et g\'eom\'etrie diff\'erentielle cat\'egoriques \textbf{32} (1991) 315--343.\label{pc}
+
+\bibitem{pc:c} Ross Street, \textit{Parity complexes: corrigenda}, Cahiers de topologie et g\'eom\'etrie diff\'erentielle cat\'egoriques \textbf{35} (1994) 359--361.\label{pc:c}
+
+\bibitem{dlVP} Ross Street, \textit{Monoidal categories in, and linking, geometry and algebra}, Bulletin Belgian Math. Society  (to appear; see http://arxiv.org/abs/1201.2991).\label{dlVP}
+
+\bibitem{scc} Ross Street, \textit{Skew-closed categories}, Journal of Pure and Applied Algebra (2012), doi: 10.1016/j.jpaa.2012.09.020; also see http://arxiv.org/abs/1205.6522).\label{scc}
+
+\bibitem{Szl2012} Kornel Szlach\'anyi, \textit{Skew-monoidal categories and bialgebroids}, Advances in Mathematics \textbf{231(3--4)} (2012) 1694--1730.
+%arXiv:1201.4981v1 (2012).
+\label{Szl2012}
+
+\bibitem{Tamari51} Dov Tamari, \textit{Monoides pr\'eordonn\'es et cha\^ines de Malcev}, 
+Doctorat\`es-Sciences Math\'ematiques Th\`ese de Math\'ematiques (Parisa, 1951).\label{Tamari51} 
+
+\bibitem{Tamari62} Dov Tamari, \textit{The algebra of bracketings and their enumeration}, Nieuw Archief voor Wiskunde \textbf{10} (1962) 131--146.\label{Tamari62}
+
+
+
+
+\end{thebibliography}
+
+\end{document}

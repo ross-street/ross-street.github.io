@@ -1,0 +1,630 @@
+%Document Class
+\documentclass[a4paper,12pt,reqno]{amsart}
+
+
+  \headheight0.6in
+  \headsep22pt
+  \textheight23cm
+  \topmargin-1.7cm
+  \oddsidemargin 0.5cm
+  \evensidemargin0.5cm
+  \textwidth15.3cm
+
+%Packages 
+\usepackage{amscd,amssymb,amsmath,amsfonts,amsthm, mathrsfs,xspace}
+\usepackage{graphicx}
+\usepackage{verbatim,enumerate,paralist}
+\usepackage{textcomp}
+%\usepackage[authoryear]{natbib}
+\usepackage[pagebackref,colorlinks]{hyperref}
+\hypersetup{%
+  urlcolor=blue,linkcolor=blue,citecolor=blue
+}
+\usepackage{pdfpages}
+%\usepackage{pdfsync}%  remove this when finalised
+
+\usepackage[T1]{fontenc}
+\usepackage[all,2cell,poly,knot,tips]{xy}
+\UseAllTwocells
+\CompileMatrices
+
+\def\blue{\color{blue}}
+\def\red{\color{red}}
+\def\black{\color{black}}
+
+%\usepackage{xypdf} % may not be necessary
+\setlength{\marginparwidth}{2cm}
+\newcommand{\missing}[1]{\marginpar{\color{red}missing:\\#1}}
+
+%Theoretic Environment Setup
+\newcounter{Definitioncount}
+\setcounter{Definitioncount}{0}
+
+\newtheorem*{Theorem}{Theorem}% no counter
+\newtheorem{theorem}{Theorem}[section] % with counter
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+% \newtheorem*{Proposition}{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+% \newtheorem*{Corollary}{Corollary}% no counter
+
+\newtheorem*{Conjecture}{Conjecture}% no counter
+\newtheorem*{Lemma}{Lemma}% no counter
+
+\theoremstyle{definition}
+\newtheorem*{Definition}{Definition}% no counter
+\newtheorem*{Observation}{Observation}% no counter
+\newtheorem*{Observations}{Observations}% no counter
+\newtheorem*{Remark}{Remark}% no counter
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem*{Example}{Example}% no counter
+\newtheorem{example}[theorem]{Example}
+
+\renewcommand{\theexample}{\arabic{example}}
+
+\newtheoremstyle{fact}{\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{Fact}
+\theoremstyle{fact}
+\newtheorem*{Fact}{Fact}% no counter
+
+\newtheoremstyle{genquest}{\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{General Question}
+\theoremstyle{genquest}
+\newtheorem*{GenQuest}{General Question}% no counter
+
+% use \newtheoremstyle to underline the header
+\newtheoremstyle{step}{2\bigskipamount}{\medskipamount}{\upshape}{}{\itshape}{. }{ }{\underline{Step~\thestep}}
+\theoremstyle{step}
+\newtheorem{step}{Step}[subsection]
+\renewcommand{\thestep}{\arabic{step}}
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\lla}{\longleftarrow}
+\newcommand{\Lra}{\Longrightarrow}
+\newcommand{\Lla}{\Longleftarrow}
+\newcommand{\ldual}[1]{\mathord{{\let\nolimits\relax\sideset{^\wedge}{}{#1}}}}
+\newcommand{\laction}[2]{\mathord{{\let\nolimits\relax\sideset{^{#1}}{}{#2}}}}
+\newcommand{\conj}[2]{\mathord{{\let\nolimits\relax\sideset{^{#1}}{}{#2}}}}
+\newcommand{\xylongto}[2][2pt]{{\UseTips{}\xymatrix @C+#1{ \ar[r]^{#2}&}}}
+
+%% Script Shortcuts 
+\def\CA{{\mathscr A}}
+\def\CB{{\mathscr B}}
+\def\CC{{\mathscr C}}
+\def\CD{{\mathscr D}}
+\def\CE{{\mathscr E}}
+\def\CF{{\mathscr F}}
+\def\CG{{\mathscr G}}
+\def\CH{{\mathscr H}}
+\def\CI{{\mathscr I}}
+\def\CJ{{\mathscr J}}
+\def\CK{{\mathscr K}}
+\def\CL{{\mathscr L}}
+\def\CM{{\mathscr M}}
+\def\CN{{\mathscr N}}
+\def\CO{{\mathscr O}}
+\def\CP{{\mathscr P}}
+\def\CQ{{\mathscr Q}}
+\def\CR{{\mathscr R}}
+\def\CS{{\mathscr S}}
+\def\CT{{\mathscr T}}
+\def\CU{{\mathscr U}}
+\def\CV{{\mathscr V}}
+\def\CW{{\mathscr W}}
+\def\CX{{\mathscr X}}
+\def\CY{{\mathscr Y}}
+\def\CZ{{\mathscr Z}}
+
+\DeclareMathOperator{\Lan}{Lan}
+%\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Skew}{Skew}
+\DeclareMathOperator{\Mnd}{Mnd}
+\DeclareMathOperator{\LB}{LBrMon}
+\DeclareMathOperator{\Span}{Span}
+
+\newcommand{\K}{\ensuremath{\mathscr K}\xspace}
+\newcommand{\M}{\ensuremath{\mathscr M}\xspace}
+
+\renewcommand{\L}{\ensuremath{\LB(\M)}\xspace}
+
+%\newcommand{\Span}{\textnormal{Span}\xspace}
+
+\newcommand{\ox}{\otimes}
+\newcommand{\x}{\times}
+
+\newcommand{\op}{\ensuremath{^{\textnormal{op}}}}
+
+
+\def\theequation{{\thesection.\arabic{equation}}}
+
+
+\begin{document}
+
+\title{Free skew-monoidal categories, orientals and the Tamari lattice}
+
+\author{Stephen Lack}
+\address{Department of Mathematics, Macquarie University, NSW 2109, Australia}
+\email{steve.lack@mq.edu.au}
+
+\author{Ross Street}
+\address{Department of Mathematics, Macquarie University, NSW 2109, Australia}
+\email{ross.street@mq.edu.au}
+
+\thanks{Both authors gratefully acknowledge the support of the Australian Research Council Discovery Grant DP1094883; Lack acknowledges with equal gratitude the support of an Australian Research Council Future Fellowship}
+
+\date{\today}
+\maketitle
+
+\section{Introduction}
+
+Monoidal categories \cite{CWM} are important in the large as bases for enriched category theory \cite{KellyBook} 
+and other purposes \cite{dlVP}.  
+They are also important in the small as mathematical structures themselves: in their abstract form they are pseudomonoids
+(or monoidales) in monoidal bicategories \cite{{DaySt1997}, {DMcCS}}. 
+It is this small viewpoint which drove the generalization of monoidal category to skew-monoidal category \cite{Szl2012}.
+In particular, the relevant mathematical structure there is bialgebroid.
+We \cite{{SkMon}, {SkEH}} have developed that viewpoint somewhat in the setting of quantum categories.
+However, we also have found \cite{scc} that enriched category theory develops naturally with a skew-monoidal base.
+
+At the outset \cite{{Rice}, {Kelly1964}}, partly as a test for correctness of axioms, lay the question of coherence in monoidal categories. 
+That is, which diagrams involving the structural isomorphisms (constraints) commute? 
+A deeper understanding \cite{aac} of coherence questions for categorical structures was that they involved knowledge 
+of the free structures. 
+In some interesting cases (called ``clubable''), it was seen that the free structures on any category could essentially be 
+constructed from the free structure on a single generating object (that is, on the one-object discrete category $\mathbf{1}$).
+Skew-monoidal categories fall under this classification.
+
+The notion of free needs to be made clear. One meaning is that we consider the underlying 2-functor from the 
+2-category of structures, with morphisms preserving structure up to coherent isomorphism, to the 2-category of categories;
+the left biadjoint to this gives the free structure on each category. These free structures are only unique up to equivalence.
+In the case of monoidal categories, we can take the free structure on $\mathbf{1}$ simply to be the discrete category $\mathbb{N}$
+with the natural numbers as objects and addition as the tensor product. One might call this notion of free {\em bicategorical}.   
+
+Another meaning is that we consider the underlying 2-functor from the 2-category of structures, with morphisms {\em strictly}
+preserving the structure, to the 2-category of categories; the left adjoint to this gives the free structure on each category. 
+These free structures are unique up to isomorphism. This is freeness in the {\em strict} sense. A discussion of these matters can be found in \cite{btc}.
+
+The present paper describes a model for the free skew-monoidal category $\mathrm{Fsk}$ on $\mathbf{1}$ in the strict sense.
+Our construction involves the orientals of \cite{aos} and the Tamari lattices of \cite{HT}.
+ 
+\section{Axioms, non-axioms and an important example}
+
+A {\em (left) skew-monoidal category} is a category $\CC$ equipped with an object $I$ (called the {\em unit} or {\em skew unit}),
+a functor $\otimes : \CC \times \CC \lra \CC$ (called {\em tensor product}), and
+natural families of {\em lax constraints} having the directions 
+\begin{equation}
+\alpha_{XYZ} : (X\otimes Y)\otimes Z \lra X\otimes (Y\otimes Z)
+\end{equation}
+\begin{equation}
+\lambda_X : I\otimes X \lra X
+\end{equation}
+\begin{equation}
+\rho_X :  X \lra X\otimes I
+\end{equation}
+subject to five conditions: 
+
+\begin{equation}\label{pentagon}
+\xymatrix{
+& (W\otimes X)\otimes (Y\otimes Z) \ar[rd]^-{{\alpha_{W,X,Y\otimes Z}}}  & \\
+((W\otimes X)\otimes Y)\otimes Z \ar[ru]^-{{\alpha_{W\otimes X,Y,Z}}} \ar[d]_-{{\alpha_{W,X,Y}} \otimes 1_Z} & & W\otimes (X\otimes (Y\otimes Z))  \\
+(W\otimes (X\otimes Y))\otimes Z \ar[rr]_-{{\alpha_{W,X\otimes Y,Z}}} & & W\otimes ((X\otimes Y)\otimes Z) \ar[u]_-{1_W\otimes {\alpha_{X, Y,Z}}} }
+\end{equation}
+
+\begin{equation}\label{leftunit}
+\xymatrix{
+(I\otimes X)\otimes Y \ar[rd]_{\lambda_{X} \otimes 1_Y}\ar[rr]^{\alpha_{I,X,Y}}   && I\otimes (X\otimes Y) \ar[ld]^{\lambda_{X\otimes Y}} \\
+& X\otimes Y  &
+}
+\end{equation}
+
+\begin{equation}\label{midunit}
+\xymatrix{
+(X\otimes I)\otimes Y \ar[rr]^-{\alpha_{X,I,Y}} && X\otimes (I\otimes Y) \ar[d]^-{1_X\otimes \lambda_Y} \\
+X\otimes Y \ar[u]^-{\rho_X \otimes 1_Y} \ar[rr]_-{1_{X\otimes Y}} && X\otimes Y}
+\end{equation}
+
+\begin{equation}\label{rightunit}
+\xymatrix{
+(X\otimes Y)\otimes I \ar[rr]^{\alpha_{I,X,Y}}   && X\otimes (Y\otimes I)  \\
+& X\otimes Y \ar[lu]^{\rho_{X \otimes Y}}  \ar[ru]_{1_X\otimes \rho_Y}&
+}
+\end{equation}
+
+\begin{equation}\label{unitunit}
+\xymatrix{
+I \ar[rd]_{\rho_I}\ar[rr]^{1_I}   && I  \\
+& I\otimes I \ar[ru]_{\lambda_I} & .
+}
+\end{equation}
+
+Notice that we obtain idempotents
+$$\epsilon^{\ell}_{X,Y} : (X\otimes I) \otimes Y \stackrel{\alpha_{X,I,Y}} \lra X\otimes (I \otimes Y)
+\stackrel{1_X \otimes \lambda_X} \lra X\otimes Y
+\stackrel{\rho_X \otimes 1_Y} \lra (X\otimes I)\otimes Y \ ,$$
+$$\epsilon^{r}_{X,Y} : X\otimes (I \otimes Y) \stackrel{1_X \otimes \lambda_X} \lra X\otimes Y
+\stackrel{\rho_X \otimes 1_Y} \lra (X\otimes I)\otimes Y \stackrel{\alpha_{X,I,Y}} \lra X\otimes (I \otimes Y)$$
+and
+$$\epsilon_0 : I\otimes I \stackrel{\lambda_I} \lra I \stackrel{\rho_I}\lra I\otimes I $$
+which are not identities in general. Moreover, 
+$$\alpha_{X,I,Y} : ((X\otimes I) \otimes Y, \epsilon^{\ell}_{X,Y}) \lra (X\otimes (I \otimes Y), \epsilon^{r}_{X,Y})$$
+is a morphism of idempotents. 
+
+We shall give an example of a skew-monoidal category that plays an important role in this paper.
+Along with it, we fix some notation.
+Recall the algebraists' simplicial category $\mathbf{\Delta}$.
+The objects are the finite ordinals $$\mathbf{n} = \{0,1,\dots ,n-1\} \ .$$
+The morphisms are order-preserving functions $\xi : \mathbf{m} \lra \mathbf{n}$. 
+For each such function, we put
+$$\xi_{\ell} = \{i\in \mathbf{m} : \xi (i) = \xi (i+1)\}$$
+and
+$$\xi_{r} = \{j \in \mathbf{n} : j \notin \mathrm{im} \xi \} \ .$$
+Notice that $\xi_{\ell} =\varnothing$ means $\xi$ is injective and $\xi_{r} =\varnothing$ means $\xi$ is surjective. 
+Then there is a unique factorization $\xi = \partial \circ \sigma$ where 
+$\sigma_{\ell} = \xi_{\ell}$, $\sigma_{r} = \varnothing$, $\partial_{\ell} = \varnothing$, and $\partial_{r} = \xi_r$.  
+
+It is well known \cite{osed} that $\mathbf{\Delta}$ is the free strict monoidal category containing a monoid.
+The unit object is $\mathbf{0}$ and tensor product is ordinal sum $\mathbf{m}\otimes \mathbf{n} = \mathbf{m+n}$, $\xi\otimes \zeta = \xi \mathbf{+} \zeta$.
+The generic monoid is $\mathbf{1}$ with the only multiplication and unit possible.
+
+Let $\mathbf{\Delta}_{\bot}$ denote the subcategory of $\mathbf{\Delta}$ consisting of non-empty finite ordinals $\mathbf{n}$
+and first-element-preserving functions; that is, the $\xi$ with $0\notin \xi_r$.
+The tensor product on 
+$\mathbf{\Delta}$ restricts to $\mathbf{\Delta}_{\bot}$ 
+but we replace the unit by the terminal object $\mathbf{1}$.
+This gives a skew-monoidal category with identity associativity constraint, where 
+$$\lambda_{\mathbf{n}} : \mathbf{1+n} \lra \mathbf{n}$$ is the surjection with 
+$(\lambda_{\mathbf{n}})_{\ell} = \{0\}$, and 
+$$\rho_{\mathbf{n}} : \mathbf{n} \lra \mathbf{n+1}$$ is the injection with
+$(\rho_{\mathbf{n}})_{r} = \{n\}$.
+
+When we write $\mathbf{\Delta}_{\bot}$ in future, we mean it equipped with the above skew-monoidal structure. 
+
+We shall use the convention that each subset $x=\{x_0,x_1, \dots ,x_r\}$ of $\mathbf{n}\in \mathbf{\Delta}$ organizes itself as a list $x=(x_0x_1\dots x_r)$ with $x_0<x_1< \dots <x_r$.  
+
+\section{Motivation, orientals and the Tamari lattice}
+
+Our goal is to discover a nice model for the free skew-monoidal category $\mathrm{Fsk}$ generated by a single object $X$. 
+The objects are clearly words in the letters $I$ and $X$, bracketed meaningfully pairwise. 
+For example, there is the object 
+\begin{equation}
+(((X(IX))(XX))X) \ ;
+\end{equation}
+but we can write this as a triangulated polygon
+\begin{equation}\label{hexagon1}
+\xymatrix{
+& 0 \ar[rr]{} \ar[rrrd]{} \ar[rddd]{}  \ar[ld]_{X}  & & 6  &  \\
+1 \ar[rrdd]{} \ar[d]_{I} & & & & 5 \ar[lu]_{X} \\
+2  \ar[rrd]_{X} & & & & 4  \ar[u]_{X} \\
+& &  3 \ar[rruu]{}  \ar[rru]_{X} &
+}
+\end{equation}
+where the edges $i\lra i+1$ are labelled by the symbols $I$ or $X$.
+We can omit the labels $X$ since anything not labelled by $I$ can be understood to be labelled by $X$.
+
+Now we recall the {\em orientals} $\CO_n$ \cite{aos}. This is the free $n$-category on the $n$-simplex.
+However, we need no more than the underlying 3-category structure. 
+The objects (= 0-cells) of $\CO_n$ are the natural numbers $m$ with $0 \le m \le n$. 
+A morphism (=1-cell) $a : p \lra q$ implies $p\le q$ and $a=(a_0 a_1\dots a_r)$ is a subset of $q\smallsetminus p$
+with $a_0 =p$; we think of $a$ as the path 
+$$p\stackrel{(pa_1)}\lra a_1\stackrel{(a_1a_2)}\lra a_2\lra \dots \stackrel{(a_rq)}\lra q \ .$$
+According to \cite{aos} we think of the morphism $a : p \lra q$ as a set of doublets 
+$$a=\{(pa_1), (a_1a_2),\dots , (a_rq)\} \ .$$  
+For our purposes, we are interested in the morphism $b_n : 0 \lra n$ which is $0\stackrel{(0n)}\lra n$ and
+the morphism $e_n : 0 \lra n$ which is the path $0\stackrel{(01)}\lra 1 \stackrel{(12)}\lra 2 \dots  \stackrel{(n-1n)}\lra n$. 
+
+Let $\CT_n = \CO_n (0,n)(b_n,e_n)$ as a 2-category. We shall examine this more explicitly. 
+
+The objects of $\CT_n$ are 2-cells $S:b_n \Lra e_n$ in $\CO_n$.
+A description of these, adapted from \cite{aos}, is as follows: 
+$S$ is a set of three-element subsets $x=(x_0x_1x_2)$ of $\mathbf{n+1}$ 
+satisfying the conditions:
+\begin{itemize}
+\item[(a)] for $x,y\in S$, if two of the three equations $x_0=y_0$, $x_1=y_1$, $x_2=y_2$ hold then so does the third;
+\item[(b)] for $x,y\in S$, at most one of the equations $x_1=y_0$, $x_2=y_1$ holds;
+\item[(c)] the function $S\lra \{1,2,\dots ,n-1\}$, taking $x$ to its middle element $x_1$, is a bijection. 
+\end{itemize} 
+These objects $S$ are in bijection with triangulations of the polygon with $n$ sides.
+For example, the triangulation \eqref{hexagon1} of the hexagon has 
+\begin{equation}
+S=\{(013),(123),(035),(345),(056)\} \ .
+\end{equation} 
+It will be useful to have some notation involving the inverse $t_S$ of the bijection in (c) above:
+\begin{eqnarray}
+t_S : \{1,2,\dots ,n-1\} \lra S \nonumber \\
+t_S(i) = (\ell_S(i), i , r_S(i)) \ .
+\end{eqnarray}
+Notice that, in the process, we are defining functions 
+\begin{eqnarray}
+\ell_S : \{1,2,\dots ,n-1\} \lra \mathbf{n-2}
+\end{eqnarray}
+and 
+\begin{eqnarray}\label{rightfns}
+r_S: \{1,2,\dots ,n-1\} \lra \{2,3,\dots ,n\} \ .
+\end{eqnarray}
+We put 
+\begin{equation}
+S_{\lambda} = \{i\in \mathbf{n} : \ell_S(i+1)=i \}
+\end{equation}
+and
+\begin{equation}
+S_{\rho} = \{i\in \mathbf{n} : r_S(i)=i+1 \} \ .
+\end{equation}
+
+Now let us look at the morphisms of $\CT_n$.
+As 3-cells in $\CO_n$, they are well defined in \cite{aos} as sets $\theta$ of
+four-element subsets $x=(x_0x_1x_2x_3)$ of $\mathbf{n+1}$ satisfying
+well formedness and movement conditions; also see \cite{{pc},{pc:c}}.
+The indecomposable $\theta : S\lra T$ are precisely the singleton sets $\{ x\}$
+such that
+\begin{equation}
+T = (S\smallsetminus \{(x_0x_1x_2),(x_0x_2x_3)\})\cup \{(x_0x_1x_3),(x_1x_2x_3)\} \ .
+\end{equation}
+In pictures, this means that $S$ should contain the domain of
+$x=(x_0x_1x_2x_3)$ in the diagram \eqref{indec3}
+as part of its triangulation and $T$ should be obtained from $S$ by 
+replacing that part by the codomain.
+
+\begin{eqnarray}\label{indec3}
+\xymatrix{
+x_0 \ar[r]^-{} \ar[rd]^-{} \ar[d]_-{} & x_3 \\
+x_1 \ar[r]_-{}  & x_2 \ar[u]^-{} }
+\qquad
+\xymatrix{
+\stackrel{x} \lra}
+\qquad
+\xymatrix{
+x_0 \ar[r]^-{} \ar[d]_-{} & x_3 \\
+x_1 \ar[r]_-{} \ar[ru]^-{}  & x_2 \ar[u]^-{} }
+\end{eqnarray}
+In terms of bracketings, it means that $T$ is obtained from $S$ by moving just 
+one set of brackets to the right:
+$$((W_0((W_1W_2)W_3))W_4) \lra ((W_0(W_1(W_2W_3)))W_4)$$
+or
+$$(W_0(((W_1W_2)W_3)W_4)) \lra (W_0((W_1(W_2W_3))W_4))$$
+where the $W_i$ are meaningfully binarily bracketed words in $I$ and $X$.
+So this means that the category $\CT_n$ is the Tamari ordered set 
+\cite{{Tamari51},{Tamari62}, {HT}}. We write $S \le T$ for this order.
+
+The following result is immediate on combining \cite{HT} and \cite{aos}.
+
+\begin{proposition}\label{TLatt} For 2-cells $S,T:b_n\Lra e_n : 0\lra n$ in the $n$-category 
+$\CO_n$, the following conditions are equivalent:
+\begin{itemize}
+\item[(i)] $S \le T$;
+\item[(ii)] there exists a 3-cell $S\lra T$ in $\CO_n$;
+\item[(iii)] for all $x\in S$ and $y\in T$, if $x_1=y_1$ then $x_0\le y_0$; 
+\item[(iv)] for all $x\in S$ and $y\in T$, if $x_1=y_1$ then $x_2\le y_2$;
+\item[(v)] for all $x\in S$ and $y\in T$, if $x_1=y_1$ then $x_0\le y_0$ and $x_2\le y_2$.
+\end{itemize}
+The functions $r_S$ for $S:b_n\Lra e_n$ in $\CO_n$ are precisely the functions 
+$$f : \{1,2,\dots , n-1\} \rightarrow \{2,3,\dots , n \}$$ 
+such that $i < f(i)$, and $ i \le j < f(i)$ implies $f(j) \le f(i)$. 
+\end{proposition}
+
+\section{The model}
+The objects of the category $\mathrm{Fsk}$ are triples $(m,u,S)$ where $m$
+is a positive integer,
+$u\subseteq \mathbf{m}$ and $S$ is an object of $\CT_m$.
+The idea is that $S$ amounts to a bracketed word in $I$ and $X$ regarded
+as a triangulated $m$-sided polygon and $u$ consists of those $i$ for which the 
+edge $i\lra i+1$ is labelled by $I$, the other edges $i\lra i+1$ 
+being understood to be labelled by $X$. Notice that $m=\#S+1$ 
+
+We will identify two classes of morphisms
+\begin{equation}
+(m,u,S) \lra (n,v,T)
+\end{equation}
+in $\mathrm{Fsk}$: those of type 
+$\alpha$ and those which are $\alpha$-absent.
+The morphisms of {\em type} $\alpha$ have $m=n$, $u=v$ and $S\le T$ 
+(see Proposition~\ref{TLatt}); so, given the domain and codomain,
+there is at most one.
+
+An {\em $\alpha$-absent} morphism
+\begin{equation}
+\xi : (m,u,S) \lra (n,v,T)
+\end{equation}
+in $\mathrm{Fsk}$ is a first-element-and-order-preserving function 
+$\xi : \mathbf{m} \lra \mathbf{n}$
+such that
+\begin{enumerate}
+\item $\xi_{\ell} \subseteq u$;
+\item $\xi_{r} \subseteq v$;
+\item $v=\xi(u\smallsetminus \xi_{\ell})\cup \xi_{r}$; and
+\item $T=(\xi \mathbf{+}1_{\mathbf{1}}) (S\smallsetminus t_S \{i+1 : i\in \xi_{\ell}\}) \cup t_T \xi_r$.   
+\end{enumerate}
+In (4), we need to use the function 
+$$\xi \mathbf{+}1_{\mathbf{1}} : \mathbf{m+1} \lra \mathbf{n+1}$$
+rather than merely $\xi$ since some of the $x\in S$ could have $x_2 = m$.
+  
+\begin{lemma}\label{absent}
+If $\xi : (m,u,L) \lra (n,v,R)$ and $\zeta : (n,v,T) \lra (k,w,U)$ are $\alpha$-absent
+and $R\le T$ then there exist $M$ and $V$
+with $L\le M$ and $V\le U$ such that 
+$\zeta \circ \xi : (m,u,M) \lra (k,w,V)$ is $\alpha$-absent.
+\end{lemma}
+
+In favour of Lemma~\ref{absent}, we have the example 
+where $u$ and $w$ are empty, $v=\{1\}$, $L=U=\{(012)\}$, 
+$R=\{(012)(023)\}$, $T=\{(013)(123)\}$, $\xi = \partial_1$ and $\zeta =\sigma_1$;
+in this case, $L=M$ and $V=U$.
+This example concerns axiom \eqref{midunit} for a skew-monoidal category; the other axioms
+\eqref{leftunit}, \eqref{rightunit} and \eqref{unitunit} provide examples too.  
+
+A general morphism
+\begin{equation}
+\xi : (m,u,S) \lra (n,v,T)
+\end{equation}
+in $\mathrm{Fsk}$ is a first-element-and-order-preserving function
+$\xi : \mathbf{m} \lra \mathbf{n}$
+such that there are morphisms $(m,u,S)\lra (m,u,L)$ and $(n,v,R)\lra (n,v,T)$
+of $\alpha$-type and such that $\xi : (m,u,L) \lra (n,v,R)$ is $\alpha$-absent. 
+Composition in $\mathrm{Fsk}$ is composition of functions;
+this makes sense in light of Lemma~\ref{absent}. 
+
+There is a faithful functor 
+\begin{equation}\label{und}
+\mathrm{und} : \mathrm{Fsk} \lra \Delta_{\bot} 
+\end{equation}
+taking $(m,u,S)$ to $\mathbf{m}$ and $\xi$ to $\xi$. 
+
+Now we describe the skew-monoidal structure on $\mathrm{Fsk}$.
+For objects $(m,u,S)$ and $(h,p,U)$, put
+\begin{equation}
+(m,u,S)\otimes (h,p,U) = (m+h,u\otimes p,S\otimes U) 
+\end{equation}
+where $$u\otimes p = u\cup (m+v)$$
+and $$S\otimes U = S\cup \{(0,m,m+n)\} \cup (m+T) \ .$$
+Here $m+v = \{m+i : i\in v\}$ and $m+T = \{(m+i,m+j,m+k) : (i,j\k) \in T\}$.  
+For morphisms $\xi : (m,u,S) \lra (n,v,T)$ and $\zeta : (h,p,U) \lra (k,q,V)$ in
+$\mathrm{Fsk}$, put
+\begin{equation}
+\xi \otimes \zeta = \xi \mathbf{+} \zeta : (m+h,u\otimes p,S\otimes U) \lra (n+k,v\otimes q,T\otimes V) \ .
+\end{equation}
+
+The associativity constraint
+\begin{equation}
+\alpha_{(m,u,S),(n,v,T),(k,w,U)} : ((m,u,S)\otimes (n,v,T))\otimes (k,w,U) \rightarrow (m,u,S)\otimes ((n,v,T)\otimes (k,w,U))
+\end{equation}
+is the 3-cell 
+$$\{(0,m,m+n,m+n+k)\} : (S\otimes T)\otimes U \Lra S\otimes (T\otimes U)$$ 
+in $\CO_{m+n+k}$. 
+
+The skew unit object is $I = (1,\{0\},\varnothing)$.
+
+The left unit constraint 
+\begin{equation}
+\lambda_{(m,u,S)} :  (1,\{0\},\varnothing)\otimes (m,u,S) \lra (m,u,S)
+\end{equation}
+is the surjection called 
+$$\lambda_{\mathbf{m}} : \mathbf{1+m} \lra \mathbf{m}$$
+in $\Delta_{\bot}$.
+ 
+The right unit constraint 
+\begin{equation}
+\rho_{(m,u,S)} :  (m,u,S) \lra (m,u,S) \otimes (1,\{0\},\varnothing)
+\end{equation}
+is the injection called 
+$$\rho_{\mathbf{m}} : \mathbf{m} \lra \mathbf{m+1}$$
+in $\Delta_{\bot}$.
+
+\begin{theorem}
+$\mathrm{Fsk}$ is the free skew-monoidal category on a single generating object.
+The unique strict monoidal functor \eqref{und} into $\Delta_{\bot}$, taking the generating object to the skew unit, is faithful. 
+\end{theorem}
+
+\section{A bijection}
+
+In order to construct an inverse for a function $\theta$ relating the Tamari lattice to the Catalan monoid, 
+we require a construction on certain partial maps.
+
+We will define a new partial map $h^{\prime} : [n] \lra [n-1]$ from a given one $h : [n] \lra [n-1]$.
+We will let $x_h \subseteq [n]$ denote the domain of $h$ and use the same symbol $h$ for the function $h: x_h \lra [n-1]$. 
+Let $r_h$ be the first $i \in x_h$ with $h(i) > 0$, if it exists.
+
+Obtain $x_{h^{\prime}} \subseteq [n]$ from $x_h$ by deleting precisely $h(r)$ 
+of the elements directly preceding $r$ in $x_h$. 
+Then define $h^{\prime} : x_{h^{\prime}} \lra [n-1]$ to agree with $h$ on all elements of $x_{h^{\prime}}$
+except $r_h$ where $h^{\prime}(r_h) = 0$.
+
+Notice that $r_h < r_{h^{\prime}}$ if the latter exists.   
+Put 
+\begin{eqnarray*}
+\mathbb{T}_n = \{ \text{functions} \  f : \{1,2,\dots , n-1\} \rightarrow \{2,3,\dots , n \} : i < f(i), \ \text{and} \\
+  \ i \le j < f(i) \ \text{implies} \ f(j) \le f(i)\} \ .
+\end{eqnarray*}
+
+Also put 
+$$\mathbb{C}_n = \{ \text{order-preserving functions} \ g : [n-2] \rightarrow [n-2] : g(i) \le i \} \ .$$
+
+There is a function $$\theta : \mathbb{T}_n \lra \mathbb{C}_n $$
+defined by $\theta (f) (r) = \#f^{-1} \{2, 3, \dots , r+1\}$ for $0 \le r \le n-2$.
+
+\begin{proposition} $\theta$ is a bijection.
+\end{proposition}
+\begin{proof}
+Without going into the full proof, we define the inverse of $\theta$.
+Let $g\in \mathbb{C}_n$.
+We recursively define a sequence of functions $h^m : x^m \lra [n-1]$, $1 \le m \le q$, where $q$ is the number of non-empty fibres of $g$. 
+Put $x^1 = [n-1]$ and $h^1 = \# g^{-1}(i)$. 
+Then $h^{m+1} = (h^m)^{\prime}$ with $x^{m} = x_{h^m}$.
+Notice that $$\bigcup_{1\le m \le q} x_m \smallsetminus x_{m+1} = \{1, \dots , n-1\} \ . $$
+For $i \in x_m \smallsetminus x_{m+1}$, define $$f(i) = r_{h^m} \ .$$ 
+Then $\theta(f) = g$.
+\end{proof}
+
+\section{Tamari order} 
+
+The Tamari order on $\mathbb{T}_n$ is simply the pointwise order of functions using the natural order on $\{2,3,\dots , n \}$.  
+This obviously transports across the bijection $\theta : \mathbb{T}_n \lra \mathbb{C}_n$ to an order on $\mathbb{C}_n$.
+However, this description takes some work to disentangle. On the other hand, it is easy to describe the indecomposable
+inequalities $g_1 < g_2$ in $\mathbb{C}_n$.  
+
+\begin{proposition} The Tamari order on $\mathbb{T}_n$ transports across $\theta$ to the partial order on 
+$\mathbb{C}_n$ generated by the relation
+$g_1 < g_2$ if there exists $0<i<j \le n-1$ such that 
+\begin{equation*}
+  g_1 (k) =
+      \begin{cases}
+         g_2 (k) + 1 & \text{if } \  i \le k \le j \ , \\
+         g_2 (k) & \text{otherwise }.
+       \end{cases}
+\end{equation*}
+\end{proposition}
+
+Clearly $\mathbb{C}_n$ is a monoid with zero under composition of endofunctions of $[n-2]$.
+However, it is not an ordered monoid. To see this, take $g_0$, $g_1$, $g_2$, $g_3$ to be the functions
+whose values are $012$, $011$, $002$, $001$, respectively. While $g_0 < g_2$, when we multiply
+on the left by $g_1$ we see that $g_1 g_0 = g_1$ and $g_1 g_2 = g_3$; yet $g_1 \nleq g_3$. 
+
+\begin{thebibliography}{00}
+
+\bibitem{DaySt1997} Brian J. Day and Ross Street, \textit{Monoidal bicategories and Hopf algebroids}, Advances in Math. \textbf{129} (1997) 99--157. \label{DaySt1997}
+
+\bibitem{DMcCS} Brian J. Day, Paddy McCrudden and Ross Street, \textit{Dualizations and antipodes}, Applied Categorical Structures \textbf{11} (2003) 229--260. \label{DMcCS]}
+
+\bibitem{HT} Dani\`ele Huguet and Dov Tamari, \textit{Problems of associativity: a simple proof for the lattice property of
+systems ordered by a semi-associative law}, J. Comb. Theory (A) \textbf{13} (1972) 7--13.\label{HT}  
+
+\bibitem{btc}  Andr\'e Joyal and Ross Street, \textit{Braided tensor categories}, Advances in Mathematics \textbf{102} (1993) 20--78.\label{btc}
+
+\bibitem{Kelly1964} G. Max Kelly, \textit{On MacLane's conditions for coherence of natural associativities, commutativities, etc.}, Journal of Algebra \textbf{1} (1964) 397--402.\label{Kelly1964}
+
+\bibitem{aac} G. Max Kelly, \textit{An abstract approach to coherence}, Lecture Notes in Math. \textbf{281} (Springer-Verlag, 1972) 106--147.\label{aac}
+
+\bibitem{KellyBook} G. Max Kelly, \textit{Basic concepts of enriched category theory}, London Mathematical Society Lecture Note Series \textbf{64} (Cambridge University Press, Cambridge, 1982). \label{KellyBook}
+
+\bibitem{SkMon} Stephen Lack and Ross Street, \textit{Skew monoidales, skew warpings and quantum categories}, Theory and Applications of Categories \textbf{27(3)} (2012) 27--46.
+\label{SkMon}
+
+\bibitem{SkEH} Stephen Lack and Ross Street, \textit{A skew-duoidal Eckmann-Hilton argument and quantum categories}, (submitted; see http://arxiv.org/abs/1210.8192).\label{SkEH}
+
+\bibitem{osed} F. William Lawvere, \textit{Ordinal sums and equational doctrines}, Reprints in Theory and Applications of Categories \textbf{18} (2008) 1--303.\label{osed}
+
+\bibitem{Rice} Saunders Mac Lane, \textit{Natural associativity and commutativity}, Rice Univ. Studies \textbf{49} (1963) 28--46.\label{Rice}
+
+\bibitem{CWM} Saunders Mac Lane, \textit{Categories for the Working Mathematician}, Graduate Texts in Mathematics \textbf{5} (Springer-Verlag, 1971).\label{CWM} 
+
+\bibitem{aos} Ross Street, \textit{The algebra of oriented simplexes}, J. Pure Appl. Algebra \textbf{49} (1987) 283--335.\label{aos}
+
+\bibitem{pc} Ross Street, \textit{Parity complexes}, Cahiers de topologie et g\'eom\'etrie diff\'erentielle cat\'egoriques \textbf{32} (1991) 315--343.\label{pc}
+
+\bibitem{pc:c} Ross Street, \textit{Parity complexes: corrigenda}, Cahiers de topologie et g\'eom\'etrie diff\'erentielle cat\'egoriques \textbf{35} (1994) 359--361.\label{pc:c}
+
+\bibitem{dlVP} Ross Street, \textit{Monoidal categories in, and linking, geometry and algebra}, Bulletin Belgian Math. Society  (to appear; see http://arxiv.org/abs/1201.2991).\label{dlVP}
+
+\bibitem{scc} Ross Street, \textit{Skew-closed categories}, Journal of Pure and Applied Algebra (2012), doi: 10.1016/j.jpaa.2012.09.020; also see http://arxiv.org/abs/1205.6522).\label{scc}
+
+\bibitem{Szl2012} Kornel Szlach\'anyi, \textit{Skew-monoidal categories and bialgebroids}, Advances in Mathematics \textbf{231(3--4)} (2012) 1694--1730.
+%arXiv:1201.4981v1 (2012).
+\label{Szl2012}
+
+\bibitem{Tamari51} Dov Tamari, \textit{Monoides pr\'eordonn\'es et cha\^ines de Malcev}, 
+Doctorat\`es-Sciences Math\'ematiques Th\`ese de Math\'ematiques (Parisa, 1951).\label{Tamari51} 
+
+\bibitem{Tamari62} Dov Tamari, \textit{The algebra of bracketings and their enumeration}, Nieuw Archief voor Wiskunde \textbf{10} (1962) 131--146.\label{Tamari62}
+
+
+
+
+\end{thebibliography}
+
+\end{document}

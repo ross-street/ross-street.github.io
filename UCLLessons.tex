@@ -1,0 +1,3336 @@
+%Document Class
+\documentclass[a4paper,10pt]{article}
+
+
+%Packages 
+\usepackage{amscd,amssymb,amsmath,amsfonts,graphicx,verbatim,hyperref}
+\usepackage[OT1,T1]{fontenc}
+\usepackage[all]{xypic}
+\usepackage{pdfpages}
+\usepackage[all,poly,knot,tips]{xy}
+\usepackage{textcomp}
+
+
+%Theoretic Environment Setup
+\newcounter{Definitioncount}
+\setcounter{Definitioncount}{0}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}] }{\end{trivlist}}
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}] \refstepcounter{Definitioncount} \textbf{\arabic{Definitioncount}} }{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+
+%Tom's Obnoxious Black-Box QED Code 
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+      
+
+%Tom's Not-So-Ridiculous Shortcuts
+\newcommand{\fc}{\mathscr{C}}
+\newcommand{\bm}{{\cal{M}}}
+\newcommand{\bid}{{\cal{I}}}
+\newcommand{\bc}{{\cal{C}}}
+\newcommand{\ba}{{\cal{A}}}
+\newcommand{\bk}{{\cal{K}}}
+\newcommand{\by}{{\cal{Y}}}
+\newcommand{\bx}{{\cal{X}}}
+\newcommand{\bB}{{\cal{B}}}
+\newcommand{\duof}{{\cal{F}}}
+\newcommand{\oop}{\operatorname{op}}
+\newcommand{\op}{^{\oop}}
+\newcommand{\pps}{\operatorname{ps}}
+\newcommand{\ps}{^{\pps}}
+\newcommand{\lowps}{_{\pps}}
+\newcommand{\ttract}{\operatorname{tract}}
+\newcommand{\tract}{_{\ttract}}
+\newcommand{\rrep}{\operatorname{rep}}
+\newcommand{\rep}{_{\rrep}}
+\newcommand{\bicat}{\mathrm{Bicat}(\bc\op,\bm\op)\op}
+\newcommand{\ev}{\mathcal{V} }
+\newcommand{\lom}{\ell{om}}
+\newcommand{\rom}{r{om}}
+\newcommand{\warmon}{\,\Box\,}
+\numberwithin{equation}{section}
+
+%Ross Moore shortcuts
+\newcommand{\scrA}{\mathcal{A}}
+\newcommand{\Rep}{\operatorname{Rep}}
+\newcommand{\inv}{\mathrm{inv}}
+
+%French Greek Shortcuts
+\def\th{\theta}
+\def\Th{\Theta}
+\def\ga{\gamma}
+\def\Ga{\Gamma}
+\def\be{\beta}
+\def\al{\alpha}
+\def\ep{\epsilon}
+\def\la{\lambda}
+\def\La{\Lambda}
+\def\de{\delta}
+\def\De{\Delta}
+\def\om{\omega}
+\def\Om{\Omega}
+\def\sig{\sigma}
+\def\Sig{\Sigma}
+\def\vphi{\varphi}
+
+
+%French Calligraphic Character Shortcuts 
+\def\CA{{\cal A}}
+\def\CB{{\cal B}}
+\def\CC{{\cal C}}
+\def\CD{{\cal D}}
+\def\CE{{\cal E}}
+\def\CF{{\cal F}}
+\def\CG{{\cal G}}
+\def\CH{{\cal H}}
+\def\CI{{\cal J}}
+\def\CJ{{\cal J}}
+\def\CK{{\cal K}}
+\def\CL{{\cal L}}
+\def\CM{{\cal M}}
+\def\CN{{\cal N}}
+\def\CO{{\cal O}}
+\def\CP{{\cal P}}
+\def\CQ{{\cal Q}}
+\def\CR{{\cal R}}
+\def\CS{{\cal S}}
+\def\CT{{\cal T}}
+\def\CU{{\cal U}}
+\def\CV{{\cal V}}
+\def\CW{{\cal W}}
+\def\CX{{\cal X}}
+\def\CY{{\cal Y}}
+\def\CZ{{\cal Z}}
+
+
+%French LaTeX Oddities
+\def\qq{ \begin{eqnarray} }
+\def\qqq{ \end{eqnarray} }
+\def\non{ \nonumber }
+
+\newcommand{\no}{\noindent}
+\newcommand{\vs}{\vspace}
+\newcommand{\hs}{\hspace}
+\newcommand{\e}{Ž}
+\newcommand{\ef}{}
+\newcommand{\p}{\partial}
+\newcommand{\un}{\underline}
+\newcommand{\ha}{{1\over 2}}
+\newcommand{\pa}{\partial}
+\newcommand{\sh}{\sinh}
+\newcommand{\ch}{\cosh}
+\newcommand{\rea}{{\rm Re}}
+\newcommand{\ima}{{\rm Im}}
+
+\def\theequation{{\thesection.\arabic{equation}}}
+
+
+%French Document Margins
+\setlength{\textwidth}{16cm}
+\setlength{\textheight}{23.315cm}
+\hoffset -1.2cm
+\topmargin= -1cm
+\raggedbottom
+\renewcommand{\baselinestretch}{1.5}
+\pagestyle{plain}
+
+
+%Begin Document Body
+
+\begin{document}
+\author{Ross Street\footnote{The author gratefully acknowledges the support of an Australian Research Council Discovery Grant DP1094883 and of the \'Ecole de Math\'ematique, Universit\'e catholique de Louvain.}}
+\title{Monoidal categories in, and linking, geometry and algebra}
+\date{}
+\maketitle
+
+\noindent {\small{\emph{2010 Mathematics Subject Classification} \quad 18D10; 18D20; 18D35; 20C08; 20C30; 57M25; 81T45; 20C33}}
+\\
+{\small{\emph{Key words and phrases.} monoidal category; enriched category; braiding; string diagram; duoidal category; Mackey functor; Green functor; manifold invariant; topological quantum field theory; Day convolution; Joyal species; finite general linear group; link invariant; cuspidal representation.}}
+
+\begin{abstract}
+\noindent This is a report on aspects of the theory and use of monoidal categories.
+The first section introduces the main concepts through the example of the category of vector spaces.
+String notation is explained and shown to lead naturally to a link between knot theory and monoidal categories.
+The second section reviews the light thrown on aspects of representation theory by the machinery of monoidal category theory, such as braidings and convolution.
+The category theory of Mackey functors is reviewed in the third section. Some recent material and a conjecture concerning monoidal centres is included. 
+The fourth and final section looks at ways in which monoidal categories are, and might, be used for new invariants of low-dimensional manifolds and for the field theory of theoretical physics.
+
+\end{abstract}
+
+
+
+\section*{Introduction}
+
+In essence, this paper consists of the notes of four lectures delivered in May 2011 as part of the Chaire de la Vall\'ee Poussin 2011 <http://www.uclouvain.be/15551.html>. The third and fourth lectures were also part of the conference {\it Category Theory, Algebra and Geometry} on 26 and 27 May 2011 in Louvain-la-Neuve, Belgium.    
+
+The role of monoidal categories in mathematics can be expressed simplistically in an equation:
+ 
+\[
+\frac{\mathrm{Point \ \ in \ \ Euclidean \ \ space}}{\mathrm{Vector \ \ space}}=\frac{\mathrm{Vector \ \ space}}{\mathrm{Monoidal \ \ category}}\ \ .
+\]
+
+\vspace{2mm}
+
+While the more precise subject of the paper can be gleaned from the table of contents, I would like to mention that the preparation of this material took on a life of its own. What forced itself on me was a strong feeling for the importance of the concept of duoidal category (called 2-monoidal category in [\ref{AguiarMahajan}]) and for the interesting questions associated with the construction of the centre of a monoidal category. I hope the paper manages to capture and impart some of my enthusiasm.     
+
+It is a pleasure to acknowledge the significant help from Cathy Brichard at Universit\'e catholique de Louvain who turned my handwritten lecture notes into \LaTeX . Congratulations to Tom Booker who in November 2011 facilitated my looking at and writing in \LaTeX\  code. Even so, I have much to learn, especially when it comes to diagrams: so my thanks go to Mark Weber and Craig Pastro for being willing helpers with that. In the final stages of preparation of this publication, I am grateful that Ross Moore came to the rescue for many vast improvements in the diagrams, a few now coming from our book [\ref{RossQG}] for which he was the Technical Editor. Along with the standard references [\ref{CWM}] and [\ref{Borceux}], our book provides a good supplement to the present Section \ref{Lecture1}. Furthermore Section \ref{Lecture2} is dedicated to Brian Day and some of the material of Section \ref{Lecture4} is joint with him.  
+
+\tableofcontents
+
+\section{From linear algebra to knot theory via categories}\label{Lecture1}
+
+\subsection{Introduction to categories}
+
+Formalizing properties of the Euclidean plane into the structure of vector space, we are able to transfer low-dimensional thinking to obtain precise results in higher dimensions.
+
+\[
+\xygraph{ !{\UseTips}
+ !{/r6pc/: /u4pc/::}
+ []*++[F-]+!C\txt{Vector spaces} !{+D*+!C\txt{ \ }} 
+ ( [dl] *++[F-]+\txt{Plane\\geometry} : ?
+ , ? : [dr] *++[F-]+\txt{Functional\\analysis}
+ )
+}\]
+
+\noindent Formalizing properties of the totality of vector spaces into the structure of monoidal category, we are able to transfer linear algebra into some perhaps surprising areas.
+
+\[
+\xygraph{  !{\UseTips}!{/u4pc/::}
+ !{/r6pc/: /u4pc/::}
+ []*++[F-]+!C\txt{Monoidal categories} !{+D*+!C\txt{ \ }} 
+ ( [dl] *++[F-]+\txt{Linear\\algebra} : ?
+ , ? : [dr] *++[F-]+\txt{Knot\\theory}
+ )
+}\]
+
+Klein recognized the importance of structure-respecting transformations in geometry.
+These transformations were taken to be invertible, forming a groupoid.
+General structure-respecting functions are also crucial.
+The notion of ``category'' captures that idea.
+
+For example, the {\it category} $\mathrm{Vect}$ of (say, complex) vector spaces consists not only of the vector spaces $V$ ({\it objects}) but also the linear functions $f:V\to W$ between them ({\it morphisms}).
+The basic operation is composition
+ $$
+ \xymatrix{ & W \ar[dr]^g &
+                \\ V \ar[ur]^f  \ar[rr]_{g\circ f} & & X
+                }
+ $$ 
+of the morphisms.
+Each object $V$ has an identity morphism $1_V : V \longrightarrow V$.
+
+A first course on linear algebra introduces the operation of {\it direct sum} $V \oplus W$ of vector spaces and the quantity {\it dimension}. If $V$ and $W$ are finite dimensional,
+\[
+\dim (V \oplus W) = \dim V + \dim W.
+\]
+{\it Bilinear functions} $h : V \times W \longrightarrow X$ would also be defined.
+Yet the operation of {\it tensor product}   $V \otimes W$ might await a course on multilinear algebra or module theory.
+For $V$ and $W$ finite dimensional, 
+\[
+\dim (V \otimes W) = \dim V \times \dim W.
+\]
+Bilinear functions $h : V \times W \longrightarrow X$ are in canonical bijection with linear functions $f : V \otimes W \longrightarrow X$.
+There is also the vector space $X^V$ of linear functions from $V$ to $X$.
+Linear functions $f : V \otimes W  \longrightarrow X$ are in canonical bijection with linear functions
+\[
+g : W  \longrightarrow X^V.
+\]
+
+
+A {\it category}  $\CC$ consists of a set of {\it objects} and, for each pair of objects $A, B$, a set $\CC (A,B)$ of morphisms $f : A  \longrightarrow B$, together with an associative composition rule $\circ$ with identities $1_A : A  \longrightarrow A$.
+$$  \xymatrix{
+    A \ar[r]^{h \circ (g\circ f)} \ar[d]_f \ar[rd]_{g \circ f} & D   \\
+    B \ar[r]_g    & C \ar[u]_h
+  } \qquad
+  \xymatrix{
+    A \ar[r]^{(h \circ g)\circ f} \ar[d]_f  & D   \\
+    B \ar[r]_g  \ar[ru]_{h \circ g}  & C \ar[u]_h}
+ $$ 
+  $$  \xymatrix{
+    A \ar[r]^f\ar[d]_{f=1_B \circ f}   & B \ar[ld]_{1_B}  \ar[d]^{g=g\circ 1_B}\\
+    B \ar[r]_g     & C }
+  $$
+
+In a category, we can speak of {\it commutative diagrams}:
+\begin{equation*}
+\xymatrix{
+& Y \ar[rd]^-{ g}  & \\
+X \ar[ru]^-{f} \ar[d]_-{u} \ar[rr]_-{w} & & Z \ar[d]^-{h} \\
+V \ar[rr]_-{v} & & W }
+\end{equation*}
+ 
+\begin{center}
+$h \circ w = v \circ u$ \qquad and \qquad $g \circ f = w$,
+
+so $v \circ u = h \circ g \circ f$.
+\end{center}
+
+Categories are themselves mathematical structures: so we should look at morphisms between them.
+A {\it functor} $T : \CC  \longrightarrow \CH$ assigns an object $TA$ of $\CH$ to each object $A$ of $\CC$, a morphism $Tf : TA  \longrightarrow TB$ in $\CH$ to each $f : A  \longrightarrow B$ in $\CC$, such that
+\[
+T1_A = 1_{TA} \quad \mbox{and} \quad T(g \circ f) = Tg \circ Tf.
+\]
+For example, each vector space $V$ determines a functor
+\[
+T = V\otimes - : \mathrm{Vect} \longrightarrow \mathrm{Vect}
+\]
+defined by
+\qq
+TA = V \otimes A  \hspace{40mm}  \nonumber
+\\
+Tf = 1_V \otimes f : V \otimes A \longrightarrow V \otimes B,   \hspace{8mm} v \otimes a \longmapsto v \otimes f(a). \hspace{10mm}  \non
+\qqq
+In an obvious sense of {\it product category}, tensor product is a functor
+\[
+- \otimes - : \mathrm{Vect} \times \mathrm{Vect} \longrightarrow \mathrm{Vect}.
+\]
+
+
+Categories exhibit a higher-dimensional structure in that there are morphisms between functors.
+Suppose $S$ and $T : \CC \longrightarrow \CH$ are functors. A {\it natural transformation}
+\[
+\theta : S \Longrightarrow T
+\]
+is a family of morphisms
+\[
+\theta_A : SA \longrightarrow TA
+\]
+in $\CH$, indexed by the objects $A$ of $\CC$, such that the square
+
+\vspace*{3mm}
+
+\hspace*{62mm}     \xymatrix{
+   S A \ar[r]^{\theta_A} \ar[d]_{Sf}   & TA  \ar[d]^{Tf}\\
+    SB \ar[r]_{\theta_B}    & TB}
+
+\vspace*{3mm}
+
+\par\noindent
+commutes for all $f : A \longrightarrow B$ in $\CC$.
+
+
+\vspace*{3mm}
+
+
+For example, each linear function $t : V \longrightarrow W$ determines a natural transformation $t \otimes - : V \otimes - \longrightarrow W \otimes -$ with components
+\qq
+t \otimes 1_A : V \otimes A \longrightarrow W \otimes A
+\non \\
+v \otimes a \longmapsto t(v) \otimes a.  \non
+\qqq
+
+\subsection{Introduction to monoidal categories}
+
+We can now define a notion developed by Mac Lane [\ref{ML1963}], B\'enabou [\ref{Ben1963}] and Eilenberg-Kelly [\ref{EilKel1966}]. A {\it monoidal category} consists of a category $\CC$ equipped with a functor
+\[
+- \otimes - : \CC \times \CC \longrightarrow \CC,
+\]
+an object $I$, and invertible natural families of morphisms
+\qq
+\alpha_{A,B,C} : (A \otimes B) \otimes C \longrightarrow A \otimes (B \otimes C) \non\\
+\lambda_A : I \otimes A \longrightarrow A, \qquad \rho_A : A \otimes I \longrightarrow A \non
+\qqq
+such that the following commute.
+
+$$\xymatrix{
+& (A \otimes (B \otimes C)) \otimes D \ar[rd]^-{\phantom{A}\alpha_{A,B\otimes C,D}}  & \\
+((A \otimes B )\otimes C) \otimes D \ar[ru]^-{\alpha_{A,B,C}\otimes 1_{D}\phantom{A}} \ar[d]_-{\alpha_{A\otimes B,C,D}} & & A \otimes ((B \otimes C) \otimes D ) \ar[d]^-{1_{A}\otimes\alpha_{B,C,D}} \\
+(A \otimes B) \otimes (C \otimes D) \ar[rr]_-{\alpha_{A,B,C\otimes D }} & & A \otimes (B \otimes (C \otimes D)) 
+}$$ 
+
+$$\xymatrix{(A \otimes I)\otimes B \ar[rr]^{\alpha_{A,I,B}} \ar[rd]_{\rho_A \otimes 1_B} 
+& & A \otimes (I \otimes B) \ar[ld]^{1_A \otimes \lambda_B} \\
+& A \otimes B}$$
+
+\vspace*{3mm}
+
+\begin{example} Take $\CC = \mathrm{Vect}$, usual tensor product of vector spaces as $\otimes$, and $I = \mathbb{C}$.
+\end{example}
+
+\subsection{String diagrams}
+
+Penrose introduced {\it string notation} for multilinear algebra.
+This was adapted to monoidal categories by Joyal-Street [\ref{GTC}].
+In any category $\CC$, we can write $A \stackrel{f}{\longrightarrow} B$ or as the following. 
+
+ \[ \xygraph{{f} *\xycircle<8pt>{-}="m" "m"(-[u] [l(.3)d(.25)] {A},-[d] [l(.3)u(.25)] {B})} \] 
+
+\par\noindent
+Both notations are ``1-dimensional''.
+
+In a monoidal category $\CC$, we use two dimensions: composition is up-down while tensoring is left-right.
+Instead of $A \otimes C \stackrel{f}{\longrightarrow} B \otimes C \otimes A$, we can depict as follows.  
+  
+\[ \xygraph{{f} *\xycircle<8pt>{-}="m" "m"(-[l(.5)u] [l(.1)d(.4)] {A},-[r(.5)u] [r(.1)d(.4)] {C},-[l(.75)d] [l(.1)u(.4)] {B},-[d] [l(.15)u(.3)] {C},-[r(.75)d] [r(.1)u(.4)] {A})} \]
+
+\par\noindent
+A morphism $I \stackrel{f}{\longrightarrow}  A \otimes B$ is denoted as follows.
+
+\[ \xygraph{!{0;(.5,0):(0,2)::}{f}*\xycircle<8pt>{-}="m" "m"(-[dl] [l(.15)u(.5)] {A},-[dr] [r(.15)u(.5)] {B})} \]
+
+\vspace{5mm}
+
+\par\noindent
+In this way, the monoidal structural items $\otimes, I, \al, \rho, \la$ do not appear.
+
+\[ \xygraph{{a} *\xycircle<6pt>{-}="a" [u(2)r(1.5)] {c} *\xycircle<6pt>{-}="c" [d(1)r(1.5)] {b} *\xycircle<6pt>{-}="b" [r(1.5)u(1.2)] {d} *\xycircle<6pt>{-}="d" "a" (-[u(3.2)]^-*{B},-[d]_-*{A},-"c"_-*{B}(-[u(1.2)]^-*{C},-"b"^-*{C}(-[d(2)]_-*{B},-"d"_-*{D}(-[u]_-*{D},-[d(3.2)]^-*{C}))))} \]
+
+A diagram $\Ga$ as above, labelled in $\CC$, is called a {\it progressive plane string diagram}; see Joyal-Street [\ref{GTC}].  
+It means that we have morphisms
+\[
+B \otimes B \stackrel{a}{\longrightarrow} A, 
+C \otimes D \stackrel{b}{\longrightarrow} B,
+C   \stackrel{c}{\longrightarrow} B \otimes C,
+D \stackrel{d}{\longrightarrow}  D \otimes C.  
+\]
+The {\it value} of the diagram is the composite
+
+\begin{eqnarray*}
+v(\Ga) &=& (B \otimes C \otimes D \stackrel{1_B\otimes c \otimes d}{\longrightarrow} B \otimes B \otimes C \otimes D \otimes C
+\\
+&& \stackrel{1\otimes 1\otimes b \otimes 1}{\longrightarrow}    B \otimes B \otimes B \otimes C   \stackrel{a \otimes 1\otimes  1}{\longrightarrow}    A \otimes B  \otimes C).
+\end{eqnarray*}
+It is obtained by composing the more elementary values of horizontal layers. This value is independent of {\it deformation} in a natural sense. For example, the diagram  
+
+\[ \xygraph{{a} *\xycircle<6pt>{-}="a" [r(1.5)u] {c} *\xycircle<6pt>{-}="c" [r(1.5)d(2.5)] {b} *\xycircle<6pt>{-}="b" [r(1.5)u] {d} *\xycircle<6pt>{-}="d" "a" (-[u(2)]^-*{B},-[d(2.5)]_-*{A},-"c"_-*{B}(-[u]^-*{C},-"b"^-*{C}(-[d]_-*{B},-"d"_-*{D}(-[u(2.5)]_-*{D},-[d(2)]^-*{C}))))} \]
+is a deformation of $\Ga$ and its value is
+\begin{eqnarray*}
+v(\Ga) &=& (B \otimes C \otimes D \stackrel{1_B\otimes c \otimes 1}{\longrightarrow} B \otimes B \otimes C \otimes D \stackrel{a \otimes 1 \otimes 1}{\longrightarrow}   A \otimes C \otimes D
+\\
+&& \stackrel{1\otimes 1\otimes d}{\longrightarrow}    A \otimes C \otimes D \otimes C   \stackrel{1 \otimes b \otimes  1}{\longrightarrow}    A \otimes B  \otimes C).
+\end{eqnarray*}
+The notation handles units well:
+
+if $I   \stackrel{a}{\longrightarrow}   A \otimes B$ and $C \stackrel{b}{\longrightarrow}  I$, then the three string diagrams
+
+\[ \xygraph{!{0;(1.25,0):(0,.65)::} {\xybox{\xygraph{{\xybox{\xygraph{!{0;(.5,0):(0,2)::} {a} *\xycircle<6pt>{-}="m" "m"(-[dl] [l(.05)u(.5)] {A},-[dr] [r(.05)u(.5)] {B})}}} [u(.5)r(1.5)] {\xybox{\xygraph{{b} *\xycircle<6pt>{-}="m" "m" -[u] [r(.15)d(.25)] {C}}}}}}}
+[dr] {,} [ur]
+{\xybox{\xygraph{{\xybox{\xygraph{!{0;(.5,0):(0,1.24)::} {a} *\xycircle<6pt>{-}="m" "m"(-[dl] [l(.05)u(.5)] {A},-[dr] [r(.05)u(.5)] {B})}}} [u(.61)r(.41)] {\xybox{\xygraph{!{0;(1,0):(0,.62)::} {b} *\xycircle<6pt>{-}="m" "m" -[u] [r(.15)d(.25)] {C}}}}}}}
+[dr] {,} [ur]
+{\xybox{\xygraph{{\xybox{\xygraph{!{0;(.5,0):(0,2)::} {a} *\xycircle<6pt>{-}="m" "m"(-[dl] [l(.05)u(.5)] {A},-[dr] [r(.05)u(.5)] {B})}}} [u(.5)l(.5)] {\xybox{\xygraph{{b} *\xycircle<6pt>{-}="m" "m" -[u] [r(.15)d(.25)] {C}}}}}}}} \]
+
+all have the same value.
+
+\subsection{Duals}
+
+We can look at some concepts which make sense in any monoidal category.
+
+A {\it duality} between objects $A$ and $B$ is a pair of morphisms
+\[
+e : A \otimes B \longrightarrow I  \quad \mbox{and} \quad d : I \longrightarrow B \otimes A
+\]
+called the \textit{counit} and the \textit{unit}, respectively, satisfying
+
+\begin{equation*}
+ \xymatrix{A \otimes I \ar[r]^{1\otimes d \qquad\qquad} \ar[rd]_{\rho_A}^\cong & A \otimes (B\otimes A) {\alpha^{-1} \atop {\mbox{\large $\cong$}}}  (A\otimes B)\otimes A \ar[r]^{\qquad \qquad e\otimes 1}& I \otimes A \ar[ld]^{\lambda_B}_\cong \\
+ & B }
+ \end{equation*}
+
+\medskip
+
+\begin{equation*}
+ \xymatrix{I \otimes B \ar[r]^{d\otimes 1 \qquad\qquad} \ar[rd]_{\lambda_B}^\cong & (B\otimes A) \otimes B {\alpha \atop {\mbox{\large $\cong$}}}  B\otimes (A\otimes B)\ar[r]^{\qquad \qquad 1\otimes e}& B \otimes I \ar[ld]^{\rho_B}_\cong \\
+ & B }
+ \end{equation*}
+ 
+\par\noindent
+In string notation,
+
+\[ \xygraph{!{0;(2.6,0):(0,.5)::} {\xybox{\xygraph{{e} *\xycircle{-}="e" [r(1.5)u] {d} *\xycircle{-}="a" "e"(-[u(2)l(.5)]^-*{A},-"a"_-*{B}-[d(2)]^(.75)*{A} [r(1.5)] -[u(3)]_(.16)*{A}) "a" [r(.75)d(.5)] {=}}}} [dr] {,} [ur]
+{\xybox{\xygraph{{d} *\xycircle{-}="a" [r(1.5)d] {e} *\xycircle{-}="e" "a"(-[d(2)l(.25)]^(.75)*{B},-"e"_-*{A}-[u(2)r(.5)]^-*{B} [r(1.5)] -[d(3)]^(.85)*{B}) "e" [r(1.125)u(.5)] {=}}}}} \]
+Write $A \dashv B$  when such $e$ and $d$ exist: $A$ is a {\it left dual} for $B$ while $B$ is a {\it right dual} for $A$. 
+Any two right duals are isomorphic. Write $A^\ast$ for a chosen right dual for $A$. Call $\CC$ right {\it autonomous} (``compact'', ``rigid'') when each object has a right dual. 
+Choice gives a functor
+\[
+( \ )^\ast : \CC^{\mbox{{\scriptsize  op}}}   \longrightarrow \CC
+\]
+where ``op'' means $( \ )^\ast$ is ``contravariant'': $A \stackrel{f}{\longrightarrow} C$ goes to
+$A^\ast \stackrel{\ \ f^\ast}{\longleftarrow} C^\ast $.
+
+\begin{equation*}
+\xymatrix{  & C\otimes C^\ast \ar[rd]^{e} \\
+A \otimes C^\ast \ar[ru]^{f\otimes 1} \ar[rd]_{1\otimes f^\ast} & & I \\
+ & A\otimes A^\ast   \ar[ru]_{e} }     \hspace*{30mm}  
+ \end{equation*}
+ 
+ \begin{equation*}
+ \xymatrix{  & A^\ast \otimes A \ar[rd]^{1\otimes f} \\
+I \ar[ru]^{d} \ar[rd]_{d} & & A^\ast \otimes C \\
+ & C^\ast \otimes C   \ar[ru]_{f^\ast \otimes 1} }
+ \end{equation*}
+
+\vspace*{5mm} 
+
+\par\noindent
+We suppress $e$ and $d$ from notation by writing them as
+
+\[ \xygraph{*=(4,3){\xybox{\xygraph{!{0;(-2.5,0):(0,1)::} *{}="l" [r] *{}="r" "l"-@`{"l"+(.2,1),"r"+(-.2,1)}"r"|-{}="m"
+"l" [l(.125)u(.35)] {A^*} "r" [r(.125)u(.35)] {A} "m" [u(.15)] {e}}}}} \]
+
+\[ \xygraph{*!(0,2)=(4,3){\xybox{\xygraph{!{0;(2.5,0):(0,1)::} *{}="l" [r] *{}="r" "l"-@`{"l"+(.2,1),"r"+(-.2,1)}"r"
+"l" [l(.125)u(.35)] {A^*} "r" [r(.125)u(.35)] {A} "l" [r(.5)d(.1)] {d}}}}} \]
+
+\noindent The duality conditions become string straightening rules.
+
+\[
+\xygraph{ !{/r1.3pc/: /u2pc/::}
+ []*+!D{A}
+!{\xcapv-@(0)}
+!{\vcap[-]}
+[r] (?*!DR{A^*} , !{\vcap} )
+[r] !{\xcapv-@(0)} *+!U{A}
+} \quad = 
+\xygraph{
+!{/r1.3pc/: /u2pc/::}
+!{\xcapv-@(0)}
+!{\xcapv-@(0)} *+!U{A}
+} \qquad,\qquad
+\xygraph{ !{/r1.3pc/: /u2pc/::}
+ [rr]*+!D{A^*}
+  !{\xcapv-@(0)}
+ [l] !{\vcap[-]}
+ (?*!DL{A} ,  [l] !{\vcap} )
+ [l] !{\xcapv-@(0)} *+!U{A^*}
+} \quad = 
+\xygraph{
+!{/r1.3pc/: /u2pc/::}
+!{\xcapv-@(0)}
+!{\xcapv-@(0)} *+!U{A^*}
+} \]
+
+\par\noindent
+This allows anticlockwise looping by taking $( \ )^\ast$.
+
+$f^\ast$ is depicted as follows. 
+
+\[ 
+f^* \;\; : 
+\xygraph{ !{/r2pc/: /u2pc/::}
+ [rr]*+!D{B^*}
+  !{\xcapv-@(0)} !{\xcapv-@(0)}
+ [l] !{\vcap[-]} - [u]*+<8pt>[Fo]{f} _(.3)*{B}
+ ( ?-[u]_(.8)*{A} [l] !{\vcap} )
+ [lu] !{\xcapv-@(0)\xcapv-@(0)} *+!U{A^*}
+} \]
+
+Diagrams are not necessarily ``progressive''  any more.   They can backtrack.
+
+\vspace{2mm}
+
+\par\noindent
+{\bf Example} \ An object of $\mathrm{Vect}$ has a right (left) dual iff it is finite dimensional (exercise!).
+\\
+If $V$ has basis $v_1,\ldots,v_n$ and $v^\ast_1,\ldots,v^\ast_n$ is the ``dual basis'' of $V^\ast = \mathbb{C}^V$ then we have
+
+\begin{eqnarray*}
+V \otimes V^\ast \stackrel{e}{\longrightarrow} \mathbb{C}   \hspace{10mm}  \mathbb{C}  \stackrel{d}{\longrightarrow}   V^\ast \otimes V  \hspace{5mm}
+\\
+ v \otimes \vphi \longmapsto \vphi (v)   \hspace{10mm}  1 \longmapsto \sum^n_{i=1} v^\ast_i \otimes v_i
+\end{eqnarray*}
+
+\subsection{Braidings}
+
+A \textit{braiding} [\ref{BTC}] on a monoidal category $\CC$ is a natural family of invertible morphisms 
+\[
+\ga_{A,B} : A \otimes B \stackrel{\mbox{{\small  $\cong$}}}{\longrightarrow} B \otimes A
+\]
+satisfying (ignoring $\al, \la, \rho$)
+
+$$\xymatrix{A \otimes B \otimes C \ar[rr]^{\gamma_{A\otimes B,C}} \ar[rd]_{1\otimes \gamma_{B,C}} 
+& & C \otimes A \otimes B  \\
+& A \otimes C \otimes B\ar[ru]_{\gamma_{A,C} \otimes 1}}   \qquad 
+\xymatrix{A \otimes B \otimes C \ar[rr]^{\gamma_{A, B\otimes C}} \ar[rd]_{\gamma_{A,B} \otimes 1} 
+& & B \otimes C \otimes A  \\
+& B \otimes A \otimes C \ar[ru]_{1\otimes \gamma_{A,C}}}   
+$$
+
+\vspace{2mm}
+
+\par\noindent
+{\bf Example} \   In Vect, $\ga_{A,B} (a\otimes b) = b \otimes a$.
+
+\vspace{2mm}
+
+By writing $\ga$ as a {\it crossing}
+
+\[
+\xygraph{{\gamma_{A,B}^{} :} [r][u(0.5)] *+!DR{A}( !{\xunderv}, [r]*+!DL{B} , [dr]*+!UL{A} ,  [d]*+!UR{B} )}
+\]
+
+\par\noindent our string diagrams move into three-dimensional Euclidean space.   The axioms say
+
+
+\[
+\xygraph{[u(.75)]*+{A} ( [r]*+{B} , [d(1.5)l(.5)]*+{B'} , [dr(1.5)]*+{A'},
+  [d]*++=[o][Fo]{b}="b"-"B'" , [dr]*++=[o][Fo]{a}="a"-"A'" ,
+!{\xunderv ~{"A"}{"B"}{"b"}{"a"}} 
+  )}  = 
+\xygraph{[u(.75)]*+{A} ( [rr]*+{B} , [d(1.5)r(.5)]*+{B'} , [dr(1.5)]*+{A'},
+  [dr(.5)r]*++=[o][Fo]{b}="b"-"B" , [dr(.5)]*++=[o][Fo]{a}="a"-"A" ,
+!{\xunderv ~{"a"}{"b"}{"B'"}{"A'"}} 
+  )}  
+\]
+
+\[
+\xygraph{ !{\knotholesize{15pt}}
+!{/r1.8pc/: /u4pc/::}
+[d(.5)] ( ?*+!DR{A} , [r] *+!DL{C}
+ , !{\xunderv @(.45)}
+, [r(.3)] ( ?*+!D{B} , ?- [rd]
+))
+}
+=
+\xygraph{
+!{/r1.3pc/: /u2pc/::}
+%( ?*+!DR{A} , [r] *+!D{B} [r] *+!DL{C} ,
+ !{\xcapv-@(0)}
+!{\vtwistneg} ( []*+!U{C}  [r]*+!U{A}  [r]*+!U{B} ,
+[uur] !{\vtwistneg}
+[r]!{\xcapv@(0)}
+)
+}
+\quad,\qquad
+\xygraph{ %!{\knotholesize{20pt}}
+!{/r1.8pc/: /u4pc/::}
+[d(.5)] ( ?*+!DR{A} , [r(.7)] *+!D{B}  , [r] *+!DL{C} ,
+!{\xunderv}
+, [r(.7)] - [ld] |(.35)*{\khole}
+}
+= 
+\xygraph{
+!{/r1.3pc/: /u2pc/::}
+[r] !{\vtwistneg}
+!{\xcapv-@(0)}
+[uurr]
+!{\xcapv@(0)}
+[l] !{\vtwistneg} 
+[l]*+!U{B}  [r]*+!U{C}  [r]*+!U{A} 
+} 
+\]
+
+A monoidal category with chosen braiding is called {\it braided} in the terminology of Joyal-Street [\ref{BTC}]. 
+The braiding automatically satisfies what is called the \textit{Yang-Baxter equation} or the \textit{braid identity} or a \textit{Reidemeister move} in different contexts. 
+Here is the proof:
+
+\begin{equation*}
+\xymatrix{& B\otimes A \otimes C \ar[r]^{1\otimes \gamma} & B\otimes C \otimes A \ar[rd]^{\gamma \otimes 1} \\
+ A\otimes B\otimes C \ar[ru]^{\gamma \otimes 1} \ar[rru]^{\gamma_{A,B\otimes C}} \ar[rd]_{1\otimes \gamma} \ar@{}[rrr]|{naturality} & & & C\otimes B \otimes A \\
+ & A\otimes C \otimes B \ar[rru]^{\gamma_{A,C\otimes B}} \ar[r]_{\gamma \otimes 1} & C\otimes A \otimes B \ar[ru]_{1\otimes \gamma} }
+ \end{equation*}
+
+\ \
+
+\[
+\xygraph{
+!{/r1.3pc/: /u2pc/::}
+!{\vtwistneg}
+!{\xcapv-@(0)}
+!{\vtwistneg}
+[uuurr]
+!{\xcapv@(0)}
+[l]!{\vtwistneg}
+[r]!{\xcapv@(0)}
+[r][u(1.5)]
+{=}
+[r][u(1.5)]
+!{\xcapv-@(0)}
+!{\vtwistneg}
+!{\xcapv-@(0)}
+[uuur]
+!{\vtwistneg}
+[r]!{\xcapv@(0)}
+[l]!{\vtwistneg}
+}
+\]
+
+\ \
+This leads naturally to our second example of braided monoidal category.
+
+
+\vspace*{5mm}
+
+
+\par\noindent
+{\em Braid category}   $\mathbb{B}$
+
+\vspace*{3mm}
+
+
+Objects are natural numbers 0, 1, 2, \ldots
+
+\[
+\mathbb{B} (m,n) = \left\{
+\begin{array}{llll}
+\emptyset \quad m \neq n &
+\\
+\mbox{braid group} \ B_n \ \mbox{on} \ n \ \mbox{strings} \ m=n
+\end{array}
+\right.
+\]
+
+
+
+The functor $\mathbb{B} \times \mathbb{B}  \stackrel{\mbox{{\small  $\otimes$}}}{\longrightarrow} \mathbb{B}$ is defined on objects by $(m,n) \longmapsto m+n$ and on morphisms as indicated by:
+
+\[
+\xy
+0;/r.18pc/:
+(0,0)*{\xy
+(-15,20);(25,20) **\dir{-};
+(-15,0);(25,0) **\dir{-};
+(-10,20)*{\bullet}="T1"; 
+(0,20)*{\bullet}="T2"; 
+(10,20)*{\bullet}="T3"; 
+(20,20)*{\bullet}="T4";
+(-10,0)*{\bullet}="B1"; 
+(0,0)*{\bullet}="B2"; 
+(10,0)*{\bullet}="B3"; 
+(20,0)*{\bullet}="B4";
+(-5,15)*{\hole}="a";
+(-5,15)*{}="a'";
+(-5,8)*{\hole}="b";
+(-5,8)*{}="b'";
+"T1";"a'" **\crv{"T1"+(0,-3)&"a'"+(-2,2)};
+"T2";"a" **\crv{"T2"+(0,-3)&"a"+(2,2)};
+"a'";"b" **\crv{"a'"+(2,-2)&"b"+(2,2)};
+"a";"b'" **\crv{"a"+(-2,-2)&"b'"+(-2,2)};
+"b";"B1" **\crv{"b"+(-2,-2)&"B1"+(0,5)};
+(15,12)*{\hole}="c";
+(15,12)*{}="c'";
+"T3";"c'" **\crv{"T3"+(0,-3)&"c'"+(-2,2)};
+"T4";"c" **\crv{"T4"+(0,-3)&"c"+(2,2)};
+"c";"B2" **\crv{"c"+(2,-2)&"B2"+(0,3)} \POS?(.5)*{\hole}="d";
+"b'";"d" **\crv{"b'"+(2,-2)&"d"+(-2,1)};
+"d";"B4" **\crv{"d"+(2,-1)&"B4"+(0,3)} \POS?(.5)*{\hole}="e";
+"c'";"e" **\crv{"c'"+(2,-2)&"e"+(1,2)};
+"e";"B3" **\crv{"e"+(-1,-2)&"B3"+(0,3)};
+\endxy};
+(25,0)*{\otimes};
+(40,0)*{\xy
+(-15,20);(5,20) **\dir{-};
+(-15,0);(5,0) **\dir{-};
+(-10,20)*{\bullet}="T1"; 
+(0,20)*{\bullet}="T2"; 
+(-10,0)*{\bullet}="B1"; 
+(0,0)*{\bullet}="B2"; 
+(-5,14)*{\hole}="a";
+(-5,14)*{}="a'";
+(-5,6)*{\hole}="b";
+(-5,6)*{}="b'";
+"T1";"a" **\crv{"T1"+(0,-3)&"a"+(-2,2)};
+"T2";"a'" **\crv{"T2"+(0,-3)&"a'"+(2,2)};
+"a";"b'" **\crv{"a"+(2,-2)&"b'"+(2,2)};
+"a'";"b" **\crv{"a'"+(-2,-2)&"b"+(-2,2)};
+"b'";"B1" **\crv{"b'"+(-2,-2)&"B1"+(0,5)};
+"b";"B2" **\crv{"b"+(2,-2)&"B2"+(0,5)};
+\endxy};
+(55,0)*{=};
+(90,0)*{\xy
+(-15,20);(45,20) **\dir{-};
+(-15,0);(45,0) **\dir{-};
+(-10,20)*{\bullet}="T1"; 
+(0,20)*{\bullet}="T2"; 
+(10,20)*{\bullet}="T3"; 
+(20,20)*{\bullet}="T4";
+(30,20)*{\bullet}="T5";
+(40,20)*{\bullet}="T6";
+(-10,0)*{\bullet}="B1"; 
+(0,0)*{\bullet}="B2"; 
+(10,0)*{\bullet}="B3"; 
+(20,0)*{\bullet}="B4";
+(30,0)*{\bullet}="B5";
+(40,0)*{\bullet}="B6";
+(-5,15)*{\hole}="a";
+(-5,15)*{}="a'";
+(-5,8)*{\hole}="b";
+(-5,8)*{}="b'";
+"T1";"a'" **\crv{"T1"+(0,-3)&"a'"+(-2,2)};
+"T2";"a" **\crv{"T2"+(0,-3)&"a"+(2,2)};
+"a'";"b" **\crv{"a'"+(2,-2)&"b"+(2,2)};
+"a";"b'" **\crv{"a"+(-2,-2)&"b'"+(-2,2)};
+"b";"B1" **\crv{"b"+(-2,-2)&"B1"+(0,5)};
+(15,12)*{\hole}="c";
+(15,12)*{}="c'";
+"T3";"c'" **\crv{"T3"+(0,-3)&"c'"+(-2,2)};
+"T4";"c" **\crv{"T4"+(0,-3)&"c"+(2,2)};
+"c";"B2" **\crv{"c"+(2,-2)&"B2"+(0,3)} \POS?(.5)*{\hole}="d";
+"b'";"d" **\crv{"b'"+(2,-2)&"d"+(-2,1)};
+"d";"B4" **\crv{"d"+(2,-1)&"B4"+(0,3)} \POS?(.5)*{\hole}="e";
+"c'";"e" **\crv{"c'"+(2,-2)&"e"+(1,2)};
+"e";"B3" **\crv{"e"+(-1,-2)&"B3"+(0,3)};
+(35,14)*{\hole}="g";
+(35,14)*{}="g'";
+(35,6)*{\hole}="h";
+(35,6)*{}="h'";
+"T5";"g" **\crv{"T5"+(0,-3)&"g"+(-2,2)};
+"T6";"g'" **\crv{"T6"+(0,-3)&"g'"+(2,2)};
+"g";"h'" **\crv{"g"+(2,-2)&"h'"+(2,2)};
+"g'";"h" **\crv{"g'"+(-2,-2)&"h"+(-2,2)};
+"h'";"B5" **\crv{"h'"+(-2,-2)&"B5"+(0,5)};
+"h";"B6" **\crv{"h"+(2,-2)&"B6"+(0,5)};
+\endxy};
+\endxy
+\]
+
+\ \
+
+The isomorphisms $\al, \la, \rho$ are identities
+
+The braiding $\gamma_{m,n} $ is indicated by:
+
+\[
+\xy
+(-25,18)*+{4+2};(-25,0)*+{2+4} **\dir{-} \POS?(.5)*+!R{\gamma_{4,2}} ?>*\dir{>};
+(5,22)*+{m};(-10,22)*{} **\dir{-} ?>*\dir{>};
+(5,22)*+{\hole};(20,22)*{} **\dir{-} ?>*\dir{>};
+(35,22)*+{n};(30,22)*{} **\dir{-} ?>*\dir{>};
+(35,22)*+{\hole};(40,22)*{} **\dir{-} ?>*\dir{>};
+(-15,18);(45,18) **\dir{-};
+(-15,0);(45,0) **\dir{-};
+(-10,18)*{\bullet}="T1"; 
+(0,18)*{\bullet}="T2"; 
+(10,18)*{\bullet}="T3"; 
+(20,18)*{\bullet}="T4";
+(30,18)*{\bullet}="T5";
+(40,18)*{\bullet}="T6";
+(-10,0)*{\bullet}="B1"; 
+(0,0)*{\bullet}="B2"; 
+(10,0)*{\bullet}="B3"; 
+(20,0)*{\bullet}="B4";
+(30,0)*{\bullet}="B5";
+(40,0)*{\bullet}="B6";
+"T1";"B3" **\crv{} \POS?(.8333)*{\hole}="h" \POS?(.8)*{\hole}="d";
+"T2";"B4" **\crv{} \POS?(.6667)*{\hole}="g" \POS?(.75)*{\hole}="c";
+"T3";"B5" **\crv{} \POS?(.5)*{\hole}="f" \POS?(.6667)*{\hole}="b";
+"T4";"B6" **\crv{} \POS?(.3333)*{\hole}="e" \POS?(.5)*{\hole}="a" ;
+"T5";"a" **\crv{};
+"a";"b" **\crv{};
+"b";"c" **\crv{};
+"c";"d" **\crv{};
+"d";"B1" **\crv{};
+"T6";"e" **\crv{};
+"e";"f" **\crv{};
+"f";"g" **\crv{};
+"g";"h" **\crv{};
+"h";"B2" **\crv{};
+\endxy
+\]
+
+
+\vspace*{5mm}
+
+\noindent
+{\bf Proposition} \ $\mathbb{B}$ {\it is the free braided monoidal category generated by a single object.}
+
+\vspace*{3mm}
+
+\noindent The single generating object is $1$ and tensoring the braiding $\gamma_{1,1}$ on both sides with identity morphisms gives the generators $s_i$ for the braid group $B_n$ as indicated:
+
+\[
+\xy
+(-30,18)*+{n};(-30,0)*+{n} **\dir{-} \POS?(.5)*+!R{s_i} ?>*\dir{>};
+(-19,18);(-9,18) **\dir{-};
+(-9,18);(-5,18) **\dir{.};
+(-5,18);(35,18) **\dir{-};
+(35,18);(39,18) **\dir{.};
+(39,18);(49,18) **\dir{-};
+(-19,0);(-9,0) **\dir{-};
+(-9,0);(-5,0) **\dir{.};
+(-5,0);(35,0) **\dir{-};
+(35,0);(39,0) **\dir{.};
+(39,0);(49,0) **\dir{-};
+(-14,18)*{\bullet}="T1"+(0,4)*{1};
+(0,18)*{\bullet}="T2"+(0,4)*{i-1};
+(10,18)*{\bullet}="T3"+(0,4)*{i};
+(20,18)*{\bullet}="T4"+(0,4)*{i+1};
+(30,18)*{\bullet}="T5"+(0,4)*{i+2};
+(44,18)*{\bullet}="T6"+(0,4)*{n};
+(-14,0)*{\bullet}="B1"; 
+(0,0)*{\bullet}="B2"; 
+(10,0)*{\bullet}="B3"; 
+(20,0)*{\bullet}="B4";
+(30,0)*{\bullet}="B5";
+(44,0)*{\bullet}="B6";
+"T1";"B1" **\dir{-};
+"T2";"B2" **\dir{-};
+(15,9)*{\hole}="a";
+(15,9)*{}="a'";
+"T3";"a'" **\crv{"T3"+(0,-4)&"a'"+(-2,2)};
+"T4";"a" **\crv{"T4"+(0,-4)&"a"+(2,2)};
+"a";"B3" **\crv{"a"+(-2,-2)&"B3"+(0,4)};
+"a'";"B4" **\crv{"a'"+(2,-2)&"B4"+(0,4)};
+"T5";"B5" **\dir{-};
+"T6";"B6" **\dir{-};
+\endxy
+\]
+
+
+The Proposition means that there is an equivalence of categories
+\[
+\mathrm{BStMon}(\mathbb{B},\CC) \simeq \CC
+\]
+between the category of braiding-and-tensor-preserving functors $\mathbb{B} \to \CC$ and the category $\CC$ itself, for every braided monoidal category $\CC$.
+
+
+\vspace*{5mm}
+
+
+A {\it Yang-Baxter operator} $y : A \otimes A \to A \otimes A$ on an object  $A$ of any monoidal category $\CC$ is an invertible morphism  satisfying commutativity of the following hexagon. There is an obvious category $\mathrm{YB}\CC$ of such pairs $(A,y)$.
+
+\begin{equation*}
+\xymatrix{& A^{\otimes 3} \ar[r]^{1\otimes y} & A^{\otimes 3} \ar[rd]^{y\otimes 1} \\
+ A^{\otimes 3}\ar[ru]^{y\otimes 1}  \ar[rd]_{1\otimes y}  & & & A^{\otimes 3} \\
+ & A^{\otimes 3}  \ar[r]_{y\otimes 1 \ } & A^{\otimes 3} \ar[ru]_{1\otimes y} }
+ \end{equation*}
+If $\CC$ is braided, each object $A$ has a Yang-Baxter operator on it, namely,
+\[
+y =  \ga_{A,A} : A \otimes A \longrightarrow A \otimes A
+\]
+
+
+\vspace*{2mm}
+
+\noindent
+{\bf Proposition} \ $\mathbb{B}$  {it is the free monoidal category generated by an object bearing a Yang-Baxter operator.   That is, for every monoidal category} $\CC$, 
+\[
+\mathrm{StMon}(\mathbb{B},\CC) \simeq \mathrm{YB} \CC.
+\]
+
+\vspace*{2mm}
+
+\noindent
+{\bf Proposition} \ {\it Any right autonomous braided monoidal category is left autonomous.}
+
+
+To see this we take $A^\ast \otimes A \stackrel{\ga}{\longrightarrow}  A \otimes A^\ast   \stackrel{e}{\longrightarrow}  I$ and $I   \stackrel{d}{\longrightarrow}  A^\ast \otimes A \stackrel{\ga^{-1}}{\longrightarrow}  A \otimes A^\ast$ as counit and unit for $A^\ast$ as left dual to $A$. 
+
+\subsection{Trace, tangles and link invariants}
+
+The {\it trace} of an endomorphism
+\[
+f : A    \longrightarrow   A
+\]
+in an autonomous braided monoidal category is defined by
+\[
+\mathrm{Tr} \ (f) = \Bigl(I \stackrel{d}{\longrightarrow} A^\ast \otimes A \stackrel{1 \otimes f}{\longrightarrow}    A^\ast \otimes A \stackrel{e'}{\longrightarrow}  I\Bigr).
+\]
+
+
+\[
+\xygraph{
+!{/r1.3pc/: /u1.6pc/::}
+!{\vcap} ( [r] - [dd] ^(.3)*{A}|(.8)*+[Fo]{f}
+, ? - [dd] _(.3)*{A^*}
+!{\vtwistneg}
+%!{\xcapv-@(0)}
+!{\vcap[-]}
+)}
+\]
+
+\noindent{\bf Example} \ If $V \in \mathrm{Vect}$ is finite dimensional with basis $v_1,\ldots,v_n$ and
+\[
+f(v_i) = \sum_j a_{ij} v_j
+\]
+then
+\[
+\begin{array}{llll}
+\mathrm{Tr} \ (f) &:& \mathbb{C}  \longrightarrow \mathbb{C}
+\\
+& & 1 \longmapsto \displaystyle \sum_i a_{ii}.
+\end{array}
+\]
+
+
+\par\noindent
+{\em Tangle category}   $\mathbb{T}$
+
+\vspace*{3mm}
+
+This is a monoidal category first defined by Yetter [\ref{Yetter1988}]. The objects are words $- + + - - +$ in symbols $+$ and $-$.    Morphisms are tangles
+
+
+\[
+\xy
+(0,20)*+!D{-}="t1";(10,20)*+!D{-}="t2";(20,20)*+!D{-}="t3";
+(30,20)*+!D{+}="t4";(40,20)*+!D{+}="t5"; (50,20)*+!D{+}="t6";(60,20)*+!D{-}="t7";
+(0,-10)*+!U{-}="b1";(10,-10)*+!U{+}="b2";(20,-10)*+!U{-}="b3";
+"t3"+(3,-8)="a";
+"t2"+(8,-15)="c";
+"t3";"a"*{\hole} **\crv{"t3"+(0,-3)&"a"+(-1,2)} \POS?(.5)="b";
+"t4";"b"*{\hole} **\crv{"t4"+(0,-1)&"b"+(1,1)} \POS?(.7)*\dir{>};
+"t2";"c"*{\hole} **\crv{"t2"+(0,-2)&"c"+(-3,2)} \POS?(.8)="d" \POS?(.6)="e";
+"b"*{\hole};"d"*{\hole} **\crv{"b"-(2,2)&"d"+(3,1)} \POS?(.5)="f";
+"e"*{\hole};"f"*{\hole} **\crv{"f"};
+"f"*{\hole};"a" **\crv{"f"&"a"+(-2,0)};
+"e"+(-8,-2)="g";
+"e"*{\hole};"g" **\crv{"e"+(1,0)&"g"+(2,1)} \POS?(.5)*\dir{<};
+"t1";"g"*{\hole} **\crv{"t1"+(0,-3)&"g"+(0,3)} \POS?(.5)*\dir{<};
+"d"+(-4,-4)="h";
+"h"*{\hole};"b1" **\crv{"h"+(-4,0)&"b1"+(1,2)} \POS?(.5)="j" \POS?(.25)="k" \POS?(.65)*\dir{<};
+"h"*{\hole};"c" **\crv{"h"+(2,0)&"c"+(-2,0)};
+"d"*{\hole};"h" **\crv{"d"-(3,1)&"h"+(0,2)};
+"g";"g"+(-5,-3)="i" **\crv{"g"+(-2,-1)&"i"+(2,2)};
+"i";"i"*{\hole} **\crv{"i"-(8,8)&"i"+(-8,8)};
+"i"*{\hole};"j"*{\hole} **\crv{"i"+(2,-2)&"j"+(-2,2)};
+"g"*{\hole};"k"*{\hole} **\crv{"g"-(0,2)&"k"+(-3,1)};
+"k"*{\hole};"b3" **\crv{"k"+(3,-1)&"b3"+(0,3)} \POS?(.3)="m" \POS?(.6)="l";
+"j"*{\hole};"l"*{\hole} **\crv{"j"+(2,-2)&"l"+(-3,0)} \POS?(.4)="n";
+"h";"m"*{\hole} **\crv{"h"-(0,2)&"m"+(2,2)};
+"m"*{\hole};"n"*{\hole} **\crv{"m"-(2,2)&"n"+(1,2)};
+"n"*{\hole};"b2" **\crv{"n"-(1,2)&"b2"+(0,2)};
+"l"+(12,-1)="o";
+"l"*{\hole};"o"*{\hole} **\crv{"l"+(2,0)&"o"+(-2,0)};
+"c"*{\hole};"o" **\crv{"c"-(-3,2)&"o"+(-1,3)};
+"o";"t6" **\crv{"o"+(4,-12)&"t6"-(0,5)} \POS?(.6)*\dir{<};
+"a"+(6,-4)="p";
+"a";"p"*{\hole} **\crv{"a"+(3,0)&"p"+(-2,2)};
+"p"*{\hole};"o"*{\hole} **\crv{"p"+(2,-2)&"o"+(4,0)} \POS?(.5)="q";
+"a"*{\hole};"q"*{\hole} **\crv{"a"+(1,-2)&"q"+(-4,0)} \POS?(.45)="r";
+"q"*{\hole};"p" **\crv{"q"+(6,0)&"p"+(4,2)};
+"p";"r"*{\hole} **\crv{"p"-(2,1)&"r"+(2,1)};
+"r"*{\hole};"c" **\crv{"r"-(2,1)&"c"+(2,0)};
+"t5";"t7" **i\crv{"t5"+(0,-10)&"t7"+(0,-10)} \POS?(.42)="s";
+"t5";"s"*{\hole} **\crv{"t5"+(0,-5)&"s"-(5,0)};
+"s"*{\hole};"t7" **\crv{"s"+(3,0)&"t7"+(0,-10)} \POS?(.5)*\dir{>}
+\endxy
+\]
+
+
+Freyd-Yetter [\ref{FreydYetter1989}]  showed that $\mathbb{T}$ is an autonomous braided monoidal category with a ``freeness property''. We can see that $\mathbb{B}$ is the braided monoidal subcategory of $\mathbb{T}$ by identifying $n \in \mathbb{B}$ with  $\underbrace{+ \ldots +}_n \in \mathbb{T}$.   The braids occur as the progressive endomorphisms in $\mathbb{T}$.   The endomorphisms of the unit object 0 are precisely the {\it oriented links}.
+
+
+\vspace*{2mm}
+
+\noindent
+{\bf Proposition} \ {\it The trace of a braid in} $\mathbb{T}$ {\it is the link obtained as the Markov closure.}
+
+\vspace*{3mm}
+Here is an example of a trace of a braid
+
+\vskip-1.3cm\[
+\xygraph{!{/r1.1pc/: /u1.2pc/::}
+[uu] ( ?*+!D\txt\tiny{+}  !{+U\vcap[7]} [r(7)]="a7" , !{\vtwistneg}
+( !{\xcapv-@(0)} []*+!U\txt\tiny{+} !{+D\vcap[-7]} [r(7)] - "a7"
+ , [r] !{\vtwistneg} ( 
+   ?*+!U\txt\tiny{+} !{+D\vcap[-5]} [r(5)] !{\POS= "a5"}
+   , [r]*+!U\txt\tiny{+} !{+D\vcap[-3]}  [rrr]="a3"
+ ) , [urrr] (
+     ?*+!D\txt\tiny{+} !{+U\vcap} [r] !{\POS= "a1"}
+    , [l]*+!D\txt\tiny{+} !{+U\vcap[3]} [rrr]- "a3"
+    , [ll]*+!D\txt\tiny{+} !{+U\vcap[5]} [r(5)]- "a5"
+ , [l]!{\vtwistneg}
+   [r]!{\xcapv@(0)} []*+!U\txt\tiny{+} !{+D\vcap[-]} [r]- "a1"
+)))}
+\]\vglue-1.3cm \vglue-0cm
+and so is the trefoil:
+\[ 
+\xygraph{ !{0;/r1pc/:/u1.25pc/::} [u]
+ ( !{\vtwist\vtwist\vtwist}[uuu] 
+   (?*+!D\txt\tiny{+} !{+U\vcap[3]}[rrr]-[d(4.45)] 
+   , [r]*+!D\txt\tiny{+} !{+U\vcap}[r]-[d(4.45)]  )
+ , [ddd]*+!U\txt\tiny{+} !{+D\vcap[-3]} 
+ , [dddr]*+!U\txt\tiny{+} !{+D\vcap[-1]}
+ )}
+\]
+
+
+Each tensor-preserving (= strong monoidal) functor
+\[
+F : \mathbb{T}   \longrightarrow Vect
+\]
+will produce a complex number for each oriented link $\ell$ :
+\[
+0 \stackrel{\ell}{\longrightarrow}  0   \longmapsto \mathbb{C}  \stackrel{F\ell}{\longrightarrow} \mathbb{C}.
+\]
+Such $F$ are determined by a single vector space $V$ and a special kind of Yang-Baxter operator
+\[
+y : V \otimes V \cong V \otimes V,
+\]
+on $V$ :
+\[
+F (+ + - + -) = V \otimes V \otimes V^\ast \otimes V \otimes V^\ast.
+\]
+There are techniques for solving the Yang-Baxter equation to find such functors, and hence, invariants of links; see Turaev [\ref{Turaev1988}].
+
+\subsection{Trace without duals}
+
+A {\it (right) internal hom} $C^A$ for objects $A$ and $C$ of a monoidal category $\CC$ is an object equipped with a morphism (called ``evaluation'')
+\[
+\mathrm{ev} \ : A \otimes C^A \longrightarrow C
+\]
+which induces a bijection
+\begin{eqnarray*}
+\CC (B,C^A) \cong \CC (A \otimes B, C) \hspace*{23mm}
+\\
+\hspace*{25mm} (B  \stackrel{f}{\longrightarrow} C^A) \longmapsto (A \otimes B \stackrel{1 \otimes f}{\longrightarrow} A \otimes C^A \stackrel{\mathrm{ev}}{\longrightarrow}   C). 
+\end{eqnarray*}
+However, internal homs can exist without duals (e.g. in $\CC = \mathrm{Vect}$ and $ \mathrm{Set}$).
+
+
+I know of no extension of the string notation, in keeping with the geometry as for duals, which covers internal homs.
+
+\[
+\xygraph{ !{/r2.5pc/: /u3pc/::}
+ [d] *+<3.5mm>[Fo][o]{g} (
+  ? - [ul]^(.9)*{A} , ? - [ur]_(.9)*{B} , ? - [d]^(.9)*{C}
+ )} \quad = \quad  
+ \xygraph{ !{/r2.5pc/: /u2pc/::}
+ [d(1.5)] *+<3.5mm>[Fo][o]{\mathrm{ev}} (
+  ? - [uul]^(.9)*{A} 
+  , ? - [ur(.9)]*+<4mm>[Fo][o]{\hat{g}} _*{C^A}
+     - [r(.5)u(1.1)]_(.9)*{B}
+  , ? - [d(1.2)]^(.9)*{C}
+ )} 
+\]
+\par\noindent
+From field theory in physics there are geometric situations where internal homs can exist without duals.   This led Stolz-Teichner [\ref{StolzTeichner}] to develop a notion of {\it trace} using only the ``weak duals'' $I^A$.
+
+The following treatment of ``contraction'' is adapted from these authors. A quadruple $(X,Y,A,B)$ of objects of a monoidal category $\CC$ is called {\it approximable} when $Y^A$ exists and the following composite is injective.
+\[
+\CC (X,Y^A \otimes B) \stackrel{A \otimes -}{\longrightarrow}  \CC (A \otimes X, A \otimes Y^A \otimes B) \stackrel{\CC(1,\mathrm{ev} \otimes 1)}{\longrightarrow} \CC (A \otimes X, Y \otimes B)
+\]
+A morphism $f : A \otimes X \longrightarrow Y \otimes B$ is called {\it nuclear} when it is in the image of that composite.
+
+
+\[
+\xygraph{ !{/r2.5pc/: /u3pc/::}
+ [d(1.5)] *+<3.5mm>[Fo][o]{\mathrm{ev}} (
+ ? - [l(.2)u(1.7)]^(.9)*{A} , ? - [l(.2)d(.8)]_(.9)*{Y} , 
+ -  [u(.6)r]  *+<3.5mm>[Fo][o]{\hat{f}} (
+  ? - [r(.2)d(1.4)]^(.9)*{B} , ? - [r(.3)u(1.1)]_(.9)*{X}
+ ))} \quad = \quad  
+ \xygraph{ !{/r2pc/: /u3pc/::}
+ [d(1)] *+<4mm>[Fo][o]{f} (
+ ? - [ul]^(.9)*{A} , ? - [ur]_(.9)*{X} , ? - [dl]_(.9)*{Y} , ? - [dr]^(.9)*{B}
+  )} 
+\]
+
+
+\par\noindent
+{\bf Example} \ If $A$ has a right dual then any $(X,Y,A,B)$ is approximable. Indeed, the composite is invertible so every $f$ is nuclear.
+
+\vspace*{3mm}
+
+
+
+The {\it trace} (or {\it contraction by} $A$) of 
+\[
+f : A \otimes X \longrightarrow Y \otimes A
+\]
+in a braided monoidal  $\CC$ is the composite
+\[
+\mathrm{Tr} \ (f) : X \stackrel{\hat f}{\longrightarrow} Y^A \otimes A \stackrel{\gamma}{\longrightarrow} A \otimes Y^A \stackrel{\mathrm{ev}}{\longrightarrow} Y.
+\]
+
+
+Let $\mathrm{Tv}$ be the category of topological complex vector spaces which are locally convex, complete and Hausdorff. The tensor product represents continuous bilinear maps.
+
+\vspace*{3mm}
+
+\noindent
+{\bf Theorem} (Stolz-Teichner [\ref{StolzTeichner}])  \ Take $\CC = \mathrm{Tv}$.
+
+\begin{enumerate}
+\item[1.] {\it If $A$ has the approximation property (from analysis) then $( \mathbb{C},  \mathbb{C}, A, A)$ is approximable.}
+\item[2.]  {\it A morphism $f:A\longrightarrow B$ is nuclear as in analysis if and only if $f:A \otimes \mathbb{C} \to \mathbb{C} \otimes B$ is nuclear.}
+\item[3.] {\it If $A$ has the approximation property and $f:A\to A$ is nuclear then the trace Tr $(f)$ is the classical trace.}
+\end{enumerate}
+
+
+
+\section{Monoidal categories, Hall algebras and representation theory} \label{Lecture2}
+
+This lecture is dedicated to my colleague and friend Brian Day.
+
+\vspace{5mm}
+
+We shall discuss the following three processes.
+
+\[
+\xygraph{ !{\UseTips{}}!{/u4pc/::}
+ []*++[F-]+!C\txt{small rich category $\scrA$}
+  :@{|->}^{\objectstyle(\;)_{\mathrm{inv}}}
+ [d]*++[F-]+!C\txt{small premonoidal category $\scrA_{\inv}$}
+  :@{|->}^{\objectstyle\Rep}
+ [d]*++[F-]+!C\txt{monoidal category $\Rep\scrA_{\inv}$}
+  :@{|->}^{\objectstyle K_0}
+ [d]*++[F-]+!C\txt{algebra $K_0\Rep\scrA_{\inv}$}
+}\]
+
+
+\subsection{Preliminary remarks}
+
+Certainly the representations of a given abstract group form a category.  However, many concrete groups naturally occur in families : symmetric groups $\mathbb{S}_n$, $n \in \mathbb{N}$ ; braid groups $\mathbb{B}_n$, $n \in \mathbb{N}$ ; general linear groups $\mathrm{GL}_{F}(n)$ over a fixed field $F$; and so on.  Such families arise from a category $\CA$ as the automorphism groups $\mathrm{Aut}_{\CA}(A)$, $A \in$ ob $\CA$.  More categorically, we consider the groupoid $\CA_{\mathrm{inv}}$ with the same objects as $\CA$ but only the invertible morphisms.
+
+A goal of this lecture is to show how studying the category of representations of $\CA_{\mathrm{inv}}$ can enhance the study of representations of the individual groups $\mathrm{Aut}_{\CA}(A) = \CA_{\mathrm{inv}}(A,A)$.
+
+For example, take $\CA$ to be the category of finite sets and functions between them.  Let $\mathbb{S}=\CA_{\mathrm{inv}}$  denote the category of finite sets and bijective functions between them.   This groupoid is monoidal with disjoint union (sum +) as tensor product.  Mac Lane [\ref{ML1963}] used (a skeleton of) this category to express the coherence theorem for symmetric monoidal categories.
+
+As a groupoid $\mathbb{S}$ is equivalent to the disjoint union of the symmetric groups
+\[
+\mathbb{S}_n \cong \mathbb{S} (\langle n \rangle , \langle n \rangle) \ \mbox{where} \ \langle n \rangle = \{1,2,\ldots,n\}.
+\]
+However, the monoidal structure includes the important functions
+\[
++ : \mathbb{S}_m \times \mathbb{S}_n  \longrightarrow \mathbb{S}_{m+n}.
+\]
+
+
+As with any category, the diagonal functor $\de : \mathbb{S} \to \mathbb{S} \times \mathbb{S}$ is a comonoidal structure.   In this case, $\de$ preserves the monoidal structure.
+
+In passing from $\CA$ to $\CA_{\mathrm{inv}}$, many of the good properties $\CA$ may have are lost.    For example, while + is the coproduct in finite sets and functions, it is not the coproduct in $\mathbb{S}$.    In fact, $\mathbb{S}$ has little in the way of limits or colimits, or internal homs.
+
+
+The work of Day [\ref{DayConv}] shows how to complete a monoidal category (and, more generally, a promonoidal category) to have both colimits and internal homs.
+
+\subsection{Promonoidal categories}\label{Promon}
+
+A {\it promonoidal structure} on a category $\CC$ consists of functors
+\begin{eqnarray*}
+P : \CC^{\mathrm{op}} \times \CC^{\mathrm{op}} \times \CC \longrightarrow \mathrm{Set}
+\\
+J : \CC \longrightarrow \mathrm{Set}
+\end{eqnarray*}
+
+and natural isomorphisms
+
+\begin{eqnarray*}
+&&\al : \int^X P (X,C;D) \times P(A,B;X) \cong \int^Y P(A,Y;D) \times P (B,C;Y)
+\\
+&&\la : \int^X P(X,A;B) \times JX \cong \CC (A,B)
+\\
+&&\rho : \int^X P (A,X;B) \times JX \cong \CC(A,B)
+\end{eqnarray*}
+satisfying two coherence conditions.
+
+
+\vspace*{5mm}
+
+
+\par\noindent
+{\bf Example 1} \ For any category $\CC$, put 
+\begin{eqnarray*}
+P (A,B;C) &=& \CC (A,C) \otimes \CC (B,C)
+\\
+JA &=&1
+\end{eqnarray*}
+(which corresponds to the comonoidal structure $\de : \CC \to \CC \times \CC$ on $\CC$).
+
+\vspace*{5mm}
+
+
+\par\noindent
+{\bf Example 2} \  For any monoidal category $\CC$, put
+\begin{eqnarray*}
+P (A,B;C) &=& \CC (A \otimes B,C)
+\\
+JA &=& \CC (I,A).
+\end{eqnarray*}
+
+
+\vspace*{5mm}
+
+
+\par\noindent
+{\bf Example 3}  \quad \fbox{$\CC : =  \mathrm{Aut} \CG$} \ For any groupoid $\CG$, take $\CC$ to have objects $(A,s)$ where $s : A \to A$ in $\CG$ and morphisms $f : (A,s) \to (B,t)$ the morphisms $ f : A \to B$ in $\CG$ satisfying $f s = t f$.    But
+\begin{eqnarray*}
+P((A,s),(B,t);(C,r)) = \{ A \stackrel{u}{\longrightarrow} C \stackrel{v}{\longleftarrow} \ \mbox{in} \ \CG \  \Bigl | \  ^u s \ ^v t = r \}
+\end{eqnarray*}
+where $^u s = u s u^{-1}$, and
+\[
+J (A,s) = \left\{\begin{array}{lll}
+1 \  \mbox{when} \  s = 1_A
+\\
+\emptyset \ \mbox{otherwise}. \end{array} \right.
+\]
+
+
+\vspace*{5mm}
+
+
+\par\noindent
+{\bf Example 4} \  Let $\CA$ be an abelian category.   Take $\CC$ to have the same objects as $\CA$ but only the invertible morphisms. Put
+\[
+P(A,B;C) = \{(f,g) \ \Bigl |  \ 0 \to A \stackrel{f}{\to} C \stackrel{g}{\to} B \to 0
+\ \mbox{is a short exact sequence in} \  \CA  \}
+\]
+and
+\[
+JA = \left\{\begin{array}{lll}
+1 \ \mbox{for} \ A = 0
+\\
+\emptyset \ \mbox{otherwise}.
+\end{array}
+\right.
+\]
+The natural isomorphism $\al$ is defined by
+\[
+[(u,v),(f,g)] \nleftrightarrow [(f',g'),(u',v')]
+\]
+as in the $3 \times 3$ diagram of short exact sequences 
+
+\begin{equation*}
+\xymatrix{
+& 0 \ar[d] & 0 \ar[d] & 0 \ar[d] & \\
+0 \ar[r] & A \ar[d]_-{f} \ar[r]^-{1} & A \ar[d]_-{f'} \ar[r] & 0 \ar[d] \ar[r] & 0 \\
+0 \ar[r] & X \ar[d]_-{g} \ar[r]^-{u} & D \ar[d]_-{g'} \ar[r]^-{v} & C \ar[d]^-{1} \ar[r] & 0 \\
+0 \ar[r] & B \ar[d] \ar[r]_-{u'} & Y \ar[d] \ar[r]_-{v'} & C \ar[d] \ar[r] & 0 \\
+& 0 & 0 & 0 &
+}
+\end{equation*}
+in $\CA$.
+
+\subsection{Day convolution}
+
+Let $\CC$  be a promonoidal (small) category and let $\CV$ be a symmetric monoidal closed complete and cocomplete category.   Let $[\CC, \CV]$ denote the category of functors $M : \CC \longrightarrow \CV$ and natural transformations.
+
+For a set $\La$ and object $V$ of $\CV$, we write $\La \cdot V$ for the coproduct of $\La$ copies of $V$.   We write $[V,W]$ for the (left = right) internal hom of $\CV$.
+
+The {\it convolution tensor product} on $[\CC,\CV]$ is defined by
+\[
+(M \ast N) C = \int^{A,B} \ P(A,B;C) \cdot MA \otimes NB
+\]
+with unit
+\[
+JC = JC \cdot I.
+\]
+Both left $^N L$ and right $L^M$ internal homs exist :
+\begin{eqnarray*}
+(^N L) A &=& \int_{B,C} [P(A,B;C) \cdot NB,LC]
+\\
+(L^M) B &=& \int_{A,C} [P(A,B;C) \cdot MA,LC]
+\end{eqnarray*}
+When $\CV = \mathrm{Set}$, convolution is just the left Kan extension
+ 
+
+
+$$\xymatrix{\ar @{} [drr] |{{\cong \atop \Rightarrow}}
+\CC^{\mathrm{op}} \times \CC^{\mathrm{op}} \ar[rd]_{\overline{P}}\ar[rr]^{y\times y}   && [\CC,  \mathrm{Set}] \times [\CC, \mathrm{Set}] \ar[ld]^{-\ast-} \\
+& [\CC, \mathrm{Set}]  &
+}$$
+
+
+\subsection{Hadamard product}
+
+For any category $\CC$, the comonoidal example gives the convolution structure on $[\CC,\CV]$ as
+\begin{eqnarray*}
+(M \underline{\times} N) C &=& \int^{A,B} (\CC (A,C) \times \CC(B,C)) \cdot MA \otimes NB
+\\
+&\cong& MC \otimes NC,
+\end{eqnarray*}
+the Hadamard (or pointwise) tensor  product.
+
+\subsection{Cauchy product}
+
+For any monoidal category $\CC$, Example 2 gives the convolution structure on $[\CC,\CV]$ as
+\[
+(M \bullet N) C = \int^{A,B} \CC (A\otimes B,C) \cdot MA \otimes NB
+\]
+which might be called the Cauchy product.
+
+For the case $\CC=\mathbb{S}$, we have the simplification
+\[
+(M \bullet N) C \cong \sum_{S \subset C}  MS \otimes N (C \backslash S)
+\]
+where $C \backslash S$ is the complement of the subset $S$ of $C$ in $C$.
+
+\subsection{Species and the substitution operation}
+
+A functor $M : \mathbb{S} \to  \mathrm{Set}$ is a {\it species} in the sense of Joyal.   A functor  $M : \mathbb{S} \to  \mathrm{Vect}$ is a {\it vector species}.    On species, apart from the Hadamard and Cauchy products, there is a substitution product.
+
+\[
+(M \circ N) C = \int^A MA \otimes N^{\bullet \# A}   C
+\]
+where $N^{\bullet n} = \underbrace{N \bullet \ldots \bullet N}_n$  is the $n$-fold Cauchy product.    This is a monoidal structure on $[\mathbb{S},\CV]$ but does not come by convolution (since $M  \circ -$ does not preserve colimits).
+
+
+\subsection{Symmetric group representations}
+
+$\mathrm{Rep}\mathbb{S}$ denotes the full subcategory of $[\mathbb{S}, \mathrm{Vect}]$ consisting of those $M$ satisfying $\dim MA < \infty$ and = 0 for $\# A$ large enough.
+
+$\mathrm{Rep}\mathbb{S}$ is equivalent to the weak product of the usual categories $\mathrm{Rep}\mathbb{S}_n$ of representations of the permutation groups $\mathbb{S}_n , n \geq 0$.    The irreducible representations of the individual $\mathbb{S}_n$ give all the irreducible objects in $\mathrm{Rep}\mathbb{S}$ up to isomorphism.
+
+
+
+A {\em class function} on $\mathbb{S}$ is a functor $f :$ Aut $\mathbb{S} \to \mathbb{C}$ (where $\mathbb{C}$ is discrete).    The Grothendieck ring $$\mathrm{K}_0 \mathrm{Rep}\mathbb{S}$$ is isomorphic to {\it the ring of class functions} where multiplication is
+\[
+(f \cdot g) (A, \sig) = \sum_{S \subseteq A \atop \sig S = S}  f(S, \sig \upharpoonright_S) \times g(A\backslash S, \sig \upharpoonright_{A\backslash S}).
+\]
+This ring is isomorphic to {\it the ring of symmetric functions}.
+
+
+\subsection{Finite general linear group representations} 
+
+Let $\mathbb{F}_q$ be a field with $q$ elements.   
+
+Let $\CA_q$ be the abelian category of finite vector spaces over $\mathbb{F}_q$ and linear functions between them.   Let $\mathcal{G\ell}_q$ denote the groupoid with the same objects as $\CA_q$ but with only the linear bijections.
+
+
+We are in the situation of Example 4.   There is a promonoidal structure defined on $\mathcal{G\ell}_q$ by 
+\[
+P(A,B;C) = \{A \stackrel{f}{\rightarrowtail}  C  \stackrel{g}{\twoheadrightarrow} B \ \mbox{s.e.s. in} \ \CA_q\}.
+\]
+Hence there is a convolution monoidal structure on the category
+\[
+[\mathcal{G\ell}_q, \mathrm{Vect}]
+\]
+defined by
+\begin{eqnarray*}
+(M \bullet N) C &=& \int^{A,B} P(A,B;C) \cdot MA \otimes NB
+\\
+&\cong& \bigoplus_{V \leq C} MV \otimes N(C/V)
+\end{eqnarray*}
+where $V$ runs over the linear subspaces of $C$ in $\CA_q$.  To understand the isomorphism, take $(f,g) \in P (A,B;C)$ and put $V = fA \leq C$.    Then we have
+$$
+\xymatrix{
+A \  \ar[d]_\sig^\cong  \ar@{>->}[r] &C \ar[d]_1 \ar@{>>}[r] &    B  \ar[d]_\cong^\tau \\
+ V \ \ar@{^{(}->}[r] &  C \ar[r] &     C/V 
+ }$$
+
+
+\vspace*{2mm}
+
+
+\noindent If $x \in  MA$ and $y \in NB$, the isomorphism takes $[(f,g),x\otimes y]$ to $(M\sig) x \otimes (N\tau) y$.
+
+\vspace*{2mm}
+
+There is a classical way of assigning a representation $M \bullet N$ of $GL_q (m+n)$ to a representation $M$ of $GL_q(m)$ and a representation $N$ of $GL_q(n)$.   Let $P_{m,n}$ denote the ``parabolic'' subgroup of $GL_q(m+n)$ consisting of those bijective linear $\rho : \mathbb{F}_q^{m+n} \to \mathbb{F}_q^{m+n}$ which take $\mathbb{F}^m_q$ into itself.    By taking diagonal blocks, we obtain a surjective group morphism $P_{m,n} \to GL_q (m) \times GL_q (n)$.
+
+Then $M \bullet N$ is defined as the left Kan extension
+$$
+\xymatrix{
+P_{m,n}  \  \ar@{>>}[d]  \ar@{^{(}->}[r]  \ar@{}[rd]|{\Longrightarrow}
+&   GL_q (m+n)  \ar@{-->}[d]^{M \bullet N}  & \\
+ GL_q (m) \times GL_q (n)  \ \ar[r]_>>>>>>>>{M \underline{\times} N} &   \mathrm{Vect};
+ }$$
+ 
+ 
+
+\vspace*{2mm}
+
+
+\par\noindent
+that is, $M \bullet N$ is induced by the restriction of $M \  \underline{\times} \  N$ to $P_{m,n}$.   This agrees with the convolution structure on $[\mathcal{G\ell}_q, \mathrm{Vect}]$ for these special objects $M$ and $N$. 
+
+\par\noindent
+Green [\ref{Green1955}] defined a ring structure on the class functions $f: \mathrm{Aut}\mathcal{G\ell}_q \to \mathbb{C}$ where
+\[
+(f \bullet g) (C,\sig) = \sum_{V \leq C \atop \sig V = V} f(V,\sig \upharpoonright_V) \times g (C/V,\sig/V).
+\]
+It is easy to see that this ring is commutative.
+
+
+Write $\mathrm{Rep}\mathcal{G\ell}_q$ for the full subcategory of $[\mathcal{G\ell}_q,\mathrm{Vect}]$ consisting of the $M$ whose values are finite dimensional and have $MA = 0$ for $A$ of  large enough dimension. This is a categorical version of Green's ring of class functions.
+
+\vspace*{2mm}
+
+
+The question arises as to how commutativity of the ring of class functions is reflected at the categorical level of $\mathrm{Rep}\mathcal{G\ell}_q$.
+
+\vspace*{2mm}
+
+\par\noindent
+{\bf Theorem} (Joyal-Street [\ref{GLFq}]) \ $\mathrm{Rep}\mathcal{G\ell}_q$ {\it with monoidal structure} $M\bullet N$ {\it is braided}.
+
+\vspace*{2mm}
+
+I will explain this. A {\it lax braiding} for a promonoidal category $\CC$ is a natural family
+\[
+\ga_{A,B;C} : P(A,B;C) \longrightarrow P(B,A;C)
+\]
+such that the natural family
+\[
+\ga_{M,N} : M \ast N \longrightarrow N \ast M
+\]
+defined as the composite
+$$\xymatrix{
+\int^{A,B} P(A,B;-)  \cdot   MA \times NB    \ar[r]^{\int \ga \cdot  1 \times 1} & \int^{A,B} P(B,A;-)  \cdot MA \times NB   \ar[d]_\cong^{\int 1 \cdot \gamma}
+\\
+& \int^{A,B} P(B,A;-)  \cdot NB \times MA
+}
+$$
+satisfies the conditions for a braiding on $[\CC, \mathrm{Set}]$ excluding invertibility.    If each $\ga_{A,B;C}$ is invertible it is called a {\it braiding} on the promonoidal category $\CC$.    In fact, there is a bijection between (lax) braidings on $\CC$ and (lax) braidings on $[\CC,\mathrm{Set}]$.
+
+Yet, it may happen that $[\CC,\CV]$ is (lax) braided without $\CC$ (lax) braided.
+
+The functor
+\[
+-  \cdot  I : \mathrm{Set} \longrightarrow \CV
+\]
+takes cartesian product to tensor product in $\CV$. Using this, we see that (lax) braidings for $[\CC,\CV]$ come from natural families
+\[
+\ga_{A,B;C} : P(A,B;C)   \cdot I \longrightarrow
+P (B,A;C) \cdot  I.
+\]
+When $\CC$ arises from an abelian category $\CA$ as in Example 4, there is a lax braiding on $[\CC, \mathrm{Vect}]$ coming from the linear function
+\[
+\ga : P(A,B;C) \cdot  \mathbb{C}   \longrightarrow  P(B,A;C) \cdot  \mathbb{C} 
+\]
+represented by the matrix
+\[
+\ga : P (A,B;C) \times P(B,A;C) \longrightarrow \mathbb{C} 
+\]
+defined by
+\[
+\ga_{(f,g),(h,k)}   =
+\left\{
+\begin{array}{llll}
+1 & \mbox{when} \ f,g,h,k \ \mbox{form a direct sum (as below)}
+\\
+0 & \mbox{otherwise}
+\end{array}
+\right.
+\]
+
+\par\noindent
+{\em  Direct sum conditions}
+
+\[
+A\begin{array}{c}
+ \overset{f}{\longrightarrow } \\
+ \operatorname*{\longleftarrow }\limits_{k}
+\end{array}C\begin{array}{c}
+ \overset{g}{\longrightarrow } \\
+ \operatorname*{\longleftarrow }\limits_{h}
+\end{array}B
+\]
+
+\vspace*{2mm}
+
+\[
+k \circ f = 1_A \quad , \quad g \circ h = 1_B \ , \ f \circ k + h \circ g = 1_C.
+\]
+
+\vspace*{2mm}
+
+The matrices $\ga$ can be huge with many zero entries.    For general $\CA$ we do not expect the matrices to be invertible.    As a $\mathrm{Vect}$-promonoidal category, $\CC$ is only lax braided in general.
+
+Assume each object of $\CA$ has only finitely many subobjects (as in the case of $\CA_q$).   Then convolution on $[\CC,\mathrm{Vect}]$ is defined by
+\[
+(M \bullet N)C = \bigoplus_{V \leq C} MV \otimes N(C/V).
+\]
+The lax braiding for convolution induced by that on $\CC$ is
+$$
+\xymatrix{(M \bullet N) C   \ar[d]^{\cong}   \ar[r]^>>>>>>>>>>>{\ga_{M,N} C} & (N \bullet M)C  \ar[d]^{\cong} \\
+\displaystyle \bigoplus_{U\leq C} MU \otimes N (C/U)  \ar[r]^>>>>>\theta & \displaystyle \bigoplus_{V\leq C} M(C/V)\otimes NV}
+$$
+where the matrix $\theta$ has entries
+\[
+\theta_{U,V} = \left\{
+\begin{array}{lllll}
+M(r_{U,V})\otimes N(s_{U,V}) \ \mbox{when} \ C= U \oplus V
+\\
+0 \quad \mbox{otherwise}.
+\end{array}
+\right.
+\]
+Here an (internal) direct sum $C= U \oplus V$ induces canonical isomorphisms
+\[
+r_{U,V} : U \cong C/V \quad \mbox{and} \quad s_{U,V} : C/U \cong V.
+\]
+
+Ringel [\ref{Ringel1990}] defines, for an $\mathbb{F}_q$-linear abelian category $\CA$ of finite global dimension,
+\begin{itemize}
+\item[$\bullet$] the {\it multiplicative Euler form}
+\[
+\langle A,B \rangle^2_m = \frac{\CA(A,B) \ Ext^2 (A,B) \ Ext^4 (A,B)\ \ldots}{Ext^1(A,B) \ Ext^3(A,B) \ Ext^5(A,B) \ \ldots};
+\]
+\item[$\bullet$]  the vector space $\mathrm{Hall}_{\CA}$ of functions
+\[
+f : (ob \CA)/_{\cong} \longrightarrow \mathbb{C}
+\]
+of finite support;
+\item[$\bullet$]  the product
+\[
+(f  \ \put(3,2){\circle*{3}} \ \ g) [C] = \sum_{V \leq C} \langle V,C/V \rangle_m f(V) \cdot g (C/V).
+\]
+\end{itemize}
+
+Ringel proves this is an associative algebra. Green [\ref{Green1995}] defines a comultiplication on $\mathrm{Hall}_\CA$ but has to modify (topologically) $\otimes$ on $\mathrm{Vect}$. Xiao [\ref{Xiao1997}] produces an antipode for $\mathrm{Hall}_\CA$. For further details see Schiffmann's lectures [\ref{Schiff}].
+
+There are modified versions of $\mathrm{Hall}_\CA$ for $\CA$ a triangulated category; the distinguished triangles are used in place of exact sequences to define $P(A,B;C)$.\\
+
+It would be interesting to study the connection between the Drinfeld double of Xiao's Hall Hopf algebra and the monoidal centre of $[\CC,\mathrm{Vect}]$.  (There will be more about monoidal centres in Sections \ref{Lecture3} and \ref{Lecture4}).  
+\\
+
+We return to the case of $\CA_q$ and the braiding  on $\mathrm{Rep} \mathcal{G\ell}_q$.  To prove the invertibility of the braiding we must delve more deeply into the representation theory of the groups $GL_q (n)$.   We aim at emphasising categorical  features.     
+
+{\it Irreducible representations} are those which are indecomposable under direct sum.
+
+{\it Cuspidal representations} are those which are indecomposable under the tensor product $M \bullet N$. More precisely, define $M\in$ $\mathrm{Rep} \mathcal{G\ell}_q$ to be {\it trivial} when $MA=0$ for all $A$ with $\dim A > 0$.   Define $M\in$ $\mathrm{Rep} \mathcal{G\ell}_q$ to be  $\bullet$ -{\it indecomposable} when 
+\[
+M \cong N \bullet L \ \ \  \Rightarrow \ \ \  N  \ \mbox{or} \   L    \ \mbox{trivial}.
+\]
+Define $M$ to be {\it cuspidal} when it is both irreducible and $\bullet$ - indecomposable.  This agrees with the definition due to  Harish-Chandra (in terms of unipotent radicals) since an irreducible in $\mathrm{Rep} \mathcal{G\ell}_q$  is isomorphic to a representation of a single $GL_q(x)$.   By naturality of $\ga_{M,N}$, it suffices to prove invertibility for $M$ and $N$ irreducible.    Using the braid conditions for $\ga_{M \bullet N,L}$ and $\ga_{M,N\bullet L}$, we see that it suffices to prove invertibility for $M$ and $N$ cuspidal.
+\\
+
+After detailed study of iterated tensor products
+\[
+(M_1\bullet \ldots \bullet M_n) C = \bigoplus_{0\leq V_1 \leq \ldots V_{n-1} \leq C} M_1V_1 \otimes M_2 (V_2/V_1) \otimes \ldots \otimes M_n (C/V_{n-1})
+\]
+we obtain :
+
+
+
+\vspace*{2mm}
+
+
+\par\noindent
+{\bf Theorem} \ [\ref{GLFq}] \ {\it Suppose $M$ and $N$ are cuspidal in $\mathrm{Rep} \mathcal{G\ell}_q$ with $MA\neq 0$ and $NB \neq 0$ for $\dim A = r$ and $\dim B = s$}.    
+
+\begin{itemize}
+\item[(i)] {\it If} $M \not\cong N$ {\it then}
+\[
+\ga_{N,M} \circ \ga_{M,N} = q^{rs}  1_{M\bullet N}.
+\]
+
+\item[(ii)]  {\it If} $M = N$ {\it then}
+\[
+\ga_{M,M} \circ \ga_{M,M} = q^{r(r-1)/2}  (q^r-1) \ \ga_{M,M} + q^{r^2}  1_{M\bullet M}.
+\]
+\end{itemize}
+
+The invertibility of the braiding on $\mathrm{Rep} \mathcal{G\ell}_q$ follows.
+
+\subsection{Hecke algebroids}
+
+Let $\CX$ be a monoidal category.  A {\it Yang-Baxter operator} $y$ on a family of objects $X_s$, $s\in S$, of $\CX$ is a family of isomorphisms
+\[
+y_{s,t} : X_s \otimes X_t \to X_t \otimes X_s
+\]
+such that 
+$$\xymatrix{  & X_t \otimes X_s \otimes X_u  \ar[r]^ {1\otimes y} &  X_t \otimes X_u \otimes X_s \ar[rd]^{y\otimes 1} \\
+X_s \otimes X_t \otimes X_u \ar[ru]^{y \otimes 1} \ar[rd]_{1\otimes y} &&&  X_u \otimes X_t \otimes X_s \\
+ & X_s \otimes X_u \otimes X_t    \ar[r]_{y\otimes 1} & X_u \otimes X_s \otimes X_t    \ar[ru]_{1\otimes y} }$$
+
+When $\CX$ is braided, $y_{s,t} = \ga_{X_s,X_t}$ is an example.
+
+Suppose we are given functions
+\[
+d : S \times S \to \mathbb{C} \backslash \{0\}, \quad e : S \to \mathbb{C}
+\]
+with $d$ symmetric. The {\it Hecke algebroid} $\CH (d,e)$ is the $\mathbb{C}$-linear (i.e. enriched in $\mathrm{Vect}$) strict monoidal category universally generated by a family of objects indexed by $S$ bearing a Yang-Baxter operator satisfying
+\begin{eqnarray*}
+y_{ts} y_{st} &=& d(s,t) 1 \ \mbox{for} \ s \neq t
+\\
+y_{ss} y_{ss} &=& e(s) y_{ss} + d(s,s) 1.
+\end{eqnarray*}
+
+\vspace*{2mm}
+
+\par\noindent
+{\bf Theorem} \ [\ref{GLFq}] \ $\mathrm{Rep} \mathcal{G\ell}_q$ {\it is the projective (=} $\mathrm{Vect}${\it -enriched Cauchy) completion of a Hecke algebroid}.
+
+\vspace*{2mm}
+
+The objects of the Hecke algebroid are isomorphism classes of cuspidal representations (which are in bijection with irreducible monic polynomials in $\mathbb{F}_q[x]$ with non-zero constant term).  We use results of Gelfand and Graev [\ref{GG1962}], Gelfand [\ref{Gel1970}], Harish-Chandra [\ref{H-C1970}], and Macdonald [\ref{Macdon1995}].
+
+
+ Let us investigate whether we can lift the comultiplication
+ \[
+ \mathrm{Hall}_\CA \to \mathrm{Hall}_\CA \  \tilde{\otimes} \ \mathrm{Hall}_\CA 
+ \]
+ of Green to the categorical level. The promonoidal multiplication
+
+\[
+P : \CC^{\mathrm{op}} \times \CC^{\mathrm{op}} \times \CC \to \mathrm{Set},
+\]
+on the groupoid $\CC$ coming from $\CA$, is defined on morphisms
+\[
+A' \stackrel{u}{\longrightarrow} A \ , \ B' \stackrel{v}{\longrightarrow} B \ , \ C \stackrel{w}{\longrightarrow}   C'
+\]
+by
+\[
+P(u,v;w)   (f,g) = (wfu,v^{-1}gw^{-1})
+\]
+
+
+$$
+\xymatrix{
+A \    \ar[r]^f &C \ar[d]_w \ar[r]^g &    B  \\
+\ar[u]^u A' \ \ar[r]_{f'} &  C' \ar[r]_{g'} & B'  \ar[u]_v
+ }$$
+
+
+\noindent Since $\CC$ is a groupoid, $\CC^{\mathrm{op}} \cong \CC$.    Therefore, we have 
+\[
+\overline P  : \CC^{\mathrm{op}} \times \CC \times \CC \to \mathrm{Set}
+\]
+defined by
+\[
+\overline P  (C;A,B) = P(A,B;C)
+\]
+and
+\[
+ \overline P  (w;u,v) (f',g') = (w^{-1},f'u^{-1},vg'w).
+\]
+
+
+A functor of the form $T : \CA^{\mathrm{op}}  \times B \to$ $\mathrm{Set}$ is called a module (profunctor or distributor)
+\[
+\CA \stackrel{T}{\longrightarrow} \CB
+\]
+from $\CA$ to $\CB$, so that, for modules $\CA \stackrel{T}{\longrightarrow} \CB \stackrel{S}{\longrightarrow} \CC$, we have
+\[
+\CA \stackrel{S\circ T}{\longrightarrow} \CC
+\]
+defined by
+\[
+(S\circ T) (A,C) = \int^B S (B,C) \times T(A,B).
+\]
+Morphisms (2-cells) between modules are natural transformations between the $\mathrm{Set}$-valued functors of two variables. Consider the diagram of modules below in which we will define the 2-cell $\psi$. 
+$$
+\xymatrix{ & \CC \times \CC \ar[ld]_{\overline P \times \overline P}  \ar[rr]^P  && \CC \ar[rd]^{\overline P} 
+\\
+\CC \times \CC \times \CC \times \CC \ar[rrd]^{\cong}_{1\times \gamma \times 1}  \ar@{}[rrrr]_>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>{\psi}|-{\textrm{\rotatebox{30}{$\Longrightarrow$}}} &&& & \CC \times \CC 
+\\
+&& \CC \times \CC \times \CC \times \CC \ar[rru]_{P\times P} 
+}
+$$
+The top path is:
+
+\[
+(\overline P \circ P) (A,B),(C,D)) = \int^X \overline P (X;A,B) \times P (C,D;X) \ \ .
+\]
+The bottom path is:
+\begin{eqnarray*}
+&&(P\times P) \circ (1 \times \ga \times 1) \circ (\overline P \times  \overline P) (A,B),(C,D)) 
+\\
+&&= \int^{T,U,V,W} P(T,U;C) \times P(V,W;D) \times \overline P  (A;T,V) \times \overline P (B;U,W) \ \ .
+\end{eqnarray*}
+The definition of $\psi$ involves diagrams (i) and (ii).
+
+(i)   $ 
+\xymatrix{
+ & C  \ar[d]^u 
+\\
+A \ \ar[r]^f & X \ar[d]^v \ar[r]^g & B 
+\\
+ & D & & 
+}$ 
+
+(ii)   $ 
+\xymatrix{
+T \ar[d]_u \ar[r]^{f'} &C \ar[r]^{g'} &U\ar[d]^{u''}
+\\
+A\ar[d]_{v'} &&B  \ar[d]^{v''}
+\\
+V \ar[r]_{f''}  &D  \ar[r]_{g''} & W
+\\
+}$ 
+
+
+\vspace*{8mm}
+
+\par\noindent
+Given $T,U,V,W$, put $X = T \oplus U  \oplus  V  \oplus  W$ so that we have a relation
+\begin{eqnarray*}
+P(T,U;C) \times P(V,W;D)   \times  \overline P (A;T,V) \times \overline P (B;U,W)
+\\
+ \psi \ {-\hspace{-2.5mm}\raisebox{-0.3mm}{$\downarrow$}}  \hspace{40mm}
+\\
+\overline P (X;A,B)  \times P(C,D;X)   \hspace{20mm}
+\end{eqnarray*}
+defined by
+$$
+\psi_{\mbox{(ii),(i)}} =
+\left\{
+\begin{array}{llll}
+1 & \mbox{when (i) inside (ii) gives a 3}  \times \mbox{3 diagram of s.e.s.}
+\\
+0 & \mbox{otherwise}.
+\end{array}
+\right.
+$$
+This defines a natural transformation $\psi$ at the $\mathbb{C}$-linear level.
+ 
+ So $\CC$ becomes ``lax pro-bimonoidal''.   It is a categorical version of a bialgebra.   This seems worthy of study as a ``categorification'' of the Hall bialgebra.     So does the question of an antipode at the categorical level.
+ 
+\subsection{Charades}
+ 
+The sense of the term {\it charade} intended here is that of Kapranov [\ref{Kapr1995}] who suggests that the promonoidal structures discussed in (\ref{Promon}) Example 4 might be used to find a common setting for two different generalizations of class field theory.  A related direction of interest is to study the special case $[\mathcal{G\ell}_q, \mathrm{Vect}]$ in connection with combinatorics.  Joyal species are the $q=0$ case.
+ 
+
+\section{Mackey functors and classifying spaces}\label{Lecture3} 
+
+ J.A. Green has a fundamental paper [\ref{Green1971}] in this subject (as he did for Section \ref{Lecture2}). Other important contributors are A.W.M. Dress [\ref{Dress1973}], [\ref{Dress1975}]  and S. Bouc [\ref{BoucBook}].
+
+In this section we describe the evolution of the definition of Mackey functor itself, the structure of the category of Mackey functors [\ref{MFCCC}], the centre of the monoidal category of Mackey functors [\ref{Tambara2008}], and discuss a connection with the calculation of the classifying spaces of Lie groups. For the last, thanks go to Vincent Franjou for alerting me to [\ref{JackMcC1992}]).
+
+\vspace{3mm}
+
+ \par\noindent
+ {\it Microcosm principle} \ A Mackey functor for a group $G$ can simultaneously be regarded as
+  
+ \begin{itemize}
+\item a generalized representation of $G$, and
+\item a decategorified representation theory for $G$.
+\end{itemize}
+\[
+\mathrm{Rep}G \ \subseteq \ \mathrm{Mackey} \ G \ni ``K_0 \ \mathrm{Rep}G"
+\] 
+
+\subsection{The definitions}\label{Lecture3sub1} 
+  
+Left Kan extension $\mathrm{Lan}_i$ along a functor $i : H \to G$ is the functor which is left adjoint to restriction $\mathrm{Res}_i$ along $i$ : 
+$$\xymatrix{
+[H,\CM] \ar@<1.5ex>[rr]^{\mathrm{Lan}_i} \ar@{}[rr]|-{\perp} && [G,\CM] \ar@<1.5ex>[ll]^{\mathrm{Res}_i}  \\
+V\circ i && \ar@{|->}[ll] V
+}$$
+
+\vspace{3mm}
+
+Under smallness conditions on $i$ and with $\CM$ cocomplete, the natural transformation $\la: i \circ p \Longrightarrow j \circ q$ that should point left to right in the comma category square below induces a natural isomorphism
+\[
+\mathrm{Res}_j \circ \mathrm{Lan}_i \cong \mathrm{Lan}_q \circ \mathrm{Res}_p \ .
+\]
+$$
+\xymatrix{i \downarrow j \ar[d]_p\ar[rr]^q &&K \ar[d]^j  \ar@/^4pc/[dd]^{\mathrm{Lan}_q(W_p)}\\
+H\ar[rr]_i  \ar[rrd]_{W}  &&G \ar@{}[r]|{\cong} \ar[d]^{\mathrm{Lan}_i W} &
+\\ 
+&&\CM  & 
+}
+$$
+
+
+If a category $D$ is a disjoint union
+\[
+D = \sum_{\al \in \La} D_\al
+\]
+of subcategories $m_\al : D_\al \to D$ then, for all functors $r : D \to K$, we have
+\[
+\mathrm{Lan}_r \cong \sum_{\al \in \La} \ \mathrm{Lan}_{r \circ m_\al} \circ \ \mathrm{Res}
+\]
+
+
+$$\xymatrix{D_\al \ar[r]^{m_\al} 
+ & D \ar[rr]^r  \ar[rd]_{T}  && K \ar[ld]^{\mathrm{Lan}_r T \ \  \cong \ \  \sum_\al \mathrm{Lan}_{rm_\al}(Tm_\al)} \\
+&& \CM &}$$
+
+\vspace{2mm}
+
+For a groupoid $D$, each object $d \in D$ gives a group $D(d)=D(d,d)$ under composition.    Let $\La$ be a representative set of objects in $D$ for all isomorphism classes.   We have
+\[
+D \simeq \sum_{d\in\La} D(d).
+\]
+
+We apply this to subgroups $i : H \to G$ and $j : K \to G$ of a group $G$, and to $D = I \downarrow j$.    Objects of the groupoid  $D$ are elements $g$ of $G$ while morphisms $(h,k) : g \to g'$ are elements of $H \times K$ such that $kg =g'h$.   Isomorphism classes of objects of $D$ are in bijection with double cosets
+\[
+KgH = \{kgh | k \in K, h \in H\}.
+\]
+Let $[K\backslash G/H] \subseteq G$ represent all double cosets $KgH$ so that we have an equivalence of categories
+\[
+\sum_{g\in[K\backslash G/H]} (i\downarrow j) (g) \ \ \simeq \ \  i\downarrow j.
+\]
+Let $p_g : (i \downarrow j) (g) \to H$ and $q_g : (i \downarrow j) (g) \to K$ be the restrictions of $p$ and $q$.  By the Kan extension results we have
+\[
+\mathrm{Res}_j \circ \ \mathrm{Lan}_i \cong \sum \ \mathrm{Lan}_{q_g} \circ \ \mathrm{Res}_{p_g}.
+\]
+Putting $K^g = g^{-1} Kg$ and $^g H = g H g^{-1}$, the restrictions $p_g$ and $q_g$ induce isomorphisms
+\[
+(i\downarrow j) (g) \cong H \cap K^g \ \mbox{and} \ (i\downarrow j)(g) = \  ^gH \cap K.
+\]
+
+
+$$\xymatrix{^g H \cap K\ar[dd]_\leq \ar[dr]^\cong \ar[rr]^\cong_{\gamma_g}   && H \cap K^g \ar[ld]_\cong \ar[dd]^\leq \\
+ & (i\downarrow j) (g) \ar[ld]^{q_g} \ar[rd]_{p_g} \ar[dd] & 
+\\
+K &  & H  
+\\
+  & i\downarrow j   \ar[lu]^q    \ar[ru]_p} 
+$$
+
+
+
+In representation theory, we take $\CM = \mathrm{Mod}_k$ for a commutative ring $k$ and put
+\[
+\mathrm{Res}^G_H = \mathrm{Res}_i \ \ \mbox{and} \ \ \mathrm{Ind}^G_H = \mathrm{Lan}_i.
+\]
+
+ \vspace*{2mm}
+ 
+ \par\noindent
+ {\bf  Mackey Decomposition Theorem}
+ 
+
+\[
+\mathrm{Res}^G_H \circ \mathrm{Ind}^G_H  \cong  \sum_{g\in[K\backslash G/H]} \mathrm{Ind}^K_{g_{H\cap K}}  \circ     \mathrm{Res}_{\ga_g}  \circ \mathrm{Res}^H_{H \cap K^g}.
+\]
+
+\vspace*{2mm}
+
+This inspires the technical axiom 4 in
+
+\vspace*{2mm}
+
+\par\noindent
+{\bf Definition} (Green [\ref{Green1971}]) \ For a group $G$, a {\it Mackey functor over} $k$ assigns
+
+\begin{itemize}
+\item to each $H \leq G$, a $k$-module $M(H)$,
+\item to $K \leq H \leq G$, module morphisms
+\[
+t^H_K : M(K) \to M(H) \ \mbox{and} \ r^H_K : M(H) \to M(K),
+\]
+\item for $H \leq G$ and $g\in G$, a module isomorphism
+\[
+c_{g,H} : M(H) \stackrel{\cong}{\longrightarrow} M (^g H),
+\]
+\end{itemize}
+satisfying the following four axioms : 
+\begin{enumerate}
+\item[1.] $t^H_K \  t^K_L = t^H_L$ \ \mbox{and} \ $r^K_L \  r^H_K = r^H_L$,
+
+\item[2.] $c_{g',^g H} \ c_{g,H} = c_{g'g,H}$   \ \mbox{and} \ $c_{h,H} = 1_{M(H)}$,
+
+\item[3.] $c_{g,H} \  t^H_K = t^{g_H}_{g_K} \  c_{g,K}$ \ \mbox{and} \ $c_{g,K} \  r^H_K = r^{g_H}_{g_K} \  c_{g,H}$
+
+\item[4.] $r^L_K \  t^L_H = \displaystyle  \sum_{g\in[K\backslash L/H]} \  t^K_{g_H \cap K} \  c_{g,H\cap K^g} \  r^H_{H\cap K^g}$.
+\end{enumerate}
+
+$t^H_K$ is called {\it transfer}, {\it trace} or {\it induction},
+
+$r^H_K$ is called {\it restriction}, and
+
+$c_{g,H}$ is called a {\it conjugation map}.
+
+
+\bigskip
+
+
+Suppose $\CM$ is a cocomplete monoidal category whose tensor preserves colimits in each variable.   Suppose $i : H \to G$ is the inclusion of a subgroup $H \leq G$ and that the categories $[H,\CM]$ and $[G,\CM]$ are equipped with the pointwise tensor products.    For $V \in [G, \CM]$ and $W \in [H,\CM]$, there is an isomorphism
+\[
+V \otimes \mathrm{Lan}_i (W) \cong \mathrm{Lan}_i (\mathrm{Res}_i (V) \otimes W).
+\]
+In the case $\CM = \mathrm{Mod}_k$, we obtain
+
+
+ 
+ \vspace*{5mm}
+ 
+ \par\noindent
+{\bf Frobenius Reciprocity}
+\[
+V \otimes \mathrm{Ind}^G_H (W) \cong \mathrm{Ind}^G_H (\mathrm{Res}^G_H (V) \otimes W).
+\]
+This inspires the technical axiom 6 in 
+
+
+ \vspace*{5mm}
+ 
+ \par\noindent
+ {\bf Definition} \ A {\it Green functor} $A$ for $G$ over $k$ is a Mackey functor equipped with a $k$-algebra structure on each $k$-module $A(H)$, $H \leq G$, satisfying
+ 
+ \begin{enumerate}
+\item[5.]     $t^H_K$, $r^H_K$, $c_{g,K}$ are $k$-algebra morphisms,
+
+\item[6.]     $a \cdot t^H_K (b) = t^H_K (r^H_K (a) \cdot b)$ and $t^H_K (b) \cdot a = t^H_K (b \cdot r^H_K (a))$.
+\end{enumerate}
+
+
+ \vspace*{5mm}
+ 
+ \par\noindent
+ {\bf  Example} \ Each representation $R$ of $G$ determines a Mackey functor $M_R$ with
+ \[
+ M_R (H) = G\mbox{-}\mathrm{Set}(G/H,R) \ .
+ \]
+
+ \vspace*{5mm}
+ 
+ \par\noindent
+{\bf  Example} \ There is a Green functor $A$ for $G$ over $\mathbb{Z}$ with
+\[
+A(H) = \mathrm{K}_0 \mathrm{Rep}_k (H) \ .
+\]
+
+ \vspace*{3mm}
+ 
+ Green himself showed that ``Mackey functors'' could be thought of as a pair of functors $M^\ast$ and $M_\ast$, one contravariant and one covariant, defined essentially on the category $\CC_G$ of connected finite $G$-sets.
+ 
+Dress gave an equivalent definition in terms of $M^\ast$ and $M_\ast$ now extended to the whole category of finite $G\mathrm{-Set}$.
+
+Lindner [\ref{Lindner1976}] combined $M^\ast$ and $M_\ast$ into a single functor defined on the category of spans between finite $G$-sets.
+
+For this construction, $G\mathrm{-Set}$ can be replaced by any {\it lextensive} category $\CE$: one with finite coproducts, finite limits, and such that the functor
+\begin{eqnarray*}
+&&\CE/X \times \CE/Y \longrightarrow \CE/X + Y
+\\
+&&(U\to X, V \to Y) \longmapsto (U+V \to X+Y)
+\end{eqnarray*}
+is an equivalence for all $X$ and $Y$.
+
+
+Write $\mathrm{Spn}(\CE)$ for the autonomous monoidal category for which:
+
+objects are those of $\CE$ ;
+
+morphisms $[S] : X  \nrightarrow Y$ are isomorphism classes of ``spans'' $X \stackrel{u}{ \longleftarrow} S \stackrel{v}{ \longrightarrow} Y$; 
+
+composition is by pullback
+$$
+\xymatrix{& & \ar[ld] S \operatorname*{\times}\limits_{Y}T \ar[rd] & & 
+\\
+ & \ar[ld] S \ar[rd] & & \ar[ld] T \ar[rd] & 
+ \\
+ X & & Y & & Z}
+$$
+
+the tensor product is the cartesian product in $\CE$
+
+$\xymatrix{ & \ar[ld] S \ar[rd]&&&& S' \ar[ld]  \ar[rd] &&&& S\times S' \ar[ld] \ar[rd]\\
+X && Y & \ar@{}[u]|{\mbox{$\times$}} & X' && Y'  & \ar@{}[u]|{\mbox{$=$}}&  X \times X' &  & Y \times Y'}  $
+\\
+(it is not cartesian product in Spn$(\CE)$); 
+
+each object is its own dual
+\[
+\mathrm{Spn} (\CE) (X\times Y, Z) \cong \mathrm{Spn} (\CE) (Y,X \times Z).
+\]
+This construction can be made for any category $\CE$ with finite limits.
+
+\vspace*{4mm}
+
+If $\CE$ is lextensive, the coproduct + in $\CE$ gives direct sum in $\mathrm{Spn}(\CE)$ :
+\begin{eqnarray*}
+\mathrm{Spn}(\CE) (X,Y + Z) \cong \mathrm{Spn}(\CE) (X,Y) \times \ \mathrm{Spn} (\CE) (X,Z)
+\\
+\mathrm{Spn}(\CE) (X + Y, Z) \cong \mathrm{Spn}(\CE) (X,Z) \times \ \mathrm{Spn} (\CE) (Y,Z).
+\end{eqnarray*}
+This implies that Spn$(\CE)$ is a category with homs enriched in commutative monoids.   An enriched functor is one that preserves direct sums which exist.
+
+
+ \vspace*{5mm}
+ 
+ \par\noindent
+ {\bf Definition} \  (Lindner [\ref{Lindner1976}]) A {\it Mackey functor on} $\CE$ is an enriched functor
+ \[
+ M : \mathrm{Spn}(\CE) \longrightarrow \mathrm{Mod}_k.
+ \]
+The Dress definition is recaptured when $\CE$ is finite $G$-sets, and $M^\ast$ and $M_\ast$ are obtained by composing $M$ with
+$$
+\xymatrix{
+\CE^{\textrm{op}} \ar[rr]^{(\ )^\ast} && \textrm{Spn} (\CE) && \CE \ar[ll]_{ \qquad(\ )_\ast}
+}$$
+where $$(f : X \longrightarrow Y)^{\ast} \ = \ (Y \stackrel{f}{ \longleftarrow} X \stackrel{1_X}{ \longrightarrow} X) $$ 
+and $$(f : X \longrightarrow Y)_{\ast} \ = \ (X \stackrel{1_X}{ \longleftarrow} X \stackrel{f}{ \longrightarrow} Y) \ .$$ 
+
+\subsection{The category of Mackey functors}\label{Lecture3sub2}
+
+The category of Mackey functors on $\CE$ is the commutative-monoid-enriched functor  category
+\[
+\mathrm{Mky}_k (\CE) : = [\mathrm{Spn} (\CE), \mathrm{Mod}_k]_{\mathrm{add}}.
+\]
+It is closed monoidal by Day convolution :
+\begin{eqnarray*}
+(M \ast N) (Z) &=& \int^Y M(Z\times Y) \otimes_k NY
+\\
+N^M (Z) &=& \mathrm{Mky}_k (\CE) (M(Z \times -),N)
+\end{eqnarray*}
+the unit $J$ is the {\it Burnside functor} ($JX$ is the free $k$-module on the commutative monoid under coproduct of isomorphism classes of objects of $\CE(X)$. 
+
+\vspace*{2mm}
+
+\noindent
+{\bf Proposition} \ {\it Green functors} $A$ {\it are monoids in} $\mathrm{Mky}_k (\CE)$.
+
+(The algebra structure in the Green definition gives $AX \otimes_k AY \stackrel{\mu}{\longrightarrow} A (X \times Y)$, $k \stackrel{\eta}{\longrightarrow} A1$  corresponding to $A \ast A \stackrel{\mu}{\longrightarrow}  A \stackrel{\eta}{\longleftarrow}  J).$
+
+ \vspace*{2mm}
+ 
+ \par\noindent
+{\bf Definition} \  (M. Barr) A monoidal category $\CM$ is $\ast$-{\it autonomous} when there exists an equivalence of categories
+ \[
+ S : \CM^{\textrm{op}} \longrightarrow \CM
+ \]
+ and a natural isomorphism
+ \[
+ \CM (B,SA) \cong \CM (I,S(A\otimes B)).
+ \]
+ 
+\vspace{1mm}
+ 
+Write $f$ Mky$_k(\CE)$ for the full subcategory  of Mky$_k(\CE)$ consisting of those $M$ with each $MX$ finitely generated and projective.
+
+ \vspace*{3mm}
+ 
+ \par\noindent
+ {\bf Theorem} \  [PS] \  {\it   G finite, $\CE$ = finite G-sets, k field) $f$Mky$_k(\CE)$ is a monoidal full subcategory of Mky$_k(\CE)$ which is $\ast$-autonomous with $S(M)X = (MX)^\ast$.}
+
+
+We also looked to some extent into the theory (Bouc) of modules over Green functors $A$ including Morita equivalence for Green functors. 
+
+
+ \subsection{The monoidal centre}\label{Lecture3sub3} 
+
+A {\it lax half braiding} on an object $A$ of a monoidal category $\CM$ is a natural family of morphisms
+\[
+U_X : A \otimes X \longrightarrow X \otimes A
+\]
+such that
+$$\xymatrix{A \otimes X \otimes Y \ar[rr]^{U_X \otimes Y} \ar[rd]_{U_X \otimes 1_Y} 
+& & X \otimes Y \otimes A \\
+& X \otimes A \otimes Y \ar[ru]_{1_x \otimes U_x}}  \qquad \mbox{and} \quad   \xymatrix{A \otimes I \ar[rr]^{u_I} \ar@{=}[rd] & & I \otimes A \ar@{=}[ld] \\
+ & A }
+$$
+
+ The {\it lax centre} $\CZ_\ell \CM$ of $\CM$ has objects pairs $(A,u)$ as above, with the obvious morphisms.   It is a monoidal category with tensor product
+ \[
+ (A,u) \otimes (B,v) = (A \otimes B, (u_- \otimes 1) \circ (1 \otimes v_-))
+ \]
+and has a lax braiding
+\[
+\ga_{(A,u),(B,v)} = u_B : (A,u) \otimes (B,v) \to (B,v) \otimes (A,u).
+\]
+
+
+A {\it half braiding} is an invertible lax half braiding.  The {\it centre} $\CZ\CM$ of $\CM$ consists of the $(A,u)$ with $u$ invertible.
+
+If $\CM$ is autonomous then
+\[
+\CZ_\ell \CM = \CZ\CM.
+\]
+
+
+
+ \vspace*{5mm}
+
+\par\noindent
+{\it Example.}   The centre of the category of representations of a Hopf algebra $H$ is equivalent to the category of representations of the Drinfeld double $D(H)$ of $H$.
+
+
+ \vspace*{5mm}
+
+\par\noindent
+{\it Example.}   The centre of the category [$G$, Set] (with cartesian monoidal structure) is equivalent to the braided monoidal category $[Aut (G)$, Set] as in Example 3 of Lecture 2.
+
+
+
+ \vspace*{5mm}
+
+\par\noindent
+{\it Fact.}   A monoid $(A,u)$ in the monoidal lax centre $\CZ_\ell \CM$ becomes a (lax) monoidal functor
+\[
+- \otimes A : \CM \longrightarrow \CM
+\]
+via
+\[
+X \otimes A \otimes Y \otimes A \stackrel{1\otimes U_Y \otimes 1}{\longrightarrow} X \otimes Y \otimes A \otimes A \stackrel{1\otimes 1 \otimes U}{\longrightarrow} X \otimes Y \otimes A
+\]
+
+
+
+This has a consequence for the {\it Dress construction} which assigns to each Mackey functor $M$ on $\CE$ and each $Z \in \CE$ a Mackey functor
+\[
+M_Z := M \otimes (- \times Z) : \mathrm{Spn} \ (\CE) \to \mathrm{Mod}_k.
+\]
+It implies, if $Z$ is a monoid in $\CZ_\ell \CE$ then each Green functor $A$ on $\CE$ defines a Green functor
+\[
+A_Z = (\mathrm{Spn} (\CE) \stackrel{-\times Z}{\longrightarrow} \ \mathrm{Spn} (\CE) \stackrel{A}{\longrightarrow} \mathrm{Mod}_k).
+\]
+
+ \vspace*{3mm}
+
+\par\noindent
+{\it General question} \ If $\CM$ belongs to a particular class of monoidal categories, when does $\CZ_\ell \CM$ (or $\CZ\CM$) belong to the same class?
+
+ \vspace*{3mm}
+
+For monoidal functor categories, there are results along these lines in various papers with Day, Panchadcharam, Pastro and the author. A paper [\ref{PastroSt2008}] with Pastro was motivated by Tambara [\ref{Tambara2006}]. Now we shall look at some of that work.
+ 
+Suppose $\CA$ is a monoidal $\CV$-category. We are ultimately interested in the (lax) centre of $[\CA,\CV]$. However, we first look at the functor category $[\CA^{\textrm{op}}  \otimes \CA , \CV]$ whose objects might be called $\CV$-modules from $\CA$ to itself.
+ 
+ A $\CV$-functor $T : \CA^{\textrm{op}}  \otimes \CA \to  \CV$ is a {\it left Tambara module} when it is equipped with a natural family of morphisms
+ \[
+ \al_\ell (A,X,Y) : T(X,Y) \to T (A\otimes X, A \otimes Y)
+ \]
+such that $\al_\ell (I,X,Y) = 1_{T(X,Y)}$ and 
+
+$$
+\xymatrix{T(X,Y) \ar[rd]_{\alpha_\ell (A\otimes A',X,Y)\phantom{AAA}} \ar[rr]^{\alpha_\ell (A',X,Y)}  && T(A'\otimes X, A' \otimes Y) \ar[ld]^{\phantom{AAA}\alpha_\ell (A,A'\otimes X, A' \otimes Y)}
+\\
+&T(A\otimes A' \otimes X, A \otimes A' \otimes Y }
+$$
+
+\noindent Similarly for {\it right Tambara module}.   For a {\it Tambara module} we have both plus 
+$$
+\xymatrix{T(X,Y) \ar[rrrd]^{\alpha(A,B,X,Y)} \ar[d]_{\alpha_r (B,X,Y)}   \ar[rrr]^{\alpha_\ell (A,X,Y)} &&& T(A\otimes X,A\otimes Y) \ar[d]^{\alpha_r (B,A\otimes X,A\otimes Y)}
+\\
+ T(X\otimes B,Y\otimes B)  \ar[rrr]_{\alpha_\ell (A,X\otimes B, Y\otimes B)} &&& T(A\otimes X\otimes B, A \otimes Y \otimes B)}
+$$
+
+ \vspace*{5mm}
+
+If $\CA$ is closed, the $\al_\ell, \al_r, \al$ correspond to natural families
+\begin{eqnarray*}
+\beta_\ell (A,X,Y) : T(X,Y^A) \longrightarrow T (A \otimes X,Y) \qquad
+\\
+\beta_r (B,X,Y) : T(X,^{\; B}\!Y) \longrightarrow T (X \otimes B,Y) \qquad 
+\\
+\beta (A,B,X,Y) : T(X,^{\; B}\!Y^A) \longrightarrow T (A \otimes X \otimes B,Y).
+\end{eqnarray*}
+We call
+\begin{eqnarray*}
+[\CA,\CV]  \longrightarrow  [\CA^{\textrm{op}} \otimes \CA,\CV]
+\\
+F \longmapsto T_F \hspace{18mm}
+\\
+T_F (X,Y) = F(Y^X)   \quad
+\end{eqnarray*}
+a {\it Cayley} $\CV$-{\it functor}: it takes the Cauchy tensor product (convolution) to ``tensor product over $\CA$'' (= composition of endomodules of $\CA$).   The image of the Cayley $\CV$-functor is the left Tambara modules for which the $\beta_\ell$ are invertible.
+
+
+A Tambara module is {\it left strong} when the $\beta_\ell$ are invertible.   It is {\it strong} when the $\beta$ are invertible. We use the subscript $\ell s$ for left strong and $s$ for strong.
+
+\vspace*{3mm}
+
+\par\noindent
+\textbf{Proposition} \ {\it If $\CA$ is closed monoidal},
+\begin{eqnarray*}
+\CZ_\ell [\CA,\CV] &\simeq& \mathrm{Tamb}_{\ell s} (\CA)
+\\
+\CZ [\CA,\CV]        &\simeq& \mathrm{Tamb}_s (\CA).
+\end{eqnarray*}
+{\it If $\CA$ is autonomous, every Tambara module is strong}.
+
+\vspace*{3mm}
+
+\par\noindent
+\textbf{Definition} \  (Pastro-St) The {\it double} of a monoidal $\CV$-category $\CA$ is the $\CV$-category $\CD\CA$ with the same objects as $\CA^{\textrm{op}} \otimes \CA$ and
+\[
+\CD\CA \Bigl((X,Y),(U,V)\Bigr) = \int^{A,B} \ \CA (U,A \otimes X \otimes B) \otimes \CA (A\otimes Y \otimes B,V).
+\]
+
+
+
+\vspace*{5mm}
+
+\par\noindent
+\textbf{Proposition} \ Tamb $(\CA) \simeq [\CD\CA,\CV]$.
+
+If $\CA$ is closed, there are canonical morphisms
+\begin{eqnarray*}
+&&\tilde \beta_\ell : (X,Y^A) \longrightarrow (A \otimes X,Y) \ \mbox{and}
+\\
+&&\tilde \beta : (X,^{\; B}\!Y^A) \longrightarrow  (A \otimes X \otimes B,Y).
+\end{eqnarray*}
+in $\CD\CA$.   Inverting these gives $\CD_{\ell s}\CA$ and $\CD_s \CA$, respectively.
+
+
+\vspace*{5mm}
+
+\par\noindent
+\textbf{Proposition} \  {\it If $\CA$ is right closed},
+\[
+\mathrm{Tamb}_{\ell s} (\CA) \simeq [\CD_{\ell s} \CA,\CV].
+\]
+{\it If $\CA$ is closed},
+\[
+\mathrm{Tamb}_s (\CA) \simeq [\CD_s \CA,\CV].
+\]
+
+In these cases, we have
+\begin{eqnarray*}
+&&\CZ_\ell [\CA,\CV] \simeq [\CD_{\ell s} \CA,\CV] \ \mbox{and}
+\\
+&&\CZ [\CA,\CV] \simeq [\CD_s \CA,\CV].
+\end{eqnarray*}
+If $\CA$ is autonomous, we have
+\[
+\CZ [\CA,\CV] \simeq \mathrm{Tamb} (\CA) \simeq [\CD\CA,\CV].
+\]
+In particular, this applies when $\CA = \mathrm{Spn}\ \CE$ to yield :
+
+
+
+\vspace*{3mm}
+
+\par\noindent
+\textbf{Proposition} \   $\CZ \ \mathrm{Mky}_k (\CE) \simeq [\CD \ \mathrm{Spn} \  \CE, \mathrm{Mod}_k]_{\mathrm{add}}$.
+
+\vspace{2mm}
+
+Tambara [\ref{Tambara2008}] goes further in the case where $\CE$ is the category $G$-set of finite $G$-sets for a finite group $G$. He shows that $\mathrm{Mky}_k (G\mbox{-}\mathrm{set})$ has its centre of the form $\mathrm{Mky}_k (\CE)$ for some $\CE$.
+
+Here is a conjecture which gives Tambara's result as a special case. Let $\CC$ be a small category such that its finite coproduct completion $\mathrm{fam}\CC$ is lextensive.  Let $\mathrm{Aut} \CC$ be the category of automorphisms in $\CC$: an object is a pair $(X,u)$ where $u : X \to X$ is invertible in $\CC$.
+
+
+\vspace*{3mm}
+
+\par\noindent
+\textbf{Conjecture} \  $\CZ \mathrm{Mky}_k (\mathrm{fam} \CC) \simeq \mathrm{Mky}_k (\mathrm{famAut} \CC)$   
+ 
+ \vspace{3mm}
+
+Tambara has a long proof of this for $\CC$ the category of connected $G$-sets for a finite group $G$.
+
+ \subsection{Classifying spaces}\label{Lecture3sub4}
+
+Let $G$ be a compact connected Lie group.   Let $\mathrm{B}G$ denote the classifying space of $G$ with universal $G$-fibre bundle $\mathrm{E}G \to \mathrm{B}G$: every $G$-fibre bundle $p : E \to B$  appears in a pullback square as follows.
+
+$$
+\xymatrix{
+    E \ar[r]  \ar[d]_p  & \mathrm{E}G  \ar[d]^p \\
+   X \ar[r]_f    & \mathrm{B}G 
+  }
+$$
+For some classic $G$ there are nice explicit models of $\mathrm{B}G$. A major problem is to calculate the cohomology groups of $\mathrm{B}G$.
+
+ \vspace*{5mm}
+  
+ \par\noindent
+ {\bf Theorem} (Borel [\ref{Borel1967}])  \ {\it Let} $\mathrm{N}T$ {\it  denote the normalizer of a maximal torus} $T$ {\it of} $G$ {\it and let} $\mathrm{W}_G = \mathrm{N}T/T$ {\it be the Weyl group.   If the prime} p {\it does not divide} $\# \mathrm{W}_G$  {\it then}
+ \[
+ \mathrm{BN}T \longrightarrow \mathrm{B}G
+ \]
+ {\it  induces an isomorphism on} $\mathrm{mod} \ p$ {\it  cohomology}.
+
+
+ \vspace*{5mm}
+ 
+ \par\noindent
+ {\bf Theorem}  (Dwyer-Miller-Wilkerson [\ref{DMW1987}])  Suppose $ G = SO(3) \ \ \mbox{and}  \ \ p = 2 \ \ \mbox{with}  \ \  \# \mathrm{W}_G  \ \ \mbox{even .}$ 
+
+
+\par\noindent
+{\it Then the square}
+$$
+\xymatrix{
+    \mathrm{B}D_8 \ar[r]  \ar[d]   & \mathrm{B} O_{24}  \ar[d] \\
+   \mathrm{B}O(2) \ar[r]     & \mathrm{B}SO(3) 
+  }
+$$
+{\it is seen by mod 2 cohomology as a homotopy pushout}.
+
+ \vspace*{5mm}
+ 
+Now take any prime number $p$. Let $\CA_p (G)$ be the category of nontrivial elementary abelian $p$-subgroups of $G$ (there are only finitely many up to conjugacy) where the morphisms are restrictions of inner automorphisms of $G$.   Let $C(E)$ be the centralizer of $E \in \CA_p (G)$ in $G$.   $BC(E)$ is homotopy equivalent to a functor in $E \in \CA_p (G)$.
+ 
+ \vspace*{5mm}
+ 
+ \par\noindent
+ {\bf Theorem} (Jackowski-McClure [\ref{JackMcC1992}])  {\it The map}
+ \[
+ \mathrm{hocolim}_{E \in \CA_p(G)^{\textrm{op}}} BC(E) \longrightarrow BG
+ \]
+ {\it induces an isomorphism on mod} p {\it cohomology}.
+ 
+  \vspace*{5mm}
+ 
+ \par\noindent
+ \underline{\it Step 1} \ There is a standard spectral sequence associated with the cohomology of a homotopy colimit.   As usual, to use a spectral sequence we need some collapsing.   This involves proving:
+ 
+(a) (acyclicity) ${\lim }_{E \in {\CA_{p}( G) }^{\mathrm{op}}}^{i} \mathrm{H}^{j}(
+\operatorname{\mathrm{BC}}( E) ) =0$ for all $j$ and all $i>0$.
+ 
+(b) $\displaystyle   \mathrm{H}^\ast (\mathrm{B}G) \ \ \cong \lim_{E \in \CA_p (G)^{\mathrm{op}}} \mathrm{H}^\ast (BC(E))$.
+ 
+ 
+ 
+ \bigskip
+ 
+ Here $\lim^i$ is the $i$-{\it th derived functor} of
+ \[
+ \lim : [\CA_p (G) , \mathrm{Ab}] \longrightarrow \mathrm{Ab}.
+ \]
+ For a functor $M : \CB^{\textrm{op}}  \to \mathrm{Ab}$, we have
+ \[
+ \lim M = [\CB^{\textrm{op}}  , \mathrm{Ab}] (\Delta \mathbb{Z}, M)
+ \]
+ so the $i$-th derived functor of lim is
+ \[
+ \mathrm{H}^i (\CB;M) := \mathrm{Ext}^i_{[\CB^{\textrm{op}}, \mathrm{Ab}]} (\Delta \mathbb{Z}, M).
+ \]
+ Call $M$ {\it acyclic} when $ \mathrm{H}^i (\CB,M)=0$ for all $i>0$.
+ 
+  \vspace*{5mm}
+ 
+ \par\noindent
+ \underline{\it Step 2} \ A functor $M : \CB^{\mathrm{op}} \to \mathrm{Ab}$ is {\it proto-Mackey} when its extension $M_+ : (\mathrm{fam}\CB)^{\mathrm{op}} \to \mathrm{Ab}$ extends further to a Mackey functor
+ \[
+ \mathbb{M} : \mathrm{Spn fam} \CB \longrightarrow \mathrm{Ab}.
+ \]
+ 
+  \vspace*{5mm}
+ 
+ \par\noindent
+ {\bf Observation} \ $ \mathrm{H}^i (\CB;M) \cong  \mathrm{H}^i (\mathrm{fam} \CB; M_+)$
+ 
+{\it It is proved in}  [\ref{JackMcC1992}]  {\it that} $\mathrm{fam}\CA_p(G)$ {\it is lextensive enough for Mackey functors to be useful and that}
+ \[
+ M(E) = \mathrm{H}^j (\mathrm{BC}(E);\mathbb{Z}/p)
+ \]
+{\it is a proto-Mackey functor on} $\CA_p (G)$.
+
+\vspace*{3mm}
+  
+For this $\CM$, it remains to prove
+
+(a) $\CM$ is acyclic, and
+
+(b) $\mathrm{H}^j (\mathrm{B}G ; \mathbb{Z}/p) \cong \lim \CM$.
+
+
+\par\noindent
+The proof of (b) imitates the induction theorem of Dress [\ref{Dress1973}] in Mackey functor theory.
+
+ \vspace*{3mm}
+ 
+ \par\noindent
+ \underline{\it Step 3} \  The proof of (a) is achieved by showing 
+ 
+ (a)' \ {\it every proto-Mackey functor}
+ \[
+ \CA_p (G)^{\textrm{op}}  \longrightarrow \mathrm{Mod}{_{\mathbb{Z}/p}}
+ \]
+{\it is acyclic}.
+
+Two simple lemmas inspire the proof of (a)'.
+
+\vspace{3mm}
+
+\noindent
+{\bf Theorem} \  {\it If} $\CC$  {\it has a terminal object, every functor} $M : \CC^{\textrm{op}}  \longrightarrow \mathrm{Ab}$   {\it is acyclic.}
+
+\vspace{2mm}
+
+\noindent
+ {\bf Proof} $\lim M = M1$ is exact in $M$ and so the derived functors of lim vanish. $\Box$
+
+\vspace{3mm}
+
+\noindent
+{\bf Theorem} \ {\it Suppose}  $\Gamma$   {\it is a finite group and}  $M$   {\it is a} $\Gamma$ {\it -module. If multiplication by} $\# \Gamma$  {\it as a function}  $M \to M$  {\it is invertible then}  $\mathrm{H}^i (\Gamma;M)=0$  {\it for all}  $i >0$.
+ 
+\vspace{2mm}
+
+\noindent
+{\bf Proof} \qquad $\Delta\mathbb{Z} \in$ $\xymatrix{[\Gamma^{\textrm{op}},\mathrm{Ab}] \ar@<1ex>[rr]^{\quad u} && \mathrm{Ab} \ar@<1ex>[ll]_{\quad \perp}^{\quad \mathrm{Set} (\Gamma,-)} }$ $\ni N$
+ 
+ $$N \cong \mathrm{Ab} (\mathbb{Z},N) \cong [\Gamma^{\mathrm{op}}, \mathrm{Ab}] (\Delta \mathbb{Z}, \mathrm{Set}) (\Gamma,N)) \ \  \mbox{implies} \ \  \mathrm{H}^i (\Gamma; \mathrm{Set}(\Gamma,N)) \cong 0 \ \  \mbox{for} \ \ i>0.$$  
+ 
+\noindent But $M$ is a retract of $\mathrm{Set}(\Gamma,M)$ :
+ $$
+ \xymatrix{M  \ar[r]    \ar@/_2pc/[rr]_{\mathrm{mult. \ by} \ \# \Gamma} &\mathrm{Set} (\Gamma,M) \ar[r] & M \ .
+   }   \eqno{\square}
+ $$ 
+
+
+\section{Monoidal category theory for manifold invariants}\label{Lecture4} 
+
+\subsection{Preliminary remarks}
+
+In Section \ref{Lecture1}, I outlined how monoidal categories are relevant to braids and links.  Work appearing in the period 1985--90 by Jones, Yetter, Jimbo, Drinfeld, Witten and Atiyah connected quantum field theories, low-dimensional topology and categories.
+
+This led, in the next few years, to invariants for 3-manifolds $M$ where the input was a special kind of monoidal category.
+ 
+The Reshetikhin--Turaev invariant $\mathrm{RT}_\CB (M)$ constructed in [\ref{ReshTur1991}] is based on a {\it modular category} $\CB$ : that is, $\CB$ is a semisimple $\mathrm{Vect}$-enriched tortile monoidal category, with finitely many simple objects, and subject to a non-degeneracy condition.  One presents the manifold $M$ by surgery along a framed link and the link is coloured by simple objects of $\CB$.  
+
+The Turaev-Viro invariant $\mathrm{TV}_\CC(M)$ constructed in [\ref{TuraevYa1992}] and [\ref{BarWest1996}] is based on a {\it spherical category} $\CC$: that is, a pivotal monoidal category for which the two naturally defined traces agree.   Also $\CC$ must be semisimple $\mathrm{Vect}$-enriched with finitely many simple objects, and subject to invertibility of dim $\CC$.  The important difference is that $\CC$ need not be braided.   One presents $M$ by a triangulation, colours the edges by simple objects of $\CC$ and evaluates coloured tetrahedra according to the $6j$-symbols of $\CC$. 
+ 
+ Modular implies spherical and it was shown that
+ \[
+ \mathrm{TV}_\CB (M) = \mathrm{RT}_\CB (M) \mathrm{RT}_\CB (-M).
+ \]
+ 
+M\"uger [\ref{M\'uger2003a}], [\ref{M\'uger2003b}]  proved that such spherical $\CC$ have their centres $\CZ(\CC)$ modular.   
+ 
+Turaev conjectured generally that
+ \[
+ \mathrm{TV}_\CC (M) = \mathrm{RT}_{\CZ(\CC)} (M)
+ \]
+and some special cases were proved by Kawahigashi-Sato-Wakui [\ref{KSW2005}]]. The conjecture is proved by Turaev-Virelizier [\ref{TurVirez}] using ideas of Brugui\'eres-Virelizier [\ref{BrugVirel2008}] which stemmed from a generalization of the RT-invariant due to Lyubashenko [\ref{Lyub1995}]. Lyubashenko only requires a tortile monoidal category $\CB$ for which the ``cocentre" 
+ \[
+ C = \int^{x\in\CB} X \otimes X^\ast
+ \]
+ exists. Then $C$ is a Hopf monoid in $\CB$ equipped with a Hopf pairing $\omega : C \otimes C \to I$.
+ 
+The problem comes in trying to apply this is the case $\CB = \CZ(\CC)$ for suitable spherical $\CC$.   It is not known how to obtain the simple objects in $\CZ(\CC)$ from those in $\CC$, for example.    What is needed is a way of calculating the cocentre of $\CB = \CZ(\CC)$.
+ 
+ 
+ If $\CC$ is braided and has a cocentre $A$ then $\CZ(\CC)$ is the category of $A$-modules.   The Hopf monoid structure on $A$ provides the endofunctor
+ \[
+ A\otimes -: \CC \to \CC
+ \]
+ with the structure of opmonoidal monad.   The notion of opmonoidal monad makes sense on any monoidal category $\CC$, braided or not; whereas bimonoid in $\CC$ requires a braiding (or the like).
+ 
+This led Brugui\`eres-Virelizier to develop the ideas of Moerdijk (2002) concerning opmonoidal monads.   They developed the notion of Hopf monad on an autonomous monoidal category in the sense of an opmonoidal monad with antipode.   Then, with Lack (2010), this was extended to arbitrary monoidal categories.
+ 
+In a different direction, the monoidal centre of a modular category was also studied by Fr\"olich-Fuchs-Runkel-Schweigert [\ref{FFRS2006}] and Kong-Runkel [\ref{KongRunkel}].  It was realized that Morita equivalence classes of monoids in the chiral modular category of a Rational Conformal Field Theory correspond to consistent sets of boundary conditions and that certain commutative monoids in the monoidal centre describe the RCFT in ``full''.   A construction was produced which assigned to a monoid A in a modular category $\CB$, a commutative monoid $zA$ in the monoidal centre $\CZ(\CB)$ of $\CB$; they call $zA$ the {\it full centre} of $A$. Recently, Davydov [\ref{Davydov2010}] generalized the notion of full centre to any monoidal category $\CB$ by a characterizing universal property.
+ 
+In studying the Brugui\`eres-Virelizier work, I was led to look at examples of ``2-monoidal categories'' in the sense of Aguiar-Mahajan [\ref{AguiarMahajan}]. These are pseudomonoids (``monoidales'') in the monoidal 2-category of monoidal categories and monoidal functors.   I call them {\it duoidal categories}.  Recall from [\ref{BTC}] that a pseudomonoid in the monoidal 2-category of monoidal categories and {\it strong} monoidal functors is essentially a braided monoidal category: by an Eckmann-Hilton argument the two tensor products are forced to be isomorphic and a braiding appears.
+
+My treatment here of the category theory inspired by the 3-manifold invariants is joint work with Brian Day. In fact, his paper [\ref{DayMid4}] is also relevant to duoidal categories. 
+ 
+In studying the full centre of Davydov, I was led to pseudomonoids in a different monoidal 2-category.   I am grateful to Michael Batanin for further developments on  this topic.   Coincidentally also, Batanin's work [\ref{Batanin2011a}], [\ref{BatMarkl}] with Martin Markl has led to duoidal categories. Finally, I might point to a paper [\ref{BookSt}] which has arisen since these lectures were delivered and continues the study of duoidal categories in the same spirit.  
+ 
+ \subsection{Duoidal categories}
+ 
+Special cases of duoidal category have appeared in the literature. The general notion is called  {\it 2-monoidal category} by Aguiar-Mahajan [\ref{AguiarMahajan}]. It also has importance in the work of Batanin-Markl [\ref{Batanin2011a}], [\ref{BatMarkl}]. 
+ 
+Suppose $\CV$ is a cosmos in the sense of B\'enabou: that is, a symmetric monoidal closed complete and cocomplete category.   A {\it duoidal} $\CV$-{\it category} is a $\CV$-category $\CF$ equipped with two monoidal $\CV$-category structures
+ \[
+ \ast : \CF \otimes \CF \longrightarrow \CF \quad , \qquad J \in \CF,
+ \]
+ and
+ \[
+ \circ : \CF \otimes \CF \longrightarrow \CF \quad , \qquad \mathbf{1} \in \CF
+ \]
+ such that the second structure is monoidal with respect to the first; that is, $\circ : \CF \otimes \CF \longrightarrow \CF$ and $\mathbf{1}  : 1 \longrightarrow \CF$ are monoidal functors where $\CF$ is monoidal via $\ast$ and $J$. Apart from the two lots of associativity and unit constraints, the extra structure involves a middle-of-four-interchange morphism
+ \[
+ \gamma : (A \circ B) \ast (C \circ D) \longrightarrow (A \ast C) \circ (B \ast D)
+ \]
+ and morphisms
+\[
+\mathbf{1} \ast \mathbf{1} \stackrel{\mu}{\longrightarrow} \mathbf{1} \stackrel{\tau}{\longleftarrow} J \stackrel{\delta}{\longrightarrow} J \circ J.
+\]
+In particular, $\mathbf{1}$ is a monoid in $(\CF,\ast,J)$ while $J$ is a comonoid in $(\CF,\circ,\mathbf{1})$.
+
+\subsection{Examples of duoidal categories}
+
+\par\noindent
+{\bf Example 1} \ $\CF$ = Rep, $\ast = \bullet$ (Cauchy product), $\circ = \underline{\times}$ (Hadamard product).
+
+\vspace{2mm}
+
+\noindent
+{\bf Example 2} \ $\CA$, $\otimes$ any monoidal category  with finite coproducts : $\CF = \CA$, $\ast = \times$, $\circ = \otimes$.
+
+\vspace{2mm}
+
+\noindent
+{\bf Example 3} \ If $\CA$, $\otimes$ is a braided monoidal category : $\CF = \CA$, $\ast = \otimes$, $\circ = \otimes$.
+
+\vspace{2mm}
+
+\noindent
+{\bf Example 4} \ If $(\CF,\ast\circ)$ is duoidal then so are $(\CF^{\textrm{op}},\circ,\ast)$, $(\CF,\ast,\circ^{\textrm{rev}})$ and $(\CF,\ast^{\textrm{rev}},\circ)$.
+
+\vspace{2mm}
+
+\noindent
+{\bf Example 5}\label{Ex5} \ If $\CC$ is any monoidal $\CV$-category : $\CF = [\CC^{\textrm{op}} \otimes \CC,\CV]$, $\ast$ is convolution using the monoidal structure on $\CC^{\textrm{op}} \otimes \CC$, and $\circ$ is ``tensor product over $\CC$''.   More explicitly, 
+\[
+\CF (M \ast N,L) \cong \int_{U,V,X,Y} \CV (M(U,X) \otimes N(V,Y),L(U\otimes V,X\otimes Y))
+\]
+and
+\[
+\CF (M\circ N, L) \cong \int_{A,B,Z} \CV (N(Z,B) \otimes M(A,Z),L(A,B)).
+\]
+Also
+\[
+J(A,B) = \CC (A,I) \otimes \CC (I,B)
+\]
+ and
+ \[
+ \mathbf{1} (A,B) = \CC (A,B).
+ \]
+The isomorphisms defining $M\ast N$ and $M\circ N$ are induced by morphisms
+\[
+\xi : M(U,X) \otimes (N(V,Y) \to (M \ast N) (U\otimes V, X \otimes Y)
+\]
+and 
+\[
+\zeta : N(Z,B) \otimes M(A,Z) \to (M\circ N) (A,B).
+\]
+The middle-of-four morphism
+\[
+\gamma : (M \circ N) \ast (M' \circ N') \to (M \ast M') \circ (N\ast N')
+\]
+is induced by the composite
+\begin{eqnarray*}
+&&N(H,X)\otimes M(U,H) \otimes N'(K,Y) \otimes M'(V,K) \stackrel{\cong}{\longrightarrow}
+\\
+&&N(H,X) \otimes N'(K,Y) \otimes M(U,H) \otimes M'(V,K) \stackrel{\xi \otimes \xi}{\longrightarrow}
+\\
+&&(N\ast N') (H \otimes K, X \otimes Y) \otimes (M\ast M') (U \otimes V,H \otimes K) \stackrel{\zeta}{\longrightarrow}
+\\
+&&((M\ast M')\circ (N \ast N')) (U \otimes V, X \otimes Y).
+\end{eqnarray*}
+
+\vspace{2mm}
+
+\noindent
+{\bf Example 6} \ (Batanin-Markl [\ref{BatMarkl}]) Let $\CC$ be a category.  Eilenberg and I used the term {\it derivation scheme} on $\CC$ for a function $\mathbb{X}$ which assigns, to each pair of parallel morphisms 
+$$
+ \xymatrix{a \ar@/^1pc/[rr]^\alpha  \ar@/_1pc/[rr]_{\alpha'}  \ar@{}[rr] && b 
+ }$$
+in $\CC$, a set $\mathbb{X}_{(\alpha,\alpha')}$.  The elements of this last set are depicted as 2-cells
+
+ $$
+ \xymatrix{a \ar@/^1pc/[rr]^\alpha  \ar@/_1pc/[rr]_{\alpha'}  \ar@{}[rr]|{\Downarrow \; x}&& b 
+ }$$
+
+\par\noindent
+Write $\mathrm{Ds} (\CC)$ for the category of derivation schemes on $\CC$.  Then $\CF = \mathrm{Ds} (\CC)$ is duoidal with
+\[
+(\mathbb{X} \ast \mathbb{Y})_{(\alpha,\alpha')}  =  \left\{  \xymatrix{a \ar@/^1pc/[rr]^\beta  \ar@/_1pc/[rr]_{\beta'}  \ar@{}[rr]|{\Downarrow \; x}&& c  \ar@/^1pc/[rr]^\gamma 
+\ar@/_1pc/[rr]_{\gamma'} \ar@{}[rr]|{\Downarrow \; y}&& b}  \Biggl\rvert
+\begin{array}{lll}
+x \in \mathbb{X} ,  &  y \in \mathbb{Y},    \\
+\alpha = \gamma \beta ,  &  \alpha' = \gamma' \beta'   
+\end{array}
+\right\}
+\]
+\[
+J_{(\alpha,\alpha')} = 
+\left\{
+\begin{array}{lll}
+1 & \mbox{when} \  \alpha = \alpha' = 1_a
+\\
+\emptyset & \mbox{otherwise}
+\end{array}
+\right.
+\]
+\[
+(\mathbb{X} \circ \mathbb{Y})_{(\alpha,\alpha'')}  =  \left\{
+ \xymatrix{\ar[rr]|{\alpha'} a \ar@/^1.5pc/[rr]^{\alpha}_{\Downarrow \; x}  \ar@/_1.5pc/[rr]_{\alpha''}^{\Downarrow \; y} & & b 
+ }  \Biggl\rvert
+x \in \mathbb{X} ,    y \in \mathbb{Y} 
+\right\}
+\]
+\[
+\mathbf{1}_{(\alpha,\alpha'')} = 
+\left\{
+\begin{array}{lll}
+1 & \mbox{when} \  \alpha = \alpha'
+\\
+\emptyset & \mbox{otherwise}.
+\end{array}
+\right.
+\]
+The morphism
+\[
+\gamma : (\mathbb{X} \circ \mathbb{X}') \ast (\mathbb{Y} \circ \mathbb{X}') \longrightarrow (\mathbb{X} \ast \mathbb{Y}) \circ (\mathbb{X}' \ast \mathbb{Y}')
+\]
+is defined by
+ $$
+  \xymatrix{\ar@/_3.5pc/[rrrr]_{\alpha''}  \ar@/^3.5pc/[rrrr]^{\alpha}\ar[rr]|{\beta'} a   \ar@/^1.5pc/[rr]^{\beta}_{\Downarrow \; x}  \ar@/_1.5pc/[rr]_{\beta''}^{\Downarrow \; x'} & & c \ar[rr]|{\gamma'}   \ar@/^1.5pc/[rr]^{\gamma}_{\Downarrow \; y}  \ar@/_1.5pc/[rr]_{\gamma''}^{\Downarrow \; y'} && b
+ }  \quad \longmapsto
+ $$
+
+ $$
+ \xymatrix{&&\ar@{}[d]|{=}
+ \\
+ &&c\ar@{}[dd]|{=}\ar@/^0.5pc/[rrdd]^<<<<<<\gamma  \ar@/_0.5pc/[rrdd]_{\gamma'} \ar@{}[rrdd]|{\Downarrow\, y}
+ \\
+ \\
+ a\ar@/_8pc/[rrrr]_{\alpha''}  \ar@/^8pc/[rrrr]^\alpha  \ar@/^0.5pc/[rruu]^>>>>>>\beta \ar@/_0.5pc/[rruu]_{\beta'} \ar@{}[rruu]|{\Downarrow\, x} \ar[rrrr]|{\alpha'} \ar@/^0.5pc/[rrdd]^{\beta'}   \ar@/_0.5pc/[rrdd]_>>>>>>{\beta''}   \ar@{}[rrdd]|{\Downarrow\, x'} &&& & b 
+ \\ \\
+ &&c\ar@{}[uu]|{=} \ar@/^0.5pc/[rruu]^{\gamma'}   \ar@/_0.5pc/[rruu]_<<<<<<{\gamma''} \ar@{}[rruu]|{\Downarrow\, y'}
+ \\
+ &&\ar@{}[u]|{=}
+ }
+ $$
+
+
+\subsection{Duoidal and bimonoidal functors}
+
+Let $\mathrm{Mon}(\CV \mbox{-}\mathrm{Cat})$ denote the monoidal 2-category whose objects are monoidal $\CV$-categories and whose morphisms are monoidal $\CV$-functors.   A duoidal $\CV$-category is precisely a pseudomonoid (monoidale) in $\mathrm{Mon}(\CV \mbox{-}\mathrm{Cat})$.
+
+\bigskip
+
+A {\it duoidal} $\CV$-{\it functor} $\Phi : \CG \longrightarrow \CF$ is precisely a monoidal morphism in $\mathrm{Mon}(\CV \mbox{-}\mathrm{Cat})$.  It means that $\Phi$ is both a monoidal $\CV$-functor $(\CG,\ast) \longrightarrow (\CF,\ast)$ and a monoidal $\CV$-functor $(\CG,\circ) \longrightarrow (\CF,\circ)$ which are compatible in a straightforward way.   As suggested by the Batanin-Markl example, we go ahead and call $\ast$ the {\it horizontal} monoidal structure on $\CF$ and $\circ$ the {\it vertical}.
+
+\bigskip
+
+A {\it duoid} in $\CF$ is a duoidal functor $A  : \mathbf{1} \longrightarrow \CF$.   That is, $A$ is both a horizontal and vertical monoid
+\[
+A \ast A \stackrel{\mu_h}{\longrightarrow} A, J  \stackrel{\eta_h}{\longrightarrow} A, A \circ A  \stackrel{\mu_v}{\longrightarrow} A, \mathbf{1} \stackrel{\eta_v}{\longrightarrow} A
+\]
+in $\CF$ such that $\mu_v$ and $\eta_v$ are horizontal monoid morphisms.
+
+\bigskip
+
+A {\it bimonoidal} ($\CV$-){\it functor} $\Theta : \CG \longrightarrow \CF$ is precisely an opmonoidal  morphism in $\mathrm{Mon}(\CV \mbox{-}\mathrm{Cat})$.   It means that $\Theta$ is horizontally monoidal, vertically opmonoidal and subject to compatibilities.
+
+\bigskip
+
+A {\it bimonoid} in $\CF$ is a bimonoidal functor $\CI \longrightarrow \CF$.   That is, it is an object $A$ in $\CF$ equipped with both a horizontal monoid and a vertical comonoid structure
+\[
+A \ast A \stackrel{\mu_h}{\longrightarrow} A, J  \stackrel{\eta_h}{\longrightarrow} A, A \stackrel{\delta_v}{\longrightarrow} A \circ A, A \stackrel{\varepsilon_v}{\longrightarrow} \mathbf{1} 
+\]
+such that $\delta_v$ and $\varepsilon_v$ are horizontal monoid morphisms.
+
+In a braided monoidal category (Example 3), a bimonoid is a bimonoid (or bialgebra) in the usual sense while a duoid is a commutative monoid.
+
+In the Batanin-Markl case (Example 6), a duoid is precisely a {\it 2-category}.
+
+\subsection{Categories enriched in a duoidal category}
+
+For any duoidal ($\CV$-)category $\CF$, there is a monoidal 2-category
+\[
+\CF\mbox{-}\mathrm{Cat} \ .
+\]
+The objects are categories with homs enriched in the monoidal category $(\CF,\ast,J)$ and the morphisms are enriched functors.  The vertical structure of $\CF$ is used for the tensor product of $\CF\mbox{-}\mathrm{Cat}$: if $\CA$ and $\CB$ are horizontally enriched categories then $\CA \circ \CB$ is defined by :
+\[
+\mbox{ob} \ \CA \circ \CB = \mbox{ob} \ \CA \times \mbox{ob} \ \CB
+\]
+and
+\[
+(\CA \circ \CB) ((A,B),(A',B')) = \CA (A,A')   \circ \CB (B,B').
+\]
+Hence we can speak of {\it monoidal} $\CF${\it -categories}; they are monoidal objects $(\CA,\otimes,I)$ in  $\CF\mbox{-}\mathrm{Cat}$.   Batanin has pointed out that $\CA(I,I)$ is then a duoid:
+\[
+\CA(I,I) \ast \CA(I,I) \stackrel{\mu_h}{\longrightarrow} \CA(I,I)
+\]
+is composition in $\CA$ while $\mu_v$ is the composite
+\begin{eqnarray*}
+&& \CA (I,I) \circ \CA(I,I) = (\CA \circ \CA) ((I,I),(I,I))
+\\
+&& \stackrel{\otimes}{\longrightarrow} \CA (I \otimes I, I \otimes I) \cong \CA (I,I).
+\end{eqnarray*}
+(This generalizes the fact that $\CA(I,I)$ is a commutative monoid in $\CF$ when $\CF$ is a braided monoidal category as in Example 3).
+\\
+
+In some interesting cases the monoidal 2-category $\CF\mbox{-}\mathrm{Cat}$ is {\it closed}: write $[\CA,\CB]$ for the internal hom.   Then $[\CA,\CA]$ is a monoidal $\CF$-category for any $\CF$-category $\CA$.   It follows that
+\[
+z(\CA) = [\CA,\CA] (1_\CA,1_\CA)
+\]
+is a duoid in $\CF$; we might call it the {\it centre of} $\CA$.    In particular, the centre of a (horizontal) monoid $M$ in $\CF$ is a duoid $z(M)$ in $\CF$. 
+
+\subsection{The duoidal category of endomodules of a monoidal category}
+
+We now focus attention on (\ref{Ex5}) Example 5 of a duoidal category:
+\[
+\CF = [\CC^{\textrm{op}} \otimes \CC,\CV] \qquad \qquad (\CC \  \textrm{a small monoidal} \ \CV\textrm{-category})
+\]
+\begin{eqnarray*}
+&&(M \ast N) (A,B) = \int^{U,V,X,Y} \CC (A,U \otimes V) \otimes \CC (X \otimes Y,B) \otimes M (U,X) \otimes N (V,Y)
+\\
+&& (M \circ N) (A,B) = \int^Z N(Z,B) \otimes M (A,Z).
+\end{eqnarray*}
+
+There is a fully faithfull functor
+\[
+(\ )_\ast : [\CC,\CC] \longrightarrow \CF
+\]
+\[
+T \longmapsto  T_\ast
+\]
+\[
+T_\ast (U,V) = \CC (U,TV)
+\]
+which is strong monoidal with respect to composition $\circ$.   Each $T_\ast$ has a right dual $T^\ast$ for the vertical structure on $\CF$. 
+\\
+
+\par\noindent
+{\sc Observations} \ 1. An endofunctor $G$ of $\CC$ is a monoidal comonad iff $G_\ast$ is a bimonoid in $\CF$.
+\\
+2. An endofunctor $T$ is a monoidal monad iff $T_\ast$ is a duoid in $\CF$. 
+\\
+
+As a hint that we are not far removed from monoidal centres, notice that Tambara modules are precisely left $\mathbf{1}$-, right $\mathbf{1}$-bimodules in $(\CF,\ast)$.
+
+A functor $\Phi : \CF^{\textrm{op}} \longrightarrow \CF$ is defined by
+\[
+\Phi (F) (X,Y) = \int_{U,V} \CV (F(U,V),\CC(X\otimes U, V \otimes Y)).
+\]
+It has a left adjoint $\Psi$ defined by
+\[
+\Psi (G) (U,V) = \int_{X,Y} \CV (G(X,Y),\CC(X\otimes U, V \otimes Y));
+\]
+the isomorphism
+\[
+\CF(G,\Phi(F)) \cong \CF(F,\Psi(G))
+\]
+is immediate from symmetric monoidal closedness in $\CV$.
+\\
+
+\par\noindent
+{\bf Theorem} $\Phi : (F^{\textrm{op}}, \circ^{\textrm{rev}}, \ast) \longrightarrow (\CF,\ast,\circ)$ {\it is a duoidal} $\CV${\it -functor. It is vertically normal:} $\Phi (J) \cong \mathbf{1}$.
+
+\vspace{2mm}
+
+\par\noindent
+{\bf Proof} \ The identity morphisms in $\CC$ give
+\[
+I \longrightarrow \int_V \CC(V,V) \cong \Phi (\mathbf{1})(I,I)
+\]
+and hence $\eta_h : J \to \Phi (\mathbf{1})$ by Yoneda.
+For $\mu_h : \Phi (F) \ast \Phi (G) \to \Phi (G\circ F)$, we require
+\[
+\Phi (F) (U,X) \otimes \Phi (G) (V,Y) \to \Phi (G\circ F) (U\otimes V, X \otimes Y)
+\]
+which amounts to having
+\[
+\int_{H,K} \CV (F(H,K),\CC(U\otimes H,K\otimes X)) \otimes \int_{R,S} \CV (G(R,S),\CC(V\otimes R, S \otimes Y))
+\]
+\[
+\longrightarrow \CV (F(Z,Q) \otimes G(P,Z), \CC (U \otimes V \otimes P, Q \otimes X \otimes Y)).
+\]
+We use the projections where $H=Z$, $K=Q$ and $R=P$, $S=Z$ to move from the domain tensor product of two ends to 
+\[
+\CV (F(Z,Q), \CC (U \otimes Z, Q \otimes X)) \otimes \CV (G(P,Z),\CC(V\otimes P, Z \otimes Y))
+\]
+and then, by tensoring, to
+\[
+\CV (F(Z,Q) \otimes G(P,Z), \CC (U\otimes Z, Q \otimes X) \otimes \CC (V \otimes P, Z \otimes Y)).
+\]
+We get to the required codomain by composing with the composite 
+\begin{eqnarray*}
+&&\CC(U\otimes Z, Q \otimes X) \otimes \CC (V \otimes P, Z \otimes Y) \stackrel{(-\otimes Y)\otimes (U\otimes -)}{\longrightarrow}
+\\
+&& \CC (U \otimes Z \otimes Y, Q \otimes X \otimes Y) \otimes \CC (U \otimes V \otimes P, U \otimes Z \otimes Y)
+\\
+&&
+\stackrel{\textrm{comp.}}{\longrightarrow} \CC (U\otimes V \otimes P, Q \otimes X \otimes Y).
+\end{eqnarray*}
+For the vertical structure, the normality comes from the isomorphisms
+\begin{eqnarray*}
+&&\mathbf{1} (X,Y) = \CC (X,Y) \cong \CC (X \otimes I, I \otimes Y) \cong
+\\
+&& \int_{U,V} \CV (J(U,V),\CC(X\otimes U, V \otimes Y)) = \Phi (J) (X,Y).
+\end{eqnarray*}
+For $\mu_v : \Phi (F) \circ \Phi (G) \to \Phi (F \ast G)$, we require a natural family
+\[
+\Phi (G) (W,V) \otimes \Phi (F) (U,W) \to \Phi (F \times G) (U,V).
+\]
+Using the calculation
+\begin{eqnarray*}
+&& \Phi (F \ast G) (U,V) = \int_{X,Y} \CV (F \ast G) (X,Y), \CC (U \otimes X, Y \otimes V))
+\\
+&&
+\cong \int_{X,Y,H,K} \CV (F(X,H)\otimes G(Y,K),\CC (U\otimes X \otimes Y, H \otimes K \otimes V))
+\end{eqnarray*}
+and a middle-of-four isomorphism, we see that we need
+\[
+\Phi (G) (W,V) \otimes G(Y,K) \otimes \Phi (F) (U,W) \otimes F (X,H) \longrightarrow \CC (U \otimes X \otimes Y, H \otimes K \otimes V).
+\]
+Using the universal morphism
+\[
+\alpha_F : \Phi (F) (W,V) \otimes F (X,H) \longrightarrow \CC (W \otimes X, H \otimes V)
+\]
+and the similar $\alpha_G$, we have what we need if we have
+\[
+\CC (W \otimes Y,K \otimes V) \otimes \CC (U \otimes X, H \otimes W) \longrightarrow \CC (U \otimes X \otimes Y, H \otimes K \otimes V);
+\]
+and, as before, we do have such, namely, 
+\begin{eqnarray*}
+&&\CC(W\otimes Y, K \otimes V) \otimes \CC (U \otimes X, H \otimes W) \stackrel{(H\otimes-)\otimes (-\otimes Y)}{\longrightarrow}
+\\
+&& \CC (H \otimes W \otimes Y, H \otimes K \otimes V) \otimes \CC (U \otimes X \otimes Y, H \otimes W \otimes Y)
+\\
+&&
+\stackrel{\textrm{comp.}}{\longrightarrow} \CC (U\otimes X \otimes Y, H \otimes K \otimes V).
+\end{eqnarray*}
+This describes the duoidal structure on $\Phi$.   The axioms require checking in detail. \hfill{$\square$}
+
+\vspace{2mm}
+
+\par\noindent
+{\bf Remark} \ The convolution structure $\ast$ on $\CF$ is closed monoidal: $\CF (M \ast N, L) \cong \CF (N, L^M)$ where
+\[
+L^M (X,Y) = \int_{U,V} \CV (M(U,V),L(U\otimes X,V\otimes Y)).
+\]
+So
+\[
+\mathbf{1}^F (X,Y) = \int_{U,V} \CV (F(U,V),\CC(U\otimes X, V \otimes Y))
+\]
+which is very close to the formula for $\Phi (F) (X,Y)$.    However the $X \otimes U$ replacing $U \otimes X$ is important for the consideration of centres.
+
+\vspace{2mm}
+
+If $\CC$ is left closed and suitably complete, we can define a ($\CV$-) functor
+\[
+\mathrm{C} : [\CC,\CC]^{\textrm{op}} \to [\CC,\CC]
+\]
+by
+\[
+\mathrm{C} (G) Y = \int_V \quad ^{GV}(V\otimes Y).
+\]
+Then
+\begin{eqnarray*}
+\Phi (G_\ast) (X,Y) &=&
+\int_{U,V} \CV (\CC(U,GV),\CC(X\otimes U, V \otimes Y))
+\\
+&\cong& \int_V \CC (X\otimes GV,V\otimes Y)
+\\
+&\cong& \CC (X,\mathrm{C}(G)Y)
+\\
+&\cong& \mathrm{C} (G)_\ast (X,Y).
+\end{eqnarray*}
+
+$$ \xymatrix{\ar @{} [dr] |{\cong}
+[\CC,\CC]^{\textrm{op}}   \ar[r]^{\mathrm {C}}\ar[d]_{( )_\ast } & [\CC,\CC] \ar[d]^{( )_\ast } 
+\\
+[\CC^{\textrm{op}} \otimes \CC,\CV]^{\textrm{op}} \ar[r]_\Phi & [\CC^{\textrm{op}} \otimes \CC,\CV]
+}$$
+$$
+|| \hspace*{30mm} ||
+$$\vspace*{-10mm}
+$$
+\CF^{\textrm{op}}   \hspace*{28mm}  \CF
+$$
+
+
+\par\noindent
+{\bf Lemma} \  {\it If $U$ has a left dual $^\wedge U$ then}
+\[
+U \otimes \mathrm {C} (G) Y \cong \int_V \quad ^{GV} (U \otimes V \otimes Y).
+\]
+
+
+\par\noindent
+{\bf Proof} 
+\begin{eqnarray*}
+&&\CC (C,U\otimes \mathrm{C} (G)Y) \cong \CC (^\wedge U \otimes X, \mathrm{C} (G) Y)
+\\
+&\cong& \int_V \CC (^\wedge U \otimes X, \ ^{GV}(V\otimes Y)) \cong \int_V \CC (^\wedge U \otimes X \otimes GV,V\otimes Y)
+\\
+&\cong& \int_V \CC (X\otimes GV,U\otimes V \otimes Y) \cong \CC (X,\int_V \ ^{GV}(U\otimes V\otimes Y)). 
+\end{eqnarray*}    \hfill{$\square$}
+
+
+\vspace*{3mm}
+
+
+\par\noindent
+{\bf  Proposition} \ {\it  If $\CC$ is left autonomous and suitably complete then, for all endo-$\CV$-functors $F,G:\CC \longrightarrow \CC$, }
+\[
+\mu_v : \Phi (F_\ast) \circ \Phi (G_\ast) \to \Phi (F_\ast \ast G_\ast)
+\]
+{\it is invertible}.
+
+\vspace{2mm}
+
+\par\noindent
+{\bf Proof} \ Using Yoneda and an earlier calculation, we have
+\[
+\Phi (F_\ast \ast G_\ast) (X,Y) \cong \int_{U,V} \CC (X \otimes FU \otimes GV, U\otimes V \otimes Y).
+\]
+However, using the Lemma, we have
+\begin{eqnarray*}
+&& (\Phi(F_\ast)\circ \Phi(G_\ast)) (X,Y) \cong (\mathrm{C}(F)_\ast \circ \mathrm{C} (G)_\ast)(X,Y)
+\\
+&=& \CC (X,\mathrm{C}(F)(\mathrm{C}(G)Y)) \cong int_U \CC (X, \ ^{FU}(U\otimes \mathrm{C}(G)Y))
+\\
+&\cong& 
+\int_U \CC (X \otimes FU, U\otimes \mathrm{C} (G) Y) \cong \int_{U,V} \CC (X\otimes FU, \ ^{GV}(U\otimes V \otimes Y))
+\\
+&\cong& \int_{U,V} \CC (X\otimes FU \otimes GV, U\otimes V \otimes Y).  
+\end{eqnarray*}
+
+
+\vspace*{-10mm}
+\hfill{$\square$}
+
+
+\vspace*{5mm}
+
+
+\par\noindent
+{\bf Corollary} \ {\it Under the conditions of the Proposition, if $G$ is a monoidal comonad on $\CC$ then $\mathrm{C} (G)$ is a monoidal comonad on $\CC$.}
+
+\vspace{2mm}
+
+\par\noindent
+{\bf Proof} \ We already noticed that $G$ is a monoidal comonad iff $G_\ast$ is a bimonoid in $\CF$.   Then $\Phi(G_\ast)$ is a bimonoid in $\CF$ using
+\begin{eqnarray*}
+\mu_h       &:&   \Phi (G_\ast) \ast \Phi (G_\ast) \stackrel{\mu_h}{\longrightarrow} \Phi (G_\ast\circ G_\ast) \stackrel{\Phi(\delta_v)}{\longrightarrow} \Phi (G_\ast)
+\\
+\mu_v &:& \Phi(G_\ast) \stackrel{\Phi(\mu_h)}{\longrightarrow} \Phi (G_\ast \ast G_\ast) \stackrel{\mu^{-1}_v}{\longrightarrow} \Phi (G_\ast) \circ \Phi (G_\ast).
+\end{eqnarray*}
+However, $\Phi (G_\ast) \cong \mathrm{C} (G)_\ast$ ; so $\mathrm{C} (G)$ is a monoidal comonad. \hfill{$\square$}
+
+\subsection{Hopf bimonoids}
+
+\par\noindent
+{\bf Definition} \ A bimonoid $A$ in any duoidal category $\CF$ is {\it left Hopf} when the ``left fusion morphism''
+\[
+A \ast A \stackrel{1 \ast \delta}{\longrightarrow} (A \circ \mathbf{1}) \ast (A \circ A) \stackrel{\gamma}{\longrightarrow} (A\ast A) \circ (\mathbf{1} \ast A) \stackrel{\mu \circ 1}{\longrightarrow}  A \circ (\mathbf{1} \ast A)
+\]
+is invertible.   The bimonoid $A$ is {\it right Hopf} when the ``right fusion morphism''
+\[
+A \ast A \stackrel{\delta \ast 1}{\longrightarrow} (A \circ A) \ast (A \circ \mathbf{1}) \stackrel{\gamma}{\longrightarrow} (A \ast A) \circ (A \ast \mathbf{1}) \stackrel{\mu \circ 1}{\longrightarrow} A \circ (A \ast \mathbf{1})
+\]
+is invertible. The bimonoid $A$ is {\it Hopf} when it is both left and right Hopf.
+
+\vspace{2mm}
+
+\par\noindent
+{\bf  Proposition} \ {\it Let G be a monoidal comonad on $\CC$.  The bimonoid $G_\ast$ in $\CF = [\CC^{\textrm{op}} \otimes \CC,\CV]$ is left Hopf if the composite}
+\[
+GX \otimes GY \stackrel{1 \otimes \delta}{\longrightarrow} GX \otimes G^2 Y \stackrel{\mu_{X,GY}}{\longrightarrow} G (X \otimes GY)
+\]
+{\it is invertible.   The bimonoid $G_\ast$ in $\CF$ is right Hopf if the composite}
+\[
+GX \otimes GY \stackrel{\delta \otimes 1}{\longrightarrow} G^2 X \otimes GY \stackrel{\mu_{GX,Y}}{\longrightarrow} G(GX \otimes Y)
+\]
+{\it is invertible}.
+\\
+(This links our Hopf notion with that of Brugui\`eres-Lack-Virelizier [\ref{BrugVirelLack}] and Chikhladze-Lack-Street [\ref{ChLaSt}]).
+
+\vspace{2mm}
+
+\par\noindent
+{\bf  Proof} \ From the universal properties of $\ast$ and $\circ$, we easily calculate that
+\begin{eqnarray*}
+\CF (G_\ast \ast G_\ast,L) &\cong& \int_{X,Y} L(GX \otimes GY, X \otimes Y),
+\\
+\CF (G_\ast \circ (\mathbf{1} \ast G_\ast),L) &\cong& \int_{X,Y} L(G(X \otimes GY), X \otimes Y),
+\\
+\CF (G_\ast \circ (G_\ast \ast \mathbf{1}),L) &\cong& \int_{X,Y} L(G(GX \otimes Y), X \otimes Y)
+\end{eqnarray*}
+and it remains to see that composites in the Proposition induce the fusion morphisms. \hfill{$\square$} 
+
+\vspace{3mm}
+
+If the two composites in the Proposition are invertible, $G$ is called a {\it Hopf comonad on} $\CC$. 
+
+\vspace{2mm}
+
+\par\noindent
+{\bf Remark} \  In general, I do not see that the converses hold in the Proposition.  We would require the morphisms
+\[
+\CC (X,Y) \otimes \CC (U,V) \stackrel{\otimes}{\longrightarrow} \CC (X \otimes U, Y \otimes V)
+\]
+to be strong monomorphisms in $\CV$.
+
+\vspace{2mm}
+
+Suppose $G$ is a right Hopf comonad on a left autonomous monoidal category $\CC$.  Suppose $\CC$ is complete enough and $G$ preserves limits.   Then there is a distributive law
+\[
+\lambda : \mathrm{C} (G) G \longrightarrow G \mathrm {C} (G)
+\]
+between the comonads $G$ and $\mathrm {C} (G)$.  To see this, note that the right Hopf condition gives a morphism
+\[
+I \stackrel{\eta}{\longrightarrow} GI \ \  {\longrightarrow\hspace{-8.5mm}\raisebox{-2mm}{$\scriptstyle G (\textrm{unit})$}} \ \ G (GW \otimes \  ^\wedge GW) \cong GW \otimes G (^\wedge GW)
+\]
+and hence a morphism
+\[
+\bar \lambda : \ ^\wedge GW \longrightarrow G(^\wedge GW).
+\]
+Then $\lambda$ is defined by
+
+$$
+\xymatrix{\int_V V \otimes GY \otimes ^\wedge GV \ar[rrrr]^{\lambda_Y} \ar[d]^{pr_{GW}} &&&&  \int_W G (W\otimes Y \otimes ^\wedge GW) \ar[d]^{pr_W}
+\\
+GW \otimes GY \otimes ^\wedge G^2W \ar[d]_{1\otimes 1 \otimes ^\wedge \delta_W} &&&& G(W\otimes Y \otimes ^\wedge GW) 
+\\
+GW\otimes GY \otimes ^\wedge GW \ar[rrrr]_{1\otimes 1 \otimes \bar \lambda}  &&&&  GW \otimes GY \otimes G (^\wedge GW) \ar[u]_{\mu_3} 
+}
+$$
+
+
+The composite comonad (or wreath product)
+\[
+\mathrm{D} (G) = \mathrm{C} (G) G
+\]
+is called the {\it Drinfeld double} of $G$ by Brugui\`eres-Virelizier [\ref{BrugVirel2008}].
+\\
+
+
+\par\noindent
+{\bf   Theorem} \ (Brugui\`eres-Virelizier) {\it If $\CC$ is autonomous, G is a Hopf comonad on $\CC$, and $\mathrm{C}(G)$ exists then $\mathrm {C}(G)$ and $\mathrm {D}(G)$ are Hopf comonads on $\CC$, and there is an equivalence of monoidal categories}
+\[
+\CC^{\mathrm {D}(G)}  \simeq Z (\CC^G).
+\]
+[Here $\CC^G$ denotes the category of Eilenberg-Moore $G$-coalgebras].
+
+\vspace{2mm}
+
+
+\par\noindent
+{\bf Proof indication} \ A $\mathrm {D} (G)$-coalgebra $\displaystyle A\longrightarrow \int_V V \otimes GA \otimes \ ^\wedge GV$ amounts to natural family
+\[
+\alpha_{A,V} : A \otimes GV \longrightarrow V \otimes GA
+\]
+satisfying two conditions. Then $A$ becomes a $g$-coalgebra via the coaction
+\[
+A \stackrel{1\otimes \eta}{\longrightarrow} A \otimes GI \stackrel{\alpha_{A,I}}{\longrightarrow} I \otimes GA \cong GA
+\]
+and lies in $Z(\CC^G)$ using
+\[
+A \otimes V \stackrel{1\otimes \delta}{\longrightarrow} A \otimes GV \stackrel{\alpha_{A,V}}{\longrightarrow} V \otimes GA \stackrel{1\otimes \varepsilon_A}{\longrightarrow} V \otimes A.
+\]
+Conversely, $\alpha_{A,V}$ can be reconstructed from $\delta : A \longrightarrow GA$ and $u_W : A \otimes W \longrightarrow W \otimes A$ as 
+\[
+A\otimes GV \stackrel{u_{GV}}{\longrightarrow} GV \otimes A \stackrel{1\otimes \delta}{\longrightarrow} GV \otimes GA \stackrel{\varepsilon_V\otimes 1}{\longrightarrow} V \otimes GA.  \eqno{\square}
+\]  
+
+ 
+\subsection{The full centre of a monoid}
+
+We now turn to Davydov's idea [\ref{Davydov2010}] about the full centre of a monoid in a monoidal category.   First we remind you of the construction in [\ref{MCL}].
+
+Let $\CM$ be a braided monoidal bicategory (such as $\mathrm{Cat}$).  For any pseudomonoid $A$ (that is, a monoidal category when $\CM=\mathrm{Cat}$) there is a pseudo-cosimplicial category
+\[
+\CM(U,A) \begin{array}{c}
+ \longrightarrow  \\
+ \longleftarrow  \\
+ \longrightarrow 
+\end{array}\CM(U\otimes A,A) \begin{array}{c}
+ \longrightarrow  \\
+ \longrightarrow  \\
+ \longrightarrow 
+\end{array}\CM(U\otimes A\otimes A,A) 
+\]
+defined in a Hochschild sort of way.
+ 
+The descent category is denoted by $\mathrm {CP} (U,A)$; the objects are called {\it centre pieces} for $A$.    The {\it monoidal centre} $\mathrm{Z}(A)$ {\it of} $A$ is a representing object for $\mathrm {CP} (-,A)$ :
+\[
+\CM(U,\mathrm{Z}(A)) \simeq \mathrm{CP} (U,A).
+\]
+If $\CM$ is closed as a monoidal bicategory, the pseudo-cosimplicial category is equivalent to
+\[
+\CM(U,A) \begin{array}{c}
+ \longrightarrow  \\
+ \longleftarrow  \\
+ \longrightarrow 
+\end{array}\CM(U,[A,A]) \begin{array}{c}
+ \longrightarrow  \\
+ \longrightarrow  \\
+ \longrightarrow 
+\end{array}\CM(U,[A \otimes A,A]) 
+\]
+and $\mathrm{Z}(A)$ is the descent object of the ``Hochschild complex''
+\[
+A \begin{array}{c}
+ \longrightarrow  \\
+ \longleftarrow  \\
+ \longrightarrow 
+\end{array}[A,A] \begin{array}{c}
+ \longrightarrow  \\
+ \longrightarrow  \\
+ \longrightarrow 
+\end{array}[A \otimes A,A] 
+\]
+ 
+\par\noindent
+{\bf Proposition} \ $\mathrm{Z}(A)$ {\it is a braided pseudomonoid in} $\CM$.
+
+
+For a monoidal category $\CC$ and a monoid $A$ in $\CC$, Davydov considers the category whose objects are maps
+\[
+\zeta : Z \to A
+\]
+in $\CC$ with $Z$ in $\CZ(\CC)$ and such that
+
+$$
+\xymatrix{Z\otimes A \ar[dd]_{u_A}   \ar[r]^{\zeta \otimes 1} & A\otimes A  \ar[rd]^\mu
+\\
+&& A
+\\
+A\otimes Z   \ar[r]_{1\otimes \zeta} & A\otimes A  \ar[ru]_\mu
+}
+$$
+
+
+\par\noindent
+commutes.     A terminal object $i : \mathrm{z} (A) \to A$ in this category is called the {\it full centre} of $A$.   Davydov proves $\mathrm{z}(A)$ is a commutative monoid in $\CZ(\CC)$, $i$ is a monoid morphism in $\CC$, and $\mathrm{z}(A) \cong \mathrm{z}(B)$ for Morita equivalent $A$ and $B$.
+\\
+
+Consider the 2-category $\mathrm{Cat}_\ast$ of pairs $(\CX,X)$ where $\CX$ is a category and $X$ is an object of $\CX$, and where the morphisms $(F,\varphi) : (\CX,X) \to (\CY,Y)$ consist of a functor $F : \CX \to \CY$ and a morphism $\varphi : FX \to Y$ in $\CY$.  This is a symmetric monoidal 2-category under product.
+
+
+A pseudomonoid in $\mathrm{Cat}_\ast$ is a pair $(\CC,A)$ where $\CC$ is a monoidal category and $A$ is a monoid in $\CC$.  A braided pseudomonoid is a braided monoidal category $\CZ$ with a commutative monoid $Z$ selected.
+\\
+
+
+\par\noindent
+{\bf  Proposition} \ {\it If the full centre} $\mathrm{z} (A)$  {\it of a monoid} $A$ {\it in a monoidal category} $\CC$ {\it exists (in the sense of Davydov) then the centre of} $(\CC,A)$ {\it in}  $\mathrm{Cat}_\ast$ {\it exists and is given by}
+\[
+\CZ (\CC,A) \simeq (\CZ(\CC),\mathrm{z} (A)).
+\]
+
+
+\begin{center}
+--------------------------------------------------------
+\end{center}
+
+\appendix
+\begin{thebibliography}{000}
+
+\bibitem{AguiarMahajan} Marcelo Aguiar and Swapneel Mahajan, \textit{Monoidal Functors, Species and Hopf Algebras}, CRM Monograph Series \textbf{29} (American Mathematical Society, November 2010).\label{AguiarMahajan}
+
+\bibitem{Atiyah1988} Michael Atiyah, \textit{Topological quantum field theories}, Institut des Hautes \'Etudes Scientifiques. Publications Math\'ematiques. \textbf{68} (1988) 175--186.\label{Atiyah1988} 
+
+\bibitem{Barr1979} Michael Barr, \textit{Star-autonomous categories}, Lecture Notes in Mathematics \textbf{752} (Springer, 1979).\label{Barr1979}
+
+\bibitem{BarWest1996} John W. Barrett and Bruce W. Westbury, \textit{Invariants of piecewise-linear 3-manifolds}, Transactions of the American Mathematical Society \textbf{348} (1996) 3997--4022.\label{BarWest1996}
+
+\bibitem{Batanin2011a} Michael Batanin, \textit{Duoidal center and duoidal Deligne's conjecture} (Report on joint work with Martin Markl, Australian Category Seminar, 23 March 2011).\label{Batanin2011a}
+
+\bibitem{Batanin2011b} Michael Batanin, \textit{Tamarkin complex as many object Hochschild complex, Part V} (Report on joint work with Martin Markl, Australian Category Seminar, 9 March 2011).\label{Batanin2011b}
+
+\bibitem{BatMarkl} Michael Batanin and Martin Markl, \textit{Centers and homotopy centers in enriched monoidal categories}; arXiv:1109.4084.\label{BatMarkl}
+
+\bibitem{Ben1963} Jean B\'enabou, \textit{Cat\'egories avec multiplication}, Comptes Rendus de l'Acad\'emie des Sciences, Paris, \textbf{256} (1963) 1887--1890.\label{Ben1963}
+
+\bibitem{Ben1967} Jean B\'enabou, \textit{Introduction to bicategories}, Lecture Notes in Mathematics \textbf{47} (Springer-Verlag, 1967) 1--77.\label{Ben1967}
+
+\bibitem{BCSW} Renato Betti, Aurelio Carboni, Ross Street and Robert Walters, \textit{Variation through enrichment}, Journal of Pure and Applied Algebra \textbf{29} (1983) 109--127.\label{BCSW}
+
+\bibitem{BookSt} Thomas Booker and Ross Street, \textit{Tannaka duality and convolution for duoidal categories}; arXiv.1111.5659.\label{BookSt} 
+
+\bibitem{Borceux} Francis Borceux, \textit{Handbook of Categorical Algebra 1, 2 and 3}, Encyclopedia of Mathematics and its Applications \textbf{50}, \textbf{51} and \textbf{52} (Cambridge University Press, 1994).\label{Borceux}
+
+\bibitem{Borel1967} Armand Borel, \textit{Topics in the homology theory of fibre bundles}, Lecture Notes in Mathematics \textbf{36} (Springer 1967).\label{Borel1967}
+
+\bibitem{BoucBook} Serge Bouc, \textit{Green functors and G-sets}, Lecture Notes in Mathematics \textbf{1671} (Springer-Verlag, 1997).\label{BoucBook} 
+
+\bibitem{BrugVirel2007} Alain Brugui\'eres and Alexis Virelizier, \textit{Hopf monads}, Advances in Mathematics \textbf{215} (2007) 679--733.\label{BrugVirel2007}
+
+\bibitem{BrugVirel2008} Alain Brugui\'eres and Alexis Virelizier, \textit{Categorical centers and Reshetikhin-Turaev invariants}, Acta Mathematica Vietnam \textbf{33} (2008) 255--277.\label{BrugVirel2008}
+
+\bibitem{BrugVirelLack} Alain Brugui\'eres, Stephen Lack and Alexis Virelizier, \textit{Hopf monads on monoidal categories}, Advances in Mathematics \textbf{227(2)} (2011) 745--800; also arXiv:1003.1920.\label{BrugVirelLack}
+
+\bibitem{CKS} Aurelio Carboni, Stefano Kasangian and Ross Street, \textit{Bicategories of spans and relations}, Journal of Pure and Applied Algebra \textbf{33} (1984) 259--267.\label{CKS}
+
+\bibitem{ChLaSt} Dimitri Chikhladze, Stephen Lack and Ross Street, \textit{Hopf monoidal comonads}, Theory and Applications of Categories \textbf{24(19)} (2010) 554--563.\label{ChLaSt}
+
+\bibitem{DayConv} Brian J. Day, \textit{On closed categories of functors}, Lecture Notes in Mathematics \textbf{137} (Springer 1970) 1--38.\label{DayConv}
+
+\bibitem{DayMid4} Brian J. Day, \textit{Middle-four maps and net categories}; arXiv:0911.5200. \label{DayMid4}
+
+\bibitem{Davydov2010} Alexei Davydov, \textit{Centre of an algebra}, Advances in Mathematics \textbf{225} (2010) 319--348.\label{Davydov2010}
+
+\bibitem{Dress1973} Andreas W. M. Dress, \textit{Contributions to the theory of induced representations}, Lecture Notes in Mathematics \textbf{342} (Springer-Verlag, 1973) 183--240.\label{Dress1973}
+
+\bibitem{Dress1975} Andreas W. M. Dress, \textit{On signatures of Green functors}, Mathematische Zeitschrift \textbf{144} (1975) 1--8.\label{Dress1975}
+
+\bibitem{DMW1987} William G. Dwyer, Haynes R. Miller and Clarence W. Wilkerson, \textit{The homotopic uniqueness of $BS^3$}, Lecture Notes in Mathematics \textbf{1298} (Springer-Verlag, 1987) 90--105.\label{DMW1987}
+
+\bibitem{EilKel1966} Samuel Eilenberg and G. Max Kelly, \textit{Closed categories}, Proceedings of the Conference on Categorical Algebra (La Jolla, 1965), (Springer-Verlag,1966) 421--562.\label{EilKel1966}
+
+\bibitem{FreydYetter1989} Peter Freyd and David Yetter, \textit{Braided compact closed categories with applications to low dimensional topology}, Advances in Mathematics \textbf{77} (1989) 156--182.\label{FreydYetter1989}
+
+\bibitem{FFRS2006} Juerg Fr\"olich, Juergen Fuchs, Ingo Runkel and Christoph Schweigert,
+\textit{Correspondences in ribbon categories}, Advances in Mathematics \textbf{199} (2006) 192--329.\label{FFRS2006}
+
+\bibitem{Gel1970} S. I. Gelfand, \textit{Representations of the full linear group over a finite field}, Mat. Sb. (N.S.) \textbf{83(125)} (1970) 15--41.\label{Gel1970}
+
+\bibitem{GG1962} I. M. Gelfand and M. I. Graev, \textit{Construction of irreducible representations of simple algebraic groups over a finite field}, Dokl. Akad. Nauk SSSR \textbf{146} (1962) 529--532.\label{GG1962}
+
+\bibitem{GPS} Robert Gordon, A. John Power and Ross Street, \textit {Coherence for tricategories}, Memoirs of the American Mathematical Society \textbf{117} no. 558 (1995) vi+81 pp.\label{GPS}
+
+\bibitem{Green1955} James A. Green, \textit{The characters of the finite general linear groups}, Transactions of the American Mathematical Society \textbf{80} (1955) 402--447.\label{Green1955} 
+
+\bibitem{Green1971} James A. Green, \textit{Axiomatic representation theory for finite groups}, Journal of Pure and Applied Algebra \textbf{1} (1971) 41--77.\label{Green1971}
+
+\bibitem{Green1995} James A. Green, \textit{Hall algebras, hereditary algebras and quantum groups}, Inventiones Mathematicae \textbf{120} (1995) 361--377.\label{Green1995}
+
+\bibitem{H-C1970} Harish-Chandra, \textit{Eisenstein series over finite fields, Functional analysis and related fields} (Proc. Conf. M. Stone, U. Chicago 1968) (Springer 1970) 76--88.\label{H-C1970}
+
+\bibitem{JackMcC1992} Stefan Jackowski and James McClure, \textit{Homotopy decomposition of classifying spaces via elementary abelian subgroups}, Topology \textbf{31} (1992) 113--132.\label{JackMcC1992}
+
+\bibitem{Species} Andr\'e Joyal, \textit{Une theory combinatoire des series formelles}, Advances in Mathematics \textbf{42} (1981) 1--82.\label{Species}
+
+\bibitem{AnalFunct} Andr\'e Joyal, \textit{Foncteurs analytiques et especes de structures}, Lecture Notes in Mathematics \textbf{1234} (Springer 1986) 126--159.\label{AnalFunct} 
+
+\bibitem{TYBO} Andr\'e Joyal and Ross Street, \textit{Tortile Yang-Baxter operators in tensor categories}, Journal of Pure and Applied Algebra \textbf{71} (1991) 43--51.\label{TYBO} 
+
+\bibitem{GTC} Andr\'e Joyal and Ross Street, \textit{The geometry of tensor calculus, I}, Advances in Mathematics \textbf{88} (1991) 55--112.\label{GTC}
+
+\bibitem{BTC}  Andr\'e Joyal and Ross Street, \textit{Braided tensor categories}, Advances in Mathematics \textbf{102} (1993) 20--78.\label{BTC}
+
+\bibitem{GLFq} Andr\'e Joyal and Ross Street, \textit{The category of representations of the general linear groups over a finite field}, Journal of Algebra \textbf{176} (1995) 908--946.\label{GLFq}
+
+\bibitem{Kapr1995} Mikhail M. Kapranov, \textit{Analogies between the Langlands correspondence and topological quantum field theory}, Progress in Mathematics \textbf{131} (Birkh\"auser Boston, Massachusetts, 1995) 119--151.\label{Kapr1995}
+
+\bibitem{Kan1958} Daniel M. Kan, \textit{Adjoint functors}, Transactions of the American Mathematical Society \textbf{87} (1958) 294--329. \label{Kan1958}
+
+\bibitem{KSW2005} Yasuyuki Kawahigashi, Nobuya Sato, Michihisa Wakui,  \textit{(2+1)-dimensional topological quantum field theory from subfactors and Dehn surgery formula for 3-manifold invariants},  Advances in Mathematics \textbf{195} (2005) 165--204. \label{KSW2005}
+
+\bibitem{Kelly1969} G. Max Kelly, \textit{Adjunction for enriched categories}, Lecture Notes in Mathematics \textbf{106} (Springer-Verlag, 1969) 166--177.\label{Kelly1969}
+
+\bibitem{Kelly1974} G. Max Kelly, \textit{Doctrinal adjunction}, Lecture Notes in Mathematics \textbf{420} (Springer-Verlag, 1974) 257--280.\label{Kelly1974}
+
+\bibitem{KellyBook} G. Max Kelly, \textit{Basic concepts of enriched category theory}, London Mathematical Society Lecture Note Series \textbf{64} (Cambridge University Press, Cambridge, 1982). \label{KellyBook}
+
+\bibitem{KelSt1974} G. Max Kelly and Ross Street, \textit{Review of the elements of 2-categories}, Lecture Notes in Mathematics \textbf{420} (Springer-Verlag, 1974) 75--103.\label{KelSt1974}
+
+\bibitem{KongRunkel} Liang Kong and Ingo Runkel, \textit{Morita classes of algebras in modular tensor categories}, Advances in Mathematics \textbf{219} (2008) 1548--1576.\label{KongRunkel}
+
+\bibitem{Lack2000} Stephen Lack, \textit{A coherent approach to pseudomonads}, Advances in Mathematics \textbf{152} (2000) 179--202.\label{Lack2000} 
+
+\bibitem{FTMII} Stephen Lack and Ross Street, \textit{The formal theory of monads II}, Journal of Pure and Applied Algebra \textbf{175} (2002) 243--265.\label{FTMII} 
+
+\bibitem{Law1969} F. William Lawvere, \textit{Ordinal sums and equational doctrines},  Lecture Notes in Mathematics \textbf{80} (Springer-Verlag, 1969) 141--155.\label{Law1969}
+
+\bibitem{Lindner1976} Harald Lindner, \textit{A remark on Mackey functors}, Manuscripta Mathematica \textbf{18} (1976) 273--278.\label{Lindner1976}
+
+\bibitem{Lyub1995} Volodymyr V. Lyubashenko, \textit{Invariants of 3-manifolds and projective representations of mapping class groups via quantum groups at roots of unity}, Communications in Mathematical Physics \textbf{172} (1995) 467-516.\label{Lyub1995}
+
+\bibitem{Macdon1995} I. G. Macdonald, \textit{Symmetric Functions and Hall Polynomials} (Oxford U. Press second edition 1995; first edition 1979).\label{Macdon1995}
+
+\bibitem{ML1963} Saunders Mac Lane, \textit{Natural associativity and commutativity}, Rice University Studies \textbf{49} (1963) 28--46.\label{ML1963}
+
+\bibitem{CWM} Saunders Mac Lane, \textit{Categories for the Working Mathematician}, Graduate Texts in Mathematics \textbf{5} (Springer-Verlag, 1971).\label{CWM} 
+
+\bibitem{MacLPar} Saunders Mac Lane and Robert Par\'e, \textit{Coherence for bicategories and indexed categories}, Journal of Pure and Applied Algebra \textbf{37} (1985) 59--80.\label{MacLPar}
+
+\bibitem{Marmolejo} Francisco Marmolejo, \textit{Distributive laws for pseudomonads}, Theory and Applications of Categories \textbf{5} (1999) 91--147.\label{Marmolejo}
+
+\bibitem{Moerdijk2002} Ieke Moerdijk, \textit{Monads on tensor categories}, Journal of Pure Applied Algebra \textbf{168} (2002) 189--208.\label{Moerdijk2002}
+
+\bibitem{M\'uger2003a} Michael M\"uger, \textit{From subfactors to categories and topology. II. The quantum double of tensor categories and subfactors}, Journal of Pure and Applied Algebra \textbf{180} (2003) 159--219.\label{M\'uger2003a} 
+
+\bibitem{M\'uger2003b} Michael M\"uger, \textit{On the structure of modular categories}, Proceedings of the London Mathematical Society (3) \textbf{87} (2003) 291--308.\label{M\'uger2003b} 
+
+\bibitem{MFCCC} Elango Panchadcharam and Ross Street, \textit{Mackey functors on compact closed categories}, Journal of Homotopy and Related Structures \textbf{2(2)} (2007) 261--293.\label{MFCCC}
+
+\bibitem{PastroSt2008} Craig Pastro and Ross Street, \textit{Doubles for monoidal categories}, Theory and Applications of Categories \textbf{21} (2008) 61--75.\label{PastroSt2008}
+
+\bibitem{Penrose1971} Roger Penrose, \textit{Applications of negative dimensional tensors}, in "Combinatorial Mathematics and its Applications" (Academic Press 1971) 221--244.\label{Penrose1971} 
+
+\bibitem{ReshTur1991} N. Yu. Reshetikhin and V. G. Turaev, \textit{Invariants of 3-manifolds via link polynomials and quantum groups}, Inventiones Mathematicae \textbf{103} (1991) 547--597.\label{ReshTur1991}
+
+\bibitem{Ringel1990} Claus Michael Ringel, \textit{Hall algebras and quantum groups}, Inventiones Mathematicae \textbf{101} (1990) 583--591.\label{Ringel1990}
+
+\bibitem{Schanuel1990} Steve H. Schanuel, \textit{Negative sets have Euler characteristic and dimension}, Lecture Notes in Mathematics \textbf{1488} (Springer, 1990) 379--385.\label{Schanuel1990}
+
+\bibitem{Schiff} Olivier Schiffmann, \textit{Lectures on Hall algebras}, arXiv:math/0611617 (2009).\label{Schiff} 
+
+\bibitem{Segal1988} Graeme Segal, \textit{The definition of conformal field theory}, NATO Advanced Science Institute Series C Math. Phys. Sci. \textbf{250} (Kluwer 1988) 165--171.\label{Segal1988}
+
+\bibitem{StolzTeichner} Stephan Stolz and Peter Teichner, \textit{Traces in monoidal categories}, Transactions American Mathematical Society (to appear; also arXiv:1010.4527).\label{StolzTeichner}
+
+\bibitem{FTM} Ross Street, \textit{The formal theory of monads}, Journal of Pure and Applied Algebra \textbf{2} (1972) 149--168.\label{FTM} 
+
+\bibitem{FiB} Ross Street, \textit{Fibrations in bicategories}, Cahiers de topologie et g\'eom\'etrie diff\'erentielle \textbf{21} (1980) 111--160.\label{FiB}
+
+\bibitem{HCSCSE} Ross Street, \textit{Higher categories, strings, cubes and simplex equations}, Applied Categorical Structures \textbf{3} (1995) 29--77.\label{HCSCSE}
+
+\bibitem{CatStr} Ross Street, \textit{Categorical structures}, Handbook of Algebra \textbf{1} (edited by M. Hazewinkel, Elsevier Science, 1996) 529--577.\label{CatStr}
+
+\bibitem{MCL} Ross Street, \textit{The monoidal centre as a limit}, Theory and Applications of Categories \textbf{13} (2004) 184--190.\label{MCL}
+
+\bibitem{RossQG} Ross Street, \textit{Quantum Groups: a path to current algebra}, Australian Mathematical Society Lecture Series \textbf{19} (Cambridge University Press; 18 January 2007; ISBN-978-0-521-69524-4).\label{RossQG} 
+
+\bibitem{Tambara2006} Daisuke Tambara, \textit{Distributors on a tensor category}, Hokkaido Mathematics Journal \textbf{35} (2006) 379--425.\label{Tambara2006}
+
+\bibitem{Tambara2008} Daisuke Tambara, \textit{The Drinfeld center of the category of Mackey functors}, Journal of Algebra \textbf{319} (2008) 4018--4101.\label{Tambara2008}
+
+\bibitem{Turaev1988} Vladimir Turaev, \textit{The Yang-Baxter equation and invariants of links}, Inventiones Mathematicae \textbf{92} (1988) 527--553.\label{Turaev1988}
+
+\bibitem{TurVirez} Vladimir Turaev and Alexis Virelizier, \textit{On two approaches to 3-dimensional
+TQFTs}, arXiv:1006.3501 (June 2010).\label{TurVirez}
+
+\bibitem{TuraevYa1992} V. G. Turaev and O. Ya. Viro, \textit{State sum invariants of 3-manifolds and quantum $6j$-symbols}, Topology \textbf{31} (1992) 865--902.\label{TuraevYa1992}
+
+\bibitem{Xiao1997} Jie Xiao, \textit{Drinfeld double and Ringel-Green theory of Hall algebras}, Journal of Algebra \textbf{190} (1997) 100--144.\label{Xiao1997} 
+
+\bibitem{Yetter1988} David Yetter, \textit{Markov algebras}, Contemporary Mathematics \textbf{78} (1988) 705--730.\label{Yetter1988}
+
+\bibitem{Zoeb} Volker Z\"oberlein, \textit{Doctrines on 2-categories}, Mathematische Zeitschrift \textbf{148} (1976) 267--279. \label{Zoeb}
+
+
+
+\end{thebibliography}
+
+\end{document}
